@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/styles.css">
+
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+
+      <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+
+      <title>Betoolz - Matched Betting per professionisti</title>
+      <link rel="icon" type="image/png" href="ws.png"/>
+<style>
+
+.forgot-password {
+    margin-top: 120px;
+    
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.input-box:focus ~ label,
+.input-box:valid ~ label,
+.input-box.valid ~ label {
+    top: 2px;
+    font-size: 10px;
+    color: #202427;
+    font-weight: 500;
+}
+
+
+.forgot-password1{
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #202427;
+    border-radius: 12px;
+    outline: none;
+}
+
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background-image: url('eyeclosed.png'); /* Replace with your closed eye icon image */
+    background-size: cover;
+}
+
+/* Open eye icon (hidden by default) */
+.toggle-password.open {
+    background-image: url('eye.png'); /* Replace with your open eye icon image */
+}
+
+.input-group{
+    width: 100%;
+}
+.input-field{
+    margin: 12px 0;
+    position: relative;
+}
+.input-box{
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    color: #202427;
+    border: 0.5px solid #2024273a;
+    border-radius: 10px;
+    padding: 7px 45px 0 20px;
+    background: rgba(247, 247, 247, 0.6);
+    backdrop-filter: blur(2px);
+    outline: none;
+}
+.input-field label{
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    font-size: 15px;
+    transition: .2s ease-in-out;
+}
+.input-box:focus ~ label,.input-box:valid ~ label{
+    top: 2px;
+    font-size: 10px;
+    color: #202427;
+    font-weight: 500;
+}
+
+
+
+.forgot{
+    text-align: center;
+    font-size: 13px;
+    font: 500;
+    margin-top: 40px;
+}
+
+
+</style>
+   </head>
+   <body>
+      <!--=============== HEADER ===============-->
+      <header class="header">
+         <nav class="nav container">
+            <div class="nav__data">
+               <a href="index.html" class="nav__logo">
+                  <img src="logo.png" style="height: 70px;width: 210px;">
+               </a>
+               
+               <div class="nav__toggle" id="nav-toggle">
+                  <i class="ri-menu-line nav__burger"></i>
+                  <i class="ri-close-line nav__close"></i>
+               </div>
+            </div>
+
+            <!--=============== NAV MENU ===============-->
+            <div class="nav__menu" id="nav-menu" style="align-items: center;">
+               <ul class="nav__list" style="align-items: center;">
+                  
+
+                  <!--=============== DROPDOWN 1 ===============-->
+                  
+
+                  <li><a href="index.html" class="nav__link">Home</a></li>
+
+                  <li><a href="login.html" class="nav__login" style="font-weight: 500;">Login</a></li>
+                  <li><a href="register.html" class="nav__register" style="font-weight: 500;">Registrati</a></li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+
+      <div id="forgotPasswordDiv" class="forgot-password" style="display: none;">
+        <div style="display: flex;flex-direction: column;width: 300px;justify-content: center;align-items: center;" class="forgot-password1">
+            <a  style="font-family: 'Poppins', sans-serif; font-weight: 600;color: #202427;margin-top: 20px;display: flex;align-items: center;">
+                Recupera password
+                <img src="reset-password.svg" style="height: 70px;margin-left: 35px;" >
+
+            </a>  
+            <a style="font-weight: 300;font-size: 13px;">Inserisci l'email associata al tuo account e noi ti invieremo un'email con un link per reimpostare la tua password.</a>
+            <a style="font-weight: 500;font-size: 15px;margin-top: 20px;text-align: start;width: 100%;" id="recovertitle">Inserisci la tua email</a>
+            <div class="input-group">
+                <div class="input-field">
+                    <input type="text" class="input-box" id="recoverEmail" required>
+                    <label for="revoverEmail" style="padding: 0;margin: 0;background-color: transparent;color: #202427;" id="recoverEmail2">Email</label>
+                    <div class="input-field">
+                        <a id="resetPasswordButton" class="nav__register2" style="margin-top: 30px;width: 100%;font-weight: 500;cursor: pointer;">Recupera password</a>
+                     </div>
+                     <img src="document-mail.png" style="height: 230px;display: none;" id="emailimage">
+                     <p id="errorText" style="color: #ff0033;font-size: 14px;font-weight: 400;"></p>
+                     <a id="backLogin" class="nav__register2" style="margin-top: 30px;width: 100%;font-weight: 500;cursor: pointer;display: none;" href="login.html">Torna al login</a>
+                </div>
+            </div>
+        </div>
+        <!-- Contenuto del form di recupero password -->
+    </div>
+    
+
+      <div class="margin-relo">
+      <div class="container" id="container1">
+         <div  class="relo-cont">
+            <div style="display: flex; flex-direction: row;justify-content: space-between;">
+               <div class="relo-text">
+                  <a style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 60px;color: #202427;">Guadagna online <br> con <span style="color: #5865F2;">Betoolz. </span></a>
+                  <a  class="body" style="font-weight: 300;font-size: 16px;margin-top: 10px;"> Betoolz è il sito che connette tutti gli strumenti che servono <br> per guadagnare con il Matched Betting.</a>
+                  <img src="register.png" style="height: 350px; width: 350px; margin-left: 80px;">
+               </div>
+                  
+                      <!------------------ Login Box --------------------->
+                     
+                      <div style="width: 350px;height: 100%;box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238);border-radius: 8px;display: flex;display: flex;flex-direction: column;align-items: center;padding: 40px;">  
+                        <a  style="font-family: 'Poppins', sans-serif; font-weight: 600;color: #202427;margin-bottom: 40px;">Accedi al tuo account</a>  
+                          <div class="input-group">
+                              <div class="input-field">
+                                <form >
+                                  <input type="text" class="input-box" id="logEmail" autocomplete="email" required>
+                                  <label for="logEmail" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">Email</label>
+                              </div>
+                              <div class="input-field">
+                                  <input type="password" class="input-box" id="logPassword" autocomplete="current-password" required>
+                                  <label for="logPassword" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">Password</label>
+                                  <span class="toggle-password" id="togglePassword"></span>
+                              </div>
+
+                              <div class="input-field">
+                                 <div id="password-error" class="error-message" style="color: #ff0033; display: none;font-size: 12px;">
+                                     La password deve contenere più di 6 caratteri.
+                                   </div>
+                                 </div>
+     
+                                 <div class="input-field">
+                                     <div id="email-error" class="error-message" style="color: #ff0033; display: none;font-size: 12px;">
+                                         L'email inserita non è valida.
+                                       </div>
+                                     </div>
+
+                                     <div class="input-field">
+                                       <div id="login-error" class="error-message" style="color: #ff0033; display: none;font-size: 12px;">
+                                           Email o Password non corrette.
+                                         </div>
+                                       </div>
+  
+
+                              <div class="forgot">
+                                 <a href="register.html" style="color: #5865F2;">Non hai un account? Registrati.</a>
+                             </div>
+                              
+                              <div class="input-field">
+                                 <a class="nav__register2" id="loginMainButton" style="margin-top: 30px;width: 100%;font-weight: 500;cursor: pointer;" >Accedi</a>
+                              </div>
+                              <div class="forgot" >
+                                  <a href="#" style="color: #5865F2;" id="forgotPasswordLink">Hai dimenticato la password?</a>
+                              </div>
+                          </div>
+                        </form>
+                      </div>
+         </div>
+      </div>
+         </div>
+      </div>
+
+
+      <script type="module" src="assets/js/login.js"></script>
+
+
+      <script src="assets/js/main.js"></script>
+      <script>
+         const passwordInput = document.getElementById('logPassword');
+         const togglePassword = document.getElementById('togglePassword');
+
+    togglePassword.addEventListener('click', function () {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            togglePassword.classList.add('open'); // Add the open class
+        } else {
+            passwordInput.type = 'password';
+            togglePassword.classList.remove('open'); // Remove the open class
+        }
+});
+
+const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+const forgotPasswordDiv = document.getElementById('forgotPasswordDiv');
+
+// Aggiungi un gestore di eventi al link "Hai dimenticato la password?"
+forgotPasswordLink.addEventListener('click', function (e) {
+    e.preventDefault(); // Previeni l'azione predefinita del link
+
+    // Mostra il div di recupero password
+    forgotPasswordDiv.style.display = 'flex';
+    container1.style.display = 'none';
+});
+
+</script>
+
+<script>
+    // Function to check input validity
+    function checkInput(input, label) {
+      if (input.value && input.value.trim() !== '') {
+        label.classList.add('valid');
+      } else {
+        label.classList.remove('valid');
+      }
+    }
+  
+    // Function to check inputs
+    function checkInputs() {
+      const logEmailInput = document.getElementById('logEmail');
+      const logPasswordInput = document.getElementById('logPassword');
+  
+      // Check input fields initially
+      checkInput(logEmailInput, logEmailInput.nextElementSibling);
+      checkInput(logPasswordInput, logPasswordInput.nextElementSibling);
+    }
+  
+    // Call the function to start checking on page load
+    checkInputs();
+  
+    // Add event listeners to update input fields on manual input
+    document.addEventListener('DOMContentLoaded', function () {
+      const logEmailInput = document.getElementById('logEmail');
+      const logPasswordInput = document.getElementById('logPassword');
+  
+      logEmailInput.addEventListener('input', function () {
+        checkInput(logEmailInput, logEmailInput.nextElementSibling);
+      });
+  
+      logPasswordInput.addEventListener('input', function () {
+        checkInput(logPasswordInput, logPasswordInput.nextElementSibling);
+      });
+    });
+  
+    // Set interval to check input fields every 100ms outside of the DOMContentLoaded event
+    setInterval(function () {
+      const logEmailInput = document.getElementById('logEmail');
+      const logPasswordInput = document.getElementById('logPassword');
+  
+      checkInput(logEmailInput, logEmailInput.nextElementSibling);
+      checkInput(logPasswordInput, logPasswordInput.nextElementSibling);
+    }, 100);
+  </script>
+  
+  
+  

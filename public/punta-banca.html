@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Betoolz è la piattaforma di Matched Betting per i professionisti italiani: scopri il nostro piano gratuito!">
+      <meta name="robots" content="index, follow">
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+      <title>Betoolz - Matched Betting per professionisti</title>
+      <link rel="icon" type="image/png" href="ws.png"/>
+
+      <!--=============== REMIXICONS ===============-->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/styles.css">
+      <link rel="stylesheet" href="assets/css/seg.css">
+
+      <script type="module" src="auth.js"></script>
+      <!-- Fontawesome -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+      <script type="module" src="checkUser.js"></script>
+      <style>
+        @media (max-width: 850px) {
+            ::placeholder {
+                color: transparent;
+            }
+        }
+
+        .winbutton:active {
+            transform: scale(0.9); /* Slightly move the button down to simulate a pressed effect */
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Hide spinner controls for Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        /* Ensure spinner controls are hidden in all browsers */
+        input[type="number"] {
+            -webkit-appearance: none; /* WebKit */
+            -moz-appearance: textfield; /* Firefox */
+            appearance: none; /* Modern browsers */
+        }
+
+        .segmented-controls input:checked + label {
+            font-weight: 400;
+            font-size: 0.875rem;
+        }
+
+        #three-1:checked + label[for="three-1"] {
+            background-color: #404040; /* Example style change */
+            color: #fff; /* Example style change */
+        }
+
+        #three-2:checked + label[for="three-2"] {
+            color: #fff; /* Example style change */
+        }
+
+        .segmented-controls label:last-of-type::after{
+            background-color: #5865f1;
+        }
+
+        #col-potenziate{
+            transition: display 0.5s ease;
+        }
+
+        .display-none{
+            display: none;
+            transition: display 1s ease;
+        }
+
+        .form-group input{
+            width: 100%;
+        }
+      
+      </style>
+   </head>
+   <body>
+<!--=============== HEADER ===============-->
+<header class="header" style="box-shadow:0px 0px 10px 0px #5865F2;">
+    <nav class="nav container">
+       <div class="nav__data">
+          <a href="landing.html" class="nav__logo">
+             <img src="logo.png" style="height: 70px;width: 210px;">
+          </a>
+          
+          <div class="nav__toggle" id="nav-toggle">
+             <i class="ri-menu-line nav__burger"></i>
+             <i class="ri-close-line nav__close"></i>
+          </div>
+       </div>
+ 
+       <!--=============== NAV MENU ===============-->
+       <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+             
+ 
+             <!--=============== DROPDOWN 1 ===============-->
+             <li class="dropdown__item">
+                <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+                   Calcolatori Casinò <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </div>
+ 
+                <ul class="dropdown__menu">
+ 
+                   <li>
+                      <a href="funbonus_slot.html" class="dropdown__link">
+                         Funbonus Casinò
+                      </a>                          
+                   </li>
+ 
+                   <li>
+                      <a href="vdg_casino.html" class="dropdown__link">
+                         Bonus VDG Casinò
+                      </a>
+                   </li>
+ 
+                   <li>
+                      <a href="vdg_slot.html" class="dropdown__link">
+                         Bonus VDG Slot
+                      </a>
+                   </li>
+ 
+                   <li>
+                      <a href="rtp.html" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+                         Bonus RTP+
+                      </a>
+                   </li>
+ 
+                   </li>
+                </ul>
+             </li>
+ 
+             <li class="dropdown__item">
+               <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+                  Calcolatori Sport <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+               </div>
+ 
+               <ul class="dropdown__menu">
+ 
+                  <li>
+                   <a href="funbonus_sport.html" class="dropdown__link">
+                      Funbonus Sport
+                   </a>
+                </li>
+
+                <li>
+                    <a href="dutch-tool.html" class="dropdown__link">
+                       Dutch Tool
+                    </a>
+                 </li>
+
+                 <li>
+                    <a href="punta-banca.html" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px; ">
+                       Punta Banca
+                    </a>
+                 </li>
+               </ul>
+            </li>
+ 
+             <li><a href="Blackjack.html" class="nav__link">Calcolatore Blackjack</a></li>
+ 
+ 
+             
+ 
+          </ul>
+       </div>
+    </nav>
+</header>
+
+    <!-- Your second header content here -->
+    <div style="position: relative; top: 100%; left: 0; width: 100%; display: flex; justify-content: center; background: #404040; padding: 20px;">
+        <a style="color: #fff;font-family: Poppins;font-weight: 700;font-size: 24px;" class="head2">Punta Banca</a>
+    </div>
+
+      <div style="display: flex; justify-content: center;" class="my-main-wrapper">
+        <div id="block_funbonus" style="width: 840px; background-color: white;box-shadow: inset 0 0 7px #b2b2b2; border-radius: 8px;padding-bottom: 5px;margin-top:50px;margin-bottom: 20px;">
+                <!-- Varianza slot -->
+            <div   style="background-color: #404040;border-top-left-radius: 8px;border-top-right-radius: 8px;">
+                <div class="rolumnrtp" style="justify-content: flex-start;">
+                    <div style="display: flex;margin: 10px;">
+                        <label for="custom-select" style="width: 120px;height: 40px;padding: 8px;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin: 0px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;font-size: 14px;border: 1px solid #d3d3d3;border-right: 0;">Tipologia</label>
+                        <select onChange="getResults();"  id="tipologia" name="bonus-input"
+                        style="width: 160px;height: 40px;padding: 8px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;border: 1px solid #d3d3d3;" class="input-bonus">
+                            <option value="" selected disabled style="text-align: center;">Seleziona un'opzione</option>
+                            <option value="NORMALE" style="text-align: center;" selected>NORMALE</option>
+                            <option value="RIMBORSO" style="text-align: center;">RIMBORSO (CR%)</option>
+                            <option value="BONUS" style="text-align: center;">BONUS</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+              
+                
+        <!-- Wagering-->
+        <!-- Bonus iniziale e inizio tabella-->
+                <div class="segmented-controls" style="margin-top: 20px;width: 300px;">
+                    <input id="three-1" name="three" type="radio" checked onchange="getResults()">
+                    <label for="three-1" style="padding: 0;margin: 0;border-radius: 0.4275rem;"> Base</label>  
+                    <input id="three-2" name="three" type="radio" onchange="getResults()">
+                    <label for="three-2" style="padding: 0;margin: 0;border-radius: 0.4275rem;">Avanzato <i class="fa-solid fa-bolt" style="margin-left: 5px;"></i></label> 
+                </div>
+
+
+                <div id="wrapper-rimborso" class="display-none">
+                    <div class="form-group">
+                        <label for="importo-rimborso" class="my-form-input-label-left">Importo Rimborso</label>
+                        <div >
+                            <input placeholder="Inserisci il rimborso" type="number" id="importo-rimborso" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                        </div>
+                        <label for="custom-select" class="my-form-input-label-right">€</label>
+                    </div>
+                </div>
+
+                <div style="width: 90%; background-color: white; box-shadow: 0px 2px 10px #00000030; margin: auto;border-radius: 8px; margin-top: 20px;margin-bottom: 5px;">
+                    <div style="background-color: #5865f1; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;">
+                        <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Informazioni Puntata</p>
+                    </div>
+                    <div class="my-row">
+                        <div style="margin-right: 5px;">
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label for="puntataBookA" class="my-form-input-label-left">Importo Puntata</label>
+                                <div >
+                                    <input placeholder="Inserisci la puntata" type="number" id="puntataBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                </div>
+                                <label for="custom-select" class="my-form-input-label-right">€</label>
+                            </div>
+    
+                            <div class="form-group" >
+                                <label for="puntataBookA" class="my-form-input-label-left">Importo Rimborso </label>
+                                <div >
+                                    <input placeholder="Inserisci la puntata" type="number" id="puntataBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                </div>
+                                <label for="custom-select" class="my-form-input-label-right">€</label>
+                            </div>
+                        </div>
+
+                        <div style="margin-left: 5px;">
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label for="puntataBookA" class="my-form-input-label-left">Quota Puntata</label>
+                                <div >
+                                    <input placeholder="Inserisci la puntata" type="number" id="puntataBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                </div>
+                                <label for="custom-select" class="my-form-input-label-right">@</label>
+                            </div>
+    
+                            <div class="form-group" >
+                                <label for="puntataBookA" class="my-form-input-label-left">Maggiorazione</label>
+                                <div >
+                                    <input placeholder="Inserisci la puntata" type="number" id="puntataBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                </div>
+                                <label for="custom-select" class="my-form-input-label-right">%</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width: 90%; background-color: white; box-shadow: 0px 2px 10px #00000030; margin: auto;border-radius: 8px; margin-top: 20px;margin-bottom: 5px;">
+                    <div style="background-color: #ff6262; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;">
+                        <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Informazioni Bancata</p>
+                    </div>
+                    <div class="my-row">
+                        <div style="margin-right: 5px;">
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label for="puntataBookA" class="my-form-input-label-left">Commissione</label>
+                                <div >
+                                    <input placeholder="Inserisci la puntata" type="number" id="puntataBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                </div>
+                                <label for="custom-select" class="my-form-input-label-right">%</label>
+                            </div>
+                        </div>
+
+                        <div style="margin-left: 5px;">
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label for="puntataBookA" class="my-form-input-label-left">Quota Bancata</label>
+                                <div >
+                                    <input placeholder="Inserisci la puntata" type="number" id="puntataBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                </div>
+                                <label for="custom-select" class="my-form-input-label-right">@</label>
+                            </div>
+    
+                            <div class="form-group" >
+                                <label for="puntataBookA" class="my-form-input-label-left">Quota Puntata &nbsp;<strong>2</strong></label>
+                                <div >
+                                    <input placeholder="Inserisci la puntata" type="number" id="puntataBookA" name="bonus-input" class="input-bonus my-form-input input-disabled" onkeydown="getResults()" onchange="getResults()" style="font-weight: 400;">
+                                </div>
+                                <label for="custom-select" class="my-form-input-label-right">@</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container" id="indicazioni-alert">
+                    <a style="align-items: center;justify-content: center;display: flex;background-color: #5865f214;color:  #5865F2;padding: 10px;border-radius: 5px;border-left: 5px solid #5865F2;margin: 20px auto;font-size: 14px;width: 90%;"> <img src="megaphone.png" style="height: 40px;margin-right: 10px;">Compila la puntata e le quote per visionare le indicazioni e il riepilogo della scommessa.</a>
+                </div>
+
+        <!-- Fine Tabella -->
+        <div id="dutcher-indicazioni-container" class="container dutcher-indicazioni ">
+            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;padding: 12px;">
+                <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Indicazioni</p>
+                <!-- Decimali -->
+                <div class="my-indicazioni-decimal">
+                    <label for="custom-select" style="width: 80px;height: 40px;padding: 8px;margin: 0;display: flex;align-items: center;color: #495057;background-color: #e9ecef;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;font-size: 14px;border: 1px solid #d3d3d3;border-right: 0;">Decimali</label>
+                    <select onChange="getResults();" id="strat" 
+                    style="border: 1px solid #d3d3d3;width: 70px;height: 40px;padding: 8px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;" class="input-bonus">
+                        <option value="NO" style="text-align: center;" selected>NO</option>
+                        <option value="SI" style="text-align: center;">SÌ</option>
+                    </select>
+                </div> 
+            </div>
+            <div class="my-row row-dutcher" style="width: 100%;">
+                <div  style="margin-right: 10px;width: 50%;">
+                    <div style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;">
+                        <div style="background-color: #5865f1; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Puntata</p>
+                        </div>
+                        <div style="padding: 10px;">
+                            <div  class="form-group" id="bookB">
+                                <label for="book-b" class="my-form-input-label-left">Punta</label>
+                                <input onChange="getResults();" type="number" id="book-b" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
+                            </div>
+                            <div  class="form-group" id="bookC">
+                                <label for="book-c" class="my-form-input-label-left">A quota</label>
+                                <input onChange="getResults();" type="number" id="book-c" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quote potenziate -->
+                <div style="width: 50%;">
+                    <div style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;">
+                        <div style="background-color: #ff6262; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Bancata</p>
+                        </div>
+                        <div style="padding: 10px;">
+                            <div  class="form-group" id="bookB">
+                                <label for="book-b" class="my-form-input-label-left">Banca</label>
+                                <input onChange="getResults();" type="number" id="book-b" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
+                            </div>
+                            <div  class="form-group" id="bookC">
+                                <label for="book-c" class="my-form-input-label-left">A quota</label>
+                                <input onChange="getResults();" type="number" id="book-c" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rolumn1" style="padding: 10px;">
+                <div class="calc-boxes">
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="probMone1" >0</span>&nbsp;%</p>
+                    <p style="text-align: center;font-weight: 200;">Rating</p>
+                </div>
+                <div class="calc-boxes">
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="selezione" style="margin: 5px;font-size: 14px;display: none;">(?)</span> <span id="spin" >0</span><span id="eur"> €</span></p>
+                    <p style="text-align: center;font-weight: 200;">Guadagno minimo</p>
+                </div>
+            </div>
+            <div class="rolumn1" style="padding-bottom: 20px;">
+                <div class="calc-boxes">
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="probMone1" >0</span>&nbsp;%</p>
+                    <p style="text-align: center;font-weight: 200;">CR</p>
+                </div>
+                <div class="calc-boxes">
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="selezione" style="margin: 5px;font-size: 14px;display: none;">(?)</span> <span id="spin" >0</span><span id="eur"> €</span></p>
+                    <p style="text-align: center;font-weight: 200;">Responsabilità</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div id="dutcher-riepilogo-container" class="display-none" style="width: 90%; background-color: white; box-shadow: 0px 2px 10px #00000030; margin: auto;border-radius: 8px; margin-top: 5px;margin-bottom: 5px;">
+            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;">
+                <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Riepilogo</p>
+            </div>
+            ciao
+        </div>
+        
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer" style="background-color: #f5f5f7;margin-top: 50px;">
+        <div class="container">
+            <div class="footer__info"  style="display: flex;flex-direction: column;padding: 10px;color: #404040;justify-content: start;text-align: start;padding-bottom: 20px;font-weight: 300;font-size: 13px;">
+                 <div class="small-footer">
+                    <p style="padding-bottom: 10px;">Copyright © 2023 Betoolz. Tutti i diritti riservati.</p>
+                    <ul class="footer-list">
+                        <li class="footer-item">info@betoolz.it</li>
+                        <li class="footer-item">BUSINESSBET A.F. | P.IVA: 02632200222</li>
+                        <li class="footer-item footer-clickable"><a href="informativacookies.html" target="_blank" style="color: #404040;text-decoration: none;">Informativa cookies</a></li>
+                        <li class="footer-item footer-clickable"><a href="informativaprivacy.html" target="_blank" style="color: #404040;text-decoration: none;">Informativa privacy</a></li>
+                        <li class="footer-item footer-clickable"><a href="disclaimer.html" target="_blank" style="color: #404040;text-decoration: none;">Disclaimer</a></li>
+                        <li class="footer-item footer-clickable"><a href="termini.html" target="_blank" style="color: #404040;text-decoration: none;">Termini e condizioni</a></li>
+                    </ul>
+                    <ul class="footer-list">
+                        <li class="footer-item">Web Design di Davide Caporali</p></li>
+                        <li class="footer-item" >caporalidavide78@gmail.com</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </footer>
+
+
+      <!--=============== MAIN JS ===============-->
+      <script src="assets/js/puntaBanca.js"></script>
+      <script src="assets/js/main.js"></script>
+
+   </body>
+</html>
