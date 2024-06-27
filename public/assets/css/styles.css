@@ -813,7 +813,7 @@ transform: scale(.9);
 
 select{
   appearance: none;
-  background-image: url('../../arrow-down.svg');
+  background-image: url('../images/arrow-down.svg');
   background-repeat: no-repeat;
   background-position: right 0.5rem top 50%;
   background-size: 0.65rem auto;
