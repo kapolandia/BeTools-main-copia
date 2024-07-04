@@ -388,10 +388,10 @@
     <div id="block_funbonus" style="width: 840px; background-color: white;box-shadow: inset 0 0 7px #b2b2b2; border-radius: 8px;padding-bottom: 5px;margin: 30px;margin-top: 50px;margin-bottom: 100px;">
         <!-- Varianza slot -->
          <div  class="form-group1" style="background-color: #404040;border-top-left-radius: 8px;border-top-right-radius: 8px;">
-             <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;">&nbsp;Volatilità Slot:</label>
+             <label for="custom-select" class="my-form-input-label-left" style="margin-left: 10px;">&nbsp;Volatilità Slot:</label>
              <div class="custom-select-container">
-                 <select onChange ="changeSpin();getResults()" id="custom-select" name="custom-select" class="input-bonus"
-                 style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;border: 0;box-shadow: inset 0 0 7px #b2b2b2;border: 0;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;margin-right: 10px;">
+                 <select onChange ="changeSpin();getResults()" id="custom-select" name="custom-select" class="input-bonus my-form-input"
+                 style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;">
                      <option value="" selected disabled style="text-align: center;">Seleziona un'opzione</option>
                      <option value="N/D" style="text-align: center;">N/D</option>
                      <option value="BASSA" style="text-align: center;">BASSA</option>
@@ -407,37 +407,33 @@
  <!-- Bonus iniziale e inizio tabella-->
          <div>
              <div class="form-group" style="margin-top: 5px;">
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;">Bonus Iniziale:</label>
+                 <label for="custom-select" class="my-form-input-label-left">Bonus Iniziale</label>
                  <div >
-                     <input onChange="getResults();" placeholder="Inserisci il valore del bonus" type="number" id="bonus-input" name="bonus-input" 
-                     style="box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;" class="input-bonus">
+                     <input onChange="getResults();" placeholder="Inserisci il valore del bonus" type="number" id="bonus-input" name="bonus-input" class="input-bonus my-form-input">
                  </div>
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;
-                 margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;padding: 8px;height: 40px;margin: 0;width: 30px;margin-right: 10px;">€</label>
+                 <label for="custom-select" class="my-form-input-label-right">€</label>
  
              </div>
          </div>
  <!-- Wagering-->
          <div>
              <div  class="form-group" style="margin: 0px;margin-top: 5px;">
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;">Wagering:</label>
+                 <label for="custom-select" class="my-form-input-label-left">Wagering</label>
                  <div >
-                     <input onChange="getResults();" placeholder="Inserisci il wagering" type="number" id="wagering-input" name="bonus-input" 
-                     style="box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;" class="input-bonus">
+                     <input onChange="getResults();" placeholder="Inserisci il wagering" type="number" id="wagering-input" name="bonus-input" class="input-bonus my-form-input">
                  </div>
-                 <label for="custom-select" style="margin: 0px;font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;width: 30px;margin-right: 10px;">X</label>
+                 <label for="custom-select" class="my-form-input-label-right">X</label>
  
              </div>
          </div>
  <!-- Contribuzione Slot -->
          <div>
              <div  class="form-group" style="margin-top: 5px;">
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;">Contribuzione Slot:</label>
+                 <label for="custom-select" class="my-form-input-label-left">Contribuzione Slot</label>
                  <div >
-                     <input onChange="getResults();" placeholder="Inserisci la contribuzione delle slot" type="number" id="contribuzione-input" name="bonus-input" 
-                     style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;" value="100" class="input-bonus">
+                     <input onChange="getResults();" placeholder="Inserisci la contribuzione delle slot" type="number" id="contribuzione-input" name="bonus-input" value="100" class="input-bonus my-form-input">
                  </div>
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">%</label>
+                 <label for="custom-select" class="my-form-input-label-right">%</label>
  
              </div>
          </div>
@@ -445,12 +441,11 @@
  <!-- Cap bonus -->
          <div>
              <div  class="form-group" style="margin-top: 5px;">
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;">Cap Bonus:</label>
+                 <label for="custom-select" class="my-form-input-label-left">Cap Bonus</label>
                  <div >
-                     <input onChange="getResults();" placeholder="Inserisci il cap del bonus" type="number" id="cap-input" name="bonus-input" 
-                     style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;" class="input-bonus">
+                     <input onChange="getResults();" placeholder="Inserisci il cap del bonus" type="number" id="cap-input" name="bonus-input" class="input-bonus my-form-input">
                  </div>
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">€</label>
+                 <label for="custom-select" class="my-form-input-label-right">€</label>
  
              </div>
          </div>
@@ -458,12 +453,11 @@
  <!-- Rollover completato -->
          <div>
              <div  class="form-group" style="margin-top: 5px;">
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;">Roll Completato:</label>
+                 <label for="custom-select" class="my-form-input-label-left">Roll Completato</label>
                  <div >
-                     <input onChange="getResults();" placeholder="Inserisci il rigioco" type="number" id="roll-input" name="bonus-input" value="0"
-                     style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;" class="input-bonus">
+                     <input onChange="getResults();" placeholder="Inserisci il rigioco" type="number" id="roll-input" name="bonus-input" value="0" class="input-bonus my-form-input">
                  </div>
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">%</label>
+                 <label for="custom-select" class="my-form-input-label-right">%</label>
  
              </div>
          </div>
@@ -471,23 +465,22 @@
  <!-- RTP Slot-->
          <div>
              <div  class="form-group" style="margin-top: 5px;">
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;">RTP Slot x Rollover:</label>
+                 <label for="custom-select" class="my-form-input-label-left">RTP Slot x Rollover</label>
                  <div >
-                     <input onChange="getResults();" placeholder="Inserisci l'RTP della slot" type="number" id="rtp-input" name="bonus-input" value="97"
-                     style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;" class="input-bonus">
+                     <input onChange="getResults();" placeholder="Inserisci l'RTP della slot" type="number" id="rtp-input" name="bonus-input" value="97" class="input-bonus my-form-input">
                  </div>
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">%</label>
+                 <label for="custom-select" class="my-form-input-label-right">%</label>
              </div>
          </div>
  
  <!-- Funbonus rimasto -->
          <div>
              <div  class="form-group" style="margin-top: 5px;">
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;">Funbonus Rimanente:</label>
+                 <label for="custom-select" class="my-form-input-label-left">Saldo Rimanente</label>
                  <div >
-                     <input onChange="getResults();" placeholder="Inserisci il funbonus rimanente" type="number" id="funbonus-input" name="bonus-input" style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;" class="input-bonus">
+                     <input onChange="getResults();" placeholder="Inserisci il funbonus rimanente" type="number" id="funbonus-input" name="bonus-input" class="input-bonus my-form-input">
                  </div>
-                 <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">€</label>
+                 <label for="custom-select" class="my-form-input-label-right">€</label>
                  
                 </div>
          </div>

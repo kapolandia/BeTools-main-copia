@@ -454,10 +454,10 @@ to {opacity:1 ;}
         <div  class="form-group1" style="background-color: #404040;border-top-left-radius: 8px;border-top-right-radius: 8px;justify-items: center;">
             <div>
             <div class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;">Tavolo:</label>
+                <label for="custom-select" class="my-form-input-label-left" style="margin-left: 10px;">Tavolo</label>
                 <div >
-                <select onChange="getResults();" placeholder="Inserisci le commissioni" type="number" id="tavolo" name="bonus-input" class="bonus-input"
-                style="border: 0;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;margin-right: 10px;">
+                <select onChange="getResults();" placeholder="Inserisci le commissioni" type="number" id="tavolo" name="bonus-input" class="bonus-input my-form-input"
+                style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;">
                     <option value="" selected disabled style="text-align: center;">Seleziona un'opzione</option>
                     <option value="Roulette" style="text-align: center;">Roulette</option>
                     <option value="French" style="text-align: center;">French Roulette</option>
@@ -494,13 +494,11 @@ to {opacity:1 ;}
 
 <div>
     <div class="form-group" style="margin-top: 5px;">
-        <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;">Importo Deposito:</label>
+        <label for="custom-select" class="my-form-input-label-left">Importo Deposito</label>
         <div >
-            <input onChange="getResults();" placeholder="Importo deposito" type="number" id="deposito" name="bonus-input" class="input-bonus"
-            style="box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;">
+            <input onChange="getResults();" placeholder="Importo deposito" type="number" id="deposito" name="bonus-input" class="input-bonus my-form-input">
         </div>
-        <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;
-        margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;padding: 8px;height: 40px;margin: 0;width: 30px;">&nbsp;€</label>
+        <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
 
     </div>
 </div>
@@ -508,39 +506,33 @@ to {opacity:1 ;}
 
         <div>
             <div class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;">Bonus Pendente:</label>
+                <label for="custom-select" class="my-form-input-label-left">Bonus Pendente</label>
                 <div >
-                    <input onChange="getResults();" placeholder="Importo bonus pendente" type="number" id="bonus-pendente" name="bonus-input" class="input-bonus"
-                    style="box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;">
+                    <input onChange="getResults();" placeholder="Importo bonus pendente" type="number" id="bonus-pendente" name="bonus-input" class="input-bonus my-form-input">
                 </div>
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;
-                margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;padding: 8px;height: 40px;margin: 0;width: 30px;">&nbsp;€</label>
+                <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
 
             </div>
         </div>
 <!-- Wagering-->
         <div>
             <div  class="form-group" style="margin: 0px;margin-top: 5px;">
-                <label id="quotaMinima" for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;">Wagering sul deposito:</label>
+                <label id="quotaMinima" for="custom-select" class="my-form-input-label-left">Wag. sul deposito</label>
                 <div >
-                    <input onChange="getResults();" placeholder="Wagering richiesto" type="number" id="wagering" name="bonus-input" class="input-bonus"
-                    style="box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;">
+                    <input onChange="getResults();" placeholder="Wagering richiesto" type="number" id="wagering" name="bonus-input" class="input-bonus my-form-input">
                 </div>
-                <label for="custom-select" style="margin: 0px;font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;
-                margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;width: 30px;">&nbsp;X</label>
+                <label for="custom-select" class="my-form-input-label-right">&nbsp;X</label>
 
             </div>
         </div>
 <!-- Contribuzione Slot -->
         <div>
             <div  class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;" >Contribuzione Tavolo:</label>
+                <label for="custom-select" class="my-form-input-label-left">Contribuzione</label>
                 <div >
-                    <input onChange="getResults();" placeholder="Contribuzione delle giocate" type="number" id="contribuzione-slot" name="bonus-input" class="input-bonus"
-                    style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;" >
+                    <input onChange="getResults();" placeholder="Contribuzione delle giocate" type="number" id="contribuzione-slot" name="bonus-input" class="input-bonus my-form-input">
                 </div>
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;
-                border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;">&nbsp;%</label>
+                <label for="custom-select" class="my-form-input-label-right">&nbsp;%</label>
 
             </div>
         </div>
@@ -548,13 +540,11 @@ to {opacity:1 ;}
         <!-- Contribuzione Slot -->
         <div>
             <div  class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;" >RTP Tavolo:</label>
+                <label for="custom-select" class="my-form-input-label-left">RTP Tavolo</label>
                 <div >
-                    <input onChange="getResults();" placeholder="Seleziona il tavolo" type="number" id="rtp-slot" name="bonus-input" readonly class="input-bonus"
-                    style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;" >
+                    <input onChange="getResults();" placeholder="Seleziona il tavolo" type="number" id="rtp-slot" name="bonus-input" readonly class="input-bonus my-form-input">
                 </div>
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;
-                margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;">&nbsp;%</label>
+                <label for="custom-select" class="my-form-input-label-right">&nbsp;%</label>
 
             </div>
         </div>
@@ -562,12 +552,11 @@ to {opacity:1 ;}
         <div>
             <div  class="form-group" style="margin-top: 5px;">
                 
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;" >Importo Giocata:</label>
+                <label for="custom-select" class="my-form-input-label-left">Importo Giocata</label>
                 <div >
-                    <input onChange="getResults();" onclick="myFunction()" placeholder="Importo utilizzato" type="number" id="importo-spin" name="bonus-input" class="input-bonus"
-                    style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;">
+                    <input onChange="getResults();" onclick="myFunction()" placeholder="Importo utilizzato" type="number" id="importo-spin" name="bonus-input" class="input-bonus my-form-input">
                 </div>
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;">&nbsp;€</label>
+                <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
 
             </div>
         </div>
@@ -655,11 +644,11 @@ to {opacity:1 ;}
         <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Stime</p>
     </div>
     <div class="rolumn1" style="padding: 10px;padding-bottom: 0;">
-        <div style="width: 280px;box-shadow: 0px 2px 10px #00000030;display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 15px;padding: 5px;margin: 10px;margin-bottom: 0;height: 100px;">
+        <div class="calc-boxes">
             <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: rgb(97, 163, 113);"><span id="ev" >0</span>&nbsp;€</p> 
             <p style="text-align: center;font-weight: 200;">EV</p>
         </div>
-        <div style="width: 280px;box-shadow: 0px 2px 10px #00000030;display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 15px;padding: 5px;margin: 10px;margin-bottom: 0;height: 100px;">
+        <div class="calc-boxes">
             <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="roi" >0</span><span id="eur"> %</span></p>
             <p style="text-align: center;font-weight: 200;">ROI</p>
         </div>
@@ -680,15 +669,15 @@ to {opacity:1 ;}
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Indicazioni</p>
             </div>
             <div class="rolumn1" style="padding: 10px;padding-bottom: 0;">
-                <div style="width: 170px;box-shadow: 0px 2px 10px #00000030;display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 15px;padding: 5px;margin: 10px;margin-bottom: 0;height: 100px;">
+                <div style="width: 170px;" class="calc-boxes">
                     <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="rischio" >Basso</span>&nbsp;</p>
                     <p style="text-align: center;font-weight: 200;">Rischio</p>
                 </div>
-                <div style="width: 170px;box-shadow: 0px 2px 10px #00000030;display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 15px;padding: 5px;margin: 10px;margin-bottom: 0;height: 100px;">
+                <div style="width: 170px;" class="calc-boxes">
                     <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="volume-richiesto" >0</span><span id="eur"> €</span></p>
                     <p style="text-align: center;font-weight: 200;">Volume richiesto</p>
                 </div>
-                <div style="width: 170px;box-shadow: 0px 2px 10px #00000030;display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 15px;padding: 5px;margin: 10px;margin-bottom: 0;height: 100px;">
+                <div style="width: 170px;" class="calc-boxes">
                     <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="costo-statistico" >0</span><span id="eur"> €</span></p>
                     <p style="text-align: center;font-weight: 200;">Costo statistico</p>
                 </div>

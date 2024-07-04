@@ -449,261 +449,249 @@
         <div style="position: relative; top: 100%; left: 0; width: 100%; display: flex; justify-content: center; background: #404040; padding: 20px;">
             <a style="color: #fff;font-family: Poppins;font-weight: 700;font-size: 24px;" class="head2">Bonus VDG Slot</a>
         </div>
-<div style="display: flex; justify-content: center;">       
-    <div id="block_funbonus" style="width: 840px; background-color: white;box-shadow: inset 0 0 7px #b2b2b2; border-radius: 8px;padding-bottom: 5px;margin: 50px;margin-top: 50px;">
-        <div  class="form-group1" style="background-color: #404040;border-top-left-radius: 8px;border-top-right-radius: 8px;justify-items: center;">
-            <div>
-            <div class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;">Volatilità:</label>
-                <div >
-                <select onChange="getResults();" placeholder="Inserisci le commissioni" type="number" id="volatilita" name="bonus-input" class="input-bonus"
-                style="box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;margin-right: 10px;">
-                    <option value="" selected disabled style="text-align: center;">Seleziona un'opzione</option>
-                    <option value="ND" style="text-align: center;">N/D</option>
-                    <option value="BASSA" style="text-align: center;">BASSA</option>
-                    <option value="MEDIA" style="text-align: center;">MEDIA</option>
-                    <option value="ALTA" style="text-align: center;">ALTA</option>
-                </select>
-                </div>
-
-                
-                
-                
-        </div>
-    </div>
-        </div>
-        <div class="form-group" style="margin-top: 5px;justify-content: baseline;display: flex;">
-            <p style="font-family: Poppins;" class="eventoleft">
-                Wagering sul deposito
-            </p>
-           
-                    <div class="button r" id="button-1" style="margin-top: 5px;">
-                        
-                        <input type="checkbox" class="checkbox"  onclick="quotaMinima()"/>
-                        <div class="knobs"></div>
-                        <div class="layer"></div>
-                        
-                      </div>
-                      <p style="font-family: Poppins;" class="eventoright">
-                        Wagering sul bonus
-                    </p>
-    
-                    </div>
-<!-- Bonus iniziale e inizio tabella-->
-
-<div>
-    <div class="form-group" style="margin-top: 5px;">
-        <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;">Importo Deposito:</label>
-        <div >
-            <input onChange="getResults();" placeholder="Importo deposito" type="number" id="deposito" name="bonus-input" class="input-bonus"
-            style="box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;">
-        </div>
-        <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;
-        margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;padding: 8px;height: 40px;margin: 0;width: 30px;">&nbsp;€</label>
-
-    </div>
-</div>                        
-        
-
-<!-- Bonus iniziale e inizio tabella-->
-
-        <div>
-            <div class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;">Bonus Pendente:</label>
-                <div >
-                    <input onChange="getResults();" placeholder="Importo bonus pendente" type="number" id="bonus-pendente" name="bonus-input" class="input-bonus"
-                    style="border-radius: 0;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;">
-                </div>
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;
-                margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;padding: 8px;height: 40px;margin: 0;width: 30px;">&nbsp;€</label>
-
-            </div>
-        </div>
-<!-- Wagering-->
-        <div>
-            <div  class="form-group" style="margin: 0px;margin-top: 5px;">
-                <label id="quotaMinima" for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;">Wagering sul deposito:</label>
-                <div >
-                    <input onChange="getResults();" placeholder="Wagering richiesto" type="number" id="wagering" name="bonus-input" class="input-bonus"
-                    style="box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;border-radius: 0;">
-                </div>
-                <label for="custom-select" style="margin: 0px;font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;width: 30px;">&nbsp;X</label>
-
-            </div>
-        </div>
-<!-- Contribuzione Slot -->
-        <div>
-            <div  class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;" >Contribuzione Slot:</label>
-                <div >
-                    <input onChange="getResults();" placeholder="Contribuzione delle slot" type="number" id="contribuzione-slot" name="bonus-input" class="input-bonus"
-                    style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;border-radius: 0;" >
-                </div>
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;">&nbsp;%</label>
-
-            </div>
-        </div>
-
-        <!-- Contribuzione Slot -->
-        <div>
-            <div  class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;" >RTP Slot:</label>
-                <div >
-                    <input onChange="getResults();" placeholder="RTP della slot scelta" type="number" id="rtp-slot" name="bonus-input" class="input-bonus"
-                    style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;border-radius: 0;" >
-                </div>
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;">&nbsp;%</label>
-
-            </div>
-        </div>
-<!-- Cap bonus -->
-        <div>
-            <div class="form-group">
-                <div class="popup" onclick="myFunction()">
-                    <span class="popuptext" id="myPopup" style="font-family: Poppins;">Sempre consigliato l'importo minimo!</span>
-                  </div>
-            </div>
-        </div>
-
-        <div>
-            <div  class="form-group" style="margin-top: 5px;">
-                
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 150px;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin-left: 0;" >Importo Spin:</label>
-                <div >
-                    <input onChange="getResults();" onclick="myFunction()" placeholder="Importo spin utilizzato" type="number" id="importo-spin" name="bonus-input" class="input-bonus"
-                    style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;border-radius: 0;" autofocus="false">
-                </div>
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;margin-left: 0;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;">&nbsp;€</label>
-
-            </div>
-        </div>
-
-        <div class="form-group" style="margin-top: 5px;">
-            <button class="start" id="add-modal-btn">
-                Agenda<i class="fa-solid fa-bolt" style="margin-left: 10px;" id="plus-icon"></i>
-            </button>
-        </div>
-
-        <div class="modal-overlay" id="modal-overlay">
-            <div class="modal" id="addModal">
-                <div class="modal-content">
-                    <span class="close" id="modal-close">&times;</span>
-                    <h2 style="font-family: Poppins;font-weight: 700;font-size: 24px;text-align: left;" id="agendaTitle">Aggiungi bonus</h2>
-                    <hr class="custom-hr" id="agendaHr">
-                    <!-- Success -->
-                    <div class="success-checkmark" style="display: none;margin-top: 26px;" id="success-checkmark">
-                        <div class="check-icon">
-                          <span class="icon-line line-tip"></span>
-                          <span class="icon-line line-long"></span>
-                          <div class="icon-circle"></div>
-                          <div class="icon-fix"></div>
-                        </div>
-                    </div>
-                    <h2 style="font-family: Poppins;font-weight: 700;font-size: 24px;text-align: left;margin-top: 20px;" id="agendaCheckMessage">Bonus aggiunto!</h2>
-                    <a class="start" id="goToDash" href="dashboard-vdgslot.html" style="width: 180px;margin: 20px auto;display:none;">Vai all'agenda <i class="fa-solid fa-chart-simple" style="margin-left: 10px;"></i></a>
-                    <!-- Esito -->
-                    <div class="form-group" style="margin-top: 20px;display: flex;flex-grow: 1;" id="esitoDiv">
-                        <label for="custom-select" class="agenda-label" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;font-size: 16px;">&nbsp;Esito</label>
-                    
-                            <div class="input-bonus my-select-div" style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;border: 0;box-shadow: inset 0 0 7px #b2b2b2;border: 0;box-shadow: inset 0 0 7px #b2b2b2;margin-right: 10px;height: 40px;display: flex;align-items: start;">
-                                <select id="esito-agenda" class="my-select" name="custom-select" style="background: none;border: none;font-size: 16px;height: 40px;text-align: left;padding-left: 10px;">
-                                    <option value="vinto" selected>Vinto</option>
-                                    <option value="perso">Perso</option>
-                                </select>
-                            </div>
-                    </div>
-                    
-                    
-                    
-                    <!-- Ritorno Bonus -->
-                    <div  class="form-group" style="margin-top: 26px;" id="sitoDiv">
-                        <label for="custom-select" class="agenda-label" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;font-size: 16px;">Sito</label>
+        <div style="display: flex; justify-content: center;">       
+            <div id="block_funbonus" style="width: 840px; background-color: white;box-shadow: inset 0 0 7px #b2b2b2; border-radius: 8px;padding-bottom: 5px;margin: 50px;margin-top: 50px;">
+                <div  class="form-group1" style="background-color: #404040;border-top-left-radius: 8px;border-top-right-radius: 8px;justify-items: center;">
+                    <div>
+                    <div class="form-group" style="margin-top: 5px;">
+                        <label for="custom-select" style="margin-left: 10px;" class="my-form-input-label-left">Volatilità</label>
                         <div >
-                            <input placeholder="Inserisci il sito" type="text" id="sito-agenda" name="bonus-input" style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;font-size: 16px;" class="input-bonus">
+                        <select onChange="getResults();" placeholder="Inserisci le commissioni" type="number" id="volatilita" name="bonus-input" class="bonus-input my-form-input"
+                        style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;">
+                            <option value="" selected disabled style="text-align: center;">Seleziona un'opzione</option>
+                            <option value="ND" style="text-align: center;">N/D</option>
+                            <option value="BASSA" style="text-align: center;">BASSA</option>
+                            <option value="MEDIA" style="text-align: center;">MEDIA</option>
+                            <option value="ALTA" style="text-align: center;">ALTA</option>
+                        </select>
                         </div>
-                        <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">/</label>
-                        
                     </div>
-                    <!-- Ritorno Bonus -->
-                        <div  class="form-group" style="margin-top: 25px;" id="ritornoDiv">
-                            <label for="custom-select" class="agenda-label" style="font-size: 16px;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;margin: 0;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;">Ritorno</label>
-                            <div >
-                                <input placeholder="Inserisci il tuo ritorno" type="number" id="ritorno-agenda" name="bonus-input" style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;margin: 0;margin-top: 1px;font-size: 16px;" class="input-bonus">
+                </div>
+            </div>
+                <div class="form-group" style="margin-top: 5px;justify-content: baseline;display: flex;">
+                    <p style="font-family: Poppins;" class="eventoleft">
+                        Wagering sul deposito
+                    </p>
+                
+                            <div class="button r" id="button-1" style="margin-top: 5px;">
+                                
+                                <input type="checkbox" class="checkbox"  onclick="quotaMinima()"/>
+                                <div class="knobs"></div>
+                                <div class="layer"></div>
+                                
                             </div>
-                            <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">€</label>
-                            
-                        </div>
-                        <div class="form-group" style="align-items: flex-start;justify-content: flex-start;">
-                            <p id="miss-error" class="error-message" style="margin-top: 25px;color: #ff0033; font-size: 14px;display: none;">
-                                Compila tutti i campi.
+                            <p style="font-family: Poppins;" class="eventoright">
+                                Wagering sul bonus
                             </p>
+            
+                            </div>
+        <!-- Bonus iniziale e inizio tabella-->
+
+        <div>
+            <div class="form-group" style="margin-top: 5px;">
+                <label for="custom-select" class="my-form-input-label-left">Importo Deposito</label>
+                <div >
+                    <input onChange="getResults();" placeholder="Importo deposito" type="number" id="deposito" name="bonus-input" class="input-bonus my-form-input">
+                </div>
+                <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
+
+            </div>
+        </div>                        
+                
+
+        <!-- Bonus iniziale e inizio tabella-->
+
+                <div>
+                    <div class="form-group" style="margin-top: 5px;">
+                        <label for="custom-select" class="my-form-input-label-left">Bonus Pendente</label>
+                        <div >
+                            <input onChange="getResults();" placeholder="Importo bonus pendente" type="number" id="bonus-pendente" name="bonus-input" class="input-bonus my-form-input">
                         </div>
-                        <hr class="custom-hr" style="margin-top: 25px;" id="agendaHr2">
-                    <!--  -->
-                    <div class="modal-buttons" id="agendaBtns">
-                        <button class="btn-secondary" id="modal-cancel">Annulla</button>
-                        <button class="btn-primary" id="modal-save" data-strumento="vdgslot">Salva</button>
+                        <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
+
                     </div>
-                 </div>
+                </div>
+        <!-- Wagering-->
+                <div>
+                    <div  class="form-group" style="margin: 0px;margin-top: 5px;">
+                        <label id="quotaMinima" for="custom-select" class="my-form-input-label-left">Wag. sul deposito</label>
+                        <div >
+                            <input onChange="getResults();" placeholder="Wagering richiesto" type="number" id="wagering" name="bonus-input" class="input-bonus my-form-input">
+                        </div>
+                        <label for="custom-select" class="my-form-input-label-right">&nbsp;X</label>
+
+                    </div>
+                </div>
+        <!-- Contribuzione Slot -->
+                <div>
+                    <div  class="form-group" style="margin-top: 5px;">
+                        <label for="custom-select" class="my-form-input-label-left">Contribuzione Slot</label>
+                        <div >
+                            <input onChange="getResults();" placeholder="Contribuzione delle slot" type="number" id="contribuzione-slot" name="bonus-input" class="input-bonus my-form-input">
+                        </div>
+                        <label for="custom-select" class="my-form-input-label-right">&nbsp;%</label>
+
+                    </div>
+                </div>
+
+                <!-- Contribuzione Slot -->
+                <div>
+                    <div  class="form-group" style="margin-top: 5px;">
+                        <label for="custom-select" class="my-form-input-label-left">RTP Slot</label>
+                        <div >
+                            <input onChange="getResults();" placeholder="RTP della slot scelta" type="number" id="rtp-slot" name="bonus-input" class="input-bonus my-form-input">
+                        </div>
+                        <label for="custom-select" class="my-form-input-label-right">&nbsp;%</label>
+
+                    </div>
+                </div>
+        <!-- Cap bonus -->
+                <div>
+                    <div class="form-group">
+                        <div class="popup" onclick="myFunction()">
+                            <span class="popuptext" id="myPopup" style="font-family: Poppins;">Sempre consigliato l'importo minimo!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div  class="form-group" style="margin-top: 5px;">
+                        
+                        <label for="custom-select" class="my-form-input-label-left">Importo Spin:</label>
+                        <div >
+                            <input onChange="getResults();" onclick="myFunction()" placeholder="Importo spin utilizzato" type="number" id="importo-spin" name="bonus-input" class="input-bonus my-form-input" autofocus="false">
+                        </div>
+                        <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
+
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 5px;">
+                    <button class="start" id="add-modal-btn">
+                        Agenda<i class="fa-solid fa-bolt" style="margin-left: 10px;" id="plus-icon"></i>
+                    </button>
+                </div>
+
+                <div class="modal-overlay" id="modal-overlay">
+                    <div class="modal" id="addModal">
+                        <div class="modal-content">
+                            <span class="close" id="modal-close">&times;</span>
+                            <h2 style="font-family: Poppins;font-weight: 700;font-size: 24px;text-align: left;" id="agendaTitle">Aggiungi bonus</h2>
+                            <hr class="custom-hr" id="agendaHr">
+                            <!-- Success -->
+                            <div class="success-checkmark" style="display: none;margin-top: 26px;" id="success-checkmark">
+                                <div class="check-icon">
+                                <span class="icon-line line-tip"></span>
+                                <span class="icon-line line-long"></span>
+                                <div class="icon-circle"></div>
+                                <div class="icon-fix"></div>
+                                </div>
+                            </div>
+                            <h2 style="font-family: Poppins;font-weight: 700;font-size: 24px;text-align: left;margin-top: 20px;" id="agendaCheckMessage">Bonus aggiunto!</h2>
+                            <a class="start" id="goToDash" href="dashboard-vdgslot.html" style="width: 180px;margin: 20px auto;display:none;">Vai all'agenda <i class="fa-solid fa-chart-simple" style="margin-left: 10px;"></i></a>
+                            <!-- Esito -->
+                            <div class="form-group" style="margin-top: 20px;display: flex;flex-grow: 1;" id="esitoDiv">
+                                <label for="custom-select" class="agenda-label" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;font-size: 16px;">&nbsp;Esito</label>
+                            
+                                    <div class="input-bonus my-select-div" style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;border: 0;box-shadow: inset 0 0 7px #b2b2b2;border: 0;box-shadow: inset 0 0 7px #b2b2b2;margin-right: 10px;height: 40px;display: flex;align-items: start;">
+                                        <select id="esito-agenda" class="my-select" name="custom-select" style="background: none;border: none;font-size: 16px;height: 40px;text-align: left;padding-left: 10px;">
+                                            <option value="vinto" selected>Vinto</option>
+                                            <option value="perso">Perso</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            
+                            
+                            
+                            <!-- Ritorno Bonus -->
+                            <div  class="form-group" style="margin-top: 26px;" id="sitoDiv">
+                                <label for="custom-select" class="agenda-label" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;font-size: 16px;">Sito</label>
+                                <div >
+                                    <input placeholder="Inserisci il sito" type="text" id="sito-agenda" name="bonus-input" style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;font-size: 16px;" class="input-bonus">
+                                </div>
+                                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">/</label>
+                                
+                            </div>
+                            <!-- Ritorno Bonus -->
+                                <div  class="form-group" style="margin-top: 25px;" id="ritornoDiv">
+                                    <label for="custom-select" class="agenda-label" style="font-size: 16px;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;margin: 0;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;">Ritorno</label>
+                                    <div >
+                                        <input placeholder="Inserisci il tuo ritorno" type="number" id="ritorno-agenda" name="bonus-input" style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;margin: 0;margin-top: 1px;font-size: 16px;" class="input-bonus">
+                                    </div>
+                                    <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">€</label>
+                                    
+                                </div>
+                                <div class="form-group" style="align-items: flex-start;justify-content: flex-start;">
+                                    <p id="miss-error" class="error-message" style="margin-top: 25px;color: #ff0033; font-size: 14px;display: none;">
+                                        Compila tutti i campi.
+                                    </p>
+                                </div>
+                                <hr class="custom-hr" style="margin-top: 25px;" id="agendaHr2">
+                            <!--  -->
+                            <div class="modal-buttons" id="agendaBtns">
+                                <button class="btn-secondary" id="modal-cancel">Annulla</button>
+                                <button class="btn-primary" id="modal-save" data-strumento="vdgslot">Salva</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+        <!-- Fine Tabella -->
+            
+
+            
+            <div id="block_funbonus" class="container" style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;width: 90%;margin-bottom: 20px;margin-top: 20px;padding-bottom: 20px;">
+                <div style="background-color: rgb(97, 163, 113); border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
+                    <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Stime</p>
+                </div>
+                <div class="rolumn1" style="padding: 10px;padding-bottom: 0;">
+                    <div class="calc-boxes">
+                        <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: rgb(97, 163, 113);"><span id="ev" >0</span>&nbsp;€</p> 
+                        <p style="text-align: center;font-weight: 200;">EV</p>
+                    </div>
+                    <div class="calc-boxes">
+                        <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="roi" >0</span><span id="eur"> %</span></p>
+                        <p style="text-align: center;font-weight: 200;">ROI</p>
+                    </div>
+                </div>
+
+
+            
             </div>
+
+            <div id="block_funbonus" class="container" style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;width: 90%;margin-bottom: 20px;margin-top: 20px;padding-bottom: 20px;">
+                <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
+                    <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Indicazioni</p>
+                </div>
+                <div class="rolumn1" style="padding: 10px;padding-bottom: 0;">
+                    <div style="width: 170px;" class="calc-boxes">
+                        <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="rischio" >Basso</span>&nbsp;</p>
+                        <p style="text-align: center;font-weight: 200;">Rischio</p>
+                    </div>
+                    <div style="width: 170px;" class="calc-boxes">
+                        <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="volume-richiesto" >0</span><span id="eur"> €</span></p>
+                        <p style="text-align: center;font-weight: 200;">Volume richiesto</p>
+                    </div>
+                    <div style="width: 170px;" class="calc-boxes">
+                        <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="costo-statistico" >0</span><span id="eur"> €</span></p>
+                        <p style="text-align: center;font-weight: 200;">Costo statistico</p>
+                    </div>
+                </div>
+
+            
+            </div>
+            
+                    
+
+
+
+
+
         </div>
-        
-
-        
-<!-- Fine Tabella -->
-    
-
-    
-    <div id="block_funbonus" class="container" style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;width: 90%;margin-bottom: 20px;margin-top: 20px;padding-bottom: 20px;">
-        <div style="background-color: rgb(97, 163, 113); border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
-            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Stime</p>
         </div>
-        <div class="rolumn1" style="padding: 10px;padding-bottom: 0;">
-            <div style="width: 280px;box-shadow: 0px 2px 10px #00000030;display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 15px;padding: 5px;margin: 10px;margin-bottom: 0;height: 100px;">
-                <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: rgb(97, 163, 113);"><span id="ev" >0</span>&nbsp;€</p> 
-                <p style="text-align: center;font-weight: 200;">EV</p>
-            </div>
-            <div style="width: 280px;box-shadow: 0px 2px 10px #00000030;display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 15px;padding: 5px;margin: 10px;margin-bottom: 0;height: 100px;">
-                <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="roi" >0</span><span id="eur"> %</span></p>
-                <p style="text-align: center;font-weight: 200;">ROI</p>
-            </div>
         </div>
-
-
-     
-    </div>
-
-    <div id="block_funbonus" class="container" style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;width: 90%;margin-bottom: 20px;margin-top: 20px;padding-bottom: 20px;">
-        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
-            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Indicazioni</p>
-        </div>
-        <div class="rolumn1" style="padding: 10px;padding-bottom: 0;">
-            <div style="width: 170px;box-shadow: 0px 2px 10px #00000030;display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 15px;padding: 5px;margin: 10px;margin-bottom: 0;height: 100px;">
-                <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="rischio" >Basso</span>&nbsp;</p>
-                <p style="text-align: center;font-weight: 200;">Rischio</p>
-            </div>
-            <div style="width: 170px;box-shadow: 0px 2px 10px #00000030;display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 15px;padding: 5px;margin: 10px;margin-bottom: 0;height: 100px;">
-                <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="volume-richiesto" >0</span><span id="eur"> €</span></p>
-                <p style="text-align: center;font-weight: 200;">Volume richiesto</p>
-            </div>
-            <div style="width: 170px;box-shadow: 0px 2px 10px #00000030;display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 15px;padding: 5px;margin: 10px;margin-bottom: 0;height: 100px;">
-                <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="costo-statistico" >0</span><span id="eur"> €</span></p>
-                <p style="text-align: center;font-weight: 200;">Costo statistico</p>
-            </div>
-        </div>
-
-     
-    </div>
-    
-               
-
-
-
-
-
-</div>
-</div>
-</div>
 
 <footer class="footer" style="background-color: #f5f5f7;margin-top: 50px;">
     <div class="container">

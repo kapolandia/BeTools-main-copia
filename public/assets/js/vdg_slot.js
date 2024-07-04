@@ -88,11 +88,11 @@ function quotaMinima() {
 
     if (this.isQuotaSlot === false) {
         this.isQuotaSlot = true;
-        quotaMinimaElement.innerHTML = "Wagering sul deposito:";
+        quotaMinimaElement.innerHTML = "Wag. sul deposito:";
         getResults();
     } else {
         this.isQuotaSlot = false;
-        quotaMinimaElement.innerHTML = "Wagering sul bonus:";
+        quotaMinimaElement.innerHTML = "Wag. sul bonus:";
         getResults();
     }
 }
