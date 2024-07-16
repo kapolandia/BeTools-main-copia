@@ -4,11 +4,34 @@ let quotaPuntata = null;
 let quotaBancata = null;
 let commissione = null;
 let maggiorazione = null;
+let selectRimborso = document.getElementById("tipologia").value;
+let sbilanciamentoValue = null;
+let isAvanzato;
+
+function formatToTwoDecimals(num) {
+    let parts = num.toString().split(".");
+    if (parts.length === 1) {
+        // No decimal part, add ".00"
+        return num.toString() + ".00";
+    } else if (parts[1].length === 1) {
+        // Only one decimal place, add a trailing "0"
+        return num.toString() + "0";
+    } else {
+        // Two or more decimal places, truncate to two without rounding
+        return parts[0] + "." + parts[1].substring(0, 2);
+    }
+}
 
 function getResults(){
-    checkRimborso();
+    let isCR = checkRimborso();
     checkStrumentoAvanzato();
     checkIndicazioni();
+
+    if(isCR){
+        crPuntaBanca();
+    } else{
+        normalPuntaBanca();
+    }
 }
 
 function checkStrumentoAvanzato(){
@@ -22,24 +45,28 @@ function checkStrumentoAvanzato(){
         maggCont.classList.add("display-none");
         puntataAvanzata.classList.add("display-none");
         sbilanciamento.classList.add("display-none");
+        isAvanzato = false;
     } else if(avanzato.checked){
         maggCont.classList.remove("display-none");
         puntataAvanzata.classList.remove("display-none");
         sbilanciamento.classList.remove("display-none");
+        isAvanzato = true;
     }
 }
 
 function checkRimborso() {
-    let selectRimborso = document.getElementById("tipologia").value;
+    selectRimborso = document.getElementById("tipologia").value;
     let formRimborso = document.getElementById("rimborso-importo");
     let rimborsoCr = document.getElementById("rimborso-cr");
 
     if (selectRimborso == "RIMBORSO"){
         formRimborso.classList.remove("display-none");
         rimborsoCr.classList.remove("display-none");
+        return true;
     } else{
         formRimborso.classList.add("display-none");
         rimborsoCr.classList.add("display-none");
+        return false;
     }
 }
 
@@ -58,23 +85,141 @@ function checkIndicazioni() {
         !quotaBancataElement || !commissioneElement ||
         importoPuntataElement.value === "" || quotaPuntataElement.value === "" ||
         quotaBancataElement.value === "" || commissioneElement.value === "") {
-        console.log("One or more elements are null");
         indicazioniAlert.classList.remove("display-none");
         indicazoniContainer.classList.add("display-none");
         riepilogoContainer.classList.add("display-none");
         return;
     }
 
-    importoPuntata = importoPuntataElement;
-    importoRimborso = importoRimborsoElement;
-    quotaPuntata = quotaPuntataElement;
-    quotaBancata =  quotaBancataElement;
-    commissione =  commissioneElement;
-    maggiorazione = maggiorazioneElement;
+    importoPuntata = importoPuntataElement.value;
+    importoRimborso = importoRimborsoElement.value;
+    quotaPuntata = quotaPuntataElement.value;
+    quotaBancata =  quotaBancataElement.value;
+    commissione =  commissioneElement.value;
+    maggiorazione = maggiorazioneElement.value;
 
     indicazioniAlert.classList.add("display-none");
     indicazoniContainer.classList.remove("display-none");
     riepilogoContainer.classList.remove("display-none");
+}
+
+function normalPuntaBanca(){
+    console.log(maggiorazione);
+    sbilanciamentoValue = document.getElementById('sbilanciamento-value').value;
+    let labelPuntata = document.getElementById("importo-bonus");
+    let quotaBancata2 = null;
+    let quotaPuntataBackup = null
+    if(isAvanzato){
+        quotaPuntataBackup = quotaPuntata;
+        if(maggiorazione != 0){
+            console.log(quotaPuntata);
+            quotaPuntata =  parseInt(quotaPuntata) + ((quotaPuntata - 1) * maggiorazione / 100);;
+        }
+        quotaBancata2 = (((quotaPuntata * importoPuntata) / (quotaBancata - commissione / 100)) *(sbilanciamentoValue / 100));
+    } else{
+        quotaBancata2 = (((quotaPuntata * importoPuntata) / (quotaBancata - commissione / 100)));
+    }
+    let quotaPuntaEq = ((quotaBancata - commissione / 100) / (quotaBancata - 1));
+    let rating = ((importoPuntata*quotaPuntata - importoPuntata - (((quotaPuntata*importoPuntata)/(quotaBancata - commissione / 100)) * quotaBancata - (quotaPuntata*importoPuntata) / (quotaBancata - commissione / 100)) + importoPuntata) / importoPuntata) *100;
+    let responsabilita = quotaBancata2 * quotaBancata - quotaBancata2;
+    let book = quotaPuntata * importoPuntata - importoPuntata;
+    let noExchange = responsabilita * (-1);
+    let noBook = importoPuntata * (-1);
+    let totExchange = quotaBancata2 - (quotaBancata2 * (commissione / 100));
+    let vinceBook = book + noExchange;
+    console.log(vinceBook);
+    let vinceExchange = noBook + totExchange;
+    if(selectRimborso == "BONUS"){
+        labelPuntata.innerHTML = "Importo Bonus";
+        book = quotaPuntata * importoPuntata;
+        vinceBook = book + noExchange;
+        noBook = 0;
+        vinceExchange = noBook + totExchange;
+        console.log(vinceBook);
+    } else{
+        labelPuntata.innerHTML = "Importo Puntata";
+    }
+    vinceBook = Math.round(vinceBook * 100) / 100;
+    vinceExchange = Math.round(vinceExchange * 100) / 100;
+    let guadagnoMinimo = Math.min(vinceExchange, vinceBook);
+    guadagnoMinimo = formatToTwoDecimals(guadagnoMinimo);
+    responsabilita = formatToTwoDecimals(responsabilita);
+    //visualizzazione dati
+    document.getElementById("rating").innerHTML = Math.round((100 + rating)*100 )/100;
+    document.getElementById("responsabilita").innerHTML = Math.round((responsabilita)*100 )/100;
+    document.getElementById("punta-eq").value = Math.round(quotaPuntaEq*1000)/1000;
+    if(guadagnoMinimo < 0){
+        document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
+        document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
+    } else if (guadagnoMinimo > 0) {
+        document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
+        document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
+    }
+    document.getElementById("guadagno").innerHTML = guadagnoMinimo;
+    document.getElementById("bancata-input").value = formatToTwoDecimals(quotaBancata2) + " €";
+    document.getElementById("quota-bancata-2").value = formatToTwoDecimals(quotaBancata);
+    document.getElementById("puntata-input").value = formatToTwoDecimals(importoPuntata) + " €";
+    if(quotaPuntataBackup != quotaPuntata && quotaPuntataBackup != null){
+        document.getElementById("quota-puntata-2").value = formatToTwoDecimals(quotaPuntataBackup) + String.fromCharCode(8594) + formatToTwoDecimals(quotaPuntata);
+    } else {
+        document.getElementById("quota-puntata-2").value = formatToTwoDecimals(quotaPuntata);
+    }
+}
+
+function crPuntaBanca(){
+    sbilanciamentoValue = document.getElementById('sbilanciamento-value').value;
+    importoRimborso = document.getElementById('importoRimborso').value;
+    importoRimborso = parseInt(importoRimborso);
+    console.log(importoRimborso);
+    let quotaBancata2 = null;
+    let quotaPuntataBackup = null
+    if(isAvanzato){
+        quotaPuntataBackup = quotaPuntata;
+        if(maggiorazione != 0){
+            quotaPuntata =  parseInt(quotaPuntata) + ((quotaPuntata - 1) * maggiorazione / 100);;
+        }
+        quotaBancata2 = (((quotaPuntata * importoPuntata - importoRimborso) / (quotaBancata - commissione / 100)) *(sbilanciamentoValue / 100));
+    } else{
+        quotaBancata2 = (((quotaPuntata * importoPuntata - importoRimborso) / (quotaBancata - commissione / 100)));
+    }
+    let quotaPuntaEq = ((quotaBancata - commissione / 100) / (quotaBancata - 1));
+    let rating = ((importoPuntata*quotaPuntata - importoPuntata - (((quotaPuntata*importoPuntata)/(quotaBancata - commissione / 100)) * quotaBancata - (quotaPuntata*importoPuntata) / (quotaBancata - commissione / 100)) + importoPuntata) / importoPuntata) *100;
+    let responsabilita = quotaBancata2 * quotaBancata - quotaBancata2;
+    
+    let book = quotaPuntata * importoPuntata - importoPuntata;
+    let noExchange = responsabilita * (-1);
+    let noBook = importoPuntata * (-1);
+    let totExchange = quotaBancata2 - (quotaBancata2 * (commissione / 100));
+    console.log(totExchange);
+    let vinceBook = book + noExchange;
+    let crRating = ((importoPuntata * quotaPuntata - importoPuntata - (( (quotaPuntata * importoPuntata - importoPuntata)/(quotaBancata - commissione /100))*quotaBancata-(quotaPuntata * importoPuntata - importoRimborso)/(quotaBancata-commissione/100))) / importoRimborso) *100;
+    let vinceExchange = noBook + totExchange + importoRimborso;
+    console.log(vinceExchange);
+    vinceBook = Math.round(vinceBook * 100) / 100;
+    vinceExchange = Math.round(vinceExchange * 100) / 100;
+    let guadagnoMinimo = Math.min(vinceExchange, vinceBook);
+
+    //visualizzazione dati
+    document.getElementById("rating").innerHTML = Math.round((100 + rating)*100 )/100;
+    document.getElementById("responsabilita").innerHTML = formatToTwoDecimals(responsabilita);
+    document.getElementById("punta-eq").value = Math.round(quotaPuntaEq*1000)/1000;
+    if(guadagnoMinimo < 0){
+        document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
+        document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
+    } else if (guadagnoMinimo > 0) {
+        document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
+        document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
+    }
+    document.getElementById("guadagno").innerHTML = formatToTwoDecimals(guadagnoMinimo);
+    document.getElementById("rating-cr").innerHTML = formatToTwoDecimals(crRating);
+    document.getElementById("bancata-input").value = formatToTwoDecimals(quotaBancata2) + " €";
+    document.getElementById("quota-bancata-2").value = formatToTwoDecimals(quotaBancata);
+    document.getElementById("puntata-input").value = formatToTwoDecimals(importoPuntata) + " €";
+    if(quotaPuntataBackup != quotaPuntata && quotaPuntataBackup != null){
+        document.getElementById("quota-puntata-2").value = formatToTwoDecimals(quotaPuntataBackup) + String.fromCharCode(8594) + formatToTwoDecimals(quotaPuntata);
+    } else {
+        document.getElementById("quota-puntata-2").value = formatToTwoDecimals(quotaPuntata);
+    }
 }
 
 
@@ -104,6 +249,7 @@ const rangeValue = document.getElementById('sbilanciamento-value');
 
 rangeInput.addEventListener('input', function() {
     rangeValue.value = rangeInput.value;
+    getResults();
 });
 
 // rangeInput.addEventListener('input', function() {

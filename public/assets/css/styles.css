@@ -825,6 +825,11 @@ select{
   align-items: center;
 }
 
+.my-row-2{
+  display: flex;
+  justify-content: center;
+}
+
 .my-form-input{
   border-radius: 0;
   height: 40px;
@@ -867,6 +872,26 @@ select{
   position: relative;
 }
 
+.information-container{
+  background-color: white; 
+  box-shadow: 0px 2px 10px #00000030; 
+  margin: auto;border-radius: 8px; 
+  margin: 20px 5px;
+  margin-bottom: 5px;
+}
+
+.dutcher-riepilogo-container{
+  margin: 20px 5px;
+  display: flex;
+  box-shadow: 0px 2px 10px #00000030;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+  position: relative;
+}
+
 .input-disabled{
   background-color: #e6e6e6;
   font-weight: bolder;
@@ -881,6 +906,16 @@ select{
   }
 
   .dutcher-indicazioni{
+    margin: 20px auto;
+    width: 90%;
+  }
+
+  .information-container{
+    margin: 20px auto;
+    width: 90%;
+  }
+
+  .dutcher-riepilogo-container{
     margin: 20px auto;
     width: 90%;
   }

@@ -228,14 +228,14 @@
                     </div>
                 </div>
 
-                <div style="width: 90%; background-color: white; box-shadow: 0px 2px 10px #00000030; margin: auto;border-radius: 8px; margin-top: 20px;margin-bottom: 5px;">
+                <div class="information-container">
                     <div style="background-color: #5865f1; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;">
                         <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Informazioni Puntata</p>
                     </div>
-                    <div class="my-row">
-                        <div style="margin-right: 5px;">
+                    <div class="my-row-2" >
+                        <div style="padding: 5px;">
                             <div class="form-group" style="margin-top: 10px;">
-                                <label for="importoPuntata" class="my-form-input-label-left">Importo Puntata</label>
+                                <label for="importoPuntata" class="my-form-input-label-left" id="importo-bonus">Importo Puntata</label>
                                 <div >
                                     <input placeholder="Inserisci la puntata" type="number" id="importoPuntata" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
                                 </div>
@@ -251,7 +251,7 @@
                             </div>
                         </div>
 
-                        <div style="margin-left: 5px;">
+                        <div style="padding: 5px;">
                             <div class="form-group" style="margin-top: 10px;">
                                 <label for="quotaPuntata" class="my-form-input-label-left">Quota Puntata</label>
                                 <div >
@@ -271,12 +271,12 @@
                     </div>
                 </div>
 
-                <div style="width: 90%; background-color: white; box-shadow: 0px 2px 10px #00000030; margin: auto;border-radius: 8px; margin-top: 20px;margin-bottom: 5px;">
+                <div class="information-container">
                     <div style="background-color: rgb(255, 126, 126); border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;">
                         <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Informazioni Bancata</p>
                     </div>
-                    <div class="my-row">
-                        <div style="margin-right: 5px;">
+                    <div class="my-row-2">
+                        <div style="padding: 5px;">
                             <div class="form-group" style="margin-top: 10px;">
                                 <label for="commissione" class="my-form-input-label-left">Commissione</label>
                                 <div >
@@ -286,7 +286,7 @@
                             </div>
                         </div>
 
-                        <div style="margin-left: 5px;">
+                        <div style="padding: 5px;">
                             <div class="form-group" style="margin-top: 10px;">
                                 <label for="quotaBancata" class="my-form-input-label-left">Quota Bancata</label>
                                 <div >
@@ -298,7 +298,7 @@
                             <div class="form-group display-none" id="puntata-avanzata">
                                 <label for="puntataBookA" class="my-form-input-label-left">Quota Puntata</label>
                                 <div >
-                                    <input type="number" disabled id="puntataBookA" name="bonus-input" class="input-bonus my-form-input input-disabled" onkeydown="getResults()" onchange="getResults()" style="font-weight: 400;">
+                                    <input type="number" disabled id="punta-eq" name="bonus-input" class="input-bonus my-form-input input-disabled" onkeydown="getResults()" onchange="getResults()" style="font-weight: 400;">
                                 </div>
                                 <label for="custom-select" class="my-form-input-label-right">@</label>
                             </div>
@@ -310,11 +310,11 @@
                                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Sbilanciamento Bancata</p>
                             </div>
                             <div style="margin-top: 20px;display: flex;width: 100%;justify-content: center;flex-direction: column;align-items: center;">
-                                <input type="range" id="sbilanciamento-input" style="width: 50%;opacity: 1;" min="60" max="140">
+                                <input type="range" id="sbilanciamento-input" style="width: 50%;opacity: 1;" min="60" max="140" onchange="getResults()">
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="sbilanciamento-value" class="my-form-input-label-left">Sbilanciamento</label>
                                     <div >
-                                        <input placeholder="Inserisci la commissione" type="number" value="100" id="sbilanciamento-value" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                        <input placeholder="Inserisci la commissione" type="number" value="100" id="sbilanciamento-value" name="bonus-input" class="input-bonus my-form-input input-disabled" onkeydown="getResults()" disabled>
                                     </div>
                                     <label for="custom-select" class="my-form-input-label-right">%</label>
                                 </div>
@@ -329,9 +329,9 @@
 
         <!-- Fine Tabella -->
         <div id="dutcher-indicazioni-container" class="container dutcher-indicazioni display-none">
-            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;padding: 12px;">
+            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Indicazioni</p>
-                <!-- Decimali -->
+                <!-- Decimali
                 <div class="my-indicazioni-decimal">
                     <label for="custom-select" style="width: 80px;height: 40px;padding: 8px;margin: 0;display: flex;align-items: center;color: #495057;background-color: #e9ecef;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;font-size: 14px;border: 1px solid #d3d3d3;border-right: 0;">Decimali</label>
                     <select onChange="getResults();" id="strat" 
@@ -340,6 +340,7 @@
                         <option value="SI" style="text-align: center;">SÌ</option>
                     </select>
                 </div> 
+                 -->
             </div>
             <div class="my-row row-dutcher" style="width: 100%;">
                 <div  style="margin-right: 10px;width: 50%;">
@@ -350,11 +351,11 @@
                         <div style="padding: 10px;">
                             <div  class="form-group" id="bookB">
                                 <label for="book-b" class="my-form-input-label-left">Punta</label>
-                                <input onChange="getResults();" type="number" id="book-b" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
+                                <input onChange="getResults();" type="text" id="puntata-input" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled>
                             </div>
                             <div  class="form-group" id="bookC">
                                 <label for="book-c" class="my-form-input-label-left">A quota</label>
-                                <input onChange="getResults();" type="number" id="book-c" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
+                                <input onChange="getResults();" type="text" id="quota-puntata-2" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled>
                             </div>
                         </div>
                     </div>
@@ -369,11 +370,11 @@
                         <div style="padding: 10px;">
                             <div  class="form-group" id="bookB">
                                 <label for="book-b" class="my-form-input-label-left">Banca</label>
-                                <input onChange="getResults();" type="number" id="book-b" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
+                                <input onChange="getResults();" type="text" id="bancata-input" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled>
                             </div>
                             <div  class="form-group" id="bookC">
                                 <label for="book-c" class="my-form-input-label-left">A quota</label>
-                                <input onChange="getResults();" type="number" id="book-c" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
+                                <input onChange="getResults();" type="number" id="quota-bancata-2" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled>
                             </div>
                         </div>
                     </div>
@@ -381,21 +382,21 @@
             </div>
             <div class="rolumn1" style="padding: 10px;">
                 <div class="calc-boxes">
-                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="probMone1" >0</span>&nbsp;%</p>
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="rating" >0</span>&nbsp;%</p>
                     <p style="text-align: center;font-weight: 200;">Rating</p>
                 </div>
-                <div class="calc-boxes">
-                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="spin" >0</span><span id="eur"> €</span></p>
+                <div class="calc-boxes" id="border-guadagno">
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;" id="guadagno-color"> <span id="guadagno" >0</span><span id="eur"> €</span></p>
                     <p style="text-align: center;font-weight: 200;">Guadagno minimo</p>
                 </div>
             </div>
             <div class="rolumn1" style="padding-bottom: 20px;">
                 <div class="calc-boxes" id="rimborso-cr">
-                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="probMone1" >0</span>&nbsp;%</p>
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="rating-cr" >0</span>&nbsp;%</p>
                     <p style="text-align: center;font-weight: 200;">CR</p>
                 </div>
                 <div class="calc-boxes">
-                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="spin" >0</span><span id="eur"> €</span></p>
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="responsabilita" >0</span><span id="eur"> €</span></p>
                     <p style="text-align: center;font-weight: 200;">Responsabilità</p>
                 </div>
             </div>
@@ -403,8 +404,8 @@
         
         
         
-        <div id="dutcher-riepilogo-container" class="display-none" style="width: 90%; background-color: white; box-shadow: 0px 2px 10px #00000030; margin: auto;border-radius: 8px; margin-top: 5px;margin-bottom: 5px;">
-            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;">
+        <div id="dutcher-riepilogo-container" class="dutcher-riepilogo-container display-none">
+            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Riepilogo</p>
             </div>
             ciao
