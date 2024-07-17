@@ -26,8 +26,9 @@ function getResults(){
     let isCR = checkRimborso();
     checkStrumentoAvanzato();
     checkIndicazioni();
+    importoRimborso = document.getElementById('importoRimborso').value;
 
-    if(isCR){
+    if(isCR && importoRimborso != 0){
         crPuntaBanca();
     } else{
         normalPuntaBanca();
@@ -57,15 +58,12 @@ function checkStrumentoAvanzato(){
 function checkRimborso() {
     selectRimborso = document.getElementById("tipologia").value;
     let formRimborso = document.getElementById("rimborso-importo");
-    let rimborsoCr = document.getElementById("rimborso-cr");
 
     if (selectRimborso == "RIMBORSO"){
         formRimborso.classList.remove("display-none");
-        rimborsoCr.classList.remove("display-none");
         return true;
     } else{
         formRimborso.classList.add("display-none");
-        rimborsoCr.classList.add("display-none");
         return false;
     }
 }
@@ -146,6 +144,7 @@ function normalPuntaBanca(){
     responsabilita = formatToTwoDecimals(responsabilita);
     //visualizzazione dati
     document.getElementById("rating").innerHTML = Math.round((100 + rating)*100 )/100;
+    document.getElementById("cr-rating").innerHTML = "Rating";
     document.getElementById("responsabilita").innerHTML = Math.round((responsabilita)*100 )/100;
     document.getElementById("punta-eq").value = Math.round(quotaPuntaEq*1000)/1000;
     if(guadagnoMinimo < 0){
@@ -192,7 +191,7 @@ function crPuntaBanca(){
     let totExchange = quotaBancata2 - (quotaBancata2 * (commissione / 100));
     console.log(totExchange);
     let vinceBook = book + noExchange;
-    let crRating = ((importoPuntata * quotaPuntata - importoPuntata - (( (quotaPuntata * importoPuntata - importoPuntata)/(quotaBancata - commissione /100))*quotaBancata-(quotaPuntata * importoPuntata - importoRimborso)/(quotaBancata-commissione/100))) / importoRimborso) *100;
+    let crRating = ((importoPuntata * quotaPuntata - importoPuntata - (((quotaPuntata * importoPuntata - importoRimborso)/(quotaBancata - commissione /100)) * quotaBancata - (quotaPuntata * importoPuntata - importoRimborso)/(quotaBancata-commissione/100))) / importoRimborso) *100;
     let vinceExchange = noBook + totExchange + importoRimborso;
     console.log(vinceExchange);
     vinceBook = Math.round(vinceBook * 100) / 100;
@@ -211,7 +210,8 @@ function crPuntaBanca(){
         document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
     }
     document.getElementById("guadagno").innerHTML = formatToTwoDecimals(guadagnoMinimo);
-    document.getElementById("rating-cr").innerHTML = formatToTwoDecimals(crRating);
+    document.getElementById("cr-rating").innerHTML = "CR";
+    document.getElementById("rating").innerHTML = formatToTwoDecimals(crRating);
     document.getElementById("bancata-input").value = formatToTwoDecimals(quotaBancata2) + " €";
     document.getElementById("quota-bancata-2").value = formatToTwoDecimals(quotaBancata);
     document.getElementById("puntata-input").value = formatToTwoDecimals(importoPuntata) + " €";
