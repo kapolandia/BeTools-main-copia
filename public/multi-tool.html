@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Betoolz è la piattaforma di Matched Betting per i professionisti italiani: scopri il nostro piano gratuito!">
+      <meta name="robots" content="index, follow">
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+      <title>Betoolz - Matched Betting per professionisti</title>
+      <link rel="icon" type="image/png" href="./assets/images/ws.png"/>
+
+      <!--=============== REMIXICONS ===============-->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/styles.css">
+      <link rel="stylesheet" href="assets/css/seg.css">
+      <link rel="stylesheet" href="assets/css/rangeinput.css">
+
+      <script type="module" src="./assets/js/auth.js"></script>
+      <!-- Fontawesome -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+      <script type="module" src="./assets/js/checkUser.js"></script>
+      <style>
+        @media (max-width: 850px) {
+            ::placeholder {
+                color: transparent;
+            }
+        }
+
+        input[type="range"] {
+            accent-color: #404040;
+            color: white;
+            cursor: pointer;
+        }
+
+        .winbutton:active {
+            transform: scale(0.9); /* Slightly move the button down to simulate a pressed effect */
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Hide spinner controls for Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        /* Ensure spinner controls are hidden in all browsers */
+        input[type="number"] {
+            -webkit-appearance: none; /* WebKit */
+            -moz-appearance: textfield; /* Firefox */
+            appearance: none; /* Modern browsers */
+        }
+
+        .segmented-controls input:checked + label {
+            font-weight: 400;
+            font-size: 0.875rem;
+        }
+
+        #three-1:checked + label[for="three-1"] {
+            background-color: #404040; /* Example style change */
+            color: #fff; /* Example style change */
+        }
+
+        #three-2:checked + label[for="three-2"] {
+            color: #fff; /* Example style change */
+        }
+
+        .segmented-controls label:last-of-type::after{
+            background-color: #5865f1;
+        }
+
+        #col-potenziate{
+            transition: display 0.5s ease;
+        }
+
+        .display-none{
+            display: none;
+            transition: display 1s ease;
+        }
+
+        .form-group input{
+            width: 100%;
+        }
+      
+      </style>
+   </head>
+   <body>
+<!--=============== HEADER ===============-->
+<header class="header" style="box-shadow:0px 0px 10px 0px #5865F2;">
+    <nav class="nav container">
+       <div class="nav__data">
+          <a href="landing.html" class="nav__logo">
+             <img src="./assets/images/logo.png" style="height: 70px;width: 210px;">
+          </a>
+          
+          <div class="nav__toggle" id="nav-toggle">
+             <i class="ri-menu-line nav__burger"></i>
+             <i class="ri-close-line nav__close"></i>
+          </div>
+       </div>
+ 
+       <!--=============== NAV MENU ===============-->
+       <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+             
+ 
+             <!--=============== DROPDOWN 1 ===============-->
+             <li class="dropdown__item">
+                <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+                   Calcolatori Casinò <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </div>
+ 
+                <ul class="dropdown__menu">
+ 
+                   <li>
+                      <a href="funbonus_slot.html" class="dropdown__link">
+                         Funbonus Casinò
+                      </a>                          
+                   </li>
+ 
+                   <li>
+                      <a href="vdg_casino.html" class="dropdown__link">
+                         Bonus VDG Casinò
+                      </a>
+                   </li>
+ 
+                   <li>
+                      <a href="vdg_slot.html" class="dropdown__link">
+                         Bonus VDG Slot
+                      </a>
+                   </li>
+ 
+                   <li>
+                      <a href="rtp.html" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+                         Bonus RTP+
+                      </a>
+                   </li>
+ 
+                   </li>
+                </ul>
+             </li>
+ 
+             <li class="dropdown__item">
+               <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+                  Calcolatori Sport <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+               </div>
+ 
+               <ul class="dropdown__menu">
+ 
+                  <li>
+                   <a href="funbonus_sport.html" class="dropdown__link">
+                      Funbonus Sport
+                   </a>
+                </li>
+
+                <li>
+                    <a href="dutch-tool.html" class="dropdown__link">
+                       Dutch Tool
+                    </a>
+                 </li>
+
+                 <li>
+                    <a href="punta-banca.html" class="dropdown__link">
+                       Punta Banca
+                    </a>
+                 </li>   
+                 <li>
+                    <a href="punta-banca.html" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px; ">
+                       Multi Tool
+                    </a>
+                 </li>
+               </ul>
+            </li>
+ 
+             <li><a href="Blackjack.html" class="nav__link">Calcolatore Blackjack</a></li>
+ 
+ 
+             
+ 
+          </ul>
+       </div>
+    </nav>
+</header>
+
+    <!-- Your second header content here -->
+    <div style="position: relative; top: 100%; left: 0; width: 100%; display: flex; justify-content: center; background: #404040; padding: 20px;">
+        <a style="color: #fff;font-family: Poppins;font-weight: 700;font-size: 24px;" class="head2">Multi Tool</a>
+    </div>
+
+        
+<div style="display: flex; justify-content: center;" class="my-main-wrapper">
+</div>
+    <iframe id="iframeNewMulti" src="multi-tool\Desktop\robinodds.it\abb_PREMIUM\calcolatori\multi-tool\new-index.html" width="100%" scrolling="no" ></iframe>
+<script> 
+       var frame = document.getElementById("iframeNewMulti");
+         function updateIframeSrc() {
+            if (window.innerWidth < 640) {
+                frame.src = 'multi-tool/Mobile/robinodds.it/abb_PREMIUM/calcolatori/mtmobile/new-index.html'; // Path to mobile version
+            } else {
+                frame.src = 'multi-tool/Desktop/robinodds.it/abb_PREMIUM/calcolatori/multi-tool/new-index.html'; // Path to desktop version
+            }
+        }    
+        // Initial check
+        updateIframeSrc();
+        // Listen for window resize to update the iframe src dynamically
+        window.addEventListener('resize', function() {
+            updateIframeSrc();
+        });
+        
+</script> 
+      <!-- Footer -->
+      <footer class="footer" style="background-color: #f5f5f7;margin-top: 50px;">
+        <div class="container">
+            <div class="footer__info"  style="display: flex;flex-direction: column;padding: 10px;color: #404040;justify-content: start;text-align: start;padding-bottom: 20px;font-weight: 300;font-size: 13px;">
+                 <div class="small-footer">
+                    <p style="padding-bottom: 10px;">Copyright © 2023 Betoolz. Tutti i diritti riservati.</p>
+                    <ul class="footer-list">
+                        <li class="footer-item">info@betoolz.it</li>
+                        <li class="footer-item">BUSINESSBET A.F. | P.IVA: 02632200222</li>
+                        <li class="footer-item footer-clickable"><a href="informativacookies.html" target="_blank" style="color: #404040;text-decoration: none;">Informativa cookies</a></li>
+                        <li class="footer-item footer-clickable"><a href="informativaprivacy.html" target="_blank" style="color: #404040;text-decoration: none;">Informativa privacy</a></li>
+                        <li class="footer-item footer-clickable"><a href="disclaimer.html" target="_blank" style="color: #404040;text-decoration: none;">Disclaimer</a></li>
+                        <li class="footer-item footer-clickable"><a href="termini.html" target="_blank" style="color: #404040;text-decoration: none;">Termini e condizioni</a></li>
+                    </ul>
+                    <ul class="footer-list">
+                        <li class="footer-item">Web Design di Davide Caporali</p></li>
+                        <li class="footer-item" >caporalidavide78@gmail.com</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </footer>
+
+
+      <!--=============== MAIN JS ===============-->
+      <script src="assets/js/puntaBanca.js"></script>
+      <script src="assets/js/main.js"></script>
+
+   </body>
+</html>

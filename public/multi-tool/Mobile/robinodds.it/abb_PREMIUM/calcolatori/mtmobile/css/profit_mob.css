@@ -1,0 +1,708 @@
+body {
+	margin: 0px;
+}
+
+button#aggiungoBet,
+button#filterOpn {
+	margin-bottom: 10px;
+	font-size: .8rem;
+	padding: 4px 12px;
+}
+
+#AGModalCalcLabel {
+	text-align: center;
+	font-variant-caps: small-caps;
+}
+
+mark {
+	color: red;
+	font-weight:700;
+	font-style: italic;
+	background: transparent;
+}
+
+#AGRecord fieldset input#bet_id {
+	position: absolute;
+    width: auto;
+    left: -3000px;
+}
+
+td.win,
+td .win {
+	background:#77ce77;
+	font-weight: bold;
+}
+
+#filterBox.filterBox {
+	padding: 15px;
+	margin: 5px 0px 15px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+}
+
+#filterBox.filterBox #coll_filtri.coll_filtri {
+	display: flex;
+	flex-direction: column;
+}
+
+#filterBox.filterBox #coll_filtri.coll_filtri input,
+#filterBox.filterBox #coll_filtri.coll_filtri select {
+	height: 36px;
+}
+
+#filterBox.filterBox #coll_filtri.coll_filtri .input-group-prepend .input-group-text {
+	width: 85px;
+	font-weight: 500;
+}
+
+#filterBox.filterBox #coll_filtri.coll_filtri > div {
+	margin: 4px 0px;
+}
+
+div#filterLine.filterLine {
+	display: flex;
+    justify-content: space-around;
+}
+
+div#filterLine.filterLine #globSrc input {
+	margin-left: 0px;
+}
+
+div#filterLine.filterLine #globSrc,
+div#filterLine.filterLine #Npagine {
+	font-size: .8rem;
+}
+
+div#filterLine.filterLine #globSrc label,
+div#filterLine.filterLine #Npagine label {
+	margin-bottom: 0px;
+}
+
+#radioEnd.radioEnd {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+#filterBox.filterBox #coll_filtri.coll_filtri #radioEnd.radioEnd .input-group-prepend .input-group-text {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	border: 0px;
+}
+
+#filterBox.filterBox #coll_filtri.coll_filtri #radioEnd.radioEnd input {
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+#title_box.title_box {
+	padding: 0px 15px;
+}
+
+#table_box.table_box #tabella_profit_wrapper {
+	width: 100%;
+	padding: 0px;
+}
+
+#table_box.table_box #tabella_profit_wrapper .row .dataTables_info {
+	font-size: .9em;
+	padding-top: 2px;
+}
+
+#table_box.table_box #tabella_profit_wrapper .row .pagination a {
+	padding: 4px 8px;
+	font-size: .9em;
+}
+
+#AGModalCalc .input-body {
+	padding: 8px 0px 6px;	
+}
+
+#AGModalCalc {
+	top: -100px;
+	transition: top .5s;
+	display:none;
+}
+
+#AGModalCalc.modal.show {
+	top: 0px;
+}
+
+#AGModalCalc .input-content {
+	font-size:	.9em;
+}
+
+div.topMask {
+	display: flex;
+	flex-direction: column;
+	padding:0px;
+}
+
+div#confermaDel {
+	display: none;
+}
+
+div#pulsantiReset.pulsantiReset {
+	grid-column: 4;
+	grid-row: 1 / 3;
+    align-self: center;
+    justify-self: center;
+    width: 50%;
+}
+
+button#fltReset.fltReset {
+	width: 100%;
+	box-shadow: 2px 2px 3px 0px #9a9a9a;
+}
+
+.ui-widget.ui-dialog {
+	font-size: 0.85em;
+}
+
+.ui-dialog-titlebar.ui-widget-header {
+	background: #515151 !important;
+	color: #ffffff;
+	font-weight: 700;
+	font-size:1.1em;
+}
+
+div.ui-dialog-buttonset button.ui-button {
+	padding: 5px 10px;
+	margin: 0px;
+}
+
+.ui-dialog-buttonpane {
+	
+}
+
+#AGModalCalc .input-content input.h {
+	display: none !important;
+}
+
+#AGModalCalc #AGRecord #finished.on {
+	color: green;
+    font-weight: bolder;
+    border: 1px solid #008000;
+    box-shadow: 3px 3px 3px 0px #a0a0a0;
+    background: #5bfd61;
+    font-variant: all-small-caps;
+    font-size: 105%;
+}
+
+#AGModalCalc #AGRecord #finished {
+	font-variant: all-small-caps;
+	padding: 5px;
+	/*width: 35%*/
+	border: 1px solid #969662;
+    box-shadow: 3px 3px 3px 0px #a0a0a0;
+    background: #ffff0054;
+}
+
+table.dataTable thead > tr > th {
+	padding-left: 15px !important;
+	padding-right: 15px !important;
+}
+
+table thead tr.intestazione.rigaTop {
+	/*background: #f9daa1;*/
+	text-align:center;
+	border: 0px;
+}
+
+#tabella_profit_wrapper .dataTables_scrollHead table.dataTable .intestazione.rigaTop>th:after,
+#tabella_profit_wrapper .dataTables_scrollHead table.dataTable .intestazione.rigaTop>th:before {
+	bottom: 0px;
+}
+
+#tabella_profit_wrapper .dataTables_scrollHead table.dataTable .intestazione.rigaTop>th.sorting:before,
+#tabella_profit_wrapper .dataTables_scrollHead table.dataTable .intestazione.rigaTop>th.sorting_desc:before,
+#tabella_profit_wrapper .dataTables_scrollHead table.dataTable .intestazione.rigaTop>th.sorting_asc:before {
+	right: 2px;
+    content: "\f0dd";
+    font-family: Font Awesome\ 5 Free;
+}
+
+#tabella_profit_wrapper .dataTables_scrollHead table.dataTable .intestazione.rigaTop>th.sorting:after,
+#tabella_profit_wrapper .dataTables_scrollHead table.dataTable .intestazione.rigaTop>th.sorting_desc:after, 
+#tabella_profit_wrapper .dataTables_scrollHead table.dataTable .intestazione.rigaTop>th.sorting_asc:after {
+	right: 2px;
+    content: "\f0de";
+    font-family: Font Awesome\ 5 Free;
+}
+
+table.table-striped.table-bordered {
+	/*border-collapse: collapse !important;*/
+	/*border-color: transparent;*/
+}
+
+table.table-striped.table-bordered tfoot th{
+	border-collapse: collapse !important;
+	border-color: transparent;
+}
+
+.dataTables_scrollFoot .table-striped.table-bordered {
+	border-color: transparent;
+}
+
+.dataTables_scrollFoot tfoot tr th {
+	position: relative;
+}
+
+.dataTables_scrollFoot tfoot tr th div#subt_label,
+.dataTables_scrollFoot tfoot tr th div#subt_count {
+	position: relative;
+	width: max-content;
+	display: inline;
+    text-align: center;
+}
+
+.dataTables_scrollFoot tfoot tr th div#tot_count {
+	position: absolute;
+	width: max-content;
+	left:0;
+	top:0;
+}
+
+#AGModalCalc .input-content div.input-header {
+	/*background: #2b3758;*/
+	/*color: white;*/
+    padding: 5px 16px;
+    box-shadow: 0px 0px 0px 0px #a5a5a5; /*0px 2px 6px 0px #a5a5a5;*/
+	margin-left: 0px; /* -3px; */
+    margin-right:  0px; /* -3px; */
+    margin-top: -7px;
+	margin-bottom: 4px;
+    position: sticky;
+    top: 1px;
+    background: white;
+    z-index: 5000;	
+	border: 1px solid rgba(34, 36, 38, .15);
+}
+
+#AGModalCalc .input-content div.input-footer {
+	/*background: #2b3758;*/
+    padding: 5px 16px;
+    /*box-shadow: 0px -2px 6px 0 #a5a5a5;*/
+	box-shadow: 0px 0px 0px 0 #a5a5a5;
+	justify-content: center;
+	position: sticky;
+    bottom: 0px;
+    background: white;
+    /* box-shadow: 0px -2px 6px 0 #a5a5a5;*/
+    margin-left: 0px; /*margin-left: -3px;*/
+    margin-right: 0px; /*margin-right: -3px;*/
+}
+
+#AGModalCalc .input-content input,
+#AGModalCalc .input-content select,
+#AGModalCalc .input-content textarea {
+	border-radius: 2px;
+	padding: 2px;
+	border: 1px solid #bbbbbb;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+#AGRecord fieldset {
+	border:	0px;
+	padding: 0px;
+}
+
+#AGRecord fieldset fieldset {
+	position: relative;
+}
+
+#AGRecord .profit-section.middle .middleTop,
+#AGRecord .profit-section.middle .middleMid, 
+#AGRecord .profit-section.middle .middleBot {
+	display: none;
+}
+
+#AGRecord .profit-section.middle #autocalc {
+	position: relative;
+    /* top: 4px; */
+    right: 0px;
+    color: #ff6c00;
+    text-align: center;
+	display: none;
+	margin-top: 5px;
+}
+
+#AGRecord label {
+	margin: 0px 0px 2px;
+}
+
+#AGModalCalc .inputBox{
+	/*transform: scale(0.9);*/
+	max-width: none;
+	width: 100%;
+	margin-top: 0px;
+	padding: 3px 3px 0 3px;
+}
+
+#AGModalCalc .inputBox #AGRecord textarea#note {
+	height: 150px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	resize: vertical;
+}
+
+#AGModalCalc .input-content input[type="checkbox"] {
+	display: inline-block;
+	width: auto;
+	margin-left: 15px;
+	margin-bottom: 0px !important;
+	vertical-align: middle;
+	height: 18px;
+    width: 18px;
+}
+
+#AGModalCalc .input-content label {
+	margin-bottom: 0px !important;
+	vertical-align: middle;
+	font-weight: 600;
+}
+
+#AGModalCalc .inputBox .input-content .input-footer.update-footer {
+		display: none;
+}
+
+#AGModalCalc .inputBox #AGRecord div.middleMid {
+	/*display: flex;*/
+	flex-direction: column;
+	/* display: grid;
+	grid-template-columns: 1fr 1fr 1fr; */
+}
+
+#AGModalCalc .inputBox #AGRecord div.profit-guadagni {
+	display: flex;
+	flex-direction: column;
+	/* display: grid;
+	grid-template-columns: 1fr 1fr 1fr; */
+}
+
+#AGModalCalc .inputBox #AGRecord div.profit-guadagni div.box-guadagno {
+	vertical-align: middle;
+	display: table-cell;
+	/*text-align: center;*/
+}
+
+#AGModalCalc .inputBox #AGRecord div.profit-guadagni div.box-guadagno input{
+	margin-bottom: 0px;
+	padding: 0px 4px;
+	width: 40%;
+	font-weight: 600;
+	font-size: 1.2em;
+	vertical-align: unset;
+	display: inline-block;
+	text-align:center;
+}
+
+#AGModalCalc .inputBox #AGRecord div.profit-guadagni div.box-guadagno label{
+	margin-bottom: 0px;
+	padding: 0px;
+	width: 45%;
+	font-weight: 600;
+	font-size: 1.2em;
+	vertical-align: unset;
+	display: inline;
+}
+
+#AGModalCalc .inputBox #AGRecord div.profit-guadagni div.box-guadagno > div {
+	display: inline-block;
+    width: 50%;
+}
+}
+
+#AGModalCalc .inputBox #AGRecord div.row div.checkboxes {
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	align-items: start;
+    vertical-align: middle;
+}
+
+#AGModalCalc .inputBox #AGRecord div.col.note {
+	grid-column: 1 / 3;
+}
+
+#AGModalCalc .inputBox #AGRecord .profit-section {
+	padding: 6px 15px 6px;
+	background: #eeeeee;
+	/* background: #e2e2e2; */
+	margin:	5px 0px 10px 0px;
+	border-radius: 4px;
+	/* box-shadow: 1px 1px 5px 1px #8d9194; */
+	border: 1px solid #00000029;
+}
+
+.profit-section legend {
+    width: 100%;
+    max-width: 100%;
+    padding: 2px;
+    margin-bottom: 5px;
+	border-bottom: 1px solid;
+    font-size: 1.1rem;
+	font-weight: 500;
+    line-height: inherit;
+    color: inherit;
+    white-space: normal;
+	 text-align: center;
+}
+
+legend.legendBtn {
+    border-radius: 4px;
+    /* box-shadow: 2px 2px 4px 0 #616161; */
+    background: #6c757d;
+    color: white;
+    border: 0px;	
+	line-height: 25px;
+	margin-bottom: 0px;
+}
+
+body #tableBox table#tabella_profit {
+	font-size: 100%;
+	width: 100% !important;
+	margin-top: 0px !important;
+}
+
+#box_bonusEx {
+	display: none;
+}
+
+legend span#guadFin::before {
+	"\20AC\0020";
+}
+
+.middleMid .book_box {
+	border: 1px solid #c5c5c5;
+	margin: 5px 0px 5px;
+    padding: 10px 25px;
+    width: auto;
+}
+
+
+
+/* CLASSI E CSS MOBILE */
+
+.alert {
+	padding: 2px;
+	font-size:85%;
+	font-style: normal;
+	margin-bottom: 2px;
+	border: 1px solid #d2d2d2;
+}
+
+/* .alert span {
+	font-weight: bold;
+	font-size:90%;
+	font-style: normal;
+} */
+
+#table_box.table_box,
+#title_box.title_box {
+	/*min-width: 800px;
+	max-width: 1286px;*/
+	margin: auto;
+}
+
+#tableBox table#tabella_profit thead tr th:first-child {
+	font-size: 12px;
+    position: sticky;
+    background: #f2f2f2;
+    z-index: 5000;
+    top: 0;
+    padding: 0 !important;
+    height: 40px;
+    box-shadow: 0px 2px 3px 0 #9c9c9c;
+	border: 1px solid;
+}
+
+#table_box div #tableBox {
+	padding: 0px;
+}
+
+#table_box.table_box .col-sm-12 {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.topLineMob {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 3px;
+}
+
+.topLineMob.typeLine {
+	font-family: Oswald;
+	width: 80%;
+	font-size: .85rem;
+    margin: auto;
+    color: #5a5a5a;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.booksMob {
+	display: flex;
+    justify-content: space-around;
+	/*display: grid;
+	grid-column-gap: 3px;
+	grid-template-columns: 1fr 1fr 1fr;*/
+	font-size: 80%;
+}
+
+tbody .betboxMobile {
+	border: 1px solid #c1c1c1;
+    padding: 2px;
+    border-radius: 4px;
+    box-shadow: 1px 2px 2px 0 #828282;
+	margin-bottom: 2px;
+}
+
+.betboxMobile .boxeventoMobile {
+	padding: 5px 0px;
+	margin-bottom: 8px;
+	font-weight: 900;
+	font-style: normal;
+	font-family: Bebas Neue;
+	font-size: 1.4rem;
+}
+
+.bottomLineMob {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	width: 60%;
+	grid-column-gap: 10px;
+	margin: auto;
+}
+
+/*AGGIUNTA DROPDOWN ACCOUNT - 2019-12-14*/
+div#fltAcc_BOX {
+	/*display: none !important;*/
+}
+
+div#ACC_box {
+	display: none;
+}
+
+div#ACC_box.tivedo {
+	/*display: block;*/
+	display: none;
+	text-align: right;
+    padding-right: 6px;
+    font-size: 12px;
+    margin-top: -5px;
+}
+
+div#ACC_box span#ACCname_lbl {
+	color: #dc3545;
+}
+
+div#ACC_box span#ACCname_content {
+    font-weight: bold;
+}
+
+div#ACC_inputbox {
+	/*display: none;*/
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 5px;
+}
+
+div#ACC_inputbox label[for='acc_list_drop'] {
+	color: #dc3545;
+}
+/*FINE AGGIUNTA DROPDOWN ACCOUNT - 2019-12-14*/
+
+#overMobile.overMobile {
+	position: relative;
+	top: 3px;
+	left: 10px;
+}
+
+#openBet,
+#closedBet {
+	font-size: .8rem;
+	font-weight: bold;
+}
+
+table#tabella_profit i.completed {
+	color: #28bf28;
+	font-size: 16px;
+	font-weight:700;
+}
+
+table#tabella_profit i.pending {
+	color: #ff0000;
+	font-size: 16px;
+	font-weight:700;
+}
+
+table#tabella_profit tbody {
+	padding: 0px 2px;
+}
+
+#divbooksMob .badge {
+	border: 1px solid #c1c1c1;
+	font-size: 85%;
+	border: 1px solid #c1c1c1;
+    font-size: 85%;
+    /* width: 30%; */
+    /* flex-grow: 1; */
+    flex-basis: 34%;
+    margin: 5px;
+}
+
+#guadagnoMob {
+	padding: 8px 30px;
+    font-size: large;
+    font-weight: bold;
+    font-variant-caps: small-caps;
+}
+
+.mobBtnz {
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.actionbuttonz {
+	font-size:12px;
+	width: 100%;
+	margin: auto;
+	padding: 2px;
+}
+
+#table_box.table_box #tabella_profit_wrapper #paginateLine {
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 6px;
+}
+
+#table_box.table_box #tabella_profit_wrapper #paginateLine #infoBox > div,
+#table_box.table_box #tabella_profit_wrapper #paginateLine #pageBox > div {
+	padding-top: 0px;
+	font-size: .8rem;
+}
+
+span#glab {
+	font-size: 14px;
+	color: green;
+}
+
+.input-footer.salva-footer button,
+.input-footer.update-footer button {
+	margin: 0px 5px;
+	flex-basis: 35%;
+}
+
+
+
+
+
+
+
+
+
+
+

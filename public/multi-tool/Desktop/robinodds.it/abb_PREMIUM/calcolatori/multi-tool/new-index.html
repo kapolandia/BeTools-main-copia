@@ -1,0 +1,4463 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Tool Multiple 2.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="index,follow" />
+
+    <script src="https://kit.fontawesome.com/99e0a5ccb8.js"></script>
+
+    <link rel="stylesheet" href="assets/css/semantic.css" />
+
+    <link href="assets/css/rome.css" rel="stylesheet" />
+    <!-- AGGIUNTA 21/08/2019 -->
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="assets/css/multitool.css" />
+
+    <!-- <link rel="stylesheet" href="assets/css/profit.css" /> -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="assets/js/moment-with-locales.js"></script>
+    <!-- AGGIUNTA 21/08/2019 -->
+
+    <!-- ?? -->
+    <script type="text/javascript" src="assets/js/jquery.mark.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/jquery.inputmask.bundle.js"></script>
+    <!-- ?? -->
+
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.0.3/math.min.js"
+      integrity="sha256-TNeqgLgUT/0XFsg+YaC13WI8OyU2S9E5/5P79536W6A="
+      crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <!-- <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> -->
+
+    <script type="text/javascript" src="assets/js/multitool-head.js" defer></script>
+    <!-- <script type="text/javascript" src="assets/js/profit-head.js?V=1.0.0"></script> -->
+  </head>
+
+  <body style="background-color: #f3f5f7">
+    <div class="container" id="shrinkMe">
+      <div class="spinner" style="display: none">
+        <img src="" />
+      </div>
+
+      <form name="mymultipla" method="get" id="mymultipla" class="ui form" action="">
+        <!-- DATI BASE (PUNTATA, RIMBORSO, N. EVENTI) -->
+        <div class="ui grid" id="riga_box_importi">
+          <div class="four wide column">
+            <div class="ui fluid right labeled input" id="">
+              <label for="mult_lamiapuntata" class="ui label">Puntata</label>
+
+              <input
+                type="text"
+                name="mult_lamiapuntata"
+                value=""
+                class="text-right"
+                id="mult_lamiapuntata"
+                maxlength="30" />
+
+              <div class="ui basic label">€</div>
+            </div>
+          </div>
+
+          <div class="two wide column" id="">
+            <input
+              type="text"
+              name="mult_ilmiobonus"
+              value=""
+              class="text-right"
+              id="mult_ilmiobonus"
+              maxlength="30" />
+          </div>
+
+          <div class="four wide column">
+            <div class="ui fluid right labeled input" id="">
+              <!-- <label for="mult_ilmiorimborso" class="ui label">Rimborso</label> -->
+              <div class="ui dropdown label" id="labelRimbo">
+                <div class="text">Rimborso</div>
+
+                <i class="dropdown icon"></i>
+
+                <div class="menu">
+                  <div class="item">Rimborso</div>
+                  <div class="item">1 perde</div>
+                </div>
+              </div>
+
+              <input
+                type="text"
+                name="mult_ilmiorimborso"
+                value=""
+                class="text-right"
+                id="mult_ilmiorimborso"
+                maxlength="30" />
+
+              <div class="ui basic label">€</div>
+            </div>
+          </div>
+
+          <div class="three wide column">
+            <!-- <div class="four wide column"> -->
+            <div class="ui fluid labeled input" id="">
+              <label for="mult_lamiacommissione" class="ui label">Comm.%</label>
+
+              <input
+                type="text"
+                name="mult_lamiacommissione"
+                value="4.50%"
+                class="text-right"
+                id="mult_lamiacommissione"
+                maxlength="10"
+                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                onblur="this.value = ret_com(norm_com(this.value))" />
+
+              <!-- <div class="ui basic label">%</div> -->
+            </div>
+          </div>
+
+          <div class="three wide column">
+            <div class="ui fluid right labeled input" id="">
+              <label for="mult_quantieventi" class="ui label">N. Eventi</label>
+
+              <select class="ui fluid dropdown" name="mult_quantieventi" id="mult_quantieventi">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5" selected="selected">5</option>
+              </select>
+
+              <!-- <div class="ui basic label">#</div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="ui grid" id="rigaUnder_box_importi">
+          <div class="four wide column"></div>
+
+          <div class="two wide column" id="box_under_label_BONUS">
+            di cui <i id="under_label_BONUS"> BONUS</i>
+          </div>
+
+          <div class="four wide column" id="box_under_label_RIMB">
+            seleziona tipologia <i id="under_label_RIMB">RIMBORSO</i>
+          </div>
+
+          <div class="three wide column"></div>
+
+          <div class="three wide column"></div>
+        </div>
+
+        <!-- DATI DELLE PARTITE DELLA MULTIPLA -->
+        <div class="ui teal message" id="riga_boxTabDati">
+          <div class="" id="thisMultiNameBox">
+            Nome della multipla salvata:
+            <span class="" id="thisMultiName"></span>
+          </div>
+
+          <div class="" id="grid_background">
+            <div id="GridDati_input" class="">
+              <!-- INTESTAZIONE GRIGLIA DATI -->
+              <div class="grid_th grid_row_0 grid_firstRow grid_firstCol"># EV.</div>
+              <!-- <div class="grid_th grid_row_0 grid_firstRow dutcher-button"> -->
+              <div class="grid_th grid_row_0 grid_firstRow">INCOLLA</div>
+              <div class="grid_th grid_row_0 grid_firstRow">DESCRIZIONE EVENTO</div>
+              <div class="grid_th grid_row_0 grid_firstRow">DATA / ORA</div>
+              <div class="grid_th grid_row_0 grid_firstRow">ESITO</div>
+              <div class="grid_th grid_row_0 grid_firstRow">Q.PUNTA</div>
+              <div class="grid_th grid_row_0 grid_firstRow">Q.BANCA</div>
+              <div
+                title="Stato: in Attesa/Vinta/Persa"
+                class="grid_th grid_row_0 grid_firstRow grid_lastCol"
+                id="A-V-P">
+                ESITI
+              </div>
+
+              <!-- PARTITA 1 GRIGLIA DATI -->
+              <div
+                type="button"
+                title="Apri il riquadro per la copertura dell'evento N.1"
+                class="grid_th grid_row_1 grid_firstCol"
+                id="button_M1">
+                1
+                <i class="level down alternate icon" id="iconB_M1"></i>
+              </div>
+
+              <div
+                class="grid_cell grid_row_1 dutcher-button ui large primary icon button"
+                data-match="1"
+                title="Incolla in questo evento i dati copiati dal Dutcher.">
+                <i class="copy icon"></i>
+              </div>
+
+              <div class="grid_cell grid_row_1">
+                <input type="text" name="matchName_M1" value="" id="matchName_M1" />
+              </div>
+
+              <div class="grid_cell grid_row_1">
+                <input type="text" name="dateH_M1" value="" id="dateH_M1" maxlength="30" />
+              </div>
+
+              <div class="grid_cell grid_row_1">
+                <input type="text" name="market_M1" value="" id="market_M1" maxlength="30" />
+              </div>
+
+              <div class="grid_cell grid_row_1">
+                <input
+                  match="M1"
+                  type="text"
+                  name="mult_quotaP_set1"
+                  value=""
+                  class="text-right"
+                  id="mult_quotaP_set1"
+                  maxlength="30"
+                  oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                  onblur="this.value = ret_qb(this.value)" />
+              </div>
+
+              <div class="grid_cell grid_row_1">
+                <input
+                  match="M1"
+                  type="text"
+                  name="mult_quotaB_set1"
+                  value=""
+                  class="text-right"
+                  id="mult_quotaB_set1"
+                  maxlength="30"
+                  oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                  onblur="this.value = ret_qb(this.value)" />
+              </div>
+
+              <div class="grid_cell grid_row_1 grid_lastCol">
+                <div class="inline fields">
+                  <div class="field">
+                    <div class="ui radio checkbox box_M1">
+                      <input
+                        type="radio"
+                        value="A_M1"
+                        name="situazione_M1"
+                        checked="checked"
+                        id="radioA_M1" />
+                      <label>A</label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="ui radio checkbox box_M1">
+                      <input type="radio" value="V_M1" name="situazione_M1" id="radioV_M1" />
+                      <label>V</label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="ui radio checkbox box_M1">
+                      <input type="radio" value="P_M1" name="situazione_M1" id="radioP_M1" />
+                      <label>P</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui green message grid_cell grid_rigaAgg grid_rigaAgg_1" id="rigaAgg_1">
+                <!-- BLOCCO SINISTRO -->
+                <div class="blocco blocco_sx" id="sx_Agg1">
+                  <!-- RIGA N.1 -->
+                  <div class="unaRiga box_datiNew R_pari rigazero A">DATI INIZIALI</div>
+
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Quota</div>
+                  <div class="unaRiga box_datiNew R_dispari qbanca_orig" id="quotaB_New0_M1"></div>
+
+                  <!-- RIGA N.2 -->
+                  <div class="unaRiga box_datiNew R_pari div_header">Comm.%</div>
+                  <div class="unaRiga box_datiNew R_pari" id="comm_New0_M1"></div>
+                  <!-- <input type="text" name="" value="" id="comm_New0_M1" /> -->
+
+                  <!-- RIGA N.3 -->
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Bancata</div>
+                  <div class="unaRiga box_datiNew R_dispari" id="banca_New0_M1"></div>
+
+                  <!-- RIGA N.4 -->
+                  <div class="unaRiga box_datiNew R_pari div_header" id="">Responsabilità</div>
+                  <div class="unaRiga box_datiNew R_pari respo_OLD" id="respo_Cal0_M1"></div>
+
+                  <!-- RIGA N.5 -->
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Abbinato</div>
+                  <div class="unaRiga box_datiNew R_dispari" id="">
+                    <input
+                      type="text"
+                      name="abb_New0_M1"
+                      value=""
+                      id="abb_New0_M1"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                      onblur="this.value = ret_doll(this.value)" />
+                  </div>
+
+                  <!-- RIGA N.6 -->
+                  <div class="unaRiga box_datiNew R_pari div_header" id="">Nuova Resp.</div>
+                  <div class="unaRiga box_datiNew R_pari respo_Dati" id="respo_New0_M1"></div>
+                </div>
+
+                <!-- BLOCCO DESTRO -->
+                <div class="blocco blocco_dx" id="dx_Agg1">
+                  <!-- RIGA N.1 INTESTAZIONE -->
+                  <div class="unaRiga box_datiNew R_pari rigazero B" id="">
+                    <div class="verde warningMsg" id="warning_M1">
+                      EV#1 <i class="ui thumbs up outline green icon"></i>
+                      <i class="ui check green icon"></i>BANCA<i class="ui check green icon"></i>
+                    </div>
+                    <div>QUOTE NUOVE</div>
+                    <div class="box_copertura" id="copertura_M1">
+                      Copertura: <span id="copLab_M1"></span>
+                    </div>
+                  </div>
+
+                  <!-- RIGA N.2 COLONNE -->
+                  <!-- COLONNA New1 -->
+                  <div class="grid_col" id="grid_Col_New1_M1">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New1_M1"
+                        value=""
+                        id="quotaB_New1_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New1_M1"
+                        value=""
+                        id="comm_New1_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New1_M1"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal1_M1"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New1_M1"
+                        value=""
+                        id="abb_New1_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_Dati calcolati"
+                      id="respo_New1_M1"></div>
+                  </div>
+
+                  <!-- COLONNA New2 -->
+                  <div class="grid_col" id="grid_Col_New2_M1">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New2_M1"
+                        value=""
+                        id="quotaB_New2_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New2_M1"
+                        value=""
+                        id="comm_New2_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New2_M1"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_OLD calcolati"
+                      id="respo_Cal2_M1"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New2_M1"
+                        value=""
+                        id="abb_New2_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_Dati calcolati"
+                      id="respo_New2_M1"></div>
+                  </div>
+
+                  <!-- COLONNA New3 -->
+                  <div class="grid_col" id="grid_Col_New3_M1">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New3_M1"
+                        value=""
+                        id="quotaB_New3_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New3_M1"
+                        value=""
+                        id="comm_New3_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New3_M1"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal3_M1"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New3_M1"
+                        value=""
+                        id="abb_New3_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_Dati calcolati"
+                      id="respo_New3_M1"></div>
+                  </div>
+
+                  <!-- COLONNA New4 -->
+                  <div class="grid_col" id="grid_Col_New4_M1">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New4_M1"
+                        value=""
+                        id="quotaB_New4_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New4_M1"
+                        value=""
+                        id="comm_New4_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New4_M1"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal4_M1"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New4_M1"
+                        value=""
+                        id="abb_New4_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll (this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_Dati calcolati"
+                      id="respo_New4_M1"></div>
+                  </div>
+
+                  <!-- COLONNA New5 -->
+                  <div class="grid_col" id="grid_Col_New5_M1">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New5_M1"
+                        value=""
+                        id="quotaB_New5_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New5_M1"
+                        value=""
+                        id="comm_New5_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New5_M1"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal5_M1"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New5_M1"
+                        value=""
+                        id="abb_New5_M1"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll (this.value)" />
+                    </div>
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_Dati calcolati"
+                      id="respo_New5_M1"></div>
+                  </div>
+                </div>
+
+                <div class="separator" id="">
+                  <div class="label_separator" id="">
+                    COPERTURA ALTERNATIVA -
+                    <span class="labelSep label_CP" id="labelSep_M1"></span>
+                  </div>
+                </div>
+
+                <div class="boxCP_sx" id="boxCP_sx_M1">
+                  <div class="intestaBox_CP" id="intestaBox_CP_M1">
+                    <span class="label_copri_CP" id="label_copri_CP_M1">SELEZIONA COPERTURA </span>
+                    <div class="switchContainer" id="">
+                      <label class="switchBox" id="switchBox_M1">
+                        <input
+                          type="checkbox"
+                          name="mySWcheck_M1"
+                          class="mySWcheck"
+                          id="mySWcheck_M1"
+                          value="" />
+                        <div class="ON" id="ON_M1"></div>
+                        <div class="OFF" id="OFF_M1"></div>
+                        <div class="SWITCH" id="SWITCH_M1"></div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxCP_dx" id="boxCP_dx_M1">
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaCP_Q_M1"
+                      class=""
+                      id="provaCP_Q_M1"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaCP_M1"
+                      class=""
+                      value=""
+                      id="provaCP_M1"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoCP" id="boxInfoCP_M1">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_CP1_M1"></span> &#128072; -->
+                  </div>
+
+                  <div class="optimalOddBox optimalOddBox_M1" id="optimalOddBox_M1">
+                    Contropunta più conveniente se la Quota bancata è superiore a
+                    <span class="cfrOdd_span" id="cfrOdd_M1"></span>
+                  </div>
+                </div>
+
+                <div class="boxDCH_dx boxDCH1_dx boxDCH_dx_M1" id="boxDCH1_dx_M1">
+                  <div class="Dch_labelBox" id="">
+                    <span class="Dch_label">A</span>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      match="Dch_A_M1"
+                      type="text"
+                      class="provaDCH1"
+                      name="provaDCH1_Q_M1"
+                      id="provaDCH1_Q_M1"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      match="Dch_A_M1"
+                      type="text"
+                      name="provaDCH1_M1"
+                      class="provaDCH1"
+                      value=""
+                      id="provaDCH1_M1"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoDCH" id="boxInfoDCH1_M1">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_DCH1_M1"></span> &#128072; -->
+                  </div>
+                </div>
+
+                <div class="boxRadioDch_ext" id="boxRadioDch_M1" style="display: none">
+                  <div class="inline fields boxRadioDch">
+                    <label>Vinci: </label>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M1">
+                        <input
+                          match="Dch_A_M1"
+                          type="radio"
+                          value="Win_A"
+                          name="Dch_M1"
+                          id="WA_Dch_M1" />
+                        <label>A</label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M1">
+                        <input
+                          match="Dch_B_M1"
+                          type="radio"
+                          value="Win_B"
+                          name="Dch_M1"
+                          id="WB_Dch_M1" />
+                        <label>B</label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M1">
+                        <input
+                          match="Dch_NO_M1"
+                          type="radio"
+                          value="NO"
+                          name="Dch_M1"
+                          id="NO_Dch_M1"
+                          checked />
+                        <label>nessuna</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxDCH_dx boxDCH2_dx boxDCH_dx_M1" id="boxDCH2_dx_M1">
+                  <div class="Dch_labelBox" id="">
+                    <span class="Dch_label">B</span>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      match="Dch_B_M1"
+                      type="text"
+                      class="provaDCH2"
+                      name="provaDCH2_Q_M1"
+                      id="provaDCH2_Q_M1"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      match="Dch_B_M1"
+                      type="text"
+                      name="provaDCH2_M1"
+                      class="provaDCH2"
+                      value=""
+                      id="provaDCH2_M1"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoDCH" id="boxInfoDCH2_M1">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_DCH2_M1"></span> &#128072; -->
+                  </div>
+
+                  <div class="optimalDCHBox optimalDCHBox_M1" id="optimalDCHBox_M1">
+                    Dutching più conveniente se la Quota bancata è superiore a
+                    <span class="cfrDCH_span" id="cfrDCH_M1"></span>
+                  </div>
+                </div>
+
+                <div class="gridTotsx" id="gridTotsx_M1">
+                  <div class="" id="">W1</div>
+                  <div type="text" myState="V" name="GainIfWin_M1" value="" id="GainIfWin_M1"></div>
+                  <div class="" id="">L1</div>
+                  <div
+                    type="text"
+                    myState="P"
+                    name="GainIfLose_M1"
+                    value=""
+                    id="GainIfLose_M1"></div>
+                </div>
+
+                <div class="gridTotdx" id="gridTotdx_M1">
+                  <div class="" id="">T.ABB</div>
+                  <div type="text" name="TotAbb_M1" value="" id="TotAbb_M1"></div>
+                  <div class="" id="">T.RSP</div>
+                  <div type="text" name="TotRespo_M1" value="" id="TotRespo_M1"></div>
+                  <div class="" id="">F.GAIN</div>
+                  <div type="text" name="FinGain_M1" value="" id="FinGain_M1"></div>
+                </div>
+              </div>
+
+              <!-- PARTITA 2 GRIGLIA DATI -->
+              <div
+                type="button"
+                title="Apri il riquadro per la copertura dell'evento N.2"
+                class="grid_th grid_row_2 grid_firstCol"
+                id="button_M2">
+                2
+                <i class="level down alternate icon" id="iconB_M2"></i>
+              </div>
+
+              <div
+                class="grid_cell grid_row_2 dutcher-button ui large primary icon button"
+                data-match="2"
+                title="Incolla in questo evento i dati copiati dal Dutcher.">
+                <i class="copy icon"></i>
+              </div>
+
+              <div class="grid_cell grid_row_2">
+                <input type="text" name="matchName_M2" value="" id="matchName_M2" />
+              </div>
+
+              <div class="grid_cell grid_row_2">
+                <input type="text" name="dateH_M2" value="" id="dateH_M2" maxlength="30" />
+              </div>
+
+              <div class="grid_cell grid_row_2">
+                <input type="text" name="market_M2" value="" id="market_M2" maxlength="30" />
+              </div>
+
+              <div class="grid_cell grid_row_2">
+                <input
+                  match="M2"
+                  type="text"
+                  name="mult_quotaP_set2"
+                  value=""
+                  class="text-right"
+                  id="mult_quotaP_set2"
+                  maxlength="30"
+                  oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                  onblur="this.value = ret_qb(this.value)" />
+              </div>
+
+              <div class="grid_cell grid_row_2">
+                <input
+                  match="M2"
+                  type="text"
+                  name="mult_quotaB_set2"
+                  value=""
+                  class="text-right"
+                  id="mult_quotaB_set2"
+                  maxlength="30"
+                  oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                  onblur="this.value = ret_qb(this.value)" />
+              </div>
+
+              <div class="grid_cell grid_row_2 grid_lastCol">
+                <div class="inline fields">
+                  <div class="field">
+                    <div class="ui radio checkbox box_M2">
+                      <input
+                        type="radio"
+                        value="A_M2"
+                        name="situazione_M2"
+                        checked="checked"
+                        id="radioA_M2" />
+                      <label>A</label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="ui radio checkbox box_M2">
+                      <input type="radio" value="V_M2" name="situazione_M2" id="radioV_M2" />
+                      <label>V</label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="ui radio checkbox box_M2">
+                      <input type="radio" value="P_M2" name="situazione_M2" id="radioP_M2" />
+                      <label>P</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui red message grid_cell grid_rigaAgg grid_rigaAgg_2" id="rigaAgg_2">
+                <!-- BLOCCO SINISTRO -->
+                <div class="blocco blocco_sx" id="sx_Agg2">
+                  <!-- RIGA N.1 -->
+                  <div class="unaRiga box_datiNew R_pari rigazero A">DATI INIZIALI</div>
+
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Quota</div>
+                  <div class="unaRiga box_datiNew R_dispari qbanca_orig" id="quotaB_New0_M2"></div>
+
+                  <!-- RIGA N.2 -->
+                  <div class="unaRiga box_datiNew R_pari div_header">Comm.%</div>
+                  <div class="unaRiga box_datiNew R_pari" id="comm_New0_M2"></div>
+                  <!-- <input type="text" name="" value="" id="comm_New0_M2" /> -->
+
+                  <!-- RIGA N.3 -->
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Bancata</div>
+                  <div class="unaRiga box_datiNew R_dispari" id="banca_New0_M2"></div>
+
+                  <!-- RIGA N.4 -->
+                  <div class="unaRiga box_datiNew R_pari div_header" id="">Responsabilità</div>
+                  <div class="unaRiga box_datiNew R_pari respo_OLD" id="respo_Cal0_M2"></div>
+
+                  <!-- RIGA N.5 -->
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Abbinato</div>
+                  <div class="unaRiga box_datiNew R_dispari" id="">
+                    <input
+                      type="text"
+                      name="abb_New0_M2"
+                      value=""
+                      id="abb_New0_M2"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                      onblur="this.value = ret_doll(this.value)" />
+                  </div>
+
+                  <!-- RIGA N.6 -->
+                  <div class="unaRiga box_datiNew R_pari div_header" id="">Nuova Resp.</div>
+                  <div class="unaRiga box_datiNew R_pari respo_Dati" id="respo_New0_M2"></div>
+                </div>
+
+                <!-- BLOCCO DESTRO -->
+                <div class="blocco blocco_dx" id="dx_Agg2">
+                  <!-- RIGA N.1 INTESTAZIONE -->
+                  <div class="unaRiga box_datiNew R_pari rigazero B" id="">
+                    <div class="rosso warningMsg" id="warning_M2">
+                      EV#2 <i class="ui thumbs down outline red icon"></i>
+                      <i class="ui ban red icon"></i><u>NON BANCARE </u
+                      ><i class="ui ban red icon"></i>
+                    </div>
+                    <div>QUOTE NUOVE</div>
+                    <div class="box_copertura" id="copertura_M2">
+                      Copertura al: <span id="copLab_M2"></span>
+                    </div>
+                  </div>
+
+                  <!-- RIGA N.2 COLONNE -->
+                  <!-- COLONNA New1 -->
+                  <div class="grid_col" id="grid_Col_New1_M2">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New1_M2"
+                        value=""
+                        id="quotaB_New1_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New1_M2"
+                        value=""
+                        id="comm_New1_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New1_M2"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal1_M2"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New1_M2"
+                        value=""
+                        id="abb_New1_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_Dati calcolati"
+                      id="respo_New1_M2"></div>
+                  </div>
+
+                  <!-- COLONNA New2 -->
+                  <div class="grid_col" id="grid_Col_New2_M2">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New2_M2"
+                        value=""
+                        id="quotaB_New2_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New2_M2"
+                        value=""
+                        id="comm_New2_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New2_M2"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal2_M2"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New2_M2"
+                        value=""
+                        id="abb_New2_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_Dati calcolati"
+                      id="respo_New2_M2"></div>
+                  </div>
+
+                  <!-- COLONNA New3 -->
+                  <div class="grid_col" id="grid_Col_New3_M2">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New3_M2"
+                        value=""
+                        id="quotaB_New3_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New3_M2"
+                        value=""
+                        id="comm_New3_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New3_M2"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal3_M2"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New3_M2"
+                        value=""
+                        id="abb_New3_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_Dati calcolati"
+                      id="respo_New3_M2"></div>
+                  </div>
+
+                  <!-- COLONNA New4 -->
+                  <div class="grid_col" id="grid_Col_New4_M2">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New4_M2"
+                        value=""
+                        id="quotaB_New4_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New4_M2"
+                        value=""
+                        id="comm_New4_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New4_M2"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal4_M2"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New4_M2"
+                        value=""
+                        id="abb_New4_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll (this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_Dati calcolati"
+                      id="respo_New4_M2"></div>
+                  </div>
+
+                  <!-- COLONNA New5 -->
+                  <div class="grid_col" id="grid_Col_New5_M2">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New5_M2"
+                        value=""
+                        id="quotaB_New5_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New5_M2"
+                        value=""
+                        id="comm_New5_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New5_M2"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal5_M2"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New5_M2"
+                        value=""
+                        id="abb_New5_M2"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll (this.value)" />
+                    </div>
+                    <div
+                      class="unaRiga box_datiNew R_pari respo_Dati calcolati"
+                      id="respo_New5_M2"></div>
+                  </div>
+                </div>
+
+                <div class="separator" id="">
+                  <div class="label_separator" id="">
+                    COPERTURA ALTERNATIVA -
+                    <span class="labelSep label_CP" id="labelSep_M2"></span>
+                  </div>
+                </div>
+
+                <div class="boxCP_sx" id="boxCP_sx_M2">
+                  <div class="intestaBox_CP" id="intestaBox_CP_M2">
+                    <span class="label_copri_CP" id="label_copri_CP_M2">SELEZIONA COPERTURA </span>
+                    <div class="switchContainer" id="">
+                      <label class="switchBox" id="switchBox_M2">
+                        <input
+                          type="checkbox"
+                          name="mySWcheck_M2"
+                          class="mySWcheck"
+                          id="mySWcheck_M2"
+                          value="" />
+                        <div class="ON" id="ON_M2"></div>
+                        <div class="OFF" id="OFF_M2"></div>
+                        <div class="SWITCH" id="SWITCH_M2"></div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxCP_dx" id="boxCP_dx_M2">
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaCP_Q_M2"
+                      class=""
+                      id="provaCP_Q_M2"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaCP_M2"
+                      class=""
+                      value=""
+                      id="provaCP_M2"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoCP" id="boxInfoCP_M2">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_CP1_M2"></span> &#128072; -->
+                  </div>
+
+                  <div class="optimalOddBox optimalOddBox_M2" id="optimalOddBox_M2">
+                    Contropunta più conveniente se la Quota bancata è superiore a
+                    <span class="cfrOdd_span" id="cfrOdd_M2"></span>
+                  </div>
+                </div>
+
+                <div class="boxDCH_dx boxDCH1_dx boxDCH_dx_M2" id="boxDCH1_dx_M2">
+                  <div class="Dch_labelBox" id="">
+                    <span class="Dch_label">A</span>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      class="provaDCH1"
+                      name="provaDCH1_Q_M2"
+                      id="provaDCH1_Q_M2"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaDCH1_M2"
+                      class="provaDCH1"
+                      value=""
+                      id="provaDCH1_M2"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoDCH" id="boxInfoDCH1_M2">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_DCH1_M2"></span> &#128072; -->
+                  </div>
+                </div>
+
+                <div class="boxRadioDch_ext" id="boxRadioDch_M2" style="display: none">
+                  <div class="inline fields boxRadioDch">
+                    <label>Vinci: </label>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M2">
+                        <input
+                          match="Dch_A_M2"
+                          type="radio"
+                          value="Win_A"
+                          name="Dch_M2"
+                          id="WA_Dch_M2" />
+                        <label>A</label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M2">
+                        <input
+                          match="Dch_B_M2"
+                          type="radio"
+                          value="Win_B"
+                          name="Dch_M2"
+                          id="WB_Dch_M2" />
+                        <label>B</label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M2">
+                        <input
+                          match="Dch_NO_M2"
+                          type="radio"
+                          value="NO"
+                          name="Dch_M2"
+                          id="NO_Dch_M2"
+                          checked />
+                        <label>nessuna</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxDCH_dx boxDCH2_dx boxDCH_dx_M2" id="boxDCH2_dx_M2">
+                  <div class="Dch_labelBox" id="">
+                    <span class="Dch_label">B</span>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      class="provaDCH2"
+                      name="provaDCH2_Q_M2"
+                      id="provaDCH2_Q_M2"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaDCH2_M2"
+                      class="provaDCH2"
+                      value=""
+                      id="provaDCH2_M2"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoDCH" id="boxInfoDCH2_M2">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_DCH2_M2"></span> &#128072; -->
+                  </div>
+
+                  <div class="optimalDCHBox optimalDCHBox_M2" id="optimalDCHBox_M2">
+                    Dutching più conveniente se la Quota bancata è superiore a
+                    <span class="cfrDCH_span" id="cfrDCH_M2"></span>
+                  </div>
+                </div>
+
+                <div class="gridTotsx" id="gridTotsx_M2">
+                  <div class="" id="">W2</div>
+                  <div type="text" myState="V" name="GainIfWin_M2" value="" id="GainIfWin_M2"></div>
+                  <div class="" id="">L2</div>
+                  <div
+                    type="text"
+                    myState="P"
+                    name="GainIfLose_M2"
+                    value=""
+                    id="GainIfLose_M2"></div>
+                </div>
+
+                <div class="gridTotdx" id="gridTotdx_M2">
+                  <div class="" id="">T.ABB</div>
+                  <div type="text" name="TotAbb_M2" value="" id="TotAbb_M2"></div>
+                  <div class="" id="">T.RSP</div>
+                  <div type="text" name="TotRespo_M2" value="" id="TotRespo_M2"></div>
+                  <div class="" id="">F.GAIN</div>
+                  <div type="text" name="FinGain_M2" value="" id="FinGain_M2"></div>
+                </div>
+              </div>
+
+              <!-- PARTITA 3 GRIGLIA DATI -->
+              <div
+                type="button"
+                title="Apri il riquadro per la copertura dell'evento N.3"
+                class="grid_th grid_row_3 grid_firstCol"
+                id="button_M3">
+                3
+                <i class="level down alternate icon" id="iconB_M3"></i>
+              </div>
+
+              <div
+                class="grid_cell grid_row_3 dutcher-button ui large primary icon button"
+                data-match="3"
+                title="Incolla in questo evento i dati copiati dal Dutcher.">
+                <i class="copy icon"></i>
+              </div>
+
+              <div class="grid_cell grid_row_3">
+                <input type="text" name="matchName_M3" value="" id="matchName_M3" />
+              </div>
+
+              <div class="grid_cell grid_row_3">
+                <input type="text" name="dateH_M3" value="" id="dateH_M3" maxlength="30" />
+              </div>
+
+              <div class="grid_cell grid_row_3">
+                <input type="text" name="market_M3" value="" id="market_M3" maxlength="30" />
+              </div>
+
+              <div class="grid_cell grid_row_3">
+                <input
+                  match="M3"
+                  type="text"
+                  name="mult_quotaP_set3"
+                  value=""
+                  class="text-right"
+                  id="mult_quotaP_set3"
+                  maxlength="30"
+                  oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                  onblur="this.value = ret_qb(this.value)" />
+              </div>
+
+              <div class="grid_cell grid_row_3">
+                <input
+                  match="M3"
+                  type="text"
+                  name="mult_quotaB_set3"
+                  value=""
+                  class="text-right"
+                  id="mult_quotaB_set3"
+                  maxlength="30"
+                  oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                  onblur="this.value = ret_qb(this.value)" />
+              </div>
+
+              <div class="grid_cell grid_row_3 grid_lastCol">
+                <div class="inline fields">
+                  <div class="field">
+                    <div class="ui radio checkbox box_M3">
+                      <input
+                        type="radio"
+                        value="A_M3"
+                        name="situazione_M3"
+                        checked="checked"
+                        id="radioA_M3" />
+                      <label>A</label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="ui radio checkbox box_M3">
+                      <input type="radio" value="V_M3" name="situazione_M3" id="radioV_M3" />
+                      <label>V</label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="ui radio checkbox box_M3">
+                      <input type="radio" value="P_M3" name="situazione_M3" id="radioP_M3" />
+                      <label>P</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui red message grid_cell grid_rigaAgg grid_rigaAgg_3" id="rigaAgg_3">
+                <!-- BLOCCO SINISTRO -->
+                <div class="blocco blocco_sx" id="sx_Agg3">
+                  <!-- RIGA N.1 -->
+                  <div class="unaRiga box_datiNew R_pari rigazero A">DATI INIZIALI</div>
+
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Quota</div>
+                  <div class="unaRiga box_datiNew R_dispari qbanca_orig" id="quotaB_New0_M3"></div>
+
+                  <!-- RIGA N.2 -->
+                  <div class="unaRiga box_datiNew R_pari div_header">Comm.%</div>
+                  <div class="unaRiga box_datiNew R_pari" id="comm_New0_M3"></div>
+                  <!-- <input type="text" name="" value="" id="comm_New0_M3" /> -->
+
+                  <!-- RIGA N.3 -->
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Bancata</div>
+                  <div class="unaRiga box_datiNew R_dispari" id="banca_New0_M3"></div>
+
+                  <!-- RIGA N.4 -->
+                  <div class="unaRiga box_datiNew R_pari div_header" id="">Responsabilità</div>
+                  <div class="unaRiga box_datiNew R_pari respo_OLD" id="respo_Cal0_M3"></div>
+
+                  <!-- RIGA N.5 -->
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Abbinato</div>
+                  <div class="unaRiga box_datiNew R_dispari" id="">
+                    <input
+                      type="text"
+                      name="abb_New0_M3"
+                      value=""
+                      id="abb_New0_M3"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                      onblur="this.value = ret_doll(this.value)" />
+                  </div>
+
+                  <!-- RIGA N.6 -->
+                  <div class="unaRiga box_datiNew R_pari div_header" id="">Nuova Resp.</div>
+                  <div class="unaRiga box_datiNew R_pari respo_Dati" id="respo_New0_M3"></div>
+                </div>
+
+                <!-- BLOCCO DESTRO -->
+                <div class="blocco blocco_dx" id="dx_Agg3">
+                  <!-- RIGA N.1 INTESTAZIONE -->
+                  <div class="unaRiga box_datiNew R_pari rigazero B" id="">
+                    <div class="rosso warningMsg" id="warning_M3">
+                      EV#3 <i class="ui thumbs down outline red icon"></i>
+                      <i class="ui ban red icon"></i><u>NON BANCARE </u
+                      ><i class="ui ban red icon"></i>
+                    </div>
+                    <div>QUOTE NUOVE</div>
+                    <div class="box_copertura" id="copertura_M3">
+                      Copertura al: <span id="copLab_M3"></span>
+                    </div>
+                  </div>
+
+                  <!-- RIGA N.2 COLONNE -->
+                  <!-- COLONNA New1 -->
+                  <div class="grid_col" id="grid_Col_New1_M3">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New1_M3"
+                        value=""
+                        id="quotaB_New1_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New1_M3"
+                        value=""
+                        id="comm_New1_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New1_M3"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal1_M3"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New1_M3"
+                        value=""
+                        id="abb_New1_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New1_M3"></div>
+                  </div>
+
+                  <!-- COLONNA New2 -->
+                  <div class="grid_col" id="grid_Col_New2_M3">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New2_M3"
+                        value=""
+                        id="quotaB_New2_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New2_M3"
+                        value=""
+                        id="comm_New2_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New2_M3"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal2_M3"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New2_M3"
+                        value=""
+                        id="abb_New2_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New2_M3"></div>
+                  </div>
+
+                  <!-- COLONNA New3 -->
+                  <div class="grid_col" id="grid_Col_New3_M3">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New3_M3"
+                        value=""
+                        id="quotaB_New3_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New3_M3"
+                        value=""
+                        id="comm_New3_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New3_M3"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal3_M3"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New3_M3"
+                        value=""
+                        id="abb_New3_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New3_M3"></div>
+                  </div>
+
+                  <!-- COLONNA New4 -->
+                  <div class="grid_col" id="grid_Col_New4_M3">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New4_M3"
+                        value=""
+                        id="quotaB_New4_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New4_M3"
+                        value=""
+                        id="comm_New4_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New4_M3"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal4_M3"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New4_M3"
+                        value=""
+                        id="abb_New4_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll (this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New4_M3"></div>
+                  </div>
+
+                  <!-- COLONNA New5 -->
+                  <div class="grid_col" id="grid_Col_New5_M3">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New5_M3"
+                        value=""
+                        id="quotaB_New5_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New5_M3"
+                        value=""
+                        id="comm_New5_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New5_M3"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal5_M3"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New5_M3"
+                        value=""
+                        id="abb_New5_M3"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll (this.value)" />
+                    </div>
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New5_M3"></div>
+                  </div>
+                </div>
+
+                <div class="separator" id="">
+                  <div class="label_separator" id="">
+                    COPERTURA ALTERNATIVA -
+                    <span class="labelSep label_CP" id="labelSep_M3"></span>
+                  </div>
+                </div>
+
+                <div class="boxCP_sx" id="boxCP_sx_M3">
+                  <div class="intestaBox_CP" id="intestaBox_CP_M3">
+                    <span class="label_copri_CP" id="label_copri_CP_M3">SELEZIONA COPERTURA </span>
+                    <div class="switchContainer" id="">
+                      <label class="switchBox" id="switchBox_M3">
+                        <input
+                          type="checkbox"
+                          name="mySWcheck_M3"
+                          class="mySWcheck"
+                          id="mySWcheck_M3"
+                          value="" />
+                        <div class="ON" id="ON_M3"></div>
+                        <div class="OFF" id="OFF_M3"></div>
+                        <div class="SWITCH" id="SWITCH_M3"></div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxCP_dx" id="boxCP_dx_M3">
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaCP_Q_M3"
+                      class=""
+                      id="provaCP_Q_M3"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaCP_M3"
+                      class=""
+                      value=""
+                      id="provaCP_M3"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoCP" id="boxInfoCP_M3">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_CP1_M3"></span> &#128072; -->
+                  </div>
+
+                  <div class="optimalOddBox optimalOddBox_M3" id="optimalOddBox_M3">
+                    Contropunta più conveniente se la Quota bancata è superiore a
+                    <span class="cfrOdd_span" id="cfrOdd_M3"></span>
+                  </div>
+                </div>
+
+                <div class="boxDCH_dx boxDCH1_dx boxDCH_dx_M3" id="boxDCH1_dx_M3">
+                  <div class="Dch_labelBox" id="">
+                    <span class="Dch_label">A</span>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      class="provaDCH1"
+                      name="provaDCH1_Q_M3"
+                      id="provaDCH1_Q_M3"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaDCH1_M3"
+                      class="provaDCH1"
+                      value=""
+                      id="provaDCH1_M3"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoDCH" id="boxInfoDCH1_M3">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_DCH1_M3"></span> &#128072; -->
+                  </div>
+                </div>
+
+                <div class="boxRadioDch_ext" id="boxRadioDch_M3" style="display: none">
+                  <div class="inline fields boxRadioDch">
+                    <label>Vinci: </label>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M3">
+                        <input
+                          match="Dch_A_M3"
+                          type="radio"
+                          value="Win_A"
+                          name="Dch_M3"
+                          id="WA_Dch_M3" />
+                        <label>A</label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M3">
+                        <input
+                          match="Dch_B_M3"
+                          type="radio"
+                          value="Win_B"
+                          name="Dch_M3"
+                          id="WB_Dch_M3" />
+                        <label>B</label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M3">
+                        <input
+                          match="Dch_NO_M3"
+                          type="radio"
+                          value="NO"
+                          name="Dch_M3"
+                          id="NO_Dch_M3"
+                          checked />
+                        <label>nessuna</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxDCH_dx boxDCH2_dx boxDCH_dx_M3" id="boxDCH2_dx_M3">
+                  <div class="Dch_labelBox" id="">
+                    <span class="Dch_label">B</span>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      class="provaDCH2"
+                      name="provaDCH2_Q_M3"
+                      id="provaDCH2_Q_M3"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaDCH2_M3"
+                      class="provaDCH2"
+                      value=""
+                      id="provaDCH2_M3"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoDCH" id="boxInfoDCH2_M3">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_DCH2_M3"></span> &#128072; -->
+                  </div>
+
+                  <div class="optimalDCHBox optimalDCHBox_M3" id="optimalDCHBox_M3">
+                    Dutching più conveniente se la Quota bancata è superiore a
+                    <span class="cfrDCH_span" id="cfrDCH_M3"></span>
+                  </div>
+                </div>
+
+                <div class="gridTotsx" id="gridTotsx_M3">
+                  <div class="" id="">W3</div>
+                  <div type="text" myState="V" name="GainIfWin_M3" value="" id="GainIfWin_M3"></div>
+                  <div class="" id="">L3</div>
+                  <div
+                    type="text"
+                    myState="P"
+                    name="GainIfLose_M3"
+                    value=""
+                    id="GainIfLose_M3"></div>
+                </div>
+
+                <div class="gridTotdx" id="gridTotdx_M3">
+                  <div class="" id="">T.ABB</div>
+                  <div type="text" name="TotAbb_M3" value="" id="TotAbb_M3"></div>
+                  <div class="" id="">T.RSP</div>
+                  <div type="text" name="TotRespo_M3" value="" id="TotRespo_M3"></div>
+                  <div class="" id="">F.GAIN</div>
+                  <div type="text" name="FinGain_M3" value="" id="FinGain_M3"></div>
+                </div>
+              </div>
+
+              <!-- PARTITA 4 GRIGLIA DATI -->
+              <div
+                type="button"
+                title="Apri il riquadro per la copertura dell'evento N.4"
+                class="grid_th grid_row_4 grid_firstCol"
+                id="button_M4">
+                4
+                <i class="level down alternate icon" id="iconB_M4"></i>
+              </div>
+
+              <div
+                class="grid_cell grid_row_4 dutcher-button ui large primary icon button"
+                data-match="4"
+                title="Incolla in questo evento i dati copiati dal Dutcher.">
+                <i class="copy icon"></i>
+              </div>
+
+              <div class="grid_cell grid_row_4">
+                <input type="text" name="matchName_M4" value="" id="matchName_M4" />
+              </div>
+
+              <div class="grid_cell grid_row_4">
+                <input type="text" name="dateH_M4" value="" id="dateH_M4" maxlength="30" />
+              </div>
+
+              <div class="grid_cell grid_row_4">
+                <input type="text" name="market_M4" value="" id="market_M4" maxlength="30" />
+              </div>
+
+              <div class="grid_cell grid_row_4">
+                <input
+                  match="M4"
+                  type="text"
+                  name="mult_quotaP_set4"
+                  value=""
+                  class="text-right"
+                  id="mult_quotaP_set4"
+                  maxlength="30"
+                  oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                  onblur="this.value = ret_qb(this.value)" />
+              </div>
+
+              <div class="grid_cell grid_row_4">
+                <input
+                  match="M4"
+                  type="text"
+                  name="mult_quotaB_set4"
+                  value=""
+                  class="text-right"
+                  id="mult_quotaB_set4"
+                  maxlength="30"
+                  oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                  onblur="this.value = ret_qb(this.value)" />
+              </div>
+
+              <div class="grid_cell grid_row_4 grid_lastCol">
+                <div class="inline fields">
+                  <div class="field">
+                    <div class="ui radio checkbox box_M4">
+                      <input
+                        type="radio"
+                        value="A_M4"
+                        name="situazione_M4"
+                        checked="checked"
+                        id="radioA_M4" />
+                      <label>A</label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="ui radio checkbox box_M4">
+                      <input type="radio" value="V_M4" name="situazione_M4" id="radioV_M4" />
+                      <label>V</label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="ui radio checkbox box_M4">
+                      <input type="radio" value="P_M4" name="situazione_M4" id="radioP_M4" />
+                      <label>P</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui red message grid_cell grid_rigaAgg grid_rigaAgg_4" id="rigaAgg_4">
+                <!-- BLOCCO SINISTRO -->
+                <div class="blocco blocco_sx" id="sx_Agg4">
+                  <!-- RIGA N.1 -->
+                  <div class="unaRiga box_datiNew R_pari rigazero A">DATI INIZIALI</div>
+
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Quota</div>
+                  <div class="unaRiga box_datiNew R_dispari qbanca_orig" id="quotaB_New0_M4"></div>
+
+                  <!-- RIGA N.2 -->
+                  <div class="unaRiga box_datiNew R_pari div_header">Comm.%</div>
+                  <div class="unaRiga box_datiNew R_pari" id="comm_New0_M4"></div>
+                  <!-- <input type="text" name="" value="" id="comm_New0_M4" /> -->
+
+                  <!-- RIGA N.3 -->
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Bancata</div>
+                  <div class="unaRiga box_datiNew R_dispari" id="banca_New0_M4"></div>
+
+                  <!-- RIGA N.4 -->
+                  <div class="unaRiga box_datiNew R_pari div_header" id="">Responsabilità</div>
+                  <div class="unaRiga box_datiNew R_pari respo_OLD" id="respo_Cal0_M4"></div>
+
+                  <!-- RIGA N.5 -->
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Abbinato</div>
+                  <div class="unaRiga box_datiNew R_dispari" id="">
+                    <input
+                      type="text"
+                      name="abb_New0_M4"
+                      value=""
+                      id="abb_New0_M4"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                      onblur="this.value = ret_doll(this.value)" />
+                  </div>
+
+                  <!-- RIGA N.6 -->
+                  <div class="unaRiga box_datiNew R_pari div_header" id="">Nuova Resp.</div>
+                  <div class="unaRiga box_datiNew R_pari respo_Dati" id="respo_New0_M4"></div>
+                </div>
+
+                <!-- BLOCCO DESTRO -->
+                <div class="blocco blocco_dx" id="dx_Agg4">
+                  <!-- RIGA N.1 INTESTAZIONE -->
+                  <div class="unaRiga box_datiNew R_pari rigazero B" id="">
+                    <div class="rosso warningMsg" id="warning_M4">
+                      EV#4 <i class="ui thumbs down outline red icon"></i>
+                      <i class="ui ban red icon"></i><u>NON BANCARE </u
+                      ><i class="ui ban red icon"></i>
+                    </div>
+                    <div>QUOTE NUOVE</div>
+                    <div class="box_copertura" id="copertura_M4">
+                      Copertura al: <span id="copLab_M4"></span>
+                    </div>
+                  </div>
+
+                  <!-- RIGA N.2 COLONNE -->
+                  <!-- COLONNA New1 -->
+                  <div class="grid_col" id="grid_Col_New1_M4">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New1_M4"
+                        value=""
+                        id="quotaB_New1_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New1_M4"
+                        value=""
+                        id="comm_New1_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New1_M4"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal1_M4"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New1_M4"
+                        value=""
+                        id="abb_New1_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New1_M4"></div>
+                  </div>
+
+                  <!-- COLONNA New2 -->
+                  <div class="grid_col" id="grid_Col_New2_M4">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New2_M4"
+                        value=""
+                        id="quotaB_New2_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New2_M4"
+                        value=""
+                        id="comm_New2_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New2_M4"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal2_M4"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New2_M4"
+                        value=""
+                        id="abb_New2_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New2_M4"></div>
+                  </div>
+
+                  <!-- COLONNA New3 -->
+                  <div class="grid_col" id="grid_Col_New3_M4">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New3_M4"
+                        value=""
+                        id="quotaB_New3_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New3_M4"
+                        value=""
+                        id="comm_New3_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New3_M4"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal3_M4"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New3_M4"
+                        value=""
+                        id="abb_New3_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New3_M4"></div>
+                  </div>
+
+                  <!-- COLONNA New4 -->
+                  <div class="grid_col" id="grid_Col_New4_M4">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New4_M4"
+                        value=""
+                        id="quotaB_New4_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New4_M4"
+                        value=""
+                        id="comm_New4_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New4_M4"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal4_M4"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New4_M4"
+                        value=""
+                        id="abb_New4_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll (this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New4_M4"></div>
+                  </div>
+
+                  <!-- COLONNA New5 -->
+                  <div class="grid_col" id="grid_Col_New5_M4">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New5_M4"
+                        value=""
+                        id="quotaB_New5_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New5_M4"
+                        value=""
+                        id="comm_New5_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New5_M4"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal5_M4"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New5_M4"
+                        value=""
+                        id="abb_New5_M4"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll (this.value)" />
+                    </div>
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New5_M4"></div>
+                  </div>
+                </div>
+
+                <div class="separator" id="">
+                  <div class="label_separator" id="">
+                    COPERTURA ALTERNATIVA -
+                    <span class="labelSep label_CP" id="labelSep_M4"></span>
+                  </div>
+                </div>
+
+                <div class="boxCP_sx" id="boxCP_sx_M4">
+                  <div class="intestaBox_CP" id="intestaBox_CP_M4">
+                    <span class="label_copri_CP" id="label_copri_CP_M4">SELEZIONA COPERTURA </span>
+                    <div class="switchContainer" id="">
+                      <label class="switchBox" id="switchBox_M4">
+                        <input
+                          type="checkbox"
+                          name="mySWcheck_M4"
+                          class="mySWcheck"
+                          id="mySWcheck_M4"
+                          value="" />
+                        <div class="ON" id="ON_M4"></div>
+                        <div class="OFF" id="OFF_M4"></div>
+                        <div class="SWITCH" id="SWITCH_M4"></div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxCP_dx" id="boxCP_dx_M4">
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaCP_Q_M4"
+                      class=""
+                      id="provaCP_Q_M4"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaCP_M4"
+                      class=""
+                      value=""
+                      id="provaCP_M4"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoCP" id="boxInfoCP_M4">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_CP1_M4"></span> &#128072; -->
+                  </div>
+
+                  <div class="optimalOddBox optimalOddBox_M4" id="optimalOddBox_M4">
+                    Contropunta più conveniente se la Quota bancata è superiore a
+                    <span class="cfrOdd_span" id="cfrOdd_M4"></span>
+                  </div>
+                </div>
+
+                <div class="boxDCH_dx boxDCH1_dx boxDCH_dx_M4" id="boxDCH1_dx_M4">
+                  <div class="Dch_labelBox" id="">
+                    <span class="Dch_label">A</span>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      class="provaDCH1"
+                      name="provaDCH1_Q_M4"
+                      id="provaDCH1_Q_M4"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaDCH1_M4"
+                      class="provaDCH1"
+                      value=""
+                      id="provaDCH1_M4"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoDCH" id="boxInfoDCH1_M4">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_DCH1_M4"></span> &#128072; -->
+                  </div>
+                </div>
+
+                <div class="boxRadioDch_ext" id="boxRadioDch_M4" style="display: none">
+                  <div class="inline fields boxRadioDch">
+                    <label>Vinci: </label>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M4">
+                        <input
+                          match="Dch_A_M4"
+                          type="radio"
+                          value="Win_A"
+                          name="Dch_M4"
+                          id="WA_Dch_M4" />
+                        <label>A</label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M4">
+                        <input
+                          match="Dch_B_M4"
+                          type="radio"
+                          value="Win_B"
+                          name="Dch_M4"
+                          id="WB_Dch_M4" />
+                        <label>B</label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M4">
+                        <input
+                          match="Dch_NO_M4"
+                          type="radio"
+                          value="NO"
+                          name="Dch_M4"
+                          id="NO_Dch_M4"
+                          checked />
+                        <label>nessuna</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxDCH_dx boxDCH2_dx boxDCH_dx_M4" id="boxDCH2_dx_M4">
+                  <div class="Dch_labelBox" id="">
+                    <span class="Dch_label">B</span>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      class="provaDCH2"
+                      name="provaDCH2_Q_M4"
+                      id="provaDCH2_Q_M4"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaDCH2_M4"
+                      class="provaDCH2"
+                      value=""
+                      id="provaDCH2_M4"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoDCH" id="boxInfoDCH2_M4">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_DCH2_M4"></span> &#128072; -->
+                  </div>
+
+                  <div class="optimalDCHBox optimalDCHBox_M4" id="optimalDCHBox_M4">
+                    Dutching più conveniente se la Quota bancata è superiore a
+                    <span class="cfrDCH_span" id="cfrDCH_M4"></span>
+                  </div>
+                </div>
+
+                <div class="gridTotsx" id="gridTotsx_M4">
+                  <div class="" id="">W4</div>
+                  <div type="text" myState="V" name="GainIfWin_M4" value="" id="GainIfWin_M4"></div>
+                  <div class="" id="">L4</div>
+                  <div
+                    type="text"
+                    myState="P"
+                    name="GainIfLose_M4"
+                    value=""
+                    id="GainIfLose_M4"></div>
+                </div>
+
+                <div class="gridTotdx" id="gridTotdx_M4">
+                  <div class="" id="">T.ABB</div>
+                  <div type="text" name="TotAbb_M4" value="" id="TotAbb_M4"></div>
+                  <div class="" id="">T.RSP</div>
+                  <div type="text" name="TotRespo_M4" value="" id="TotRespo_M4"></div>
+                  <div class="" id="">F.GAIN</div>
+                  <div type="text" name="FinGain_M4" value="" id="FinGain_M4"></div>
+                </div>
+              </div>
+
+              <!-- PARTITA 5 GRIGLIA DATI -->
+              <div
+                type="button"
+                title="Apri il riquadro per la copertura dell'evento N.5"
+                class="grid_th grid_row_5 grid_firstCol grid_lastRow"
+                id="button_M5">
+                5
+                <i class="level down alternate icon" id="iconB_M5"></i>
+              </div>
+
+              <div
+                class="grid_cell grid_row_5 dutcher-button ui large primary icon button"
+                data-match="5"
+                title="Incolla in questo evento i dati copiati dal Dutcher.">
+                <i class="copy icon"></i>
+              </div>
+
+              <div class="grid_cell grid_row_5 grid_lastRow">
+                <input type="text" name="matchName_M5" value="" id="matchName_M5" />
+              </div>
+
+              <div class="grid_cell grid_row_5 grid_lastRow">
+                <input type="text" name="dateH_M5" value="" id="dateH_M5" maxlength="30" />
+              </div>
+
+              <div class="grid_cell grid_row_5 grid_lastRow">
+                <input type="text" name="market_M5" value="" id="market_M5" maxlength="30" />
+              </div>
+
+              <div class="grid_cell grid_row_5 grid_lastRow">
+                <input
+                  match="M5"
+                  type="text"
+                  name="mult_quotaP_set5"
+                  value=""
+                  class="text-right"
+                  id="mult_quotaP_set5"
+                  maxlength="30"
+                  oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                  onblur="this.value = ret_qb(this.value)" />
+              </div>
+
+              <div class="grid_cell grid_row_5 grid_lastRow">
+                <input
+                  match="M5"
+                  type="text"
+                  name="mult_quotaB_set5"
+                  value=""
+                  class="text-right"
+                  id="mult_quotaB_set5"
+                  maxlength="30"
+                  oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                  onblur="this.value = ret_qb(this.value)" />
+              </div>
+
+              <div class="grid_cell grid_row_5 grid_lastCol grid_lastRow">
+                <div class="inline fields">
+                  <div class="field">
+                    <div class="ui radio checkbox box_M5">
+                      <input
+                        type="radio"
+                        value="A_M5"
+                        name="situazione_M5"
+                        checked="checked"
+                        id="radioA_M5" />
+                      <label>A</label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="ui radio checkbox box_M5">
+                      <input type="radio" value="V_M5" name="situazione_M5" id="radioV_M5" />
+                      <label>V</label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="ui radio checkbox box_M5">
+                      <input type="radio" value="P_M5" name="situazione_M5" id="radioP_M5" />
+                      <label>P</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui red message grid_cell grid_rigaAgg grid_rigaAgg_5" id="rigaAgg_5">
+                <!-- BLOCCO SINISTRO -->
+                <div class="blocco blocco_sx" id="sx_Agg5">
+                  <!-- RIGA N.1 -->
+                  <div class="unaRiga box_datiNew R_pari rigazero A">DATI INIZIALI</div>
+
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Quota</div>
+                  <div class="unaRiga box_datiNew R_dispari qbanca_orig" id="quotaB_New0_M5"></div>
+
+                  <!-- RIGA N.2 -->
+                  <div class="unaRiga box_datiNew R_pari div_header">Comm.%</div>
+                  <div class="unaRiga box_datiNew R_pari" id="comm_New0_M5"></div>
+                  <!-- <input type="text" name="" value="" id="comm_New0_M5" /> -->
+
+                  <!-- RIGA N.3 -->
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Bancata</div>
+                  <div class="unaRiga box_datiNew R_dispari" id="banca_New0_M5"></div>
+
+                  <!-- RIGA N.4 -->
+                  <div class="unaRiga box_datiNew R_pari div_header" id="">Responsabilità</div>
+                  <div class="unaRiga box_datiNew R_pari respo_OLD" id="respo_Cal0_M5"></div>
+
+                  <!-- RIGA N.5 -->
+                  <div class="unaRiga box_datiNew R_dispari div_header" id="">Abbinato</div>
+                  <div class="unaRiga box_datiNew R_dispari" id="">
+                    <input
+                      type="text"
+                      name="abb_New0_M5"
+                      value=""
+                      id="abb_New0_M5"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                      onblur="this.value = ret_doll(this.value)" />
+                  </div>
+
+                  <!-- RIGA N.6 -->
+                  <div class="unaRiga box_datiNew R_pari div_header" id="">Nuova Resp.</div>
+                  <div class="unaRiga box_datiNew R_pari respo_Dati" id="respo_New0_M5"></div>
+                </div>
+
+                <!-- BLOCCO DESTRO -->
+                <div class="blocco blocco_dx" id="dx_Agg5">
+                  <!-- RIGA N.1 INTESTAZIONE -->
+                  <div class="unaRiga box_datiNew R_pari rigazero B" id="">
+                    <div class="rosso warningMsg" id="warning_M5">
+                      EV#5 <i class="ui thumbs down outline red icon"></i>
+                      <i class="ui ban red icon"></i><u>NON BANCARE </u
+                      ><i class="ui ban red icon"></i>
+                    </div>
+                    <div>QUOTE NUOVE</div>
+                    <div class="box_copertura" id="copertura_M5">
+                      Copertura al: <span id="copLab_M5"></span>
+                    </div>
+                  </div>
+
+                  <!-- RIGA N.2 COLONNE -->
+                  <!-- COLONNA New1 -->
+                  <div class="grid_col" id="grid_Col_New1_M5">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New1_M5"
+                        value=""
+                        id="quotaB_New1_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New1_M5"
+                        value=""
+                        id="comm_New1_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New1_M5"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal1_M5"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New1_M5"
+                        value=""
+                        id="abb_New1_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New1_M5"></div>
+                  </div>
+
+                  <!-- COLONNA New2 -->
+                  <div class="grid_col" id="grid_Col_New2_M5">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New2_M5"
+                        value=""
+                        id="quotaB_New2_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New2_M5"
+                        value=""
+                        id="comm_New2_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New2_M5"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal2_M5"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New2_M5"
+                        value=""
+                        id="abb_New2_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New2_M5"></div>
+                  </div>
+
+                  <!-- COLONNA New3 -->
+                  <div class="grid_col" id="grid_Col_New3_M5">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New3_M5"
+                        value=""
+                        id="quotaB_New3_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New3_M5"
+                        value=""
+                        id="comm_New3_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New3_M5"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal3_M5"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New3_M5"
+                        value=""
+                        id="abb_New3_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll(this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New3_M5"></div>
+                  </div>
+
+                  <!-- COLONNA New4 -->
+                  <div class="grid_col" id="grid_Col_New4_M5">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New4_M5"
+                        value=""
+                        id="quotaB_New4_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New4_M5"
+                        value=""
+                        id="comm_New4_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New4_M5"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal4_M5"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New4_M5"
+                        value=""
+                        id="abb_New4_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll (this.value)" />
+                    </div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New4_M5"></div>
+                  </div>
+
+                  <!-- COLONNA New5 -->
+                  <div class="grid_col" id="grid_Col_New5_M5">
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="quotaB_New5_M5"
+                        value=""
+                        id="quotaB_New5_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_qb(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_pari" id="">
+                      <input
+                        type="text"
+                        name="comm_New5_M5"
+                        value=""
+                        id="comm_New5_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_com(this.value)" />
+                    </div>
+
+                    <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New5_M5"></div>
+
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_OLD"
+                      id="respo_Cal5_M5"></div>
+
+                    <div class="unaRiga box_datiNew R_dispari" id="">
+                      <input
+                        type="text"
+                        name="abb_New5_M5"
+                        value=""
+                        id="abb_New5_M5"
+                        oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                        onblur="this.value = ret_doll (this.value)" />
+                    </div>
+                    <div
+                      class="unaRiga box_datiNew R_pari calcolati respo_Dati"
+                      id="respo_New5_M5"></div>
+                  </div>
+                </div>
+
+                <div class="separator" id="">
+                  <div class="label_separator" id="">
+                    COPERTURA ALTERNATIVA -
+                    <span class="labelSep label_CP" id="labelSep_M5"></span>
+                  </div>
+                </div>
+
+                <div class="boxCP_sx" id="boxCP_sx_M5">
+                  <div class="intestaBox_CP" id="intestaBox_CP_M5">
+                    <span class="label_copri_CP" id="label_copri_CP_M5">SELEZIONA COPERTURA </span>
+                    <div class="switchContainer" id="">
+                      <label class="switchBox" id="switchBox_M5">
+                        <input
+                          type="checkbox"
+                          name="mySWcheck_M5"
+                          class="mySWcheck"
+                          id="mySWcheck_M5"
+                          value="" />
+                        <div class="ON" id="ON_M5"></div>
+                        <div class="OFF" id="OFF_M5"></div>
+                        <div class="SWITCH" id="SWITCH_M5"></div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxCP_dx" id="boxCP_dx_M5">
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaCP_Q_M5"
+                      class=""
+                      id="provaCP_Q_M5"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaCP_M5"
+                      class=""
+                      value=""
+                      id="provaCP_M5"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoCP" id="boxInfoCP_M5">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_CP1_M5"></span> &#128072; -->
+                  </div>
+
+                  <div class="optimalOddBox optimalOddBox_M5" id="optimalOddBox_M5">
+                    Contropunta più conveniente se la Quota bancata è superiore a
+                    <span class="cfrOdd_span" id="cfrOdd_M5"></span>
+                  </div>
+                </div>
+
+                <div class="boxDCH_dx boxDCH1_dx boxDCH_dx_M5" id="boxDCH1_dx_M5">
+                  <div class="Dch_labelBox" id="">
+                    <span class="Dch_label">A</span>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      class="provaDCH1"
+                      name="provaDCH1_Q_M5"
+                      id="provaDCH1_Q_M5"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaDCH1_M5"
+                      class="provaDCH1"
+                      value=""
+                      id="provaDCH1_M5"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoDCH" id="boxInfoDCH1_M5">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_DCH1_M5"></span> &#128072; -->
+                  </div>
+                </div>
+
+                <div class="boxRadioDch_ext" id="boxRadioDch_M5" style="display: none">
+                  <div class="inline fields boxRadioDch">
+                    <label>Vinci: </label>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M5">
+                        <input
+                          match="Dch_A_M5"
+                          type="radio"
+                          value="Win_A"
+                          name="Dch_M5"
+                          id="WA_Dch_M5" />
+                        <label>A</label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M5">
+                        <input
+                          match="Dch_B_M5"
+                          type="radio"
+                          value="Win_B"
+                          name="Dch_M5"
+                          id="WB_Dch_M5" />
+                        <label>B</label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="ui radio checkbox DchRadioBox_M5">
+                        <input
+                          match="Dch_NO_M5"
+                          type="radio"
+                          value="NO"
+                          name="Dch_M5"
+                          id="NO_Dch_M5"
+                          checked />
+                        <label>nessuna</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxDCH_dx boxDCH2_dx boxDCH_dx_M5" id="boxDCH2_dx_M5">
+                  <div class="Dch_labelBox" id="">
+                    <span class="Dch_label">B</span>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      class="provaDCH2"
+                      name="provaDCH2_Q_M5"
+                      id="provaDCH2_Q_M5"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">@</div>
+                  </div>
+
+                  <div class="ui fluid right labeled input">
+                    <input
+                      type="text"
+                      name="provaDCH2_M5"
+                      class="provaDCH2"
+                      value=""
+                      id="provaDCH2_M5"
+                      style="border: 1px solid rgba(34, 36, 38, 0.15)"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')" />
+                    <div class="ui basic label">€</div>
+                  </div>
+
+                  <div class="boxInfoDCH" id="boxInfoDCH2_M5">
+                    inserisci una quota
+                    <!-- copertura completa con: &#128073; <span class="" id="info_DCH2_M5"></span> &#128072; -->
+                  </div>
+
+                  <div class="optimalDCHBox optimalDCHBox_M5" id="optimalDCHBox_M5">
+                    Dutching più conveniente se la Quota bancata è superiore a
+                    <span class="cfrDCH_span" id="cfrDCH_M5"></span>
+                  </div>
+                </div>
+
+                <div class="gridTotsx" id="gridTotsx_M5">
+                  <div class="" id="">W5</div>
+                  <div type="text" myState="V" name="GainIfWin_M5" value="" id="GainIfWin_M5"></div>
+                  <div class="" id="">L5</div>
+                  <div
+                    type="text"
+                    myState="P"
+                    name="GainIfLose_M5"
+                    value=""
+                    id="GainIfLose_M5"></div>
+                </div>
+
+                <div class="gridTotdx" id="gridTotdx_M5">
+                  <div class="" id="">T.ABB</div>
+                  <div type="text" name="TotAbb_M5" value="" id="TotAbb_M5"></div>
+                  <div class="" id="">T.RSP</div>
+                  <div type="text" name="TotRespo_M5" value="" id="TotRespo_M5"></div>
+                  <div class="" id="">F.GAIN</div>
+                  <div type="text" name="FinGain_M5" value="" id="FinGain_M5"></div>
+                </div>
+              </div>
+
+              <!-- RIGA FINALE GRIGLIA DATI (Quota Totale) -->
+              <div class="switchContainer" id="switchContainerBlock">
+                <label class="switchBox" id="switchBoxBlock">
+                  <input
+                    type="checkbox"
+                    name="myBlockcheck"
+                    class="myBlockcheck"
+                    id="myBlockcheck"
+                    value="" />
+                  <div class="ON" id="ON_block">
+                    <i class="lock icon" id="onBloc_icon"></i>
+                  </div>
+
+                  <div class="OFF" id="OFF_block">
+                    <i class="lock open icon" id="offBloc_icon"></i>
+                  </div>
+
+                  <div class="SWITCH" id="SWITCH_block"></div>
+                </label>
+              </div>
+
+              <div class="" id="blocMsgBox">
+                <div class="normalBloc" id="blocMsgContent">
+                  <b
+                    ><i class="caret left icon"></i>'Blocca' il SET-UP iniziale per evitare
+                    modifiche accidentali.</b
+                  >
+                </div>
+              </div>
+
+              <div class="grid_cell grid_row_End grid_lastRow" id="qTot_div"></div>
+
+              <div class="ui mini buttons" id="AgendeBtnBox">
+                <button
+                  type="button"
+                  title="Crea la stringa da incollare nell'Agenda dei Guadagni Excel"
+                  class="ui green disabled button"
+                  id="sendToExc">
+                  excel
+                </button>
+
+                <div class="or" data-text="<>"></div>
+
+                <button
+                  type="button"
+                  title="Invia la multipla all'Agenda dei Guadagni Online"
+                  class="ui grey disabled button"
+                  id="sendToOnline">
+                  online
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- CALCOLI DELL'IMPOSTAZIONE DI PARTENZA DELLA MULTIPLA - TABELLA -->
+      <!-- <div class="" id="riga_tab_risultati">
+			<div class="" id="DivIntestazioneTabella">CALCOLI DI PARTENZA</div>
+			<div class="" id="boxTabRisultatiIniziali">
+				<table align="" border="1px" cellspacing="0" cellpadding="2px" width="100%" id="TabStartingResults">
+					<tr align="center" valign="top">
+						<th>#</th>
+						<th>PARTITA</th>
+						<th>BANCATA</th>
+						<th>QUOTA</th>
+						<th>RESPONSABILITÀ</th>
+					</tr>
+					
+					<tr align="center" valign="top" id="riga_tabRisult_M1">
+						<td>#1</td>
+						<td id="match_tabRisult_M1"></td>
+						<td id="lay_tabRisult_M1"></td>
+						<td id="qb_tabRisult_M1"></td>
+						<td id="respo_tabRisult_M1"></td>
+					</tr>
+					
+					<tr align="center" valign="top" id="riga_tabRisult_M2">
+						<td>#2</td>
+						<td id="match_tabRisult_M2"></td>
+						<td id="lay_tabRisult_M2"></td>
+						<td id="qb_tabRisult_M2"></td>
+						<td id="respo_tabRisult_M2"></td>
+					</tr>
+					
+					<tr align="center" valign="top" id="riga_tabRisult_M3">
+						<td>#3</td>
+						<td id="match_tabRisult_M3"></td>
+						<td id="lay_tabRisult_M3"></td>
+						<td id="qb_tabRisult_M3"></td>
+						<td id="respo_tabRisult_M3"></td>
+					</tr>
+					
+					<tr align="center" valign="top" id="riga_tabRisult_M4">
+						<td>#4</td>
+						<td id="match_tabRisult_M4"></td>
+						<td id="lay_tabRisult_M4"></td>
+						<td id="qb_tabRisult_M4"></td>
+						<td id="respo_tabRisult_M4"></td>
+					</tr>
+					
+					<tr align="center" valign="top" id="riga_tabRisult_M5">
+						<td>#5</td>
+						<td id="match_tabRisult_M5"></td>
+						<td id="lay_tabRisult_M5"></td>
+						<td id="qb_tabRisult_M5"></td>
+						<td id="respo_tabRisult_M5"></td>
+					</tr>
+				</table>
+			</div>
+		</div> -->
+
+      <!-- GRIGLIA DEI BOTTONI - INIZIO -->
+      <div class="" id="gridOfBtns">
+        <button
+          type="button"
+          title="Mostra i dati di partenza della multipla"
+          class="grid_Risult_Title medium ui olive button"
+          id="DivIntestazioneGrid">
+          <i class="eye icon far fa-eye" id="occhio_set"></i> SET-UP
+        </button>
+
+        <button
+          type="button"
+          title="Mostra i calcoli aggiornati durante lo sviluppo della multipla"
+          class="grid_Risult_Title medium ui yellow button"
+          id="DivIntestazioneGrid_2">
+          <i class="eye icon far fa-eye" id="occhio_res"></i> SVILUPPO
+        </button>
+
+        <button
+          type="button"
+          title="Aggiorna una multipla salvata con i dati presenti sul modulo"
+          class="grid_Risult_Title medium ui green button"
+          id="btn_UPD">
+          <i class="edit outline icon far fa-edit" id="pencil_edit"></i>
+          AGGIORNA
+        </button>
+
+        <button
+          type="button"
+          title="Salva una nuova multipla"
+          class="grid_Risult_Title medium ui teal button"
+          id="btn_SAV">
+          <i class="save outline icon far fa-save" id="disk_save"></i> SALVA
+        </button>
+
+        <button
+          type="button"
+          title="Carica/Cancella una multipla salvata"
+          class="grid_Risult_Title medium ui blue button"
+          id="btn_LOAD">
+          <i class="wrench icon" id="cloud_load"></i> CARICA/CANC
+        </button>
+
+        <button
+          type="button"
+          title="Svuota tutti i campi"
+          class="grid_Risult_Title medium ui red button"
+          id="btn_RESET">
+          <i class="trash large icon" id="resetIcon"></i>
+          <!-- <i class="sync alternate large icon" id="resetIcon"></i> -->
+        </button>
+      </div>
+      <!-- <div class="" id="divOfBtns">
+				<button type="button" class="grid_Risult_Title medium ui teal button" id="DivIntestazioneGrid">
+					<i class="far fa-eye" id="occhio_set"></i> CALCOLI INIZIALI
+				</button>
+				<button type="button" class="grid_Risult_Title medium ui blue button" id="DivIntestazioneGrid_2">
+					<i class="far fa-eye" id="occhio_res"></i> CALCOLI SVILUPPO
+				</button>
+			</div>
+			
+			<div class="" id="divOfBtns2">
+				<button type="button" class="grid_Risult_Title medium ui olive button" id="btn_UPD">
+					<i class="far fa-eye" id="occhio_set"></i> AGGIORNA
+				</button>
+				<button type="button" class="grid_Risult_Title medium ui orange button" id="btn_SAV">
+					<i class="far fa-eye" id="occhio_res"></i> SALVA
+				</button>
+				<button type="button" class="grid_Risult_Title medium ui yellow button" id="btn_LOAD">
+					<i class="far fa-eye" id="occhio_res"></i> CARICA
+				</button>
+			</div> -->
+      <!-- GRIGLIA DEI BOTTONI - FINE -->
+
+      <!-- CALCOLI DELL'IMPOSTAZIONE DI PARTENZA DELLA MULTIPLA - GRIGLIA -->
+      <div class="" id="statusMatch" style="display: none"></div>
+
+      <!-- GRIGLIA DATI - INIZIO -->
+      <div class="grid ui olive message vis-hidden" id="boxGridRisultatiIniziali">
+        <div class="gridRow gridRow_Even grid_Risult_Int" id="">#</div>
+        <div class="gridRow gridRow_Even grid_Risult_Int" id="">PARTITA</div>
+        <div class="gridRow gridRow_Even grid_Risult_Int" id="">QUOTA B.</div>
+        <div class="gridRow gridRow_Even grid_Risult_Int" id="">DA BANCARE</div>
+        <div class="gridRow gridRow_Even grid_Risult_Int gridCol_Last" id="">RESPONSABILITÀ</div>
+
+        <div class="gridRow gridRow_Odd grid_Risult_M1 gridRow_DataFirst gridCol_Int" id="">#1</div>
+        <div
+          class="gridRow gridRow_Odd grid_Risult_M1 gridRow_DataFirst"
+          id="match_tabRisult_M1"></div>
+        <div
+          class="gridRow gridRow_Odd grid_Risult_M1 gridRow_DataFirst"
+          id="qb_tabRisult_M1"></div>
+        <div
+          class="gridRow gridRow_Odd grid_Risult_M1 gridRow_DataFirst"
+          id="lay_tabRisult_M1"></div>
+        <div
+          class="gridRow gridRow_Odd grid_Risult_M1 gridRow_DataFirst gridCol_Last"
+          id="respo_tabRisult_M1"></div>
+
+        <div class="gridRow gridRow_Even grid_Risult_M2 gridCol_Int" id="">#2</div>
+        <div class="gridRow gridRow_Even grid_Risult_M2" id="match_tabRisult_M2"></div>
+        <div class="gridRow gridRow_Even grid_Risult_M2" id="qb_tabRisult_M2"></div>
+        <div class="gridRow gridRow_Even grid_Risult_M2" id="lay_tabRisult_M2"></div>
+        <div class="gridRow gridRow_Even grid_Risult_M2 gridCol_Last" id="respo_tabRisult_M2"></div>
+
+        <div class="gridRow gridRow_Odd grid_Risult_M3 gridCol_Int" id="">#3</div>
+        <div class="gridRow gridRow_Odd grid_Risult_M3" id="match_tabRisult_M3"></div>
+        <div class="gridRow gridRow_Odd grid_Risult_M3" id="qb_tabRisult_M3"></div>
+        <div class="gridRow gridRow_Odd grid_Risult_M3" id="lay_tabRisult_M3"></div>
+        <div class="gridRow gridRow_Odd grid_Risult_M3 gridCol_Last" id="respo_tabRisult_M3"></div>
+
+        <div class="gridRow gridRow_Even grid_Risult_M4 gridCol_Int" id="">#4</div>
+        <div class="gridRow gridRow_Even grid_Risult_M4" id="match_tabRisult_M4"></div>
+        <div class="gridRow gridRow_Even grid_Risult_M4" id="qb_tabRisult_M4"></div>
+        <div class="gridRow gridRow_Even grid_Risult_M4" id="lay_tabRisult_M4"></div>
+        <div class="gridRow gridRow_Even grid_Risult_M4 gridCol_Last" id="respo_tabRisult_M4"></div>
+
+        <div class="gridRow gridRow_Odd grid_Risult_M5 gridRow_DataLast gridCol_Int" id="">#5</div>
+        <div
+          class="gridRow gridRow_Odd grid_Risult_M5 gridRow_DataLast"
+          id="match_tabRisult_M5"></div>
+        <div class="gridRow gridRow_Odd grid_Risult_M5 gridRow_DataLast" id="qb_tabRisult_M5"></div>
+        <div
+          class="gridRow gridRow_Odd grid_Risult_M5 gridRow_DataLast"
+          id="lay_tabRisult_M5"></div>
+        <div
+          class="gridRow gridRow_Odd grid_Risult_M5 gridRow_DataLast gridCol_Last"
+          id="respo_tabRisult_M5"></div>
+
+        <!-- <div class="gridCol_Last gridRow gridRow_DataLast gridRow_Even" id="respo_Totale_Box">
+				<span id="respoTot_prefix">tot. </span><span id="respo_Totale">0.00 €</span>
+			</div> -->
+
+        <div class="gridRow gain" id="BoxGainRating">
+          <div class="gain" id="Grid_StartGain">
+            <p>GUADAGNO* iniziale stimato:</p>
+            <span class="" id="Grid_StartGain_span">+0.00€</span>
+          </div>
+
+          <div class="gain" id="Grid_StartRating">
+            <p>RATING* iniziale stimato:</p>
+            <span class="" id="Grid_StartRating_span"></span>
+          </div>
+
+          <div class="gain" id="respo_Totale_Box">
+            <p>RESPONSABILITÀ* totale stimata:</p>
+            <span id="respo_Totale">0.00 €</span>
+          </div>
+
+          <div class="" id="warning_stime">
+            <span
+              >*I valori stimati di GUADAGNO, RATING e RESPONSABILITÀ possono variare (in più o in
+              meno) durante lo sviluppo della multipla</span
+            >
+          </div>
+        </div>
+      </div>
+      <!-- GRIGLIA DATI - FINE -->
+
+      <div class="grid ui yellow message vis-hidden" id="boxGridSviluppo">
+        <div class="" id="statusSet_Box_Int">ESITI</div>
+
+        <div class="" id="statusResults_Box_Int">GUADAGNI</div>
+
+        <div class="" id="statusRating_Box_Int">RATING%</div>
+
+        <div class="" id="vuotoN1"></div>
+
+        <div class="" id="statusSet_Box">
+          <div myIndex="0" myState="P" class="badgeOnGo statusSet turnOffme" id="statusSet_P">
+            P
+          </div>
+          <div myIndex="1" myState="VP" class="badgeOnGo statusSet turnOffme" id="statusSet_VP">
+            VP
+          </div>
+          <div myIndex="2" myState="VVP" class="badgeOnGo statusSet turnOffme" id="statusSet_VVP">
+            VVP
+          </div>
+          <div myIndex="3" myState="VVVP" class="badgeOnGo statusSet turnOffme" id="statusSet_VVVP">
+            VVVP
+          </div>
+          <div
+            myIndex="4"
+            myState="VVVVP"
+            class="badgeOnGo statusSet turnOffme"
+            id="statusSet_VVVVP">
+            VVVVP
+          </div>
+          <div myIndex="5" myState="VVVVV" class="badgeOnGo statusSet turnOffme" id="status_VVVVV">
+            VVVVV
+          </div>
+        </div>
+
+        <div class="" id="statusResults_Box">
+          <div
+            myIndex="0"
+            myState="P"
+            class="badgeOnGo statusSet statusResults turnOffme"
+            id="statusResults_P">
+            0.00€
+          </div>
+          <div
+            myIndex="1"
+            myState="VP"
+            class="badgeOnGo statusSet statusResults turnOffme"
+            id="statusResults_VP">
+            0.00€
+          </div>
+          <div
+            myIndex="2"
+            myState="VVP"
+            class="badgeOnGo statusSet statusResults turnOffme"
+            id="statusResults_VVP">
+            0.00€
+          </div>
+          <div
+            myIndex="3"
+            myState="VVVP"
+            class="badgeOnGo statusSet statusResults turnOffme"
+            id="statusResults_VVVP">
+            0.00€
+          </div>
+          <div
+            myIndex="4"
+            myState="VVVVP"
+            class="badgeOnGo statusSet statusResults turnOffme"
+            id="statusResults_VVVVP">
+            0.00€
+          </div>
+          <div
+            myIndex="5"
+            myState="VVVVV"
+            class="badgeOnGo statusSet statusResults turnOffme"
+            id="statusResults_VVVVV">
+            0.00€
+          </div>
+        </div>
+
+        <div class="" id="statusRating_Box">
+          <div myIndex="0" myState="P" class="badgeOnGo statusSet turnOffme" id="statusRating_P">
+            100.00%
+          </div>
+          <div myIndex="1" myState="VP" class="badgeOnGo statusSet turnOffme" id="statusRating_VP">
+            100.00%
+          </div>
+          <div
+            myIndex="2"
+            myState="VVP"
+            class="badgeOnGo statusSet turnOffme"
+            id="statusRating_VVP">
+            100.00%
+          </div>
+          <div
+            myIndex="3"
+            myState="VVVP"
+            class="badgeOnGo statusSet turnOffme"
+            id="statusRating_VVVP">
+            100.00%
+          </div>
+          <div
+            myIndex="4"
+            myState="VVVVP"
+            class="badgeOnGo statusSet turnOffme"
+            id="statusRating_VVVVP">
+            100.00%
+          </div>
+          <div
+            myIndex="5"
+            myState="VVVVV"
+            class="badgeOnGo statusSet turnOffme"
+            id="statusRating_VVVVV">
+            100.00%
+          </div>
+        </div>
+
+        <div class="" id="statusMessage_Container">
+          <div class="messaggio waitingMsg" id="statusMessage_Box">IN ATTESA DEGLI ESITI...</div>
+
+          <!-- <div class="ratingOnGo" id="ratingOnGo_Box">
+					<span class="" id="onGoLab">RATING</span>
+					
+					<span class="ratingOnGo" id="onGoW_figure"></span>
+					<div class="ratingOnGo" id="onGoW">(se la multipla VINCE)</div>
+					
+					<span class="ratingOnGo" id="onGoL_figure"></span>
+					<div class="ratingOnGo" id="onGoL">(se la multipla PERDE)</div>
+				</div> -->
+        </div>
+      </div>
+
+      <!-- GRIGLIA SVILUPPO COMPLETA - INIZIO -->
+      <div class="ui yellow message vis-hidden" id="boxSviluppo">
+        <div class="messaggi_int" id="">SVILUPPO MULTIPLA - RIMBORSO SE PERDENTE PER 1 EVENTO</div>
+
+        <div class="doppiaBox" id="grigliaSV_doppia">
+          <div class="esiti_int" id="">DOPPIA: GUADAGNI / ESITI / <span>RATING</span></div>
+
+          <div class="" id="doppiaBox1">
+            <div class="" id="doppia_VV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="douRes_VV">0.00€</div>
+                <div class="SV_story" id="">VV</div>
+                <div class="SV_rat" id="douRat_VV">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="doppiaBox2">
+            <div class="" id="doppia_VP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="douRes_VP">0.00€</div>
+                <div class="SV_story" id="">VP</div>
+                <div class="SV_rat" id="douRat_VP">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="doppiaBox3">
+            <div class="" id="doppia_PV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="douRes_PV">0.00€</div>
+                <div class="SV_story" id="">PV</div>
+                <div class="SV_rat" id="douRat_PV">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="doppiaBox4">
+            <div class="" id="doppia_PP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="douRes_PP">0.00€</div>
+                <div class="SV_story" id="">PP</div>
+                <div class="SV_rat" id="douRat_PP">100.00%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="triplaBox" id="grigliaSV_tripla">
+          <div class="esiti_int" id="">TRIPLA: GUADAGNI / ESITI / <span>RATING</span></div>
+
+          <div class="" id="triplaBox1">
+            <div class="" id="tripla_VVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="triRes_VVV">0.00€</div>
+                <div class="SV_story" id="">VVV</div>
+                <div class="SV_rat" id="triRat_VVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="tripla_VVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="triRes_VVP">0.00€</div>
+                <div class="SV_story" id="">VVP</div>
+                <div class="SV_rat" id="triRat_VVP">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="triplaBox2">
+            <div class="" id="tripla_VPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="triRes_VPV">0.00€</div>
+                <div class="SV_story" id="">VPV</div>
+                <div class="SV_rat" id="triRat_VPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="tripla_VPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="triRes_VPP">0.00€</div>
+                <div class="SV_story" id="">VPP</div>
+                <div class="SV_rat" id="triRat_VPP">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="triplaBox3">
+            <div class="" id="tripla_PVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="triRes_PVV">0.00€</div>
+                <div class="SV_story" id="">PVV</div>
+                <div class="SV_rat" id="triRat_PVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="tripla_PVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="triRes_PVP">0.00€</div>
+                <div class="SV_story" id="">PVP</div>
+                <div class="SV_rat" id="triRat_PVP">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="triplaBox4">
+            <div class="" id="tripla_PPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="triRes_PPV">0.00€</div>
+                <div class="SV_story" id="">PPV</div>
+                <div class="SV_rat" id="triRat_PPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="tripla_PPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="triRes_PPP">0.00€</div>
+                <div class="SV_story" id="">PPP</div>
+                <div class="SV_rat" id="triRat_PPP">100.00%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quadruplaBox" id="grigliaSV_quadrupla">
+          <div class="esiti_int" id="">QUADRUPLA: GUADAGNI / ESITI / <span>RATING</span></div>
+
+          <div class="" id="quadruplaBox1">
+            <div class="" id="quadrupla_VVVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_VVVV">0.00€</div>
+                <div class="SV_story" id="">VVVV</div>
+                <div class="SV_rat" id="quaRat_VVVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_VVVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_VVVP">0.00€</div>
+                <div class="SV_story" id="">VVVP</div>
+                <div class="SV_rat" id="quaRat_VVVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_VVPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_VVPV">0.00€</div>
+                <div class="SV_story" id="">VVPV</div>
+                <div class="SV_rat" id="quaRat_VVPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_VVPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_VVPP">0.00€</div>
+                <div class="SV_story" id="">VVPP</div>
+                <div class="SV_rat" id="quaRat_VVPP">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="quadruplaBox2">
+            <div class="" id="quadrupla_VPVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_VPVV">0.00€</div>
+                <div class="SV_story" id="">VPVV</div>
+                <div class="SV_rat" id="quaRat_VPVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_VPVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_VPVP">0.00€</div>
+                <div class="SV_story" id="">VPVP</div>
+                <div class="SV_rat" id="quaRat_VPVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_VPPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_VPPV">0.00€</div>
+                <div class="SV_story" id="">VPPV</div>
+                <div class="SV_rat" id="quaRat_VPPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_VPPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_VPPP">0.00€</div>
+                <div class="SV_story" id="">VPPP</div>
+                <div class="SV_rat" id="quaRat_VPPP">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="quadruplaBox3">
+            <div class="" id="quadrupla_PVVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_PVVV">0.00€</div>
+                <div class="SV_story" id="">PVVV</div>
+                <div class="SV_rat" id="quaRat_PVVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_PVVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_PVVP">0.00€</div>
+                <div class="SV_story" id="">PVVP</div>
+                <div class="SV_rat" id="quaRat_PVVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_PVPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_PVPV">0.00€</div>
+                <div class="SV_story" id="">PVPV</div>
+                <div class="SV_rat" id="quaRat_PVPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_PVPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_PVPP">0.00€</div>
+                <div class="SV_story" id="">PVPP</div>
+                <div class="SV_rat" id="quaRat_PVPP">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="quadruplaBox4">
+            <div class="" id="quadrupla_PPVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_PPVV">0.00€</div>
+                <div class="SV_story" id="">PPVV</div>
+                <div class="SV_rat" id="quaRat_PPVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_PPVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_PPVP">0.00€</div>
+                <div class="SV_story" id="">PPVP</div>
+                <div class="SV_rat" id="quaRat_PPVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_PPPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_PPPV">0.00€</div>
+                <div class="SV_story" id="">PPPV</div>
+                <div class="SV_rat" id="quaRat_PPPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quadrupla_PPPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quaRes_PPPP">0.00€</div>
+                <div class="SV_story" id="">PPPP</div>
+                <div class="SV_rat" id="quaRat_PPPP">100.00%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quintuplaBox" id="grigliaSV_quintupla">
+          <div class="esiti_int" id="">QUINTUPLA: GUADAGNI / ESITI / <span>RATING</span></div>
+
+          <div class="" id="quintuplaBox1">
+            <div class="" id="quintupla_VVVVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VVVVV">0.00€</div>
+                <div class="SV_story" id="">VVVVV</div>
+                <div class="SV_rat" id="quiRat_VVVVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VVVVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VVVVP">0.00€</div>
+                <div class="SV_story" id="">VVVVP</div>
+                <div class="SV_rat" id="quiRat_VVVVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VVVPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VVVPV">0.00€</div>
+                <div class="SV_story" id="">VVVPV</div>
+                <div class="SV_rat" id="quiRat_VVVPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VVVPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VVVPP">0.00€</div>
+                <div class="SV_story" id="">VVVPP</div>
+                <div class="SV_rat" id="quiRat_VVVPP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VVPVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VVPVV">0.00€</div>
+                <div class="SV_story" id="">VVPVV</div>
+                <div class="SV_rat" id="quiRat_VVPVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VVPVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VVPVP">0.00€</div>
+                <div class="SV_story" id="">VVPVP</div>
+                <div class="SV_rat" id="quiRat_VVPVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VVPPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VVPPV">0.00€</div>
+                <div class="SV_story" id="">VVPPV</div>
+                <div class="SV_rat" id="quiRat_VVPPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VVPPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VVPPP">0.00€</div>
+                <div class="SV_story" id="">VVPPP</div>
+                <div class="SV_rat" id="quiRat_VVPPP">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="quintuplaBox2">
+            <div class="" id="quintupla_VPVVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VPVVV">0.00€</div>
+                <div class="SV_story" id="">VPVVV</div>
+                <div class="SV_rat" id="quiRat_VPVVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VPVVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VPVVP">0.00€</div>
+                <div class="SV_story" id="">VPVVP</div>
+                <div class="SV_rat" id="quiRat_VPVVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VPVPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VPVPV">0.00€</div>
+                <div class="SV_story" id="">VPVPV</div>
+                <div class="SV_rat" id="quiRat_VPVPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VPVPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VPVPP">0.00€</div>
+                <div class="SV_story" id="">VPVPP</div>
+                <div class="SV_rat" id="quiRat_VPVPP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VPPVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VPPVV">0.00€</div>
+                <div class="SV_story" id="">VPPVV</div>
+                <div class="SV_rat" id="quiRat_VPPVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VPPVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VPPVP">0.00€</div>
+                <div class="SV_story" id="">VPPVP</div>
+                <div class="SV_rat" id="quiRat_VPPVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VPPPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VPPPV">0.00€</div>
+                <div class="SV_story" id="">VPPPV</div>
+                <div class="SV_rat" id="quiRat_VPPPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_VPPPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_VPPPP">0.00€</div>
+                <div class="SV_story" id="">VPPPP</div>
+                <div class="SV_rat" id="quiRat_VPPPP">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="quintuplaBox3">
+            <div class="" id="quintupla_PVVVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PVVVV">0.00€</div>
+                <div class="SV_story" id="">PVVVV</div>
+                <div class="SV_rat" id="quiRat_PVVVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PVVVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PVVVP">0.00€</div>
+                <div class="SV_story" id="">PVVVP</div>
+                <div class="SV_rat" id="quiRat_PVVVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PVVPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PVVPV">0.00€</div>
+                <div class="SV_story" id="">PVVPV</div>
+                <div class="SV_rat" id="quiRat_PVVPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PVVPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PVVPP">0.00€</div>
+                <div class="SV_story" id="">PVVPP</div>
+                <div class="SV_rat" id="quiRat_PVVPP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PVPVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PVPVV">0.00€</div>
+                <div class="SV_story" id="">PVPVV</div>
+                <div class="SV_rat" id="quiRat_PVPVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PVPVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PVPVP">0.00€</div>
+                <div class="SV_story" id="">PVPVP</div>
+                <div class="SV_rat" id="quiRat_PVPVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PVPPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PVPPV">0.00€</div>
+                <div class="SV_story" id="">PVPPV</div>
+                <div class="SV_rat" id="quiRat_PVPPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PVPPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PVPPP">0.00€</div>
+                <div class="SV_story" id="">PVPPP</div>
+                <div class="SV_rat" id="quiRat_PVPPP">100.00%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="" id="quintuplaBox4">
+            <div class="" id="quintupla_PPVVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PPVVV">0.00€</div>
+                <div class="SV_story" id="">PPVVV</div>
+                <div class="SV_rat" id="quiRat_PPVVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PPVVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PPVVP">0.00€</div>
+                <div class="SV_story" id="">PPVVP</div>
+                <div class="SV_rat" id="quiRat_PPVVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PPVPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PPVPV">0.00€</div>
+                <div class="SV_story" id="">PPVPV</div>
+                <div class="SV_rat" id="quiRat_PPVPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PPVPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PPVPP">0.00€</div>
+                <div class="SV_story" id="">PPVPP</div>
+                <div class="SV_rat" id="quiRat_PPVPP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PPPVV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PPPVV">0.00€</div>
+                <div class="SV_story" id="">PPPVV</div>
+                <div class="SV_rat" id="quiRat_PPPVV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PPPVP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PPPVP">0.00€</div>
+                <div class="SV_story" id="">PPPVP</div>
+                <div class="SV_rat" id="quiRat_PPPVP">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PPPPV">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PPPPV">0.00€</div>
+                <div class="SV_story" id="">PPPPV</div>
+                <div class="SV_rat" id="quiRat_PPPPV">100.00%</div>
+              </div>
+            </div>
+
+            <div class="" id="quintupla_PPPPP">
+              <div class="SVresultBox" id="">
+                <div class="SV_earn" id="quiRes_PPPPP">0.00€</div>
+                <div class="SV_story" id="">PPPPP</div>
+                <div class="SV_rat" id="quiRat_PPPPP">100.00%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="boxMessSV" id="messaggioSV">
+          <div class="ui blue message boxMessSV" id="messaggioSV_tagL"></div>
+
+          <div class="boxMessSV" id="messaggioSV_txt"></div>
+        </div>
+      </div>
+      <!-- GRIGLIA SVILUPPO COMPLETA - FINE -->
+    </div>
+
+    <!-- MODAL DIALOG SALVA - INIZIO -->
+    <div class="ui tiny first coupled modal mySave" id="SAVE_dlg">
+      <div class="ui header">SALVA QUESTA MULTIPLA</div>
+
+      <div class="container" id="">
+        <div class="ui message" id="save_coloured">
+          <div class="description">
+            <div class="ui small header">Inserisci un nome per la multipla</div>
+
+            <div class="ui left icon fluid big input">
+              <input
+                form="sintesi_form"
+                type="text"
+                placeholder="nome (obbligatorio)..."
+                name="mult_myname"
+                id="mult_myname"
+                required />
+              <i class="edit outline icon"></i>
+            </div>
+
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ui black deny button">Annulla</div>
+        <div class="ui positive right labeled icon button">
+          Salva
+          <i class="fas fa-check checkmark icon"></i>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL DIALOG SALVA - FINE -->
+
+    <!-- MODAL DIALOG ESITO SALVA - INIZIO -->
+    <div class="ui tiny second coupled modal mySave" id="SAVE_res">
+      <div class="ui header">ESITO</div>
+
+      <div class="ui container" id="">
+        <div class="ui message">
+          <div class="description">
+            <div class="ui small header" id="saveSecond_header">Messaggio</div>
+
+            <div class="" id="msg_save"></div>
+
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ui black deny button">Chiudi</div>
+      </div>
+    </div>
+    <!-- MODAL DIALOG ESITO SALVA - FINE -->
+
+    <!-- MODAL DIALOG CARICA - INIZIO -->
+    <div class="ui first coupled modal myLoad" id="LOAD_dlg">
+      <div class="ui header" id="loadListHeader"></div>
+
+      <div class="container" id="loadListBox">
+        <div class="ui message" id="loadListBox_msg">
+          <div class="ui fluid container" id="loadListContent"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ui black deny button">Chiudi</div>
+      </div>
+    </div>
+    <!-- MODAL DIALOG CARICA - FINE -->
+
+    <!-- MODAL DIALOG ESITO CARICA - INIZIO -->
+    <div class="ui tiny second coupled modal myLoad" id="LOAD_res">
+      <div class="ui header">CONFERMA</div>
+
+      <div class="ui container" id="">
+        <div class="ui red message">
+          <div class="description">
+            <div class="ui small header" id="loadSecond_header">
+              ATTENZIONE! Stai per eliminare questa multipla:
+            </div>
+
+            <div class="" id="msg_load"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ui black cancel button">Annulla</div>
+
+        <div class="ui red ok button">Elimina</div>
+      </div>
+    </div>
+    <!-- MODAL DIALOG ESITO CARICA - FINE -->
+
+    <!-- MODAL DIALOG WARNING UPDATE - INIZIO -->
+    <div class="ui tiny second coupled modal myUpdate" id="UPD_warn">
+      <div class="ui header">AGGIORNAMENTO</div>
+
+      <div class="ui container">
+        <div class="ui red message">
+          <div class="description">
+            <div class="ui small header" id="updateWarningSecond_header">
+              ATTENZIONE! Stai per aggiornare questa multipla:
+            </div>
+
+            <div class="" id="msg_update_warning"></div>
+            <div class="" id="msg_update_same_warning"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ui black cancel button">Annulla</div>
+
+        <div class="ui red ok button">Aggiorna</div>
+      </div>
+    </div>
+    <!-- MODAL DIALOG WARNING UPDATE - FINE -->
+
+    <!-- MODAL DIALOG ESITO UPDATE - INIZIO -->
+    <div class="ui tiny second coupled modal myUpdate" id="UPD_res">
+      <div class="ui header">CONFERMA</div>
+
+      <div class="ui container" id="">
+        <div class="ui green message">
+          <div class="description">
+            <div class="ui small header" id="updateSecond_header"></div>
+
+            <div class="" id="msg_update"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ui right labeled icon cancel button">
+          OK
+          <i class="fas fa-check checkmark icon"></i>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL DIALOG ESITO CARICA - FINE -->
+
+    <!-- MODAL DIALOG LOCALSTORAGE - INIZIO -->
+    <div class="ui modal" id="confermaLocal">
+      <!-- <div class="ui header" id="confLocal_bigHead">
+				SCEGLI
+			</div> -->
+
+      <div class="" id="">
+        <div class="ui message">
+          <div class="description">
+            <div class="ui small header" id="confLocal_smallHead">
+              C'è la seguente <span id="locMulType">multipla</span> nel buffer del computer, vuoi
+              caricarla, scartarla o eliminarla?
+            </div>
+
+            <div class="" id="msg_confLocal"></div>
+
+            <div class="" id="multiLocalBufferDet"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ui right labeled icon ok green tiny button" id="loadLocStMul">
+          Carica
+          <i class="check icon"></i>
+        </div>
+
+        <div class="ui right labeled icon tiny button" id="bypLocStMul">
+          Scarta
+          <i class="ban icon"></i>
+        </div>
+
+        <div class="ui right labeled icon red cancel tiny button" id="delLocStMul">
+          Elimina
+          <i class="eraser icon"></i>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL DIALOG LOCALSTORAGE - INIZIO -->
+
+    <!-- MODAL DIALOG PASTE FROM DUTCHER - START -->
+    <div class="ui tiny modal" id="dutcher-paste__confirm">
+      <div class="" id="">
+        <div class="ui message">
+          <div class="description">
+            <div class="ui small header" id="dutcher-paste__smallHead">
+              <p>ATTENZIONE!</p>
+              <p>Proseguendo, verranno inseriti i seguenti campi nell'evento:</p>
+            </div>
+
+            <div class="" id="dutcher-paste__msg">
+              <ul>
+                <li>Descrizione Evento >> <span></span></li>
+                <li>Data/Ora >> <span></span></li>
+                <li>Esito >> <span></span></li>
+                <li>Quota Punta >> <span></span></li>
+                <li>Quota Banca >> <span></span></li>
+                <li>Quota Contropunta >> <span></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ui right labeled icon ok green tiny button" id="dutcher-paste__confirmBtn">
+          Continua
+          <i class="check icon"></i>
+        </div>
+
+        <div class="ui right labeled icon red cancel tiny button" id="dutcher-paste__cancelBtn">
+          Annulla
+          <i class="ban icon"></i>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL DIALOG PASTE FROM DUTCHER - END -->
+
+    <form class="ui form" name="sintesi_form" method="post" action="" id="sintesi_form">
+      <input type="" name="puntata_copy" id="puntata_copy" value="" />
+
+      <input type="" name="quantieventi_copy" id="quantieventi_copy" value="" />
+
+      <input type="" name="idMulti" id="idMulti" value="" />
+
+      <input type="" name="mult_myname_copy" id="mult_myname_copy" value="" />
+
+      <input type="" name="mult_myRimbo" id="mult_myRimbo" value="" />
+
+      <!-- <input type="hidden" name="mult_myEx_copy" id="mult_myEx_copy" value=""> -->
+
+      <input type="text" name="formString" id="formString" value="" />
+    </form>
+
+    <!-- PROFIT NOmodal - INIZIO -->
+    <!-- <div class="NOmodal" id="AGModalCalc" tabindex="-1" role="dialog" aria-labelledby="AGModalCalcLabel"
+		aria-hidden="true">
+		<div class="NOmodal-dialog" role="document">
+			<div class="NOmodal-content">
+
+				<div class="NOmodal-body">
+					<form class="ui form" id="AGRecord" method="POST" action="profit_boh.php">
+						<fieldset>
+							<input type="text" for="AGRecord" id="bet_id" name="bet_id" value="" required="false" />
+
+							<div class="profit-NOmodal-section top">
+								<fieldset id="top-field">
+
+									<div class="" id="acc_list_BOX">
+										<span id="ACC_lbl"><b>Account</b></span>
+										<select name="acc_list_drop" class="" id="acc_list_drop">
+											<option></option>
+										</select>
+										<input name="myAcc_name" placeholder="nuovo Account" type="text" id="myAcc_name" />
+									</div>
+
+									<div>
+										<legend>Dati Generali</legend>
+									</div>
+
+									<div class="row" id="myPrfMaskFirstRow">
+										<div class="col ui labeled fluid input">
+											<div class="ui teal label" for="dataIN">Data inserimento scommessa:</div>
+											<input type="text" id="dataIN" name="dataIN" value="gg/mm/aaaa hh:mm" />
+										</div>
+
+										<div class="col ui labeled fluid input">
+											<div class="ui teal label" for="categoria">Categoria:</div>
+											<select type="text" id="categoria" name="categoria">
+												<option value="Match-Bet" selected>Matched Betting</option>
+												<option value="Surebet">Surebet</option>
+												<option value="Slot">Slot</option>
+												<option value="Casinò">Casinò</option>
+												<option value="Skill">Skill</option>
+												<option value="Poker">Poker</option>
+												<option value="Altro">Altro</option>
+											</select>
+										</div>
+
+										<div class="col ui labeled fluid input">
+											<div class="ui teal label" for="tipo">Tipo:</div>
+											<select type="text" id="tipo" name="tipo">
+												<option value="Punta-Banca" selected>Punta-Banca</option>
+												<option value="Punta-Punta">Punta-Punta</option>
+												<option value="Dutching">Dutching</option>
+												<option value="Altro">Altro</option>
+											</select>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+
+							<div class="profit-NOmodal-section middle">
+								<fieldset id="middle-field">
+									<div>
+										<legend>Dati della Giocata</legend>
+									</div>
+
+									<div id="autocalc">
+										<label for="checkAuto">Calcolo Guadagni Automatico</label>
+										<input type="checkbox" id="checkAuto" onclick="autoCalc()" name="checkAuto" value="0.00"
+											checked="true" />
+										<input class="h" type="number" id="checkAuto_h" name="checkAuto_h" value="1" required="false" />
+									</div>
+
+									<div class="row" id="myPrfMaskDataRow">
+										<div class="col ui labeled fluid input">
+											<div class="ui orange label" for="match">Partita:</div>
+											<input type="text" id="match" name="match" value="" /><br />
+										</div>
+
+										<div class="col ui labeled fluid input">
+											<div class="ui orange label" for="dataMatch">Data partita:</div>
+											<input type="text" id="dataMatch" name="dataMatch" value="gg/mm/aaaa hh:mm" /><br />
+										</div>
+
+										<div class="col ui labeled fluid input">
+											<div class="ui orange label" for="mercato">Mercato:</div>
+											<input type="text" id="market" name="mercato" value="" />
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col book_box">
+											<label for="bk1">Bookmaker 1:</label>
+											<div class="ui fluid input">
+												<input type="text" id="bk1" name="bk1" value="" />
+											</div>
+
+											<label for="quotaPnt">Quota Punta:</label>
+											<div class="ui fluid input">
+												<input class="calcoli" type="number" id="quotaPnt" name="quotaPnt" step="0.01" step="0.01"
+													value="0.00" />
+											</div>
+											<div class="ui fluid input">
+												<input class="h calcoli" type="number" id="quotaPnt_h" name="quotaPnt_h" value="0.00"
+													step="0.01" required="false" />
+											</div>
+
+											<label for="saldoReal_Bk">Saldo reale:</label>
+											<div class="ui fluid input">
+												<input class="calcoli" type="number" step="0.01" id="saldoReal_Bk" name="saldoReal_Bk"
+													value="0.00" />
+											</div>
+
+											<label for="saldoBonus_Bk">Saldo BONUS:</label>
+											<div class="ui fluid input">
+												<input class="calcoli" type="number" step="0.01" id="saldoBonus_Bk" name="saldoBonus_Bk"
+													value="0.00" />
+											</div>
+
+
+										</div>
+
+										<div class="col book_box">
+											<label for="bk2">Bookmaker 2:</label>
+											<div class="ui fluid input">
+												<input type="text" id="bk2" name="bk2" value="" />
+											</div>
+
+											<label for="quotaBnc">Quota Banca:</label>
+											<div class="ui fluid input">
+												<input class="calcoli" type="number" id="quotaBnc" name="quotaBnc" step="0.01" value="0.00" />
+											</div>
+											<div class="ui fluid input">
+												<input class="h calcoli" type="number" id="quotaBnc_h" name="quotaBnc_h" value="0.00"
+													step="0.01" required="false" />
+											</div>
+
+											<label for="saldoReal_Ex">Bancata Reale:</label>
+											<div class="ui fluid input">
+												<input class="calcoli" type="number" step="0.01" id="saldoReal_Ex" name="saldoReal_Ex"
+													value="0.00" />
+											</div>
+											<div class="ui fluid input">
+												<input class="h calcoli" type="number" id="saldoReal_Ex_h" name="saldoReal_Ex_h" step="0.01"
+													value="0.00" required="false" />
+											</div>
+
+											<div id="box_bonusEx">
+												<label for="saldoBonus_Ex">Saldo contropunta BONUS:</label>
+												<div class="ui fluid input">
+													<input class="calcoli" type="number" step="0.01" id="saldoBonus_Ex" name="saldoBonus_Ex"
+														value="0.00" />
+												</div>
+												<div class="ui fluid input">
+													<input class="h calcoli" type="number" id="saldoBonus_Ex_h" name="saldoBonus_Ex_h" step="0.01"
+														value="0.00" required="false" />
+												</div>
+											</div>
+
+											<div id="box_comz">
+												<label for="comz">Commissione:</label>
+												<div class="ui fluid input">
+													<input class="calcoli" type="number" id="comz" name="comz" step="0.01" value="0.00" />
+												</div>
+												<div class="ui fluid input">
+													<input class="h calcoli" type="number" id="comz_h" name="comz_h" value="0.00" step="0.01"
+														required="false" />
+												</div>
+											</div>
+										</div>
+
+										<div class="col book_box">
+											<label for="bk3">Bookmaker 3:</label>
+											<div class="ui fluid input">
+												<input type="text" id="bk3" name="bk3" value="" />
+											</div>
+
+											<label for="quotaDch">Quota 3 ("dutching"):</label>
+											<div class="ui fluid input">
+												<input class="calcoli" type="number" id="quotaDch" name="quotaDch" step="0.01" value="0.00" />
+											</div>
+											<div class="ui fluid input">
+												<input class="h calcoli" type="number" id="quotaDch_h" name="quotaDch_h" value="0.00"
+													step="0.01" required="false" />
+											</div>
+
+											<label for="saldoReal_Dc">Saldo Reale:</label>
+											<div class="ui fluid input">
+												<input class="calcoli" type="number" step="0.01" id="saldoReal_Dc" name="saldoReal_Dc"
+													value="0.00" />
+											</div>
+											<div class="ui fluid input">
+												<input class="h calcoli" type="number" id="saldoReal_Dc_h" name="saldoReal_Dc_h" step="0.01"
+													value="0.00" required="false" />
+											</div>
+
+											<label for="saldoBonus_Dc">Saldo BONUS:</label>
+											<div class="ui fluid input">
+												<input class="calcoli" type="number" step="0.01" id="saldoBonus_Dc" name="saldoBonus_Dc"
+													value="0.00" />
+											</div>
+											<div class="ui fluid input">
+												<input class="h calcoli" type="number" id="saldoBonus_Dc_h" name="saldoBonus_Dc_h" step="0.01"
+													value="0.00" required="false" />
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col note">
+											<label for="note">Note:</label><br />
+											<textarea type="textarea" form="AGRecord" id="note" name="note"></textarea><br />
+										</div>
+
+										<div id="resANDfin">
+											<div class="col">
+												<label for="esito">Esito scommessa:</label><br />
+												<select class="calcoli" id="esito" name="esito">
+													<option id="vincePnt" value="vincePnt" selected>Vince Punta</option>
+													<option id="vinceBnc" value="vinceBnc">Vince Banca</option>
+													<option id="vinceDch" value="vinceDch">Vince Dutching</option>
+												</select><br />
+											</div>
+
+											<div class="col">
+												<div id="finished">
+													<label for="checkOpn">Conclusa</label>
+													<input class="calcoli" type="checkbox" id="checkOpn" name="checkOpn" />
+													<input class="h calcoli" type="number" id="checkBool_h" name="checkBool_h" value="0"
+														required="false" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+
+							<div class="profit-NOmodal-section bottom">
+								<fieldset>
+									<div>
+										<legend>
+											<span>GUADAGNO TOTALE </span>
+											<span id="guadFin"></span>
+										</legend>
+
+										<input class="h" type="text" id="guadFin_h" name="guadFin_h" value="0.00" required="false" />
+										<div class="box-guadagno">
+
+										</div>
+									</div>
+
+									<div class="row profit-guadagni">
+										<div class="col box-guadagno">
+											<label for="incPnt">da Punta:</label>
+											<br />
+											<input class="calcoli" type="text" id="incPnt" name="incPnt" value="0.00" />
+											<input class="h calcoli" type="text" id="incPnt_h" name="incPnt_h" value="0.00"
+												required="false" />
+										</div>
+
+										<div class="col box-guadagno">
+											<label for="incBnc">da Banca:</label>
+											<br />
+											<input class="calcoli" type="text" id="incBnc" name="incBnc" value="0.00" />
+											<input class="h calcoli" type="text" id="incBnc_h" name="incBnc_h" value="0.00"
+												required="false" />
+										</div>
+
+										<div class="col box-guadagno">
+											<label for="incDch">da Dutching:</label>
+											<br />
+											<input class="calcoli" type="text" id="incDch" name="incDch" value="0.00" />
+											<input class="h calcoli" type="text" id="incDch_h" name="incDch_h" value="0.00"
+												required="false" />
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+
+				<div class="NOmodal-footer salva-footer">
+					<button type="button" class="ui grey medium button" onclick="chiudimaschera()">Annulla</button>
+
+					<button type="button" onclick="salvaRiga()" form="AGRecord" target="_self" class="ui blue medium button">
+						Salva
+					</button>
+				</div>
+
+				<div class="NOmodal-footer update-footer">
+					<button type="button" class="btn btn-secondary" onclick="chiudimaschera()">Chiudi</button>
+					<button type="button" onclick="aggiornaRiga()" form="AGRecord" target="_self" class="btn btn-primary">
+						Aggiorna
+					</button>
+				</div>
+			</div>
+		</div>
+	</div> -->
+    <!-- PROFIT NOmodal - FINE -->
+
+    <div id="lastElm"></div>
+    <script type="text/javascript" src="assets/js/multitool-body.js" defer></script>
+    <script type="text/javascript" src="assets/js/rome_IT.js"></script>
+    <!-- <script src="assets/js/profit-body.js?v=1.0.0"></script> -->
+  </body>
+</html>
