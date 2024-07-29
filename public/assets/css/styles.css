@@ -916,10 +916,20 @@ select{
   box-shadow: 0px 2px 10px #00000030;
   border-radius: 12px;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   flex-direction: column;
   margin-bottom: 20px;
   position: relative;
+}
+
+.my-indicazioni-row{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #d3d3d3;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .input-disabled{
@@ -951,12 +961,6 @@ select{
   }
 }
 
-@media screen and (min-width:400px){
-  .my-main-wrapper{
-    margin: 20px;
-  }
-}
-
 @media screen and (min-width:450px){
 
   .row-dutcher{
@@ -981,6 +985,12 @@ select{
 @media screen and (max-width: 400px) {
   .my-form-input{
     width: 90px;
+  }  
+}
+
+@media screen and (max-width: 720px) {
+  .telegram-pattern{
+    display: none;
   }  
 }
 
@@ -1288,5 +1298,26 @@ a:hover .arrow {
   border: 3px solid #e9ecef;
 }
 
+.calc-boxes-3{
+  width: 50%;
+  max-width: 400px;
+  /* box-shadow: 0px 2px 10px #00000030; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 5px;
+  margin: 10px;
+  margin-bottom: 0;
+  height: 100px;
+  border: 3px solid #e9ecef;
+}
 
+.positive {
+  color: rgb(97, 163, 113);
+}
+.negative {
+  color: rgb(255, 126, 126);
+}
 

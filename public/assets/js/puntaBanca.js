@@ -22,6 +22,54 @@ function formatToTwoDecimals(num) {
     }
 }
 
+function formatToTwoDecimalsTotal(num) {
+    let sign = num >= 0 ? "+" : "";
+    // Convert the number to a string and split it by the decimal point
+    let parts = num.toString().split(".");
+    
+    if (parts.length === 1) {
+        // No decimal part, add ".00"
+        return sign + num.toString() + ".00" + " €";
+    } else if (parts[1].length === 1) {
+        // Only one decimal place, add a trailing "0"
+        return sign + num.toString() + "0"  + " €";
+    } else {
+        // Two or more decimal places, truncate to two without rounding
+        return sign + parts[0] + "." + parts[1].substring(0, 2)  + " €";
+    }
+}
+
+function updateTableStriping() {
+    const table = document.getElementById('results-table');
+    const rows = table.querySelectorAll('tr');
+    let visibleRowIndex = 0;
+
+    rows.forEach(row => {
+        if (!row.classList.contains('display-none')) {
+            row.style.backgroundColor = (visibleRowIndex % 2 === 0) ? '#ffffff' : '#f2f2f2';
+            visibleRowIndex++;
+            console.log("ciao");
+        }
+    });
+}
+
+function updateElement(id, value) {
+    let element = document.getElementById(id);
+    let formatted = value;
+    formatted = parseFloat(formatted);
+
+    // Set the color based on the value
+    // Remove previous color classes
+    element.classList.remove('positive', 'negative');
+    
+    // Set the color based on the value
+    if (formatted >= 0) {
+        element.classList.add('positive');
+    } else {
+        element.classList.add('negative');
+    }
+}
+
 function getResults(){
     let isCR = checkRimborso();
     checkStrumentoAvanzato();
@@ -33,6 +81,7 @@ function getResults(){
     } else{
         normalPuntaBanca();
     }
+    updateTableStriping();
 }
 
 function checkStrumentoAvanzato(){
@@ -127,6 +176,9 @@ function normalPuntaBanca(){
     let vinceBook = book + noExchange;
     console.log(vinceBook);
     let vinceExchange = noBook + totExchange;
+
+    let rowCr = document.getElementById("cr-row");
+    rowCr.classList.add("display-none");
     if(selectRimborso == "BONUS"){
         labelPuntata.innerHTML = "Importo Bonus";
         book = quotaPuntata * importoPuntata;
@@ -163,6 +215,19 @@ function normalPuntaBanca(){
     } else {
         document.getElementById("quota-puntata-2").value = formatToTwoDecimals(quotaPuntata);
     }
+
+    //inserimento risultati tabella
+    document.getElementById("row-a-1").innerHTML = "+"+formatToTwoDecimals(book);
+    document.getElementById("row-a-2").innerHTML = formatToTwoDecimals(noBook);
+
+    document.getElementById("row-b-1").innerHTML = formatToTwoDecimals(noExchange);
+    document.getElementById("row-b-2").innerHTML = "+"+formatToTwoDecimals(totExchange);
+    
+    //inserimento totale
+    document.getElementById("totale-1").innerHTML = formatToTwoDecimalsTotal(vinceBook);
+    document.getElementById("totale-2").innerHTML = formatToTwoDecimalsTotal(vinceExchange);
+    updateElement("totale-1", vinceBook);
+    updateElement("totale-2", vinceExchange);
 }
 
 function crPuntaBanca(){
@@ -185,6 +250,8 @@ function crPuntaBanca(){
     let rating = ((importoPuntata*quotaPuntata - importoPuntata - (((quotaPuntata*importoPuntata)/(quotaBancata - commissione / 100)) * quotaBancata - (quotaPuntata*importoPuntata) / (quotaBancata - commissione / 100)) + importoPuntata) / importoPuntata) *100;
     let responsabilita = quotaBancata2 * quotaBancata - quotaBancata2;
     
+    let rowCr = document.getElementById("cr-row");
+    rowCr.classList.remove("display-none");
     let book = quotaPuntata * importoPuntata - importoPuntata;
     let noExchange = responsabilita * (-1);
     let noBook = importoPuntata * (-1);
@@ -220,6 +287,22 @@ function crPuntaBanca(){
     } else {
         document.getElementById("quota-puntata-2").value = formatToTwoDecimals(quotaPuntata);
     }
+
+    //inserimento risultati tabella
+    document.getElementById("row-a-1").innerHTML = "+"+formatToTwoDecimals(book);
+    document.getElementById("row-a-2").innerHTML = formatToTwoDecimals(noBook);
+
+    document.getElementById("row-b-1").innerHTML = formatToTwoDecimals(noExchange);
+    document.getElementById("row-b-2").innerHTML = "+"+formatToTwoDecimals(totExchange);
+
+    document.getElementById("row-cr-1").innerHTML = "+0.00";
+    document.getElementById("row-cr-2").innerHTML = "+"+formatToTwoDecimals(importoRimborso);
+    
+    //inserimento totale
+    document.getElementById("totale-1").innerHTML = formatToTwoDecimalsTotal(vinceBook);
+    document.getElementById("totale-2").innerHTML = formatToTwoDecimalsTotal(vinceExchange);
+    updateElement("totale-1", vinceBook);
+    updateElement("totale-2", vinceExchange);
 }
 
 

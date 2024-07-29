@@ -88,6 +88,39 @@
         .form-group input{
             width: 100%;
         }
+
+        td{
+            text-align: center;
+            border: none;
+        }
+
+        tr{
+            line-height: 4ch;
+        }
+
+        th{
+            background-color: #4040400d;
+            font-weight: 500;
+            line-height: 5ch;
+        }
+
+        tr:nth-child(even){
+            background-color: #4040400d;
+        }
+
+        tr:first-of-type{
+            line-height: 4ch;
+        }
+
+        tr:last-of-type{
+            line-height: 5ch;
+        }
+
+        table{
+            width: 100%;
+            border-spacing: 0;
+        }
+           
       
       </style>
    </head>
@@ -228,7 +261,7 @@
                     </div>
                 </div>
 
-                <div class="information-container" style="background-color: #5865f16e;"">
+                <div class="information-container" style="background-color: #5865f16e;">
                     <div style="background-color: #5865f1; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;">
                         <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Informazioni Puntata</p>
                     </div>
@@ -398,11 +431,40 @@
         
         
         
-        <div id="dutcher-riepilogo-container" class="dutcher-riepilogo-container display-none">
+        <div id="dutcher-riepilogo-container" class="dutcher-riepilogo-container display-none" style="overflow: hidden;">
             <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Riepilogo</p>
             </div>
-            ciao
+            <table id="results-table">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>Vince <strong>Book</strong></td>
+                        <td>Vince <strong>Exchange</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Book</td>
+                        <td id="row-a-1"></td>
+                        <td id="row-a-2"></td>
+                    </tr>
+                    <tr>
+                        <td>Exchange</td>
+                        <td id="row-b-1"></td>
+                        <td id="row-b-2"></td>
+                    </tr>
+                    <tr id="cr-row">
+                        <td>Rimborsi</td>
+                        <td id="row-cr-1"></td>
+                        <td id="row-cr-2"></td>
+
+                    </tr>
+                    <tr>
+                        <td><strong>TOTALE</strong></td>
+                        <td id="totale-1" style="font-weight: 600;"></td>
+                        <td id="totale-2" style="font-weight: 600;"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
         </div>
@@ -413,7 +475,7 @@
         <div class="container">
             <div class="footer__info"  style="display: flex;flex-direction: column;padding: 10px;color: #404040;justify-content: start;text-align: start;padding-bottom: 20px;font-weight: 300;font-size: 13px;">
                  <div class="small-footer">
-                    <p style="padding-bottom: 10px;">Copyright © 2023 Betoolz. Tutti i diritti riservati.</p>
+                    <p style="padding-bottom: 10px;">Copyright © 2024 Betoolz. Tutti i diritti riservati.</p>
                     <ul class="footer-list">
                         <li class="footer-item">info@betoolz.it</li>
                         <li class="footer-item">BUSINESSBET A.F. | P.IVA: 02632200222</li>
