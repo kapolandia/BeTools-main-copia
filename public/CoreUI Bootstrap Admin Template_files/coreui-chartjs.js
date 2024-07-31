@@ -1,6 +1,6 @@
 /*!
   * CoreUI Plugins - Chart.js for CoreUI v5 v3.1.2 (https://coreui.io)
-  * Copyright 2023 creativeLabs Łukasz Holeczek
+  * Copyright 2024 creativeLabs Łukasz Holeczek
   * Licensed under MIT (https://github.com/coreui/coreui-chartjs/blob/main/LICENSE)
   */
 (function (global, factory) {

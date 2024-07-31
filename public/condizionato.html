@@ -94,7 +94,7 @@
         }
 
         tr:first-of-type{
-            line-height: 4ch;
+            line-height: 3ch;
         }
 
         tr:last-of-type{
@@ -215,22 +215,22 @@
                 <div class="rolumnrtp" style="justify-content: space-evenly;">
                     <div style="display: flex;margin: 10px;">
                         <label for="custom-select" style="width: 140px;height: 40px;padding: 8px;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin: 0px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;font-size: 14px;border: 1px solid #d3d3d3;border-right: 0;">Cop. Puntata</label>
-                        <select onChange="getResults();"  id="tipologia" name="bonus-input"
+                        <select onChange="getResults();"  id="coperturaPuntata" name="bonus-input"
                         style="width: 160px;height: 40px;padding: 8px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;border: 1px solid #d3d3d3;" class="input-bonus">
                             <option value="" selected disabled style="text-align: center;">Seleziona un'opzione</option>
-                            <option value="NORMALE" style="text-align: center;">PUNTA</option>
-                            <option value="RIMBORSO" style="text-align: center;" selected>BANCA</option>
+                            <option value="PUNTA" style="text-align: center;">PUNTA</option>
+                            <option value="BANCA" style="text-align: center;" selected>BANCA</option>
 
                         </select>
                     </div>
                         
                     <div style="display: flex;margin: 10px;">
                         <label for="custom-select" style="width: 140px;height: 40px;padding: 8px;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin: 0px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;font-size: 14px;border: 1px solid #d3d3d3;border-right: 0;">Cop. Condizione</label>
-                        <select onChange="getResults();"  id="tipologia" name="bonus-input"
+                        <select onChange="getResults();"  id="coperturaCondizione" name="bonus-input"
                         style="width: 160px;height: 40px;padding: 8px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;border: 1px solid #d3d3d3;" class="input-bonus">
                             <option value="" selected disabled style="text-align: center;">Seleziona un'opzione</option>
-                            <option value="NORMALE" style="text-align: center;">PUNTA</option>
-                            <option value="RIMBORSO" style="text-align: center;" selected>BANCA</option>
+                            <option value="PUNTA" style="text-align: center;">PUNTA</option>
+                            <option value="BANCA" style="text-align: center;" selected>BANCA</option>
                         </select>
                     </div>
                     
@@ -277,7 +277,7 @@
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="commissione" class="my-form-input-label-left">Quota&nbsp;Punta</label>
                                     <div >
-                                        <input placeholder="Inserisci la puntata" type="number" id="commissione" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                        <input placeholder="Inserisci la puntata" type="number" id="quotaBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
                                     </div>
                                     <label for="custom-select" class="my-form-input-label-right">@</label>
                                 </div>
@@ -285,17 +285,17 @@
     
                             <div style="padding: 5px;">
                                 <div class="form-group" style="margin-top: 10px;">
-                                    <label for="quotaBancata" class="my-form-input-label-left" style="background-color: rgba(255, 126, 126, 0.366);">Quota&nbsp;Banca</label>
+                                    <label for="quotaBancata" class="my-form-input-label-left" style="background-color: rgba(255, 126, 126, 0.366);" id="quotaCoperturaPuntata">Quota&nbsp;Banca</label>
                                     <div >
-                                        <input placeholder="Inserisci la quota" type="number" id="quotaBancata" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                        <input placeholder="Inserisci la quota" type="number" id="coperturaBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
                                     </div>
-                                    <label for="custom-select" class="my-form-input-label-right"  style="background-color: rgba(255, 126, 126, 0.366);">@</label>
+                                    <label for="custom-select" class="my-form-input-label-right"  style="background-color: rgba(255, 126, 126, 0.366);" id="quotaCoperturaPuntata2">@</label>
                                 </div>
         
-                                <div class="form-group" id="puntata-avanzata">
+                                <div class="form-group" id="puntataCommissione">
                                     <label for="puntataBookA" class="my-form-input-label-left" style="background-color: rgba(255, 126, 126, 0.366);">Commissione</label>
                                     <div >
-                                        <input type="number" id="punta-eq" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()" value="4.5">
+                                        <input type="number" id="commissioneBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()" value="4.5">
                                     </div>
                                     <label for="custom-select" class="my-form-input-label-right" style="background-color: rgba(255, 126, 126, 0.366);">%</label>
                                 </div>
@@ -304,26 +304,26 @@
                     </div>
 
                     <!-- copertura condizione -->
-                    <div class="information-container" style="background-color: rgba(255, 126, 126, 0.366);">
-                        <div style="border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;background-color: rgb(255, 126, 126)">
+                    <div class="information-container" id="coperturaCondizioneBack" style="background-color: rgba(255, 126, 126, 0.366);">
+                        <div style="border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;background-color: rgb(255, 126, 126)" id="coperturaCondizioneTitle">
                             <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Copertura condizione</p>
                         </div>
                         <div class="my-row-2">
                             <div style="padding: 5px;">
                                 <div class="form-group" style="margin-top: 10px;">
-                                    <label for="commissione" class="my-form-input-label-left">Quota&nbsp;Banca</label>
+                                    <label for="commissione" class="my-form-input-label-left" id="condizione-label">Quota&nbsp;Banca</label>
                                     <div >
-                                        <input placeholder="Inserisci la quota" type="number" id="commissione" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                        <input placeholder="Inserisci la quota" type="number" id="coperturaCondizioneQuota" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
                                     </div>
                                     <label for="custom-select" class="my-form-input-label-right">@</label>
                                 </div>
                             </div>
     
-                            <div style="padding: 5px;">
+                            <div style="padding: 5px;" id="coperturaCommissione"> 
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="quotaBancata" class="my-form-input-label-left">Commissione</label>
                                     <div >
-                                        <input placeholder="Inserisci la commissione" type="number" id="quotaBancata" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()" value="4.5">
+                                        <input placeholder="Inserisci la commissione" type="number" id="commissioneBookB" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()" value="4.5">
                                     </div>
                                     <label for="custom-select" class="my-form-input-label-right">%</label>
                                 </div>
@@ -338,11 +338,11 @@
                 </div>
 
         <!-- Fine Tabella -->
-        <div id="dutcher-indicazioni-container" class="container dutcher-indicazioni">
+        <div id="dutcher-indicazioni-container" class="container dutcher-indicazioni display-none">
             <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;padding: 12px;">
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Indicazioni</p>
                 <!-- Decimali -->
-                <div class="my-indicazioni-decimal">
+                <div class="my-indicazioni-decimal display-none">
                     <label for="custom-select" style="width: 80px;height: 40px;padding: 8px;margin: 0;display: flex;align-items: center;color: #495057;background-color: #e9ecef;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;font-size: 14px;border: 1px solid #d3d3d3;border-right: 0;">Decimali</label>
                     <select onChange="getResults();" id="decimali" 
                     style="border: 1px solid #d3d3d3;width: 70px;height: 40px;padding: 8px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;" class="input-bonus">
@@ -355,24 +355,16 @@
                 <div class="w-75" style="margin-right: 10px;">
                     <div style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;">
                         <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
-                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Puntare</p>
+                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Copertura&nbsp;<strong>EVENTO</strong></p>
                         </div>
                         <div style="padding: 10px;">
                             <div  class="form-group" id="bookB">
-                                <label for="book-b" class="my-form-input-label-left">Book &nbsp;<strong>B</strong></label>
+                                <label for="book-b" class="my-form-input-label-left">Book &nbsp;<strong>A</strong></label>
                                 <input onChange="getResults();" type="number" id="book-b" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
                             </div>
                             <div  class="form-group" id="bookC">
                                 <label for="book-c" class="my-form-input-label-left">Book &nbsp;<strong>C</strong></label>
                                 <input onChange="getResults();" type="number" id="book-c" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
-                            </div>
-                            <div  class="form-group" id="bookD">
-                                <label for="book-d" class="my-form-input-label-left">Book &nbsp;<strong>D</strong></label>
-                                <input onChange="getResults();" type="number" id="book-d" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
-                            </div>
-                            <div  class="form-group" id="bookE">
-                                <label for="book-e" class="my-form-input-label-left">Book &nbsp;<strong>E</strong></label>
-                                <input onChange="getResults();" type="number" id="book-e" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
                             </div>
                         </div>
                     </div>
@@ -393,22 +385,44 @@
                                 <label for="quoteBookC" class="my-form-input-label-left-potenziamento">@</label>
                                 <input onChange="getResults();" type="number" id="quoteBookC" name="bonus-input" class="my-form-input-quote input-disabled" disabled>
                             </div>
-                            <div  class="form-group" id="quote-book-d">
-                                <label for="quoteBookD" class="my-form-input-label-left-potenziamento">@</label>
-                                <input onChange="getResults();" type="number" id="quoteBookD" name="bonus-input" class="my-form-input-quote input-disabled" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="my-row row-dutcher" style="width: 100%;margin-top: 0;padding-top: 0;padding-bottom: 0;">
+                <div class="w-75" style="margin-right: 10px;">
+                    <div style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;">
+                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Copertura&nbsp;<strong>CONDIZIONE</strong></p>
+                        </div>
+                        <div style="padding: 10px;">
+                            <div  class="form-group" id="bookB">
+                                <label for="book-b" class="my-form-input-label-left">Banca</label>
+                                <input onChange="getResults();" type="number" id="book-b" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
                             </div>
-                            <div  class="form-group" id="quote-book-e">
-                                <label for="quoteBookE" class="my-form-input-label-left-potenziamento">@</label>
-                                <input onChange="getResults();" type="number" id="quoteBookE" name="bonus-input" class="my-form-input-quote input-disabled" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quote potenziate -->
+                <div class="w-25" >
+                    <div style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;">
+                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">A quota</p>
+                        </div>
+                        <div style="padding: 10px;">
+                            <div  class="form-group" id="quote-book-b">
+                                <label for="quoteBookB" class="my-form-input-label-left-potenziamento">@</label>
+                                <input onChange="getResults();" type="number" id="quoteBookB" name="bonus-input" class="my-form-input-quote input-disabled" disabled>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="my-row" style="padding: 10px;padding-bottom: 20px;width: 100%;">
+            <div class="my-row" style="padding: 10px;padding-bottom: 20px;width: 100%;margin-top: 0;">
                 <div class="calc-boxes-3">
-                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="rating" >0</span>&nbsp;%</p>
-                    <p style="text-align: center;font-weight: 200;"><span id="rating-cr">Rating</span></p>
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="responsabilita">0</span>&nbsp;€</p>
+                    <p style="text-align: center;font-weight: 200;"><span id="rating-cr">Responsabilità</span></p>
                 </div>
                 <div class="calc-boxes-3" id="border-guadagno">
                     <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;" id="guadagno-color"><span id="guadagno-minimo" >0</span><span id="eur"> €</span></p>
@@ -427,59 +441,31 @@
                 <tbody>
                     <tr>
                         <td></td>
-                        <td>Vince <strong>A</strong></td>
-                        <td>Vince <strong>B</strong></td>
-                        <td>Vince <strong>C</strong></td>
-                        <td>Vince <strong>D</strong></td>
-                        <td>Vince <strong>E</strong></td>
+                        <td>Punta <strong style="color: rgb(97, 163, 113)">VINCE</strong> <br> Condizione <strong style="color: rgb(255, 126, 126)">NO</strong></td>
+                        <td>Punta <strong style="color: rgb(255, 126, 126)">PERDE</strong> <br> Condizione <strong style="color: rgb(97, 163, 113)">SÌ</strong></td>
+                        <td>Punta <strong style="color: rgb(255, 126, 126)">PERDE</strong> <br> Condizione <strong style="color: rgb(255, 126, 126)">NO</strong></td>
                     </tr>
                     <tr>
-                        <td>A</td>
+                        <td>Book</td>
                         <td id="row-a-1"></td>
                         <td id="row-a-2"></td>
                         <td id="row-a-3"></td>
                         <td id="row-a-4"></td>
-                        <td id="row-a-5"></td>
                     </tr>
                     <tr>
-                        <td>B</td>
+                        <td>Copertura</td>
                         <td id="row-b-1"></td>
                         <td id="row-b-2"></td>
                         <td id="row-b-3"></td>
                         <td id="row-b-4"></td>
-                        <td id="row-b-5"></td>
                     </tr>
                     <tr>
-                        <td>C</td>
+                        <td>Condizione</td>
                         <td id="row-c-1"></td>
                         <td id="row-c-2"></td>
                         <td id="row-c-3"></td>
                         <td id="row-c-4"></td>
                         <td id="row-c-5"></td>
-                    </tr>
-                    <tr id="row-d">
-                        <td>D</td>
-                        <td id="row-d-1"></td>
-                        <td id="row-d-2"></td>
-                        <td id="row-d-3"></td>
-                        <td id="row-d-4"></td>
-                        <td id="row-d-5"></td>
-                    </tr>
-                    <tr id="row-e">
-                        <td>E</td>
-                        <td id="row-e-1"></td>
-                        <td id="row-e-2"></td>
-                        <td id="row-e-3"></td>
-                        <td id="row-e-4"></td>
-                        <td id="row-e-5"></td>
-                    </tr>
-                    <tr id="cr-row">
-                        <td>Rimborsi</td>
-                        <td id="row-cr-1"></td>
-                        <td id="row-cr-2"></td>
-                        <td id="row-cr-3"></td>
-                        <td id="row-cr-4"></td>
-                        <td id="row-cr-5"></td>
                     </tr>
                     <tr>
                         <td><strong>TOTALE</strong></td>
@@ -521,7 +507,7 @@
 
 
       <!--=============== MAIN JS ===============-->
-      <script src="assets/js/dutchTool.js"></script>
+      <script src="assets/js/condizionato.js"></script>
       <script src="assets/js/main.js"></script>
 
    </body>
