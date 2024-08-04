@@ -98,7 +98,119 @@ function displayIndicazioni(){
     }
 }
 
+function valoreResp (valoreBancata, quotaBancata) {
+    return valoreBancata*(quotaBancata-1);
+}
+
+function formatToTwoDecimals(num) {
+    let parts = num.toString().split(".");
+    if (parts.length === 1) {
+        // No decimal part, add ".00"
+        return num.toString() + ".00";
+    } else if (parts[1].length === 1) {
+        // Only one decimal place, add a trailing "0"
+        return num.toString() + "0";
+    } else {
+        // Two or more decimal places, truncate to two without rounding
+        return parts[0] + "." + parts[1].substring(0, 2);
+    }
+}
+
+function formatToTwoDecimalsTotal(num) {
+    let sign = num >= 0 ? "+" : "";
+    // Convert the number to a string and split it by the decimal point
+    let parts = num.toString().split(".");
+    
+    if (parts.length === 1) {
+        // No decimal part, add ".00"
+        return sign + num.toString() + ".00" + " €";
+    } else if (parts[1].length === 1) {
+        // Only one decimal place, add a trailing "0"
+        return sign + num.toString() + "0"  + " €";
+    } else {
+        // Two or more decimal places, truncate to two without rounding
+        return sign + parts[0] + "." + parts[1].substring(0, 2)  + " €";
+    }
+}
+
 function calcCondizionato(){
+	var myApprox = function(number, precision) {
+        var factor = Math.pow(10, precision);
+        var tempNumber = number * factor;
+        var roundedTempNumber = Math.round(tempNumber);
+        return roundedTempNumber / factor;
+        };
+
+    let puntataBookA = parseFloat(document.getElementById("puntataBookA").value);
+    let rimborso = parseFloat(document.getElementById("importo-rimborso").value);
+    let commissioneBookA = parseFloat(document.getElementById("commissioneBookA").value);
+    let commissioneBookB = parseFloat(document.getElementById("commissioneBookB").value);
+    commissioneBookA = commissioneBookA / 100;
+    commissioneBookB = commissioneBookB / 100;
+    let quotaPuntaBookA = parseFloat(document.getElementById("quotaBookA").value);
+    let quotaCoperturaBookA = parseFloat(document.getElementById("coperturaBookA").value);
+    let quotaCoperturaCondizione = parseFloat(document.getElementById("coperturaCondizioneQuota").value);
+    
+    let frac = quotaCoperturaBookA - commissioneBookA;
+    let bancata = myApprox((puntataBookA*quotaPuntaBookA)/frac,2);
+
+    let guad_A_book = puntataBookA*quotaPuntaBookA - puntataBookA;
+    let guad_A_banc = bancata *(1-commissioneBookA);
+    let guad_B_book = puntataBookA - rimborso;
+    let guad_C_book = -puntataBookA;
+    
+    if(tipoPuntata == "BANCA"){
+        if(tipoCondizione = "BANCA"){
+            var Imp_Cop = rimborso/(quotaCoperturaCondizione - commissioneBookB);
+            var RSP_cop = myApprox(valoreResp(Imp_Cop,quotaCoperturaCondizione),2);
+            var guad_A_CND = Imp_Cop*(1-commissioneBookB);
+            var guad_B_CND = -RSP_cop;
+            var guad_C_CND = Imp_Cop*(1-commissioneBookB);
+            
+        } else if(tipoCondizione = "PUNTA"){
+            var Imp_Cop = Math.round(Rmb/Q_Cop);
+            var RSP_cop = myApprox(valoreResp(Imp_Cop,Q_Cop),2);
+            var Bancata = myApprox(((P*QP)+(Imp_Cop*Q_Cop)-Rmb)/frac,2);										
+            var guad_A_CND = Imp_Cop*(Q_Cop-1);
+            var guad_B_CND = -Imp_Cop;
+            var guad_C_CND = Imp_Cop*(Q_Cop-1);	    		
+        }
+
+        var RSP = myApprox(valoreResp(bancata,quotaCoperturaBookA),2);
+        guad_A_banc=-RSP;
+        var guad_B_banc=bancata*(1-commissioneBookA);
+        var guad_C_banc=bancata*(1-commissioneBookA); 
+
+        //log all the function variables here
+        console.log("puntataBookA:", puntataBookA);
+        console.log("rimborso:", rimborso);
+        console.log("commissioneBookA:", commissioneBookA);
+        console.log("commissioneBookB:", commissioneBookB);
+        console.log("quotaPuntaBookA:", quotaPuntaBookA);
+        console.log("quotaCoperturaBookA:", quotaCoperturaBookA);
+        console.log("quotaCoperturaCondizione:", quotaCoperturaCondizione);
+        console.log("frac:", frac);
+        console.log("bancata:", bancata);
+        console.log("guad_A_book:", guad_A_book);
+        console.log("guad_A_banc:", guad_A_banc);
+        console.log("guad_B_book:", guad_B_book);
+        console.log("guad_C_book:", guad_C_book);
+        console.log("Imp_Cop:", Imp_Cop);
+        console.log("RSP_cop:", RSP_cop);
+        console.log("guad_A_CND:", guad_A_CND);
+        console.log("guad_B_CND:", guad_B_CND);
+        console.log("guad_C_CND:", guad_C_CND);
+        console.log("RSP:", RSP);
+        console.log("guad_B_banc:", guad_B_banc);
+        console.log("guad_C_banc:", guad_C_banc);
+
+        var TOT1 = guad_A_book + guad_A_banc + guad_A_CND;
+        var TOT2 = guad_B_book + guad_B_banc + guad_B_CND;
+        var TOT3 = guad_C_book + guad_C_banc + guad_C_CND;
+
+        var guadagno_min = Math.min(TOT1, TOT2, TOT3);
+        console.log(guadagno_min);
+    }
 
 }
 
@@ -130,7 +242,6 @@ function calculate() {
 	var Q_Cop=parseFloat(Q_Copert_text);
 	var Frac = QB-C1;
 	var Bancata = myApprox((P*QP)/Frac,2);
-	var B_diff_decimal = (Bancata + 0.5) - Math.floor(Bancata + 0.5);
     // VARIABILI GUADAGNI
     var vincita = P*QP-P;
     var guad_A_book=vincita;
@@ -143,30 +254,11 @@ function calculate() {
 	    if (tipoBet == 'Normal') {
 				// Valori variabili in caso di bancata
 					var Imp_Cop = Rmb/(Q_Cop - C2);
-					var B_CND_diff_decimal =(Imp_Cop + 0.5) - Math.floor(Imp_Cop + 0.5);
 					var RSP_cop = myApprox(valoreResp(Imp_Cop,Q_Cop),2);
 					var guad_A_CND = Imp_Cop*(1-C2);
 					var guad_B_CND = -RSP_cop;
 					var guad_C_CND = Imp_Cop*(1-C2);
 
-				if (tipoExc_CND==2) {
-
-					if (B_CND_diff_decimal >= .25 && B_CND_diff_decimal <= .75) {
-
-    					Imp_Cop = Math.floor(Imp_Cop + 0.5);
-    					RSP_cop = myApprox(valoreResp(Imp_Cop,Q_Cop),2);
-    					var guad_A_CND = Imp_Cop*(1-C2);
-    					var guad_B_CND = -RSP_cop;
-						var guad_C_CND = Imp_Cop*(1-C2);
-
-    				} else {
-    					Imp_Cop = Math.floor(Imp_Cop)+0.5;
-    					RSP_cop = myApprox(valoreResp(Imp_Cop,Q_Cop),2);
-    					var guad_A_CND = Imp_Cop*(1-C2);
-    					var guad_B_CND = -RSP_cop;
-						var guad_C_CND = Imp_Cop*(1-C2);    					
-
-    			}}	
 
 
     		} else {
@@ -180,33 +272,10 @@ function calculate() {
 
     	}
 
-
-    	if (tipoExc_EV==2) {
-
-    		if (B_diff_decimal >= .25 && B_diff_decimal <= .75) {
-    			
-    			Bancata = Math.floor(Bancata+0.5);
-    			var RSP = myApprox(valoreResp(Bancata,QB),2);
-    			var guad_A_banc=-RSP;
-    			var guad_B_banc=Bancata*(1-C1);
-    			var guad_C_banc=Bancata*(1-C1);
-
-    		} else {
-
-    			Bancata = Math.floor(Bancata)+0.5;
-    			var RSP = myApprox(valoreResp(Bancata,QB),2);
-    			var guad_A_banc=-RSP;
-    			var guad_B_banc=Bancata*(1-C1);
-    			var guad_C_banc=Bancata*(1-C1);    			
-
-    		}
-        } else {
-    			var RSP = myApprox(valoreResp(Bancata,QB),2);
-    			var guad_A_banc=-RSP;
-    			var guad_B_banc=Bancata*(1-C1);
-    			var guad_C_banc=Bancata*(1-C1);    			
-	
-	}
+        var RSP = myApprox(valoreResp(Bancata,QB),2);
+        var guad_A_banc=-RSP;
+        var guad_B_banc=Bancata*(1-C1);
+        var guad_C_banc=Bancata*(1-C1); 
 
 
 	var TOT1 = guad_A_book + guad_A_banc + guad_A_CND;
