@@ -376,8 +376,8 @@
                         </div>
                         <div style="padding: 10px;">
                             <div  class="form-group" id="bookB">
-                                <label for="book-b" class="my-form-input-label-left">Book &nbsp;<strong>A</strong></label>
-                                <input onChange="getResults();" type="number" id="book-b" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
+                                <label for="book-b" class="my-form-input-label-left" id="id-copertura-1">Book &nbsp;<strong>A</strong></label>
+                                <input onChange="getResults();" type="number" id="copertura-evento" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled>
                             </div>
                         </div>
                     </div>
@@ -406,8 +406,8 @@
                         </div>
                         <div style="padding: 10px;">
                             <div  class="form-group" id="bookB">
-                                <label for="book-b" class="my-form-input-label-left">Banca</label>
-                                <input onChange="getResults();" type="number" id="book-b" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()">
+                                <label for="book-b" class="my-form-input-label-left" id="id-copertura-2">Banca</label>
+                                <input onChange="getResults();" type="number" id="book-c" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled>
                             </div>
                         </div>
                     </div>
@@ -422,19 +422,19 @@
                         <div style="padding: 10px;">
                             <div  class="form-group" id="quote-book-b">
                                 <label for="quoteBookB" class="my-form-input-label-left-potenziamento">@</label>
-                                <input onChange="getResults();" type="number" id="quoteBookB" name="bonus-input" class="my-form-input-quote input-disabled" disabled>
+                                <input onChange="getResults();" type="number" id="quoteBookC" name="bonus-input" class="my-form-input-quote input-disabled" disabled>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="my-row" style="padding: 10px;padding-bottom: 20px;width: 100%;margin-top: 0;">
-                <div class="calc-boxes-3">
+                <div class="calc-boxes-3" id="calc-responsabilita">
                     <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="responsabilita">0</span>&nbsp;€</p>
-                    <p style="text-align: center;font-weight: 200;"><span id="rating-cr">Responsabilità</span></p>
+                    <p style="text-align: center;font-weight: 200;"><span id="rating-cr">Responsabilità totale</span></p>
                 </div>
                 <div class="calc-boxes-3" id="border-guadagno">
-                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;" id="guadagno-color"><span id="guadagno-minimo" >0</span><span id="eur"> €</span></p>
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;" id="guadagno-color"><span id="guadagno" >0</span><span id="eur"> €</span></p>
                     <p style="text-align: center;font-weight: 200;">Guadagno minimo</p>
                 </div>
             </div>

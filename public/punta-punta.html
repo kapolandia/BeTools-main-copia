@@ -15,7 +15,6 @@
       <!--=============== CSS ===============-->
       <link rel="stylesheet" href="assets/css/styles.css">
       <link rel="stylesheet" href="assets/css/seg.css">
-      <link rel="stylesheet" href="assets/css/rangeinput.css">
 
       <script type="module" src="./assets/js/auth.js"></script>
       <!-- Fontawesome -->
@@ -72,6 +71,15 @@
             color: #fff; /* Example style change */
         }
 
+        #sbila-1:checked + label[for="sbila-1"] {
+            background-color: #5865f1; /* Example style change */
+            color: #fff; /* Example style change */
+        }
+
+        #sbila-2:checked + label[for="sbila-2"] {
+            color: #fff; /* Example style change */
+        }
+
         .segmented-controls label:last-of-type::after{
             background-color: #5865f1;
         }
@@ -80,9 +88,23 @@
             transition: display 0.5s ease;
         }
 
+        .sbila-container{
+            display: flex;box-shadow: 0px 2px 10px #00000030;background-color: #fff;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;
+        }
+
+        .input-parziale{
+            box-shadow: 0px 2px 10px #00000030;
+            border-radius: 12px;
+            margin: 6px;
+        }
+
         .display-none{
             display: none;
             transition: display 1s ease;
+        }
+
+        .display-flex{
+            display: flex;
         }
 
         .form-group input{
@@ -121,7 +143,6 @@
             border-spacing: 0;
         }
            
-      
       </style>
    </head>
    <body>
@@ -324,7 +345,7 @@
                             <div class="form-group" style="margin-top: 10px;">
                                 <label for="commissione" class="my-form-input-label-left">Rollover</label>
                                 <div >
-                                    <input placeholder="Inserisci la commissione" type="number" value="1" id="commissione" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
+                                    <input placeholder="Inserisci il rollover" type="number" value="1" id="importo-rollover" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
                                 </div>
                                 <label for="custom-select" class="my-form-input-label-right">X</label>
                             </div>
@@ -340,19 +361,122 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding: 10px;"  id="sbilanciamento-bancata-container" class="display-none">
-                        <div style="display: flex;box-shadow: 0px 2px 10px #00000030;background-color: #fff;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;">
+                    <div style="padding: 10px;padding-top: 0;"  id="sbilanciamento-bancata-container" class="display-none">
+                        <div class="segmented-controls" style="width: 300px;margin-bottom: 10px;">
+                            <input id="sbila-1" name="sbila"  type="radio" checked onchange="getResults()">
+                            <label for="sbila-1" style="padding: 0;margin: 0;border-radius: 0.4275rem;"> <i class="fa-solid fa-scale-balanced" style="margin-right: 5px;"></i> Sbilanciamento</label>  
+                            <input id="sbila-2" name="sbila" type="radio" onchange="getResults()">
+                            <label for="sbila-2" style="padding: 0;margin: 0;border-radius: 0.4275rem;"><i class="fa-solid fa-battery-half" style="margin-right: 5px;"></i>Copertura parz.</label> 
+                        </div>
+                        <div id="sbila-container" class="sbila-container">
                             <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
-                                <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Sbilanciamento Puntata</p>
+                                <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Sbilanciamento Copertura</p>
                             </div>
                             <div style="margin-top: 20px;display: flex;width: 100%;justify-content: center;flex-direction: column;align-items: center;">
-                                <input type="range" id="sbilanciamento-input" style="width: 50%;opacity: 1;" min="60" max="140" onchange="getResults()">
+                                <input type="range" id="sbilanciamento-input" style="width: 50%;opacity: 1;accent-color: #404040;" min="60" max="140" onchange="getResults()">
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="sbilanciamento-value" class="my-form-input-label-left">Sbilanciamento</label>
                                     <div >
                                         <input placeholder="Inserisci la commissione" type="number" value="100" id="sbilanciamento-value" name="bonus-input" class="input-bonus my-form-input input-disabled" onkeydown="getResults()" disabled>
                                     </div>
                                     <label for="custom-select" class="my-form-input-label-right">%</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="parziale-container" class="sbila-container">
+                            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Copertura parziale</p>
+                            </div>
+                            <div style="margin-top: 5px;display: flex;width: 100%;justify-content: center;flex-direction: column;align-items: center;">
+                                <div style="display: flex;" id="sbila-row-1">
+                                    <div class="input-parziale">
+                                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Quota Punta B</p>
+                                        </div>
+                                        <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                            <input onChange="getResults();" type="text" id="quota-parz-a" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                            <label for="quota-parz-a" class="my-form-input-label-right">@</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-parziale">
+                                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Puntati</p>
+                                        </div>
+                                        <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                            <input onChange="getResults();" type="text" id="puntata-parz-a" name="bonus-input" class="my-form-input-quote" onkeydown="getResults()" style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                            <label for="quota-parz-a" class="my-form-input-label-right">€</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-parziale">
+                                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Su</p>
+                                        </div>
+                                        <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                            <input onChange="getResults();" type="text" id="su-a" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                            <label for="quota-parz-a" class="my-form-input-label-right">€</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div style="display: flex;" id="sbila-row-2">
+                                    <div class="input-parziale">
+                                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Quota Punta B</p>
+                                        </div>
+                                        <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                            <input onChange="getResults();" type="text" id="quota-parz-b" name="bonus-input" class="my-form-input-quote" onkeydown="getResults()" style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;font-weight: bolder;">
+                                            <label for="quota-parz-a" class="my-form-input-label-right">@</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-parziale">
+                                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Puntati</p>
+                                        </div>
+                                        <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                            <input onChange="getResults();" type="text" id="puntata-parz-b" name="bonus-input" class="my-form-input-quote" onkeydown="getResults()" style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                            <label for="quota-parz-a" class="my-form-input-label-right">€</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-parziale">
+                                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Su</p>
+                                        </div>
+                                        <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                            <input onChange="getResults();" type="text" id="su-b" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                            <label for="quota-parz-a" class="my-form-input-label-right">€</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="display-none" id="sbila-row-3">
+                                    <div class="input-parziale">
+                                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Quota Punta B</p>
+                                        </div>
+                                        <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                            <input onChange="getResults();" type="text" id="quota-parz-c" name="bonus-input" class="my-form-input-quote" onkeydown="getResults()" style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;font-weight: bolder;">
+                                            <label for="quota-parz-a" class="my-form-input-label-right">@</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-parziale">
+                                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Puntati</p>
+                                        </div>
+                                        <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                            <input onChange="getResults();" type="text" id="puntata-parz-c" name="bonus-input" class="my-form-input-quote" onkeydown="getResults()" style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                            <label for="quota-parz-a" class="my-form-input-label-right">€</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-parziale">
+                                        <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                            <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Su</p>
+                                        </div>
+                                        <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                            <input onChange="getResults();" type="text" id="su-c" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                            <label for="quota-parz-a" class="my-form-input-label-right">€</label>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -364,7 +488,7 @@
                 </div>
 
         <!-- Fine Tabella -->
-        <div id="dutcher-indicazioni-container" class="container dutcher-indicazioni">
+        <div id="dutcher-indicazioni-container" class="container dutcher-indicazioni display-none">
             <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;padding: 12px;">
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Indicazioni</p>
                 <div class="my-indicazioni-decimal">
@@ -414,6 +538,53 @@
                     </div>
                 </div>
             </div>
+            <div id="parziale-container-2" class="sbila-container" style="width: 95%;">
+                <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                    <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Copertura parziale</p>
+                </div>
+                <div style="margin-top: 5px;display: flex;width: 100%;justify-content: center;flex-direction: column;align-items: center;">
+                    <div style="display: flex;width: 100%;" id="parz-row-1">
+                        <div class="input-parziale" style="width: 100%;">
+                            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Punta Book B</p>
+                            </div>
+                            <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                <input onChange="getResults();" type="text" id="punta-parz-row-1" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                <label for="quota-parz-a" class="my-form-input-label-right">€</label>
+                            </div>
+                        </div>
+                        <div class="input-parziale" style="width: 100%;">
+                            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Quota Punta B</p>
+                            </div>
+                            <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                <input onChange="getResults();" type="text" id="quota-parz-row-1" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                <label for="quota-parz-a" class="my-form-input-label-right">@</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width: 100%;" id="parz-row-2" class="display-flex">
+                        <div class="input-parziale" style="width: 100%;">
+                            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Punta Book B</p>
+                            </div>
+                            <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                <input onChange="getResults();" type="text" id="punta-parz-row-2" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                <label for="quota-parz-a" class="my-form-input-label-right">€</label>
+                            </div>
+                        </div>
+                        <div class="input-parziale" style="width: 100%;">
+                            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
+                                <p style="font-family: Poppins; color: white; font-size: 14px;padding: 6px;margin-bottom: 0;display: flex;justify-content: center;">Quota Punta B</p>
+                            </div>
+                            <div  class="form-group" id="bookB" style="padding: 5px;">     
+                                <input onChange="getResults();" type="text" id="quota-parz-row-2" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled style="border-top-left-radius: 8px;border-top-right-radius: 0;border-bottom-left-radius: 8px;border-bottom-right-radius: 0;">
+                                <label for="quota-parz-a" class="my-form-input-label-right">@</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="my-row" style="padding: 10px;padding-bottom: 20px;width: 100%;">
                 <div class="calc-boxes-3">
                     <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="rating" >0</span>&nbsp;%</p>
@@ -428,7 +599,7 @@
         
         
         
-        <div id="dutcher-riepilogo-container" class="dutcher-riepilogo-container" style="overflow: hidden;">
+        <div id="dutcher-riepilogo-container" class="dutcher-riepilogo-container display-none" style="overflow: hidden;">
             <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Riepilogo</p>
             </div>

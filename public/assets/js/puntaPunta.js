@@ -7,6 +7,7 @@ let maggiorazione = null;
 let selectRimborso = document.getElementById("tipologia").value;
 let sbilanciamentoValue = null;
 let isAvanzato;
+let isSbila = false;
 let isRimborso = false;
 
 function formatToTwoDecimals(num) {
@@ -73,6 +74,7 @@ function updateElement(id, value) {
 function getResults(){
     let isCR = checkRimborso();
     checkStrumentoAvanzato();
+	checkSbilanciamento();
     checkIndicazioni();
     importoRimborso = document.getElementById('importoRimborso').value;
 
@@ -101,6 +103,23 @@ function checkStrumentoAvanzato(){
     }
 }
 
+function checkSbilanciamento(){
+	let sbilanciamento = document.getElementById("sbila-1");
+    let parziale = document.getElementById("sbila-2");
+    let sbilanciamentoCont = document.getElementById("sbila-container");
+    let parzialeCont = document.getElementById("parziale-container");	
+
+    if(sbilanciamento.checked){
+		isSbila = true;
+		sbilanciamentoCont.classList.remove("display-none");
+        parzialeCont.classList.add("display-none");
+    } else if(parziale.checked){
+		isSbila = false;
+		sbilanciamentoCont.classList.add("display-none");
+        parzialeCont.classList.remove("display-none");
+    }
+}
+
 function checkRimborso() {
     selectRimborso = document.getElementById("tipologia").value;
     let formRimborso = document.getElementById("rimborso-importo");
@@ -126,7 +145,7 @@ function checkIndicazioni() {
     let quotaPuntataElement = document.getElementById("quotaPuntata");
     let maggiorazioneElement = document.getElementById("maggiorazionePuntata");
     let quotaBancataElement = document.getElementById("quotaBancata");
-    let commissioneElement = document.getElementById("commissione");
+    let commissioneElement = document.getElementById("importo-rollover");
     let indicazioniAlert = document.getElementById("indicazioni-alert");
     let indicazoniContainer = document.getElementById("dutcher-indicazioni-container");
     let riepilogoContainer = document.getElementById("dutcher-riepilogo-container");
@@ -137,7 +156,7 @@ function checkIndicazioni() {
         quotaBancataElement.value === "" || commissioneElement.value === "") {
         indicazioniAlert.classList.remove("display-none");
         indicazoniContainer.classList.add("display-none");
-        riepilogoContainer.classList.add("display-none");
+        riepilogoContainer.classList.add("display-none");		
         return;
     }
 
@@ -150,12 +169,14 @@ function checkIndicazioni() {
 
     indicazioniAlert.classList.add("display-none");
     indicazoniContainer.classList.remove("display-none");
-    riepilogoContainer.classList.remove("display-none");
+    riepilogoContainer.classList.remove("display-none");	
 }
 
 function normalPuntaPunta(){
     selectRimborso = document.getElementById("tipologia").value;
     if(!isAvanzato){
+        let indicazioniParziali = document.getElementById("parziale-container-2");
+        indicazioniParziali.classList.add("display-none");
         if(selectRimborso == "NORMALE" || (isRimborso && importoRimborso == 0)){
             console.log("Normale");
             let importoBookA = parseFloat(document.getElementById("importoPuntata").value);
@@ -187,7 +208,7 @@ function normalPuntaPunta(){
             if(guadagnoMinimo < 0){
                 document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
                 document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
-            } else if (guadagnoMinimo > 0) {
+            } else if (guadagnoMinimo >= 0) {
                 document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
                 document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
             }
@@ -212,9 +233,10 @@ function normalPuntaPunta(){
             let importoBookA = parseFloat(document.getElementById("importoPuntata").value);
             let quotaBookA = parseFloat(document.getElementById("quotaPuntata").value);
             let quotaBookB = parseFloat(document.getElementById("quotaBancata").value);
-            let isDecimal = document.getElementById("isDecimal").value
+            let isDecimal = document.getElementById("isDecimal").value;
+			let rollover = parseFloat( document.getElementById("importo-rollover").value);
 
-            let importoBookB = (importoBookA * quotaBookA) / quotaBookB;
+            let importoBookB = ((importoBookA * quotaBookA)- (5*importoBookA*(rollover-1) / 100)) / quotaBookB;
             if(isDecimal == "NO"){
                 importoBookB = Math.round(importoBookB);
             }
@@ -239,7 +261,7 @@ function normalPuntaPunta(){
             if(guadagnoMinimo < 0){
                 document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
                 document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
-            } else if (guadagnoMinimo > 0) {
+            } else if (guadagnoMinimo >= 0) {
                 document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
                 document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
             }
@@ -266,16 +288,121 @@ function normalPuntaPunta(){
             let importoBookA = parseFloat(document.getElementById("importoPuntata").value);
             let quotaBookA = parseFloat(document.getElementById("quotaPuntata").value);
             let quotaBookB = parseFloat(document.getElementById("quotaBancata").value);
-            let isDecimal = document.getElementById("isDecimal").value
+            let isDecimal = document.getElementById("isDecimal").value;
+			let quotaPuntataBackup = null;
+			let importoBookB = null;
 
-            let importoBookB = (importoBookA * quotaBookA) / quotaBookB;
+            let totalePerdeB = 0;
+            let totaleVinceB = 0;
+            let indicazioniParziali = document.getElementById("parziale-container-2");
+            indicazioniParziali.classList.add("display-none");
+
+			if(isSbila){
+				quotaPuntataBackup = quotaBookA;
+				sbilanciamentoValue = parseFloat(document.getElementById("sbilanciamento-input").value);
+				if(maggiorazione != 0){
+					quotaBookA =  quotaBookA + ((quotaBookA - 1) * maggiorazione / 100);;
+				}
+				importoBookB = ((importoBookA * quotaBookA) / quotaBookB)*(sbilanciamentoValue / 100);
+			} else if(!isSbila){
+				quotaPuntataBackup = quotaBookA;
+				sbilanciamentoValue = parseFloat(document.getElementById("sbilanciamento-input").value);
+				if(maggiorazione != 0){
+					quotaBookA =  quotaBookA + ((quotaBookA - 1) * maggiorazione / 100);;
+				}
+                importoBookB = (importoBookA * quotaBookA) / quotaBookB;
+                if(isDecimal == "NO"){
+                    importoBookB = Math.round(importoBookB);
+                }
+                document.getElementById("su-a").value = formatToTwoDecimals(importoBookB);
+
+                document.getElementById("quota-parz-a").value = formatToTwoDecimals(quotaBookB);
+                // si passa al calcolatore parziale vero se si inserisce un valore nell'input
+                let importoParzialeA = parseFloat(document.getElementById("puntata-parz-a").value);
+                if(!isNaN(importoParzialeA)){
+                    let nuovaQuotaB1 = parseFloat(document.getElementById("quota-parz-b").value);
+                    let importoBookB2 = (importoBookB - importoParzialeA)*(quotaBookB/nuovaQuotaB1);
+                    if(isDecimal == "NO"){
+                        importoBookB2 = Math.round(importoBookB2);
+                    }
+                    document.getElementById("su-b").value = formatToTwoDecimals(importoBookB2);
+                    let sbilaRow3 = document.getElementById("sbila-row-3");
+                    let importoParzialeB = parseFloat(document.getElementById("puntata-parz-b").value);
+                    
+                    if(!isNaN(importoParzialeB)){
+                        let importoParzialeB3 = parseFloat(document.getElementById("puntata-parz-c").value);
+                        console.log(importoParzialeB3);
+                        if(importoParzialeB < importoBookB2 * 0.99 && !isNaN(importoParzialeB3)){
+                            sbilaRow3.classList.remove("display-none");
+                            sbilaRow3.classList.add("display-flex");
+    
+                            let nuovaQuotaB2 = parseFloat(document.getElementById("quota-parz-c").value);
+                            let importoBookB3 = (importoBookB2 - importoParzialeB)*(nuovaQuotaB1/nuovaQuotaB2);
+                            if(isDecimal == "NO"){
+                                importoBookB3 = Math.round(importoBookB3);
+                            }
+                            document.getElementById("su-c").value = formatToTwoDecimals(importoBookB3);
+                            
+                            totaleVinceB = ((importoParzialeA * quotaBookB)-importoParzialeA) + ((importoParzialeB * nuovaQuotaB1)-importoParzialeB) + ((importoParzialeB3 * nuovaQuotaB2)-importoParzialeB3);
+                            totalePerdeB = -importoParzialeA - importoParzialeB - importoParzialeB3;
+    
+                            //display dati
+                            indicazioniParziali.classList.remove("display-none");
+                            document.getElementById("punta-parz-row-1").value = formatToTwoDecimals(importoParzialeB);
+                            document.getElementById("quota-parz-row-1").value = formatToTwoDecimals(nuovaQuotaB1);
+                            document.getElementById("punta-parz-row-2").value = formatToTwoDecimals(importoParzialeB3);
+                            document.getElementById("quota-parz-row-2").value = formatToTwoDecimals(nuovaQuotaB2);
+                            let rowParz = document.getElementById("parz-row-2");
+                            rowParz.classList.remove("display-none");
+                            rowParz.classList.add("display-flex");
+                            console.log(totaleVinceB);
+                        } else{
+                            console.log("here");
+                            sbilaRow3.classList.remove("display-none");
+                            sbilaRow3.classList.add("display-flex");
+                            let nuovaQuotaB2 = parseFloat(document.getElementById("quota-parz-c").value);
+                            let importoBookB3 = (importoBookB2 - importoParzialeB)*(nuovaQuotaB1/nuovaQuotaB2);
+                            if(isDecimal == "NO"){
+                                importoBookB3 = Math.round(importoBookB3);
+                            }
+                            document.getElementById("su-c").value = formatToTwoDecimals(importoBookB3);
+                            
+                            totaleVinceB = ((importoParzialeA * quotaBookB)-importoParzialeA) + ((importoParzialeB * nuovaQuotaB1)-importoParzialeB);
+                            totalePerdeB = -importoParzialeA - importoParzialeB;
+    
+                            //display dati
+                            indicazioniParziali.classList.remove("display-none");
+                            document.getElementById("punta-parz-row-1").value = formatToTwoDecimals(importoParzialeB);
+                            document.getElementById("quota-parz-row-1").value = formatToTwoDecimals(nuovaQuotaB1);
+                            let rowParz = document.getElementById("parz-row-2");
+                            rowParz.classList.add("display-none");
+                            rowParz.classList.remove("display-flex");
+                        }
+                    } else{
+                        sbilaRow3.classList.add("display-none");
+                        sbilaRow3.classList.remove("display-flex");
+                        totaleVinceB = ((importoParzialeA * quotaBookB)-importoParzialeA);
+                        totalePerdeB = -importoParzialeA;
+                    }
+                }
+                
+			}
+
+            
             if(isDecimal == "NO"){
                 importoBookB = Math.round(importoBookB);
             }
+
             let vinceBookA = (importoBookA * quotaBookA) - importoBookA;
             let vinceBookB = (importoBookB * quotaBookB) - importoBookB;
+            if(totaleVinceB != 0){
+                vinceBookB = totaleVinceB;
+            }
             let perdeBookA = -importoBookA;
             let perdeBookB = -importoBookB;
+            if(totalePerdeB != 0){
+                perdeBookB = totalePerdeB;
+            }
             let totaleBookA = vinceBookA + perdeBookB;
             let totaleBookB = vinceBookB + perdeBookA;
 
@@ -283,8 +410,18 @@ function normalPuntaPunta(){
             let rating = ((importoBookA + (importoBookA * quotaBookA - importoBookA - (quotaBookA * importoBookA) / quotaBookB)) / importoBookA) * 100;
 
             document.getElementById("importo-a").value = importoBookA;
-            document.getElementById("quota-a").value = quotaBookA;
-            document.getElementById("importo-b").value = formatToTwoDecimals(importoBookB);
+			if(quotaPuntataBackup != quotaBookA && quotaPuntataBackup != null){
+				document.getElementById("quota-a").value = formatToTwoDecimals(quotaPuntataBackup) + String.fromCharCode(8594) + formatToTwoDecimals(quotaBookA);
+			} else {
+				document.getElementById("quota-a").value = quotaBookA;
+			}
+            let importoParzialeA = parseFloat(document.getElementById("puntata-parz-a").value);
+            if(isNaN(importoParzialeA)){
+                document.getElementById("importo-b").value = formatToTwoDecimals(importoBookB);
+            } else{
+                document.getElementById("importo-b").value = formatToTwoDecimals(importoParzialeA);
+            }
+            
             document.getElementById("quota-b").value = quotaBookB;
             document.getElementById("rating").innerHTML = formatToTwoDecimals(rating);
             document.getElementById("cr-rating").innerHTML = "Rating";
@@ -292,7 +429,7 @@ function normalPuntaPunta(){
             if(guadagnoMinimo < 0){
                 document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
                 document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
-            } else if (guadagnoMinimo > 0) {
+            } else if (guadagnoMinimo >= 0) {
                 document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
                 document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
             }
@@ -314,7 +451,171 @@ function normalPuntaPunta(){
             updateElement("totale-1", totaleBookA);
             updateElement("totale-2", totaleBookB);
         } else if(selectRimborso == "BONUS"){
+			let importoBookA = parseFloat(document.getElementById("importoPuntata").value);
+            let quotaBookA = parseFloat(document.getElementById("quotaPuntata").value);
+            let quotaBookB = parseFloat(document.getElementById("quotaBancata").value);
+            let isDecimal = document.getElementById("isDecimal").value;
+			let rollover = parseFloat( document.getElementById("importo-rollover").value);
+			let quotaPuntataBackup = null;
+			let importoBookB = null;
 
+            let totalePerdeB = 0;
+            let totaleVinceB = 0;
+            let indicazioniParziali = document.getElementById("parziale-container-2");
+            indicazioniParziali.classList.add("display-none");
+
+			if(isSbila){
+				quotaPuntataBackup = quotaBookA;
+				sbilanciamentoValue = parseFloat(document.getElementById("sbilanciamento-input").value);
+				if(maggiorazione != 0){
+					quotaBookA =  quotaBookA + ((quotaBookA - 1) * maggiorazione / 100);;
+				}
+				importoBookB = ((importoBookA * quotaBookA)- (5*importoBookA*(rollover-1) / 100)) / quotaBookB*(sbilanciamentoValue / 100);
+			} else if(!isSbila){
+				quotaPuntataBackup = quotaBookA;
+				sbilanciamentoValue = parseFloat(document.getElementById("sbilanciamento-input").value);
+				if(maggiorazione != 0){
+					quotaBookA =  quotaBookA + ((quotaBookA - 1) * maggiorazione / 100);;
+				}
+                importoBookB = ((importoBookA * quotaBookA)- (5*importoBookA*(rollover-1) / 100)) / quotaBookB;
+                if(isDecimal == "NO"){
+                    importoBookB = Math.round(importoBookB);
+                }
+                document.getElementById("su-a").value = formatToTwoDecimals(importoBookB);
+
+                document.getElementById("quota-parz-a").value = formatToTwoDecimals(quotaBookB);
+                // si passa al calcolatore parziale vero se si inserisce un valore nell'input
+                let importoParzialeA = parseFloat(document.getElementById("puntata-parz-a").value);
+                if(!isNaN(importoParzialeA)){
+                    let nuovaQuotaB1 = parseFloat(document.getElementById("quota-parz-b").value);
+                    let importoBookB2 = (importoBookB - importoParzialeA)*(quotaBookB/nuovaQuotaB1);
+                    if(isDecimal == "NO"){
+                        importoBookB2 = Math.round(importoBookB2);
+                    }
+                    document.getElementById("su-b").value = formatToTwoDecimals(importoBookB2);
+                    let sbilaRow3 = document.getElementById("sbila-row-3");
+                    let importoParzialeB = parseFloat(document.getElementById("puntata-parz-b").value);
+                    
+                    if(!isNaN(importoParzialeB)){
+                        let importoParzialeB3 = parseFloat(document.getElementById("puntata-parz-c").value);
+                        console.log(importoParzialeB3);
+                        if(importoParzialeB < importoBookB2 * 0.99 && !isNaN(importoParzialeB3)){
+                            sbilaRow3.classList.remove("display-none");
+                            sbilaRow3.classList.add("display-flex");
+    
+                            let nuovaQuotaB2 = parseFloat(document.getElementById("quota-parz-c").value);
+                            let importoBookB3 = (importoBookB2 - importoParzialeB)*(nuovaQuotaB1/nuovaQuotaB2);
+                            if(isDecimal == "NO"){
+                                importoBookB3 = Math.round(importoBookB3);
+                            }
+                            document.getElementById("su-c").value = formatToTwoDecimals(importoBookB3);
+                            
+                            totaleVinceB = ((importoParzialeA * quotaBookB)-importoParzialeA) + ((importoParzialeB * nuovaQuotaB1)-importoParzialeB) + ((importoParzialeB3 * nuovaQuotaB2)-importoParzialeB3);
+                            totalePerdeB = -importoParzialeA - importoParzialeB - importoParzialeB3;
+    
+                            //display dati
+                            indicazioniParziali.classList.remove("display-none");
+                            document.getElementById("punta-parz-row-1").value = formatToTwoDecimals(importoParzialeB);
+                            document.getElementById("quota-parz-row-1").value = formatToTwoDecimals(nuovaQuotaB1);
+                            document.getElementById("punta-parz-row-2").value = formatToTwoDecimals(importoParzialeB3);
+                            document.getElementById("quota-parz-row-2").value = formatToTwoDecimals(nuovaQuotaB2);
+                            let rowParz = document.getElementById("parz-row-2");
+                            rowParz.classList.remove("display-none");
+                            rowParz.classList.add("display-flex");
+                            console.log(totaleVinceB);
+                        } else{
+                            console.log("here");
+                            sbilaRow3.classList.remove("display-none");
+                            sbilaRow3.classList.add("display-flex");
+                            let nuovaQuotaB2 = parseFloat(document.getElementById("quota-parz-c").value);
+                            let importoBookB3 = (importoBookB2 - importoParzialeB)*(nuovaQuotaB1/nuovaQuotaB2);
+                            if(isDecimal == "NO"){
+                                importoBookB3 = Math.round(importoBookB3);
+                            }
+                            document.getElementById("su-c").value = formatToTwoDecimals(importoBookB3);
+                            
+                            totaleVinceB = ((importoParzialeA * quotaBookB)-importoParzialeA) + ((importoParzialeB * nuovaQuotaB1)-importoParzialeB);
+                            totalePerdeB = -importoParzialeA - importoParzialeB;
+    
+                            //display dati
+                            indicazioniParziali.classList.remove("display-none");
+                            document.getElementById("punta-parz-row-1").value = formatToTwoDecimals(importoParzialeB);
+                            document.getElementById("quota-parz-row-1").value = formatToTwoDecimals(nuovaQuotaB1);
+                            let rowParz = document.getElementById("parz-row-2");
+                            rowParz.classList.add("display-none");
+                            rowParz.classList.remove("display-flex");
+                        }
+                    } else{
+                        sbilaRow3.classList.add("display-none");
+                        sbilaRow3.classList.remove("display-flex");
+                        totaleVinceB = ((importoParzialeA * quotaBookB)-importoParzialeA);
+                        totalePerdeB = -importoParzialeA;
+                    }
+                }
+                
+			}
+			
+            if(isDecimal == "NO"){
+                importoBookB = Math.round(importoBookB);
+            }
+
+            document.getElementById("importo-bonus").innerHTML = "Importo Bonus";
+            let vinceBookA = (importoBookA * quotaBookA);
+            let vinceBookB = (importoBookB * quotaBookB) - importoBookB;
+            if(totaleVinceB != 0){
+                vinceBookB = totaleVinceB;
+            }
+            let perdeBookA = 0;
+            let perdeBookB = -importoBookB;
+            if(totalePerdeB != 0){
+                perdeBookB = totalePerdeB;
+            }
+            let totaleBookA = vinceBookA + perdeBookB;
+            let totaleBookB = vinceBookB + perdeBookA;
+
+            let guadagnoMinimo = Math.min(totaleBookA, totaleBookB);
+            let rating = ((importoBookA + (importoBookA * quotaBookA - importoBookA - (quotaBookA * importoBookA) / quotaBookB)) / importoBookA) * 100;
+
+            document.getElementById("importo-a").value = importoBookA;
+			if(quotaPuntataBackup != quotaBookA && quotaPuntataBackup != null){
+				document.getElementById("quota-a").value = formatToTwoDecimals(quotaPuntataBackup) + String.fromCharCode(8594) + formatToTwoDecimals(quotaBookA);
+			} else {
+				document.getElementById("quota-a").value = quotaBookA;
+			}
+            let importoParzialeA = parseFloat(document.getElementById("puntata-parz-a").value);
+            if(isNaN(importoParzialeA)){
+                document.getElementById("importo-b").value = formatToTwoDecimals(importoBookB);
+            } else{
+                document.getElementById("importo-b").value = formatToTwoDecimals(importoParzialeA);
+            }
+            document.getElementById("quota-b").value = quotaBookB;
+            document.getElementById("rating").innerHTML = formatToTwoDecimals(rating);
+            document.getElementById("cr-rating").innerHTML = "Rating";
+            document.getElementById("guadagno").innerHTML = formatToTwoDecimals(guadagnoMinimo);
+            if(guadagnoMinimo < 0){
+                document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
+                document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
+            } else if (guadagnoMinimo >= 0) {
+                document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
+                document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
+            }
+
+            //inserimento tabella
+            let crRow = document.getElementById("cr-row");
+            crRow.classList.add("display-none");
+
+             //inserimento risultati tabella
+            document.getElementById("row-a-1").innerHTML = "+"+formatToTwoDecimals(vinceBookA);
+            document.getElementById("row-a-2").innerHTML = formatToTwoDecimals(perdeBookA);
+
+            document.getElementById("row-b-1").innerHTML = formatToTwoDecimals(perdeBookB);
+            document.getElementById("row-b-2").innerHTML = "+"+formatToTwoDecimals(vinceBookB);
+            
+            //inserimento totale
+            document.getElementById("totale-1").innerHTML = formatToTwoDecimalsTotal(totaleBookA);
+            document.getElementById("totale-2").innerHTML = formatToTwoDecimalsTotal(totaleBookB);
+            updateElement("totale-1", totaleBookA);
+            updateElement("totale-2", totaleBookB);
         }
     }
 }
@@ -355,7 +656,7 @@ function crPuntaPunta(){
         if(guadagnoMinimo < 0){
             document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
             document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
-        } else if (guadagnoMinimo > 0) {
+        } else if (guadagnoMinimo >= 0) {
             document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
             document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
         }
@@ -380,7 +681,182 @@ function crPuntaPunta(){
         updateElement("totale-1", totaleBookA);
         updateElement("totale-2", totaleBookB);
     } else if(isAvanzato){
+		console.log("Rimborso");
+        importoRimborso = parseFloat(document.getElementById('importoRimborso').value);
 
+        let importoBookA = parseFloat(document.getElementById("importoPuntata").value);
+        let quotaBookA = parseFloat(document.getElementById("quotaPuntata").value);
+        let quotaBookB = parseFloat(document.getElementById("quotaBancata").value);
+        let isDecimal = document.getElementById("isDecimal").value
+		let quotaPuntataBackup = null;
+		let importoBookB = null;
+
+        let totalePerdeB = 0;
+        let totaleVinceB = 0;
+        let indicazioniParziali = document.getElementById("parziale-container-2");
+        indicazioniParziali.classList.add("display-none");
+
+		if(isSbila){
+			quotaPuntataBackup = quotaBookA;
+			sbilanciamentoValue = parseFloat(document.getElementById("sbilanciamento-input").value);
+			console.log(maggiorazione);
+			if(maggiorazione != 0){
+				quotaBookA =  quotaBookA + ((quotaBookA - 1) * maggiorazione / 100);;
+			}
+			importoBookB = (importoBookA * quotaBookA - importoRimborso) / quotaBookB*(sbilanciamentoValue / 100);
+		} else if(!isSbila){
+            quotaPuntataBackup = quotaBookA;
+            sbilanciamentoValue = parseFloat(document.getElementById("sbilanciamento-input").value);
+            if(maggiorazione != 0){
+                quotaBookA =  quotaBookA + ((quotaBookA - 1) * maggiorazione / 100);;
+            }
+            importoBookB = (importoBookA * quotaBookA - importoRimborso) / quotaBookB;
+            if(isDecimal == "NO"){
+                importoBookB = Math.round(importoBookB);
+            }
+            document.getElementById("su-a").value = formatToTwoDecimals(importoBookB);
+
+            document.getElementById("quota-parz-a").value = formatToTwoDecimals(quotaBookB);
+            // si passa al calcolatore parziale vero se si inserisce un valore nell'input
+            let importoParzialeA = parseFloat(document.getElementById("puntata-parz-a").value);
+            if(!isNaN(importoParzialeA)){
+                let nuovaQuotaB1 = parseFloat(document.getElementById("quota-parz-b").value);
+                let importoBookB2 = (importoBookB - importoParzialeA)*(quotaBookB/nuovaQuotaB1);
+                if(isDecimal == "NO"){
+                    importoBookB2 = Math.round(importoBookB2);
+                }
+                document.getElementById("su-b").value = formatToTwoDecimals(importoBookB2);
+                let sbilaRow3 = document.getElementById("sbila-row-3");
+                let importoParzialeB = parseFloat(document.getElementById("puntata-parz-b").value);
+                
+                if(!isNaN(importoParzialeB)){
+                    let importoParzialeB3 = parseFloat(document.getElementById("puntata-parz-c").value);
+                    console.log(importoParzialeB3);
+                    if(importoParzialeB < importoBookB2 * 0.99 && !isNaN(importoParzialeB3)){
+                        sbilaRow3.classList.remove("display-none");
+                        sbilaRow3.classList.add("display-flex");
+
+                        let nuovaQuotaB2 = parseFloat(document.getElementById("quota-parz-c").value);
+                        let importoBookB3 = (importoBookB2 - importoParzialeB)*(nuovaQuotaB1/nuovaQuotaB2);
+                        if(isDecimal == "NO"){
+                            importoBookB3 = Math.round(importoBookB3);
+                        }
+                        document.getElementById("su-c").value = formatToTwoDecimals(importoBookB3);
+                        
+                        totaleVinceB = ((importoParzialeA * quotaBookB)-importoParzialeA) + ((importoParzialeB * nuovaQuotaB1)-importoParzialeB) + ((importoParzialeB3 * nuovaQuotaB2)-importoParzialeB3);
+                        totalePerdeB = -importoParzialeA - importoParzialeB - importoParzialeB3;
+
+                        //display dati
+                        indicazioniParziali.classList.remove("display-none");
+                        document.getElementById("punta-parz-row-1").value = formatToTwoDecimals(importoParzialeB);
+                        document.getElementById("quota-parz-row-1").value = formatToTwoDecimals(nuovaQuotaB1);
+                        document.getElementById("punta-parz-row-2").value = formatToTwoDecimals(importoParzialeB3);
+                        document.getElementById("quota-parz-row-2").value = formatToTwoDecimals(nuovaQuotaB2);
+                        let rowParz = document.getElementById("parz-row-2");
+                        rowParz.classList.remove("display-none");
+                        rowParz.classList.add("display-flex");
+                        console.log(totaleVinceB);
+                    } else{
+                        console.log("here");
+                        sbilaRow3.classList.remove("display-none");
+                        sbilaRow3.classList.add("display-flex");
+                        let nuovaQuotaB2 = parseFloat(document.getElementById("quota-parz-c").value);
+                        let importoBookB3 = (importoBookB2 - importoParzialeB)*(nuovaQuotaB1/nuovaQuotaB2);
+                        if(isDecimal == "NO"){
+                            importoBookB3 = Math.round(importoBookB3);
+                        }
+                        document.getElementById("su-c").value = formatToTwoDecimals(importoBookB3);
+                        
+                        totaleVinceB = ((importoParzialeA * quotaBookB)-importoParzialeA) + ((importoParzialeB * nuovaQuotaB1)-importoParzialeB);
+                        totalePerdeB = -importoParzialeA - importoParzialeB;
+
+                        //display dati
+                        indicazioniParziali.classList.remove("display-none");
+                        document.getElementById("punta-parz-row-1").value = formatToTwoDecimals(importoParzialeB);
+                        document.getElementById("quota-parz-row-1").value = formatToTwoDecimals(nuovaQuotaB1);
+                        let rowParz = document.getElementById("parz-row-2");
+                        rowParz.classList.add("display-none");
+                        rowParz.classList.remove("display-flex");
+                    }
+                } else{
+                    sbilaRow3.classList.add("display-none");
+                    sbilaRow3.classList.remove("display-flex");
+                    totaleVinceB = ((importoParzialeA * quotaBookB)-importoParzialeA);
+                    totalePerdeB = -importoParzialeA;
+                }
+            }
+            
+        }
+		
+		if(isDecimal == "NO"){
+			importoBookB = Math.round(importoBookB);
+		}
+
+        if(isDecimal == "NO"){
+            importoBookB = Math.round(importoBookB);
+        }
+        let vinceBookA = (importoBookA * quotaBookA) - importoBookA;
+        let vinceBookB = (importoBookB * quotaBookB) - importoBookB + importoRimborso;
+        if(totaleVinceB != 0){
+            vinceBookB = totaleVinceB + importoRimborso;
+        }
+        let perdeBookA = -importoBookA;
+        let perdeBookB = -importoBookB;
+        if(totalePerdeB != 0){
+            perdeBookB = totalePerdeB;
+        }
+        let totaleBookA = vinceBookA + perdeBookB;
+        let totaleBookB = vinceBookB + perdeBookA;
+
+        
+
+        let guadagnoMinimo = Math.min(totaleBookA, totaleBookB);
+        let rating = (((importoBookA * quotaBookA - importoBookA - (importoBookA * quotaBookA - importoRimborso) / quotaBookB) * 100) / 100 / importoRimborso) * 100;
+
+        document.getElementById("importo-a").value = importoBookA;
+		if(quotaPuntataBackup != quotaBookA && quotaPuntataBackup != null){
+			document.getElementById("quota-a").value = formatToTwoDecimals(quotaPuntataBackup) + String.fromCharCode(8594) + formatToTwoDecimals(quotaBookA);
+		} else {
+			document.getElementById("quota-a").value = quotaBookA;
+		}
+        let importoParzialeA = parseFloat(document.getElementById("puntata-parz-a").value);
+        if(isNaN(importoParzialeA)){
+            document.getElementById("importo-b").value = formatToTwoDecimals(importoBookB);
+        } else{
+            document.getElementById("importo-b").value = formatToTwoDecimals(importoParzialeA);
+        }
+        document.getElementById("quota-b").value = quotaBookB;
+        document.getElementById("rating").innerHTML = formatToTwoDecimals(rating);
+        document.getElementById("cr-rating").innerHTML = "CR %";
+        document.getElementById("guadagno").innerHTML = formatToTwoDecimals(guadagnoMinimo);
+        if(guadagnoMinimo < 0){
+            document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
+            document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
+        } else if (guadagnoMinimo >= 0) {
+            document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
+            document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
+        }
+        
+
+        //inserimento tabella
+        let crRow = document.getElementById("cr-row");
+        crRow.classList.remove("display-none");
+
+         //inserimento risultati tabella
+        document.getElementById("row-a-1").innerHTML = "+"+formatToTwoDecimals(vinceBookA);
+        document.getElementById("row-a-2").innerHTML = formatToTwoDecimals(perdeBookA);
+
+        document.getElementById("row-b-1").innerHTML = formatToTwoDecimals(perdeBookB);
+        document.getElementById("row-b-2").innerHTML = "+"+formatToTwoDecimals(vinceBookB);
+
+        document.getElementById("row-cr-1").innerHTML = "+0.00";
+        document.getElementById("row-cr-2").innerHTML = "+"+formatToTwoDecimals(importoRimborso);
+        
+        //inserimento totale
+        document.getElementById("totale-1").innerHTML = formatToTwoDecimalsTotal(totaleBookA);
+        document.getElementById("totale-2").innerHTML = formatToTwoDecimalsTotal(totaleBookB);
+        updateElement("totale-1", totaleBookA);
+        updateElement("totale-2", totaleBookB);
     }
 }
 
@@ -404,7 +880,6 @@ document.querySelector('.segmented-controls').addEventListener('focusout', funct
     this.style.boxShadow = 'none';
 });
 
-
 // Range input
 const rangeInput = document.getElementById('sbilanciamento-input');
 const rangeValue = document.getElementById('sbilanciamento-value');
@@ -414,384 +889,5 @@ rangeInput.addEventListener('input', function() {
     getResults();
 });
 
-
-function calculate() {
-
-	var P1 = parseFloat(P1_text);
-	var Q1 = parseFloat(Q1_text);
-	var Q2 = parseFloat(Q2_text);
-
-	var quota_new_2_text = Quota_nuova_2.value;
-	var Q_n_2 = parseFloat(quota_new_2_text);
-	var Slider_value = parseFloat(document.getElementById('slider_value').textContent);
-
-	if (x == 'Normal') {
-		var P2 = ((Q1 * P1) / Q2) * Slider_value;
-		P2 = Math.round(P2 * 20) / 20;
-		var win_B1 = P1 * Q1 - P1;
-		var win_B2 = P2 * Q2 - P2;
-		var lose_B1 = -P1;
-		var lose_B2 = -P2;
-
-		var Q_n_1 = Q2;
-		var CP_1_val_text = CP_1.value;
-		CP_1_val_text = CP_1_val_text.replace(',', '.');
-		var CP_1_val = parseFloat(CP_1_val_text);
-		var CP_2_val_text = CP_2.value;
-		CP_2_val_text = CP_2_val_text.replace(',', '.');
-		var CP_2_val = parseFloat(CP_2_val_text);
-		var CP_3_val_text = CP_3.value;
-		CP_3_val_text = CP_3_val_text.replace(',', '.');
-		var CP_3_val = parseFloat(CP_3_val_text);
-		var Q_n_3_text = Quota_nuova_3.value;
-		Q_n_3_text = Q_n_3_text.replace(',', '.');
-		var Q_n_3 = parseFloat(Q_n_3_text);
-		var scoperto1 = Math.round((P1 * Q1) / Q_n_1);
-		var residuo2 = Math.round(P1 - (Q_n_1 * CP_1_val) / Q1);
-		//Resi_tot.value = residuo2;
-		var scoperto2 = Math.round((residuo2 * Q1) / Q_n_2);
-		var residuo3 = Math.round(residuo2 - (Q_n_2 * CP_2_val) / Q1);
-		//document.getElementById("residuo_tot_2").value = Math.floor(residuo3);
-		if (Q_n_2 > 0) {
-			if (
-				residuo3 == '1' ||
-				residuo3 == '-1' ||
-				residuo3 == '0' ||
-				residuo2 == '1' ||
-				residuo2 == '-1' ||
-				residuo2 == '0'
-			) {
-				document.getElementById('copertura_val').innerHTML = 'Completa';
-				document.getElementById('copertura_val').style.color = 'green';
-				document.getElementById('copertura_val').style.fontWeight = 'bold';
-			} else {
-				document.getElementById('copertura_val').innerHTML = 'Incompleta';
-				document.getElementById('copertura_val').style.color = 'red';
-				document.getElementById('copertura_val').style.fontWeight = 'bold';
-			}
-			var W1 = Q_n_1 * CP_1_val;
-			var W2 = Q_n_2 * CP_2_val;
-			var WA = P1 * Q1;
-			var WB = W1 + W2;
-			var GA = WA - P1 - CP_1_val - CP_2_val;
-			var GB = WB - P1 - CP_1_val - CP_2_val;
-			var Gtot = (document.getElementById('g3').innerHTML = Math.min(GA, GB).toFixed(2) + ' € ');
-			if (CP_2_val < scoperto2) {
-				document.getElementById('robetta_parziale_2').style.display = 'block';
-				var scoperto3 = Math.round((residuo3 * Q1) / Q_n_3);
-				var residuo4 = Math.round(residuo3 - (Q_n_3 * CP_3_val) / Q1);
-				document.getElementById('residuo_3').value = scoperto3;
-				document.getElementById('pp5').innerHTML = CP_3_val.toFixed(2) + ' € ';
-				document.getElementById('qq5').innerHTML = Q_n_3.toFixed(2);
-				var W1 = Q_n_1 * CP_1_val;
-				var W2 = Q_n_2 * CP_2_val;
-				var W3 = Q_n_3 * CP_3_val;
-				var WA = P1 * Q1;
-				var WB = W1 + W2 + W3;
-				var GA = WA - P1 - CP_1_val - CP_2_val - CP_3_val;
-				var GB = WB - P1 - CP_1_val - CP_2_val - CP_3_val;
-				//document.getElementById("g3").innerHTML = GA.toFixed(2) + " € ";
-				//document.getElementById("g5").innerHTML = GB.toFixed(2) + " € ";
-				var Gtot = (document.getElementById('g3').innerHTML = Math.min(GA, GB).toFixed(2) + ' € ');
-				var iframeWin = parent.document.getElementById('iframePP');
-				if (iframeWin != undefined) iframeWin.height = document.body.scrollHeight;
-				if (CP_3_val == scoperto3) {
-					document.getElementById('copertura_val').innerHTML = 'Completa';
-					document.getElementById('copertura_val').style.color = 'green';
-					document.getElementById('copertura_val').style.fontWeight = 'bold';
-				} else {
-					document.getElementById('copertura_val').innerHTML = 'Incompleta';
-					document.getElementById('copertura_val').style.color = 'red';
-					document.getElementById('copertura_val').style.fontWeight = 'bold';
-				}
-			} else {
-				document.getElementById('robetta_parziale_2').style.display = 'none';
-			}
-			document.getElementById('g3').style.fontWeight = 'bold';
-			if (Gtot > '0') {
-				document.getElementById('g3').style.color = 'green';
-			}
-			if (Gtot < '0,1') {
-				document.getElementById('g3').style.color = 'red';
-			}
-		}
-		G1 = Math.round((win_B1 + lose_B2) * 100) / 100;
-		G2 = Math.round((lose_B1 + win_B2) * 100) / 100;
-		Gtot = Math.min(G1, G2);
-		Net = P1 * Q1 - P1 - P2;
-		rating = ((P1 + (P1 * Q1 - P1 - (Q1 * P1) / Q2)) / P1) * 100;
-
-	} else if (x == 'RF') {
-		var F = R.value; //rimborso
-		F = parseFloat(F);
-		var P2_RF = ((P1 * Q1 - F) / Q2) * Slider_value;
-		P2_RF = Math.round(P2_RF * 20) / 20;
-		var win_B1 = P1 * Q1 - P1;
-		var win_B2 = P2_RF * Q2 - P2_RF;
-		win_B1 = Math.round(win_B1 * 100) / 100;
-		win_B2 = Math.round(win_B2 * 100) / 100;
-		var lose_B1 = -P1;
-		var lose_B2 = -P2_RF;
-
-
-		G1 = document.getElementById('tot1').innerHTML = Math.round((win_B1 + lose_B2) * 100) / 100;
-		rf_percent = (Math.round((P1 * Q1 - P1 - (P1 * Q1 - F) / Q2) * 100) / 100 / F) * 100;
-		//rf_percent = Math.round(rf_percent*100)/100;
-		document.getElementById('rf_percentuale').innerHTML = rf_percent.toFixed(2);
-		var Q_n_1 = Q2;
-		document.getElementById('Quota_nuova_1').value = Q_n_1;
-		var CP_1_val_text = CP_1.value;
-		CP_1_val_text = CP_1_val_text.replace(',', '.');
-		var CP_1_val = parseFloat(CP_1_val_text);
-		var CP_2_val_text = CP_2.value;
-		CP_2_val_text = CP_2_val_text.replace(',', '.');
-		var CP_2_val = parseFloat(CP_2_val_text);
-		var CP_3_val_text = CP_3.value;
-		CP_3_val_text = CP_3_val_text.replace(',', '.');
-		var CP_3_val = parseFloat(CP_3_val_text);
-		var Q_n_3_text = Quota_nuova_3.value;
-		Q_n_3_text = Q_n_3_text.replace(',', '.');
-		var Q_n_3 = parseFloat(Q_n_3_text);
-		var scoperto1 = Math.round(P2_RF); //residuo
-		var residuo2 = Math.round(P1 - (Q_n_1 * CP_1_val) / Q1); //scoperto
-		//100-(2.5*30)/2
-		//Resi_tot.value = residuo2;
-		var scoperto2 = Math.round((residuo2 * Q1 - F) / Q_n_2);
-		document.getElementById('residuo_1').value = scoperto1;
-		document.getElementById('residuo_2').value = scoperto2; //10
-		var residuo3 = Math.round(residuo2 - (Q_n_2 * CP_2_val) / Q1);
-		//document.getElementById("residuo_tot_2").value = Math.floor(residuo3);
-		if (Q_n_2 > 0) {
-			document.getElementById('ref').style.display = 'none';
-			document.getElementById('pp1').innerHTML = P1.toFixed(2) + ' € ';
-			document.getElementById('pp3').innerHTML = CP_1_val.toFixed(2) + ' € ';
-			document.getElementById('pp4').innerHTML = CP_2_val.toFixed(2) + ' € ';
-			document.getElementById('qq1').innerHTML = Q1.toFixed(2);
-			document.getElementById('qq3').innerHTML = Q_n_1.toFixed(2);
-			document.getElementById('qq4').innerHTML = Q_n_2.toFixed(2);
-			if (CP_1_val == scoperto1 || CP_2_val == scoperto2) {
-				document.getElementById('copertura_val').innerHTML = 'Completa';
-				document.getElementById('copertura_val').style.color = 'green';
-				document.getElementById('copertura_val').style.fontWeight = 'bold';
-			} else {
-				document.getElementById('copertura_val').innerHTML = 'Incompleta';
-				document.getElementById('copertura_val').style.color = 'red';
-				document.getElementById('copertura_val').style.fontWeight = 'bold';
-			}
-			var W1 = Q_n_1 * CP_1_val;
-			var W2 = Q_n_2 * CP_2_val;
-			var WA = P1 * Q1;
-			var WB = W1 + W2;
-			var GA = WA - P1 - CP_1_val - CP_2_val;
-			var GB = F + WB - P1 - CP_1_val - CP_2_val;
-			var Gtot = (document.getElementById('g3').innerHTML = Math.min(GA, GB).toFixed(2) + ' € ');
-			if (CP_2_val < scoperto2) {
-				document.getElementById('robetta_parziale_2').style.display = 'block';
-				var scoperto3 = Math.round((residuo3 * Q1 - F) / Q_n_3);
-				var residuo4 = Math.round(residuo3 - (Q_n_3 * CP_3_val) / Q1);
-				document.getElementById('residuo_3').value = scoperto3;
-				document.getElementById('pp5').innerHTML = CP_3_val.toFixed(2) + ' € ';
-				document.getElementById('qq5').innerHTML = Q_n_3.toFixed(2);
-				var W1 = Q_n_1 * CP_1_val;
-				var W2 = Q_n_2 * CP_2_val;
-				var W3 = Q_n_3 * CP_3_val;
-				var WA = P1 * Q1;
-				var WB = W1 + W2 + W3;
-				var GA = WA - P1 - CP_1_val - CP_2_val - CP_3_val;
-				var GB = F + WB - P1 - CP_1_val - CP_2_val - CP_3_val;
-				var Gtot = (document.getElementById('g3').innerHTML = Math.min(GA, GB).toFixed(2) + ' € ');
-				if (CP_3_val == scoperto3) {
-					document.getElementById('copertura_val').innerHTML = 'Completa';
-					document.getElementById('copertura_val').style.color = 'green';
-					document.getElementById('copertura_val').style.fontWeight = 'bold';
-				} else {
-					document.getElementById('copertura_val').innerHTML = 'Incompleta';
-					document.getElementById('copertura_val').style.color = 'red';
-					document.getElementById('copertura_val').style.fontWeight = 'bold';
-				}
-			} else {
-				document.getElementById('robetta_parziale_2').style.display = 'none';
-			}
-			document.getElementById('g3').style.fontWeight = 'bold';
-			if (Gtot > '0') {
-				document.getElementById('g3').style.color = 'green';
-			}
-			if (Gtot < '0,1') {
-				document.getElementById('g3').style.color = 'red';
-			}
-		}
-		G2 = document.getElementById('tot2').innerHTML = Math.round((lose_B1 + win_B2 + F) * 100) / 100;
-		Gtot = Math.min(G1, G2);
-		document.getElementById('pp1').innerHTML = P1.toFixed(2) + ' € ';
-		document.getElementById('pp2').innerHTML = P2_RF.toFixed(2) + ' € ';
-		document.getElementById('qq1').innerHTML = Q1.toFixed(2);
-		document.getElementById('qq2').innerHTML = Q2.toFixed(2);
-		document.getElementById('guadagno1').innerHTML = Gtot.toFixed(2);
-
-	} else if (x == 'BR') {
-		var P2_BR = ((Q1 * P1) / Q2) * Slider_value;
-		P2_BR = Math.round(P2_BR * 20) / 20;
-		var win_B1 = P1 * Q1;
-		var win_B2 = P2_BR * Q2 - P2_BR;
-		win_B1 = Math.round(win_B1 * 100) / 100;
-		win_B2 = Math.round(win_B2 * 100) / 100;
-		var lose_B1 = 0;
-		var lose_B2 = -P2_BR;
-		if (P2_BR > 0) {
-			document.getElementById('robetta').style.display = 'block';
-			document.getElementById('tabella_profitti').style.display = 'block';
-			document.getElementById('ref').style.display = 'none';
-			document.getElementById('div_rating').style.display = 'block';
-			//document.getElementById("robetta_parziale").style.display = "block";
-			var iframeWin = parent.document.getElementById('iframePP');
-			if (iframeWin != undefined) iframeWin.height = document.body.scrollHeight;
-		}
-		document.getElementById('A_bookmaker').innerHTML = '+' + win_B1.toFixed(2);
-		document.getElementById('B_bookmaker2').innerHTML = '+' + win_B2.toFixed(2);
-		document.getElementById('A_lose_book2').innerHTML = lose_B2.toFixed(2);
-		document.getElementById('B_lose_book').innerHTML = '+' + lose_B1.toFixed(2);
-		var Q_n_1 = Q2;
-		document.getElementById('Quota_nuova_1').value = Q_n_1;
-		var CP_1_val_text = CP_1.value;
-		CP_1_val_text = CP_1_val_text.replace(',', '.');
-		var CP_1_val = parseFloat(CP_1_val_text);
-		var CP_2_val_text = CP_2.value;
-		CP_2_val_text = CP_2_val_text.replace(',', '.');
-		var CP_2_val = parseFloat(CP_2_val_text);
-		var CP_3_val_text = CP_3.value;
-		CP_3_val_text = CP_3_val_text.replace(',', '.');
-		var CP_3_val = parseFloat(CP_3_val_text);
-		var Q_n_3_text = Quota_nuova_3.value;
-		Q_n_3_text = Q_n_3_text.replace(',', '.');
-		var Q_n_3 = parseFloat(Q_n_3_text);
-		var scoperto1 = Math.round((P1 * Q1) / Q_n_1);
-		var residuo2 = Math.round(P1 - (Q_n_1 * CP_1_val) / Q1);
-		//Resi_tot.value = residuo2;
-		var scoperto2 = Math.round((residuo2 * Q1) / Q_n_2);
-		document.getElementById('residuo_1').value = scoperto1;
-		document.getElementById('residuo_2').value = scoperto2;
-		var residuo3 = Math.round(residuo2 - (Q_n_2 * CP_2_val) / Q1);
-		//document.getElementById("residuo_tot_2").value = Math.floor(residuo3);
-		if (Q_n_2 > 0) {
-			if (
-				residuo3 == '1' ||
-				residuo3 == '-1' ||
-				residuo3 == '0' ||
-				residuo2 == '1' ||
-				residuo2 == '-1' ||
-				residuo2 == '0'
-			) {
-				document.getElementById('copertura_val').innerHTML = 'Completa';
-				document.getElementById('copertura_val').style.color = 'green';
-				document.getElementById('copertura_val').style.fontWeight = 'bold';
-			} else {
-				document.getElementById('copertura_val').innerHTML = 'Incompleta';
-				document.getElementById('copertura_val').style.color = 'red';
-				document.getElementById('copertura_val').style.fontWeight = 'bold';
-			}
-			var W1 = Q_n_1 * CP_1_val;
-			var W2 = Q_n_2 * CP_2_val;
-			var WA = P1 * Q1;
-			var WB = W1 + W2;
-			var GA = WA - CP_1_val - CP_2_val;
-			var GB = WB - CP_1_val - CP_2_val;
-			//  document.getElementById("g3").innerHTML = GA.toFixed(2) + " € ";
-			//  document.getElementById("g5").innerHTML = GB.toFixed(2) + " € ";
-			var Gtot = (document.getElementById('g3').innerHTML = Math.min(GA, GB).toFixed(2) + ' € ');
-			if (CP_2_val < scoperto2) {
-				document.getElementById('robetta_parziale_2').style.display = 'block';
-				var scoperto3 = Math.round((residuo3 * Q1) / Q_n_3);
-				var residuo4 = Math.round(residuo3 - (Q_n_3 * CP_3_val) / Q1);
-				document.getElementById('residuo_3').value = scoperto3;
-				document.getElementById('pp5').innerHTML = CP_3_val.toFixed(2) + ' € ';
-				document.getElementById('qq5').innerHTML = Q_n_3.toFixed(2);
-				var W1 = Q_n_1 * CP_1_val;
-				var W2 = Q_n_2 * CP_2_val;
-				var W3 = Q_n_3 * CP_3_val;
-				var WA = P1 * Q1;
-				var WB = W1 + W2 + W3;
-				var GA = WA - CP_1_val - CP_2_val - CP_3_val;
-				var GB = WB - CP_1_val - CP_2_val - CP_3_val;
-				//  document.getElementById("g3").innerHTML = GA.toFixed(2) + " € ";
-				//  document.getElementById("g5").innerHTML = GB.toFixed(2) + " € ";
-				var Gtot = (document.getElementById('g3').innerHTML = Math.min(GA, GB).toFixed(2) + ' € ');
-				if (CP_3_val == scoperto3) {
-					document.getElementById('copertura_val').innerHTML = 'Completa';
-					document.getElementById('copertura_val').style.color = 'green';
-					document.getElementById('copertura_val').style.fontWeight = 'bold';
-				} else {
-					document.getElementById('copertura_val').innerHTML = 'Incompleta';
-					document.getElementById('copertura_val').style.color = 'red';
-					document.getElementById('copertura_val').style.fontWeight = 'bold';
-				}
-			} else {
-				document.getElementById('robetta_parziale_2').style.display = 'none';
-			}
-			document.getElementById('g3').style.fontWeight = 'bold';
-			if (Gtot > '0') {
-				document.getElementById('g3').style.color = 'green';
-			}
-			if (Gtot < '0,1') {
-				document.getElementById('g3').style.color = 'red';
-			}
-		}
-		G1 = Math.round((win_B1 + lose_B2) * 100) / 100;
-		G2 = Math.round((lose_B1 + win_B2) * 100) / 100;
-		Gtot = Math.min(G1, G2);
-		Net = P1 * Q1 - P1 - P2_BR;
-		rating = ((P1 + (P1 * Q1 - P1 - (Q1 * P1) / Q2)) / P1) * 100;
-		//rating = Math.round(((rating_1 + rating_2)/2)*100);
-		document.getElementById('Percentuale_totale').innerHTML = rating.toFixed(2);
-		document.getElementById('pp1').innerHTML = P1.toFixed(2) + ' € ';
-		document.getElementById('pp2').innerHTML = P2_BR.toFixed(2) + ' € ';
-		document.getElementById('qq1').innerHTML = Q1.toFixed(2);
-		document.getElementById('qq2').innerHTML = Q2.toFixed(2);
-		document.getElementById('guadagno1').innerHTML = Gtot.toFixed(2);
-		if (G1 < 0) {
-			document.getElementById('tot1').style.color = 'red';
-			document.getElementById('tot1').style.fontSize = 'bold';
-			document.getElementById('tot1').innerHTML = G1.toFixed(2) + ' € ';
-		} else {
-			document.getElementById('tot1').style.color = 'green';
-			document.getElementById('tot1').innerHTML = '+' + G1.toFixed(2) + ' € ';
-			document.getElementById('tot1').style.fontWeight = 'bold';
-		}
-		if (G2 < 0) {
-			document.getElementById('tot2').style.color = 'red';
-			document.getElementById('tot2').style.fontSize = 'bold';
-			document.getElementById('tot2').innerHTML = G2.toFixed(2) + ' € ';
-		} else {
-			document.getElementById('tot2').style.color = 'green';
-			document.getElementById('tot2').innerHTML = '+' + G2.toFixed(2) + ' € ';
-			document.getElementById('tot2').style.fontWeight = 'bold';
-		}
-		if (Gtot < 0) {
-			document.getElementById('guadagno1').style.color = 'red';
-		} else {
-			document.getElementById('guadagno1').style.color = 'green';
-		}
-		/*
-    if(win_B1 < 0){
-        document.getElementById("A_bookmaker").innerHTML ="-" + win_B1.toFixed(2);
-    }else{
-        document.getElementById("A_bookmaker").innerHTML = "+" + win_B1.toFixed(2);
-    }
-    if(win_B2 < 0){
-        document.getElementById("B_bookmaker2").innerHTML ="-" + win_B2.toFixed(2);
-    }else{
-        document.getElementById("B_bookmaker2").innerHTML = "+" + win_B2.toFixed(2);
-    }
-    if(lose_B2 < 0){
-        document.getElementById("A_lose_book2").innerHTML =lose_B2.toFixed(2);
-    }else{
-        document.getElementById("A_lose_book2").innerHTML = "+" + lose_B2.toFixed(2);
-    }
-        if(lose_B1 < 0){
-        document.getElementById("B_lose_book").innerHTML =lose_B1.toFixed(2);
-    }else{
-        document.getElementById("B_lose_book").innerHTML = "+" + lose_B1.toFixed(2);
-    } */
-	}
-}
 
 

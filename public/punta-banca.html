@@ -15,7 +15,6 @@
       <!--=============== CSS ===============-->
       <link rel="stylesheet" href="assets/css/styles.css">
       <link rel="stylesheet" href="assets/css/seg.css">
-      <link rel="stylesheet" href="assets/css/rangeinput.css">
 
       <script type="module" src="./assets/js/auth.js"></script>
       <!-- Fontawesome -->
@@ -287,11 +286,19 @@
                             </div>
     
                             <div class="form-group display-none" id="rimborso-importo">
-                                <label for="importoRimborso" class="my-form-input-label-left">Importo Rimborso </label>
+                                <label for="importoRimborso" class="my-form-input-label-left">Rimborso </label>
                                 <div >
                                     <input placeholder="Inserisci il rimborso" type="number" id="importoRimborso" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
                                 </div>
                                 <label for="custom-select" class="my-form-input-label-right">€</label>
+                            </div>
+
+                            <div class="form-group display-none" id="rollover-form">
+                                <label for="importoRollover" class="my-form-input-label-left">Rollover </label>
+                                <div >
+                                    <input placeholder="Inserisci il rimborso" type="number" id="importoRollover" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()" value="1">
+                                </div>
+                                <label for="custom-select" class="my-form-input-label-right">X</label>
                             </div>
                         </div>
 

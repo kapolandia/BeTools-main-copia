@@ -106,7 +106,14 @@ function checkStrumentoAvanzato(){
 
 function checkRimborso() {
     selectRimborso = document.getElementById("tipologia").value;
+    let formRollover = document.getElementById("rollover-form");
     let formRimborso = document.getElementById("rimborso-importo");
+
+    if(selectRimborso == "BONUS"){
+        formRollover.classList.remove("display-none");
+    } else{
+        formRollover.classList.add("display-none");
+    }
 
     if (selectRimborso == "RIMBORSO"){
         formRimborso.classList.remove("display-none");
@@ -155,16 +162,25 @@ function normalPuntaBanca(){
     sbilanciamentoValue = document.getElementById('sbilanciamento-value').value;
     let labelPuntata = document.getElementById("importo-bonus");
     let quotaBancata2 = null;
-    let quotaPuntataBackup = null
+    let quotaPuntataBackup = null;
+    let rollover = parseFloat(document.getElementById("importoRollover").value);
     if(isAvanzato){
         quotaPuntataBackup = quotaPuntata;
         if(maggiorazione != 0){
             console.log(quotaPuntata);
             quotaPuntata =  parseInt(quotaPuntata) + ((quotaPuntata - 1) * maggiorazione / 100);;
         }
-        quotaBancata2 = (((quotaPuntata * importoPuntata) / (quotaBancata - commissione / 100)) *(sbilanciamentoValue / 100));
+        if(selectRimborso == "BONUS"){
+            quotaBancata2 = ((((quotaPuntata * importoPuntata) - (5*importoPuntata*(rollover-1) / 100))  / (quotaBancata - commissione / 100)) *(sbilanciamentoValue / 100));
+        }else{
+            quotaBancata2 = (((quotaPuntata * importoPuntata) / (quotaBancata - commissione / 100)) *(sbilanciamentoValue / 100));
+        }
     } else{
-        quotaBancata2 = (((quotaPuntata * importoPuntata) / (quotaBancata - commissione / 100)));
+        if(selectRimborso =="BONUS"){
+            quotaBancata2 = ((((quotaPuntata * importoPuntata)- (5*importoPuntata*(rollover-1) / 100)) / (quotaBancata - commissione / 100)));
+        } else{
+            quotaBancata2 = (((quotaPuntata * importoPuntata) / (quotaBancata - commissione / 100)));
+        }
     }
     let quotaPuntaEq = ((quotaBancata - commissione / 100) / (quotaBancata - 1));
     let rating = ((importoPuntata*quotaPuntata - importoPuntata - (((quotaPuntata*importoPuntata)/(quotaBancata - commissione / 100)) * quotaBancata - (quotaPuntata*importoPuntata) / (quotaBancata - commissione / 100)) + importoPuntata) / importoPuntata) *100;
@@ -202,7 +218,7 @@ function normalPuntaBanca(){
     if(guadagnoMinimo < 0){
         document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
         document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
-    } else if (guadagnoMinimo > 0) {
+    } else if (guadagnoMinimo >= 0) {
         document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
         document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
     }
@@ -272,7 +288,7 @@ function crPuntaBanca(){
     if(guadagnoMinimo < 0){
         document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
         document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
-    } else if (guadagnoMinimo > 0) {
+    } else if (guadagnoMinimo >= 0) {
         document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
         document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
     }

@@ -17,11 +17,13 @@ function checkCoperture(){
 
 
     if(coperturaPuntata == "PUNTA"){
+        document.getElementById("id-copertura-1").innerHTML = `Book &nbsp;<strong>A</strong>`;
         puntataCommissione.classList.add("display-none");
         labelPuntata1.innerHTML = "Copertura";
         labelPuntata1.style.backgroundColor = "#5865f16e";
         labelPuntata2.style.backgroundColor = "#5865f16e";
     }else if (coperturaPuntata == "BANCA"){
+        document.getElementById("id-copertura-1").innerHTML = `Banca`;
         puntataCommissione.classList.remove("display-none");
         labelPuntata1.innerHTML = `Quota&nbsp;Banca`;
         labelPuntata1.style.backgroundColor = "rgba(255, 126, 126, 0.366)";
@@ -30,11 +32,13 @@ function checkCoperture(){
     tipoPuntata = coperturaPuntata;
 
     if(coperturaCondizione == "PUNTA"){
+        document.getElementById("id-copertura-2").innerHTML = `Book &nbsp;<strong>B</strong>`;
         condizioneCommissione.classList.add("display-none");
         coperturaCondizioneBack.style.backgroundColor = "#5865f16e";
         coperturaCondizioneTitle.style.backgroundColor = "#5865f1";
         coperturaCondizioneLabel.innerHTML = `Quota&nbsp;Punta`;
     }else if (coperturaCondizione == "BANCA"){
+        document.getElementById("id-copertura-2").innerHTML = `Banca`;
         condizioneCommissione.classList.remove("display-none");
         coperturaCondizioneBack.style.backgroundColor = "rgba(255, 126, 126, 0.366)";
         coperturaCondizioneTitle.style.backgroundColor = "rgba(255, 126, 126";
@@ -42,6 +46,13 @@ function checkCoperture(){
     }
 
     tipoCondizione = coperturaCondizione;
+
+    let calcResp = document.getElementById("calc-responsabilita");
+    if(coperturaPuntata == "PUNTA" && coperturaCondizione == "PUNTA"){
+        calcResp.classList.add("display-none");
+    } else{
+        calcResp.classList.remove("display-none");
+    }
 }
 
 function checkIndicazioni(){
@@ -133,51 +144,68 @@ function formatToTwoDecimalsTotal(num) {
     }
 }
 
-function calcCondizionato(){
-	var myApprox = function(number, precision) {
-        var factor = Math.pow(10, precision);
-        var tempNumber = number * factor;
-        var roundedTempNumber = Math.round(tempNumber);
-        return roundedTempNumber / factor;
-        };
+function updateElement(id, value) {
+    let element = document.getElementById(id);
+    let formatted = value;
+    formatted = parseFloat(formatted);
 
-    let puntataBookA = parseFloat(document.getElementById("puntataBookA").value);
-    let rimborso = parseFloat(document.getElementById("importo-rimborso").value);
-    let commissioneBookA = parseFloat(document.getElementById("commissioneBookA").value);
-    let commissioneBookB = parseFloat(document.getElementById("commissioneBookB").value);
-    commissioneBookA = commissioneBookA / 100;
-    commissioneBookB = commissioneBookB / 100;
-    let quotaPuntaBookA = parseFloat(document.getElementById("quotaBookA").value);
-    let quotaCoperturaBookA = parseFloat(document.getElementById("coperturaBookA").value);
-    let quotaCoperturaCondizione = parseFloat(document.getElementById("coperturaCondizioneQuota").value);
+    // Set the color based on the value
+    // Remove previous color classes
+    element.classList.remove('positive', 'negative');
     
-    let frac = quotaCoperturaBookA - commissioneBookA;
-    let bancata = myApprox((puntataBookA*quotaPuntaBookA)/frac,2);
+    // Set the color based on the value
+    if (formatted >= 0) {
+        element.classList.add('positive');
+    } else {
+        element.classList.add('negative');
+    }
+}
 
-    let guad_A_book = puntataBookA*quotaPuntaBookA - puntataBookA;
-    let guad_A_banc = bancata *(1-commissioneBookA);
-    let guad_B_book = puntataBookA - rimborso;
-    let guad_C_book = -puntataBookA;
-    
+function calcCondizionato(){    
     if(tipoPuntata == "BANCA"){
-        if(tipoCondizione = "BANCA"){
+        var myApprox = function(number, precision) {
+            var factor = Math.pow(10, precision);
+            var tempNumber = number * factor;
+            var roundedTempNumber = Math.round(tempNumber);
+            return roundedTempNumber / factor;
+            };
+    
+        let puntataBookA = parseFloat(document.getElementById("puntataBookA").value);
+        let rimborso = parseFloat(document.getElementById("importo-rimborso").value);
+        let commissioneBookA = parseFloat(document.getElementById("commissioneBookA").value);
+        let commissioneBookB = parseFloat(document.getElementById("commissioneBookB").value);
+        commissioneBookA = commissioneBookA / 100;
+        commissioneBookB = commissioneBookB / 100;
+        let quotaPuntaBookA = parseFloat(document.getElementById("quotaBookA").value);
+        let quotaCoperturaBookA = parseFloat(document.getElementById("coperturaBookA").value);
+        let quotaCoperturaCondizione = parseFloat(document.getElementById("coperturaCondizioneQuota").value);
+        
+        let frac = quotaCoperturaBookA - commissioneBookA;
+        let bancata = myApprox((puntataBookA*quotaPuntaBookA)/frac,2);
+    
+        let guad_A_book = puntataBookA*quotaPuntaBookA - puntataBookA;
+        let guad_A_banc = bancata *(1-commissioneBookA);
+        let guad_B_book = -puntataBookA + rimborso;
+        let guad_C_book = -puntataBookA;
+
+        if(tipoCondizione == "BANCA"){
             var Imp_Cop = rimborso/(quotaCoperturaCondizione - commissioneBookB);
             var RSP_cop = myApprox(valoreResp(Imp_Cop,quotaCoperturaCondizione),2);
             var guad_A_CND = Imp_Cop*(1-commissioneBookB);
             var guad_B_CND = -RSP_cop;
             var guad_C_CND = Imp_Cop*(1-commissioneBookB);
             
-        } else if(tipoCondizione = "PUNTA"){
-            var Imp_Cop = Math.round(Rmb/Q_Cop);
-            var RSP_cop = myApprox(valoreResp(Imp_Cop,Q_Cop),2);
-            var Bancata = myApprox(((P*QP)+(Imp_Cop*Q_Cop)-Rmb)/frac,2);										
-            var guad_A_CND = Imp_Cop*(Q_Cop-1);
+        } else if(tipoCondizione == "PUNTA"){
+            var Imp_Cop = Math.round(rimborso/quotaCoperturaCondizione);
+            var RSP_cop = myApprox(valoreResp(Imp_Cop,quotaCoperturaCondizione),2);
+            bancata = myApprox(((puntataBookA*quotaPuntaBookA)+(Imp_Cop*quotaCoperturaCondizione)-rimborso)/frac,2);										
+            var guad_A_CND = Imp_Cop*(quotaCoperturaCondizione-1);
             var guad_B_CND = -Imp_Cop;
-            var guad_C_CND = Imp_Cop*(Q_Cop-1);	    		
+            var guad_C_CND = Imp_Cop*(quotaCoperturaCondizione-1);            	    		
         }
 
         var RSP = myApprox(valoreResp(bancata,quotaCoperturaBookA),2);
-        guad_A_banc=-RSP;
+        guad_A_banc= RSP*(-1);
         var guad_B_banc=bancata*(1-commissioneBookA);
         var guad_C_banc=bancata*(1-commissioneBookA); 
 
@@ -208,8 +236,175 @@ function calcCondizionato(){
         var TOT2 = guad_B_book + guad_B_banc + guad_B_CND;
         var TOT3 = guad_C_book + guad_C_banc + guad_C_CND;
 
-        var guadagno_min = Math.min(TOT1, TOT2, TOT3);
-        console.log(guadagno_min);
+        var guadagnoMinimo = Math.min(TOT1, TOT2, TOT3);
+
+        //inserimento dati copertura
+        document.getElementById("copertura-evento").value = formatToTwoDecimals(bancata);
+        document.getElementById("quoteBookB").value = quotaPuntaBookA;
+
+        document.getElementById("book-c").value = formatToTwoDecimals(Imp_Cop);
+        document.getElementById("quoteBookC").value = quotaCoperturaCondizione;
+
+        if(tipoCondizione == "BANCA" && tipoPuntata == "BANCA"){
+            document.getElementById("responsabilita").innerHTML = formatToTwoDecimals(RSP + RSP_cop);
+        } else if(tipoPuntata == "BANCA" && tipoCondizione == "PUNTA"){
+            document.getElementById("responsabilita").innerHTML = formatToTwoDecimals(RSP);
+        } else if(tipoPuntata == "PUNTA" && tipoCondizione == "BANCA"){
+            document.getElementById("responsabilita").innerHTML = formatToTwoDecimals(RSP_cop);
+        } else{
+            document.getElementById("responsabilita").innerHTML = "0";
+        }
+
+        //inserimento boxes
+        document.getElementById("guadagno").innerHTML = formatToTwoDecimals(guadagnoMinimo);
+        if(guadagnoMinimo < 0){
+            document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
+            document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
+        } else if (guadagnoMinimo > 0) {
+            document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
+            document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
+        }
+
+        //inserimento tabella
+        document.getElementById("row-a-1").innerHTML = formatToTwoDecimals(guad_A_book);
+        document.getElementById("row-a-2").innerHTML = formatToTwoDecimals(guad_B_book);
+        document.getElementById("row-a-3").innerHTML = formatToTwoDecimals(guad_C_book);
+
+        document.getElementById("row-b-1").innerHTML = formatToTwoDecimals(guad_A_banc);
+        document.getElementById("row-b-2").innerHTML = formatToTwoDecimals(guad_B_banc);
+        document.getElementById("row-b-3").innerHTML = formatToTwoDecimals(guad_C_banc);
+
+        document.getElementById("row-c-1").innerHTML = formatToTwoDecimals(guad_A_CND);
+        document.getElementById("row-c-2").innerHTML = formatToTwoDecimals(guad_B_CND);
+        document.getElementById("row-c-3").innerHTML = formatToTwoDecimals(guad_C_CND);
+
+        //inserimento totale
+        document.getElementById("totale-1").innerHTML = formatToTwoDecimalsTotal(TOT1);
+        document.getElementById("totale-2").innerHTML = formatToTwoDecimalsTotal(TOT2);
+        document.getElementById("totale-3").innerHTML = formatToTwoDecimalsTotal(TOT3);
+        updateElement("totale-1",TOT1);
+        updateElement("totale-2",TOT2);
+        updateElement("totale-3",TOT3);
+    } else if(tipoPuntata == "PUNTA"){
+        var myApprox = function(number, precision) {
+            var factor = Math.pow(10, precision);
+            var tempNumber = number * factor;
+            var roundedTempNumber = Math.round(tempNumber);
+            return roundedTempNumber / factor;
+            };
+    
+        let puntataBookA = parseFloat(document.getElementById("puntataBookA").value);
+        let rimborso = parseFloat(document.getElementById("importo-rimborso").value);
+        let commissioneBookA = parseFloat(document.getElementById("commissioneBookA").value);
+        let commissioneBookB = parseFloat(document.getElementById("commissioneBookB").value);
+        commissioneBookA = commissioneBookA / 100;
+        commissioneBookB = commissioneBookB / 100;
+        let quotaPuntaBookA = parseFloat(document.getElementById("quotaBookA").value);
+        let quotaCoperturaBookA = parseFloat(document.getElementById("coperturaBookA").value);
+        let quotaCoperturaCondizione = parseFloat(document.getElementById("coperturaCondizioneQuota").value);
+        
+        let bancata = (puntataBookA*quotaPuntaBookA/quotaCoperturaBookA);
+    
+        let guad_A_book = puntataBookA*quotaPuntaBookA - puntataBookA;
+        let guad_A_banc = bancata;
+        let guad_B_book = rimborso - puntataBookA;
+        let guad_C_book = -puntataBookA;
+        
+        if(tipoCondizione == "BANCA"){
+            var Imp_Cop = rimborso/(quotaCoperturaCondizione - commissioneBookB);
+            var RSP_cop = myApprox(valoreResp(Imp_Cop,quotaCoperturaCondizione),2);
+            var guad_A_CND = Imp_Cop*(1-commissioneBookB);
+            var guad_B_CND = -RSP_cop;
+            var guad_C_CND = Imp_Cop*(1-commissioneBookB);
+            
+        } else if(tipoCondizione == "PUNTA"){
+            var Imp_Cop = Math.round(rimborso/quotaCoperturaCondizione);
+            var RSP_cop = myApprox(valoreResp(Imp_Cop,quotaCoperturaCondizione),2);
+            var guad_A_CND = Imp_Cop*(quotaCoperturaCondizione-1);
+            var guad_B_CND = -Imp_Cop;
+            var guad_C_CND = Imp_Cop*(quotaCoperturaCondizione-1);            	    		
+        }
+
+        var RSP = bancata;
+        guad_A_banc= -RSP;
+        var guad_B_banc= bancata * quotaCoperturaBookA - bancata;
+        var guad_C_banc= bancata * quotaCoperturaBookA - bancata; 
+
+        //log all the function variables here
+        console.log("puntataBookA:", puntataBookA);
+        console.log("rimborso:", rimborso);
+        console.log("commissioneBookA:", commissioneBookA);
+        console.log("commissioneBookB:", commissioneBookB);
+        console.log("quotaPuntaBookA:", quotaPuntaBookA);
+        console.log("quotaCoperturaBookA:", quotaCoperturaBookA);
+        console.log("quotaCoperturaCondizione:", quotaCoperturaCondizione);
+        console.log("bancata:", bancata);
+        console.log("guad_A_book:", guad_A_book);
+        console.log("guad_A_banc:", guad_A_banc);
+        console.log("guad_B_book:", guad_B_book);
+        console.log("guad_C_book:", guad_C_book);
+        console.log("Imp_Cop:", Imp_Cop);
+        console.log("RSP_cop:", RSP_cop);
+        console.log("guad_A_CND:", guad_A_CND);
+        console.log("guad_B_CND:", guad_B_CND);
+        console.log("guad_C_CND:", guad_C_CND);
+        console.log("RSP:", RSP);
+        console.log("guad_B_banc:", guad_B_banc);
+        console.log("guad_C_banc:", guad_C_banc);
+
+        var TOT1 = guad_A_book + guad_A_banc + guad_A_CND;
+        var TOT2 = guad_B_book + guad_B_banc + guad_B_CND;
+        var TOT3 = guad_C_book + guad_C_banc + guad_C_CND;
+
+        var guadagnoMinimo = Math.min(TOT1, TOT2, TOT3);
+
+        //inserimento dati copertura
+        document.getElementById("copertura-evento").value = formatToTwoDecimals(bancata);
+        document.getElementById("quoteBookB").value = quotaCoperturaBookA;
+
+        document.getElementById("book-c").value = formatToTwoDecimals(Imp_Cop);
+        document.getElementById("quoteBookC").value = quotaCoperturaCondizione;
+
+        if(tipoCondizione == "BANCA" && tipoPuntata == "BANCA"){
+            document.getElementById("responsabilita").innerHTML = formatToTwoDecimals(RSP + RSP_cop);
+        } else if(tipoPuntata == "BANCA" && tipoCondizione == "PUNTA"){
+            document.getElementById("responsabilita").innerHTML = formatToTwoDecimals(RSP);
+        } else if(tipoPuntata == "PUNTA" && tipoCondizione == "BANCA"){
+            document.getElementById("responsabilita").innerHTML = formatToTwoDecimals(RSP_cop);
+        } else{
+            document.getElementById("responsabilita").innerHTML = "0";
+        }
+
+        //inserimento boxes
+        document.getElementById("guadagno").innerHTML = formatToTwoDecimals(guadagnoMinimo);
+        if(guadagnoMinimo < 0){
+            document.getElementById("border-guadagno").style.border = "3px solid rgb(255, 126, 126)";
+            document.getElementById("guadagno-color").style.color = " rgb(255, 126, 126)";
+        } else if (guadagnoMinimo > 0) {
+            document.getElementById("border-guadagno").style.border = "3px solid rgb(97, 163, 113)";
+            document.getElementById("guadagno-color").style.color = " rgb(97, 163, 113)";
+        }
+
+        //inserimento tabella
+        document.getElementById("row-a-1").innerHTML = formatToTwoDecimals(guad_A_book);
+        document.getElementById("row-a-2").innerHTML = formatToTwoDecimals(guad_B_book);
+        document.getElementById("row-a-3").innerHTML = formatToTwoDecimals(guad_C_book);
+
+        document.getElementById("row-b-1").innerHTML = formatToTwoDecimals(guad_A_banc);
+        document.getElementById("row-b-2").innerHTML = formatToTwoDecimals(guad_B_banc);
+        document.getElementById("row-b-3").innerHTML = formatToTwoDecimals(guad_C_banc);
+
+        document.getElementById("row-c-1").innerHTML = formatToTwoDecimals(guad_A_CND);
+        document.getElementById("row-c-2").innerHTML = formatToTwoDecimals(guad_B_CND);
+        document.getElementById("row-c-3").innerHTML = formatToTwoDecimals(guad_C_CND);
+
+        //inserimento totale
+        document.getElementById("totale-1").innerHTML = formatToTwoDecimalsTotal(TOT1);
+        document.getElementById("totale-2").innerHTML = formatToTwoDecimalsTotal(TOT2);
+        document.getElementById("totale-3").innerHTML = formatToTwoDecimalsTotal(TOT3);
+        updateElement("totale-1",TOT1);
+        updateElement("totale-2",TOT2);
+        updateElement("totale-3",TOT3);
     }
 
 }
@@ -217,9 +412,14 @@ function calcCondizionato(){
 function getResults(){
     checkCoperture();
     checkIndicazioni();
+    let indicazioniAlert = document.getElementById("indicazioni-alert");
     if(condizoneBool && puntataBool){
+        indicazioniAlert.classList.add("display-none");
         calcCondizionato();
+    }else{
+        indicazioniAlert.classList.remove("display-none");
     }
+    
     displayIndicazioni();
 }
 
