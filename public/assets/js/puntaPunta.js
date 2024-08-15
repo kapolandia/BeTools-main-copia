@@ -358,8 +358,14 @@ function normalPuntaPunta(){
                             console.log(totaleVinceB);
                         } else{
                             console.log("here");
-                            sbilaRow3.classList.remove("display-none");
-                            sbilaRow3.classList.add("display-flex");
+                            if(importoParzialeB < importoBookB2 * 0.99){
+                                sbilaRow3.classList.remove("display-none");
+                                sbilaRow3.classList.add("display-flex");
+                            } else{
+                                sbilaRow3.classList.add("display-none");
+                                sbilaRow3.classList.remove("display-flex");
+                            }
+
                             let nuovaQuotaB2 = parseFloat(document.getElementById("quota-parz-c").value);
                             let importoBookB3 = (importoBookB2 - importoParzialeB)*(nuovaQuotaB1/nuovaQuotaB2);
                             if(isDecimal == "NO"){
@@ -525,8 +531,13 @@ function normalPuntaPunta(){
                             console.log(totaleVinceB);
                         } else{
                             console.log("here");
-                            sbilaRow3.classList.remove("display-none");
-                            sbilaRow3.classList.add("display-flex");
+                            if(importoParzialeB < importoBookB2 * 0.99){
+                                sbilaRow3.classList.remove("display-none");
+                                sbilaRow3.classList.add("display-flex");
+                            } else{
+                                sbilaRow3.classList.add("display-none");
+                                sbilaRow3.classList.remove("display-flex");
+                            }
                             let nuovaQuotaB2 = parseFloat(document.getElementById("quota-parz-c").value);
                             let importoBookB3 = (importoBookB2 - importoParzialeB)*(nuovaQuotaB1/nuovaQuotaB2);
                             if(isDecimal == "NO"){
@@ -758,8 +769,13 @@ function crPuntaPunta(){
                         console.log(totaleVinceB);
                     } else{
                         console.log("here");
-                        sbilaRow3.classList.remove("display-none");
-                        sbilaRow3.classList.add("display-flex");
+                        if(importoParzialeB < importoBookB2 * 0.99){
+                            sbilaRow3.classList.remove("display-none");
+                            sbilaRow3.classList.add("display-flex");
+                        } else{
+                            sbilaRow3.classList.add("display-none");
+                            sbilaRow3.classList.remove("display-flex");
+                        }
                         let nuovaQuotaB2 = parseFloat(document.getElementById("quota-parz-c").value);
                         let importoBookB3 = (importoBookB2 - importoParzialeB)*(nuovaQuotaB1/nuovaQuotaB2);
                         if(isDecimal == "NO"){
