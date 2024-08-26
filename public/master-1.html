@@ -20,42 +20,11 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       
 
-      <title>Betoolz - Matched Betting per professionisti</title>
-      <link rel="icon" type="image/png" href="./assets/images/ws.png"/>
-      <script type="module" src="assets/js/homePage.js"></script>
+      <title>Betoolz - Master</title>
+      <link rel="icon" type="image/png" href="./assets/images/bmaster-logo-trasparente.png"/>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script src="assets/js/indexF.js"></script>
-      <script type="module" src="assets/js/indexAuth.js"></script>
-      <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const animatedDivs = document.querySelectorAll('.animated-div');
-    let delay = 2000; // Delay between animations in milliseconds
-    let index = 0;
-
-    function animateDiv() {
-        animatedDivs.forEach((div) => {
-            const rect = div.getBoundingClientRect();
-            if (rect.top - window.innerHeight + 100 < 0) {
-                div.classList.add('animate');
-            }
-        });
-
-        index++;
-        if (index < animatedDivs.length) {
-            setTimeout(animateDiv, delay);
-        }
-    }
-
-    animateDiv();
-
-    // Add a scroll event listener to check for animations as you scroll
-    window.addEventListener('scroll', animateDiv);
-});
-
-
-      </script>
-     
-<style>
+      <script src="assets/js/indexF.js"></script>   
+      <style>
       .btn-plans{
         border-radius: 8px;
         cursor: pointer;
@@ -71,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
       .btn-plans:hover{
         background-color: #202427;
         color: #fff;
+      }
+
+      .display-none{
+        display: none;
       }
 
 
@@ -92,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 :root {  
   --purple: #FFAC1C;
-  --violet: #5865F1;
+  --violet: #862ffd;
   --pink: #E5373A;
 }
 
@@ -386,6 +359,22 @@ document.addEventListener("DOMContentLoaded", function () {
     bottom: -54%;
   }
 
+  .nav__register2{
+    background-color: #862ffd;
+  }
+
+  .nav__link{
+    background-color: transparent;
+  }
+
+  .nav__link:hover{
+    color: #862ffd;
+  }
+
+  .nav__register2:hover{
+    box-shadow: 0px 0px 30px #862ffd;
+  }
+
   .mask-container {
     overflow: hidden;
     width: 100%;
@@ -460,11 +449,11 @@ document.addEventListener("DOMContentLoaded", function () {
    </head>
    <body style="overflow-x: hidden;letter-spacing: normal;">
       <!--=============== HEADER ===============-->
-      <header class="header">
+      <header class="header" style="background-color: #862ffd;">
          <nav class="nav container">
             <div class="nav__data">
                <a href="#" class="nav__logo">
-                  <img src="./assets/images/logo.png" style="height: 70px;width: 210px;">
+                  <img src="./assets/images/bmaster.png" style="height: 40px;">
                </a>
                
                <div class="nav__toggle" id="nav-toggle">
@@ -481,10 +470,8 @@ document.addEventListener("DOMContentLoaded", function () {
                   <!--=============== DROPDOWN 1 ===============-->
                   
 
-                  <li><a class="nav__link" id="calcolatoriButton">I Calcolatori</a></li>
+                  <li><a class="nav__link" id="calcolatoriButton">Servizi</a></li>
                   <li><a class="nav__link" id="priceButton">Pricing</a></li>
-                  <li id="login-btn"><a href="login.html" class="nav__login" style="font-weight: 500;">Login</a></li>
-                  <li id="subscribe-btn"><a href="register.html" class="nav__register" style="font-weight: 500;">Iscriviti</a></li>
                </ul>
             </div>
          </nav>
@@ -501,14 +488,14 @@ document.addEventListener("DOMContentLoaded", function () {
          <div style="display: flex; flex-direction: column;align-items: center;">
             <div style="display: flex; flex-direction: row;align-items: center;justify-content: center;">
                <div style="display: flex; flex-direction: column;" class="landing-container-imagetext">
-                  <img class="landing-image2"  src="./assets/images/smartphone.png" style="width: 55%;margin-bottom: 40px;">
-                  <a style="font-family: 'Poppins', sans-serif; font-weight: 800;color: #202427;" class="landing-text"><span style="color: #5865f1;">Rivoluziona</span> il tuo <br> Matched Betting</a>
-                <div class="rolumn" style="justify-content: flex-start;">
-                  <a id="register-navigate" href="register.html" class="nav__register2" style="margin-top: 30px;margin-bottom: 10px;font-weight: 500;font-size: 18px;width: 240px;margin-right: 20px;" >Prova gratuitamente</a>
+                  <img class="landing-image2"  src="./assets/images/smartphone-2.png" style="width: 55%;margin-bottom: 40px;">
+                  <a style="font-family: 'Poppins', sans-serif; font-weight: 800; color: #202427;" class="landing-text">I veri <span style="color: #862ffd;">professionisti</span><br> del  Matched Betting</a>
+                  <div class="rolumn" style="justify-content: flex-start;">
+                  <a id="calcolatoriButton2" class="nav__register2" style="margin-top: 30px;margin-bottom: 10px;font-weight: 500;font-size: 18px;width: 240px;margin-right: 20px;cursor: pointer;" >I nostri servizi</a>
                   <a id="priceButton2" class="btn-plans" style="margin-top: 30px;margin-bottom: 10px;font-weight: 500;font-size: 18px;width: 240px;" >Scegli un piano</a>
                 </div>
                </div>
-               <img class="landing-image" src="./assets/images/smartphone.png" style="width: 35%;margin-left: 100px;">
+               <img class="landing-image" src="./assets/images/smartphone-2.png" style="width: 35%;margin-left: 100px;">
             </div>
             <!--  Fine Prima Parte -->
 
@@ -570,9 +557,8 @@ document.addEventListener("DOMContentLoaded", function () {
          </div>
          </div>
          
-            <a  class="body" style="font-weight: 300;font-size: 16px;margin: 20px;display: flex;text-align: center;flex-direction: column;margin-top: 20px;"> *Compatibile solo con dispositivi Desktop.</a>
-         <!-- MONITOR -->
-         <div class="container" style="border-top: 1px solid #d2d2d7;border-bottom: 1px solid #d2d2d7;padding: 20px;display: flex;flex-direction: column;justify-content: center;align-items: center; margin: 0;margin-top: 100px;">
+         <!-- MONITOR
+         <div class="container" style="border-top: 1px solid #d2d2d7;border-bottom: 1px solid #d2d2d7;padding: 20px;display: none;flex-direction: column;justify-content: center;align-items: center; margin: 0;margin-top: 100px;">
           <img src="./assets/images/price1.png" alt="" srcset="" style="position: absolute;width: 400px;left: -250px;">
           <img src="./assets/images/price1.png" alt="" srcset="" style="position: absolute;width: 400px;right: -250px;transform: scaleX(-1);"> 
           <h1 class="monitor-star">
@@ -642,6 +628,7 @@ document.addEventListener("DOMContentLoaded", function () {
                
          </div>
          </div>
+          -->
 
          <!-- MONITOR -->
 
@@ -649,7 +636,7 @@ document.addEventListener("DOMContentLoaded", function () {
          <div class="container" style="margin-top: 50px;justify-content: center;border-bottom: 1px solid #d2d2d7;padding-bottom: 50px;display: flex;">
             <div class="rolumn" style="align-items: center;justify-content: center;">
                <img src="./assets/images/books-pile.png" style="height: 250px;" class="item-guide">
-               <p style="font-weight: 300;" class="item-2"> <span style="font-size: 25px;font-weight: 800;">Guide </span><span style="font-size: 25px;font-weight: 800;color: #5865f1;">Esclusive</span><br>
+               <p style="font-weight: 300;" class="item-2"> <span style="font-size: 25px;font-weight: 800;">Guide </span><span style="font-size: 25px;font-weight: 800;color: #862ffd;">Esclusive</span><br>
                per i Bonus che il 99% dei MatchedBettisti ignora!<br><br>
                Le guide e gli strumenti di Betoolz trattano bonus non presenti
                sulle altre piattaforme, che solo i professionisti conoscono.
@@ -663,7 +650,7 @@ document.addEventListener("DOMContentLoaded", function () {
          <div class="container" style="margin-top: 50px;justify-content: center;border-bottom: 1px solid #d2d2d7;padding-bottom: 50px;display: flex;">
             <div class="rolumn" style="justify-content: space-between;align-items: center;">
                <img src="./assets/images/settings.png" style="height: 250px;" class="item-img2">
-               <p style="font-weight: 300;"> <span style="font-size: 25px;font-weight: 800;">Strumenti </span><span style="font-size: 25px;font-weight: 800;color: #5865f1;">Unici</span><br>
+               <p style="font-weight: 300;"> <span style="font-size: 25px;font-weight: 800;">Strumenti </span><span style="font-size: 25px;font-weight: 800;color: #862ffd;">Unici</span><br>
                che non possiede nessun altro in Italia.<br><br>
                Il tempo è denaro, no? Ogni istante passato su Betoolz è un
                potenziale bonus non monetizzato. Per questo motivo ci impegniamo a
@@ -679,7 +666,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="container" style="margin-top: 50px;justify-content: center;border-bottom: 1px solid #d2d2d7;padding-bottom: 50px;display: flex;">
             <div class="rolumn" style="justify-content: space-between;align-items: center;">
                <img src="./assets/images/team.png" style="height: 250px;" >
-               <p style="font-weight: 300;" class="item-2"> <span style="font-size: 25px;font-weight: 800;">Team di </span><span style="font-size: 25px;font-weight: 800;color: #5865f1;">Professionisti</span><br>
+               <p style="font-weight: 300;" class="item-2"> <span style="font-size: 25px;font-weight: 800;">Team di </span><span style="font-size: 25px;font-weight: 800;color: #862ffd;">Professionisti</span><br>
                al tuo fianco che utilizza i tuoi stessi strumenti.<br><br>
                Il nostro Staff è composto da 4 veterani, che del Matched Betting
                ne hanno fatto la loro entrata principale da oltre 5 anni. Garantiamo che
@@ -696,23 +683,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
          <div class="segmented-controls" style="margin-top: 20px;">
             <input id="three-1" name="three" type="radio" data-target="price-container-1">
-            <label for="three-1">Free</label>  
+            <label for="three-1">Mensile</label>  
             <input id="three-2" name="three" type="radio" data-target="price-container-2" checked>
-            <label for="three-2">Mensile</label> 
+            <label for="three-2">Trimestrale</label> 
             <input id="three-3" name="three" type="radio" data-target="price-container-3">
             <label for="three-3">Semestrale</label>
         </div>
           
 
          <div class="container" style="margin-top: 50px;display: flex; flex-direction: column;align-items: center;">
-            <div style="position: relative;background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);z-index: 1;">
+            <div style="position: relative;background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);z-index: 1;text-align: center;">
                
-               <div class="price-container" id="price-container-1" style="display: none;height: 100%px; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
+               <div class="price-container" id="price-container-1" style="display: none; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
                   <div style="display: flex;flex-direction: row;align-items: center;margin-top: 30px;">
-                     <a class="body" style="font-weight: 600; font-size: 80px;margin-top: 20px;">Free</a>
+                     <a class="body" style="font-weight: 600; font-size: 80px;margin-top: 20px;">167<span style="font-size: 50px;">,00 €</span></a>
                      <img src="./assets/images/check.png" alt="" style="width: 40px;height: 40px;">
                   </div>
-                     <div class="big-price">
+                  <a class="body" style="font-size: 14px;text-align: center;">al mese (IVA inclusa)</a>
+
+                     <div class="big-price display-none">
                         <a class="body" style="font-weight: 300; font-size: 18px;margin-top: 10px;">
                            Accesso a 3 guide<strong>&nbsp; (70€ di guadagno) &nbsp;</strong>
                            <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 10px;margin-left: 5px;">
@@ -723,7 +712,7 @@ document.addEventListener("DOMContentLoaded", function () {
                            <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 10px;margin-left: 5px;">
                          </a>
                      </div>
-                     <div class="small-price">
+                     <div class="small-price display-none">
                         <a class="body" style="font-weight: 300; font-size: 16px;margin-top: 10px;">
                            Accesso a 3 guide
                            <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 3px;">
@@ -742,13 +731,15 @@ document.addEventListener("DOMContentLoaded", function () {
                       
                </div>
 
-               <div class="price-container" id="price-container-2" style="height: 100%px; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; display: flex; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
+               <div class="price-container" id="price-container-2" style="box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; display: flex; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
                   <div style="display: flex;flex-direction: row;align-items: center;margin-top: 30px;">
-                     <a class="body" style="font-weight: 600; font-size: 80px;margin-top: 20px;">12<span style="font-size: 50px;">,90 €</span></a>
+                     <a class="body" style="font-weight: 600; font-size: 80px;margin-top: 20px;">152<span style="font-size: 50px;">,00 €</span></a>
                      <img src="./assets/images/check.png" alt="" style="width: 40px;height: 40px;">
                   </div>
-                  <a class="body" style="font-size: 30px;text-align: center;">al mese (IVA inclusa)</a>
-                  <div class="big-price" >
+                  <a class="body" style="font-size: 14px;text-align: center;">
+                    invece di 167,00€ al mese (IVA inclusa)
+                 </a>
+                  <div class="big-price display-none" >
                      <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 30px;">
                         Accesso <strong>&nbsp;completo&nbsp;</strong> alle guide
                         <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
@@ -771,7 +762,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       </a>
                   </div>
 
-                  <div class="small-price" >
+                  <div class="small-price display-none" >
                      <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: 30px;">
                         Accesso <strong>&nbsp;completo&nbsp;</strong> alle guide
                         <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
@@ -798,67 +789,63 @@ document.addEventListener("DOMContentLoaded", function () {
                   </div>
                </div>
 
-               <div class="price-container" id="price-container-3" style="display: none;height: 100%px; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
-                  <div style="display: flex;flex-direction: row;align-items: center;margin-top: 30px;">
-                     <a class="body" style="font-weight: 600; font-size: 80px;margin-top: 20px;">69<span style="font-size: 50px;">,90 €</span></a>
-                     <img src="./assets/images/discount.png" alt="" style="height: 70px;margin-bottom: 10px;">
-                  </div>
-                  <a class="body" style="background-color: #93FAA5;padding: 10px;border-radius: 12px;font-size: 20px;font-weight: 300;">
-                     ~10<span style="font-size: 14px;">%</span> di sconto
-                  </a>
-                  <a class="body" style="font-size: 30px;text-align: center;margin-top: 15px;">
-                     ogni 3 mesi (IVA inclusa)</a>
-                  <div class="big-price" >
-                     <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 30px;">
-                        Accesso <strong>&nbsp;completo&nbsp;</strong> alle guide
-                        <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
-                      </a>
-                      <a class="body" style=" font-weight: 300; font-size: 18px; margin-top: 10px;">
-                        Calcolatore <strong>&nbsp;esclusivo&nbsp;</strong> Blackjack Live
-                        <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
-                      </a>
-                     <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 10px;">
-                        Calcolatori Casinò
-                        <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
-                      </a>
-                      <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 10px;">
-                        Calcolatori Sport
-                        <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
-                      </a>
-                      <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 10px;">
-                        Agenda Guadagni
-                        <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
-                      </a>
-                  </div>
+               <div class="price-container" id="price-container-3" style="box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; display: none; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
+                <div style="display: flex;flex-direction: row;align-items: center;margin-top: 30px;">
+                   <a class="body" style="font-weight: 600; font-size: 80px;margin-top: 20px;">140<span style="font-size: 50px;">,00 €</span></a>
+                   <img src="./assets/images/check.png" alt="" style="width: 40px;height: 40px;">
+                </div>
+                <a class="body" style="font-size: 14px;text-align: center;">
+                  invece di 167,00€ al mese (IVA inclusa)
+               </a>
+                <div class="big-price display-none" >
+                   <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 30px;">
+                      Accesso <strong>&nbsp;completo&nbsp;</strong> alle guide
+                      <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
+                    </a>
+                    <a class="body" style=" font-weight: 300; font-size: 18px; margin-top: 10px;">
+                      Calcolatore <strong>&nbsp;esclusivo&nbsp;</strong> Blackjack Live
+                      <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
+                    </a>
+                   <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 10px;">
+                      Calcolatori Casinò
+                      <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
+                    </a>
+                    <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 10px;">
+                      Calcolatori Sport
+                      <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
+                    </a>
+                    <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 10px;">
+                      Agenda Guadagni
+                      <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
+                    </a>
+                </div>
 
-                  <div class="small-price" >
-                     <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: 30px;">
-                        Accesso <strong>&nbsp;completo&nbsp;</strong> alle guide
-                        <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
-                      </a>
-                      <a class="body" style=" font-weight: 300; font-size: 16px; margin-top: 10px;">
-                        Calcolatore <strong>&nbsp;esclusivo&nbsp;</strong>
-                      </a>
-                      <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: px;">
-                        Blackjack Live
-                        <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
-                      </a>
-                     <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: 10px;">
-                        Calcolatori Casinò
-                        <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
-                      </a>
-                      <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: 10px;">
-                        Calcolatori Sport
-                        <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
-                      </a>
-                      <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: 10px;">
-                        Agenda Guadagni
-                        <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
-                      </a>
-                  </div>
-
-                   
-               </div>
+                <div class="small-price display-none" >
+                   <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: 30px;">
+                      Accesso <strong>&nbsp;completo&nbsp;</strong> alle guide
+                      <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
+                    </a>
+                    <a class="body" style=" font-weight: 300; font-size: 16px; margin-top: 10px;">
+                      Calcolatore <strong>&nbsp;esclusivo&nbsp;</strong>
+                    </a>
+                    <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: px;">
+                      Blackjack Live
+                      <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
+                    </a>
+                   <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: 10px;">
+                      Calcolatori Casinò
+                      <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
+                    </a>
+                    <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: 10px;">
+                      Calcolatori Sport
+                      <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
+                    </a>
+                    <a class="body" style="align-items: center; font-weight: 300; font-size: 16px; margin-top: 10px;">
+                      Agenda Guadagni
+                      <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;margin-bottom: 3px;margin-left: 2px;">
+                    </a>
+                </div>
+             </div>
 
 
                <img class="additional-image1" src="./assets/images/price1.png" alt="" >
@@ -866,14 +853,21 @@ document.addEventListener("DOMContentLoaded", function () {
                <img class="additional-image3" src="./assets/images/price2.png" alt="" >
                <img class="additional-image4" src="./assets/images/price2.png" alt="" >
 
+               <button id="register-navigate" href="register.html" class="nav__register2" style="margin: 30px auto;margin-bottom: 10px;font-weight: 600;font-size: 20px;width: 240px;border: none;cursor: pointer;" >Abbonati</button>
+               <div style="display: flex;flex-direction: row;margin-top: 10px;position: relative;z-index: 2;text-align: center;justify-content: center;">
+                <div class="checkbox-wrapper-1">
+                  <input id="privacy" class="substituted" type="checkbox" aria-hidden="true"  style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;accent-color: #862ffd;"/>
+                  <label for="privacy" style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;"></label>
+                </div>
+                <a style="font-size: 13px;margin-left: 10px;">Registrandoti accetti <span style="text-decoration: underline;cursor: pointer;"  onclick='window.location.href="informativaprivacy.html"'>il contratto</span>.</a>
+              </div>
 
                <!-- Add more images with different positions as needed -->
             </div>
          </div>
-
-         <div style="position: relative;margin-top: 100px;margin-bottom: 100px;padding-bottom: 100px;">
-          <div style="background-color: #5865f1;width: 130vw;position: absolute;height: 100%;z-index: -3;left: -30vw;"></div>
-          <svg class="wave-svg" style="position: absolute;width: 130vw;left: -30vw;height: 100%;z-index: -1;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#5865f1" fill-opacity="1" d="M0,288L80,256C160,224,320,160,480,138.7C640,117,800,139,960,170.7C1120,203,1280,245,1360,266.7L1440,288L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
+         <div style="position: relative;margin-top: 100px;margin-bottom: 100px;padding-bottom: 100px;" class="display-none">
+          <div style="background-color: #862ffd;width: 130vw;position: absolute;height: 100%;z-index: -3;left: -30vw;"></div>
+          <svg class="wave-svg" style="position: absolute;width: 130vw;left: -30vw;height: 100%;z-index: -1;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#862ffd" fill-opacity="1" d="M0,288L80,256C160,224,320,160,480,138.7C640,117,800,139,960,170.7C1120,203,1280,245,1360,266.7L1440,288L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
           <div class="container" style="text-align: center;display: flex; flex-direction: column;align-items: center;padding-top: 100px;">
              <a class="landing-text" style="font-family: 'Poppins', sans-serif;color: #fff;font-weight: 600;margin-bottom: 50px;">I NOSTRI <span style="color: #202427;"> FEEDBACK</span></a>
              <img src="./assets/images/star.png" alt="Image" style="position: absolute; right: 10px; height: 110px;top: -60px;">
@@ -966,18 +960,18 @@ document.addEventListener("DOMContentLoaded", function () {
                </div>
             </div> 
           </div>
-       </div>
-
-         <div class="container" style="text-align: center;margin-top: 100px;display: flex; flex-direction: column;align-items: center;">
+         </div>
+        <!--
+         <div class="container" style="text-align: center;margin-top: 100px;display: none; flex-direction: column;align-items: center;">
             <a style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 60px;color: #202427;" id="targetPrice">FAQ</a>
             <a style="font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 20px;color: #202427;" id="targetPrice">Le domande a cui rispondiamo più frequentemente</a>        
          </div>
 
-         <div class="container" style="justify-content: center; display: flex; margin: 0; margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+         <div class="container" style="justify-content: center; display: flex; margin: 0; margin-top: 20px; display: none; flex-direction: column; align-items: center;">
             <div style="width: 80%; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.115); border-radius: 8px; display: flex; flex-direction: row; align-items: start; background: rgba(255, 255, 255, 0.366); padding: 20px; margin-top: 10px; justify-content: space-between;">
                 <div style="display: flex; flex-direction: column;">
                     <p class="question">   
-                     <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #5865f1;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
+                     <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #862ffd;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
                      So già fare matched betting, troverò informazioni che mi interessano?</p>
                     <p class="answer">Il target di Betoolz sono matchedbettisti che già guadagnano >€500/mese e dispongono di un buon capitale per porsi obiettivi ambiziosi.</p>
                 </div>
@@ -986,7 +980,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div style="width: 80%; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.115); border-radius: 8px; display: flex; flex-direction: row; align-items: start; background: rgba(255, 255, 255, 0.366); padding: 20px; margin-top: 10px; justify-content: space-between;">
                <div style="display: flex; flex-direction: column;">
                    <p class="question">   
-                    <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #5865f1;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
+                    <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #862ffd;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
                     Quanto posso guadagnare con Betoolz?</p>
                    <p class="answer">I tuoi guadagni dipendono principalmente dal tempo che dedichi all’attività. Solitamente i nuovi utenti riscontrano un generale aumento dei loro guadagni nel giro di qualche settimana.</p>
                </div>
@@ -995,7 +989,7 @@ document.addEventListener("DOMContentLoaded", function () {
            <div style="width: 80%; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.115); border-radius: 8px; display: flex; flex-direction: row; align-items: start; background: rgba(255, 255, 255, 0.366); padding: 20px; margin-top: 10px; justify-content: space-between;">
             <div style="display: flex; flex-direction: column;">
                 <p class="question">  
-                 <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #5865f1;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
+                 <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #862ffd;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
                  É utile anche se sono già registrato a tutti i siti di scommesse?</p>
                 <p class="answer">Certamente, Betoolz fornisce gli strumenti per 
                   monetizzare bonus che vanno ben oltre le semplici promozioni di benvenuto.</p>
@@ -1005,7 +999,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div style="width: 80%; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.115); border-radius: 8px; display: flex; flex-direction: row; align-items: start; background: rgba(255, 255, 255, 0.366); padding: 20px; margin-top: 10px; justify-content: space-between;">
          <div style="display: flex; flex-direction: column;">
              <p class="question">   
-              <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #5865f1;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
+              <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #862ffd;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
               Dovrò imparare tutte le regole del casino?</p>
              <p class="answer">No. Sarà sufficiente imparare ad eseguire le operazioni riportate dai calcolatori.</p>
          </div>
@@ -1014,7 +1008,7 @@ document.addEventListener("DOMContentLoaded", function () {
      <div style="width: 80%; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.115); border-radius: 8px; display: flex; flex-direction: row; align-items: start; background: rgba(255, 255, 255, 0.366); padding: 20px; margin-top: 10px; justify-content: space-between;">
       <div style="display: flex; flex-direction: column;">
           <p class="question">   
-           <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #5865f1;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
+           <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #862ffd;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
            Sapete come vincere alle slot?</p>
           <p class="answer">No. I calcolatori slot servono solo per analizzare le condizioni delle promozioni e verificare se presentano del guadagno statistico. Le slot, come le partite di calcio, sono solo il mezzo che utilizziamo per monetizzare i bonus.</p>
       </div>
@@ -1023,34 +1017,17 @@ document.addEventListener("DOMContentLoaded", function () {
   <div style="width: 80%; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.115); border-radius: 8px; display: flex; flex-direction: row; align-items: start; background: rgba(255, 255, 255, 0.366); padding: 20px; margin-top: 10px; justify-content: space-between;">
    <div style="display: flex; flex-direction: column;">
        <p class="question">   
-        <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #5865f1;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
+        <span style="font-size: 20px; color: #fff;border-radius: 50%;background-color: #862ffd;margin-right: 10px;padding-left: 8px;padding-right: 8px;">+</span>
         Le slot non sono giochi contropuntabili come lo sport, come fate a guadagnarci?</p>
        <p class="answer">Monetizzando con costanza le promozioni casinò é possibile ottenere dei guadagni, che seppur variabili, consentono di incrementare sensibilmente il bilancio finale mensile.</p>
    </div>
 </div>
          </div>
+        -->
          
          
          </div>
       </div>
-
-      <div class="container" style="text-align: center; margin-top: 100px;display: flex;flex-direction: column;align-items: center;background-color: #202427;padding: 0;margin: 0;padding-top: 40px;padding-bottom: 40px;position: relative;margin-top: 100px;width: 100%;max-width: 100%;overflow: hidden;">
-        <a style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 30px; color: #fff;">
-           Entra a far parte del canale <br> 
-           Telegram
-           <span style="display: inline-block; position: relative; vertical-align: middle;">
-              <img src="./assets/images/telegram.svg" style="height: 40px; position: relative; z-index: 1;">
-              <span style="content: ''; position: absolute; top: 40%; left: 50%; width: 30px; height: 30px; background: #fff;; border-radius: 100%; transform: translate(-50%, -50%); z-index: 0;"></span>
-          </span> , rimani aggiornato.
-        </a>
-        <a href="https://t.me/betoolzz" class="telegram" style="margin-top: 30px;">
-           <img src="./assets/images/link.svg" alt="" style="height: 30px;margin-right: 5px;">   
-           <span style="color: #fff;">Unisciti</span>
-        </a>
-        <img src="./assets/images/telegram-pattern.png" alt="" srcset="" style="max-width: 200px;position: absolute;left: -100px;top: 20px;" class="telegram-pattern">
-        <img src="./assets/images/telegram-pattern.png" alt="" srcset="" style="max-width: 200px;position: absolute;right: -100px;top: 20px;transform: scaleX(-1);" class="telegram-pattern">
-     </div>
-     
      <footer class="footer" style="background-color: #f5f5f7;padding-top: 20px;">
         <div class="container">
               <div class="footer__info"  style="display: flex;flex-direction: column;padding: 10px;color: #404040;justify-content: start;text-align: start;padding-bottom: 20px;font-weight: 300;font-size: 13px;">
@@ -1075,80 +1052,77 @@ document.addEventListener("DOMContentLoaded", function () {
       <!--=============== MAIN JS ===============-->
       <script src="assets/js/main.js"></script>
       <script>
-         let index = 0,
-    interval = 1000;
+document.addEventListener("DOMContentLoaded", function () {
+            const animatedDivs = document.querySelectorAll('.animated-div');
+            let delay = 2000; // Delay between animations in milliseconds
+            let index = 0;
 
-const rand = (min, max) => 
-  Math.floor(Math.random() * (max - min + 1)) + min;
+            function animateDiv() {
+                animatedDivs.forEach((div) => {
+                    const rect = div.getBoundingClientRect();
+                    if (rect.top - window.innerHeight + 10 < 0) {
+                        div.classList.add('animate');
+                    }
+                });
 
-const animate = star => {
-  star.style.setProperty("--star-left", `${rand(-10, 100)}%`);
-  star.style.setProperty("--star-top", `${rand(-40, 80)}%`);
+                index++;
+                if (index < animatedDivs.length) {
+                    setTimeout(animateDiv, delay);
+                }
+            }
 
-  star.style.animation = "none";
-  star.offsetHeight;
-  star.style.animation = "";
-}
+            animateDiv();
 
-for(const star of document.getElementsByClassName("magic-star")) {
-  setTimeout(() => {
-    animate(star);
-    
-    setInterval(() => animate(star), 1000);
-  }, index++ * (interval / 3))
-}
+            // Add a scroll event listener to check for animations as you scroll
+            window.addEventListener('scroll', animateDiv);
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+    // Get a reference to the button and the target element by their IDs
+    const scrollButton = document.getElementById("calcolatoriButton2");
+    const targetElement = document.getElementById("targetCalcolatori");
 
-document.getElementById("cards").onmousemove = e => {
-  for(const card of document.getElementsByClassName("card")) {
-    const rect = card.getBoundingClientRect(),
-          x = e.clientX - rect.left,
-          y = e.clientY - rect.top;
+    // Define the scroll duration (adjust as needed)
+    const duration = 1000; // in milliseconds
+    const extraPixels = -100; // Additional 50 pixels to scroll
 
-    card.style.setProperty("--mouse-x", `${x}px`);
-    card.style.setProperty("--mouse-y", `${y}px`);
-  };
-}
+    // Add a click event listener to the button
+    scrollButton.addEventListener("click", function () {
+        // Get the initial scroll position
+        const start = window.pageYOffset;
 
-// Carousel
+        // Get the target scroll position including the extra pixels
+        const target = targetElement.getBoundingClientRect().top + extraPixels;
 
-const feedbackRight = document.querySelector('.feedback-right');
-const feedbackLeft = document.querySelector('.feedback-left');
-const feedback = document.querySelector('.feedback-moved');
-let feedbackAxis = 0;
+        // Define a function to perform smooth scrolling
+        function scrollStep(timestamp) {
+            const currentTime = timestamp || performance.now();
+            const elapsed = currentTime - startTime;
 
-// NTH CHILD INDEX
+            // Calculate the next scroll position using a smooth easing function
+            const nextScroll = easeInOut(elapsed, start, target, duration);
 
-let nthChildIndex = 4;
+            // Scroll to the next position
+            window.scrollTo(0, nextScroll);
 
-// Add event listener for the right feedback button
-feedbackRight.addEventListener('click', () => {
-    if(nthChildIndex < 7){
-      feedbackAxis += 270;
-      feedback.style.right = `${feedbackAxis}px`;
-      nthChildIndex += 1;
-      let nth = document.querySelector('.feedback-card:nth-child(' + nthChildIndex + ')');
-      let previousNth = document.querySelector('.feedback-card:nth-child(' + ( nthChildIndex - 1) + ')');
-      previousNth.style.transform = 'scale(0.9)';
-      nth.style.transform = 'scale(1)';
-      previousNth.style.transition = 'transform 0.5s ease';
-    }
+            if (elapsed < duration) {
+                // Continue scrolling if not finished
+                requestAnimationFrame(scrollStep);
+            }
+        }
+
+        // Record the start time
+        const startTime = performance.now();
+
+        // Start the smooth scrolling animation
+        requestAnimationFrame(scrollStep);
+
+        // Close the menu (if it's open) when scrolling starts
+        const navMenu = document.getElementById("nav-menu");
+        navMenu.classList.remove('show-menu');
+        const navToggle = document.getElementById("nav-toggle");
+        navToggle.classList.remove('show-icon');
+    });
 });
-
-// Add event listener for the left feedback button
-feedbackLeft.addEventListener('click', () => {
-    if(nthChildIndex>1){
-      feedbackAxis -= 270;
-      feedback.style.right = `${feedbackAxis}px`;
-      nthChildIndex -= 1;
-      let nth = document.querySelector('.feedback-card:nth-child(' + nthChildIndex + ')');
-      let previousNth = document.querySelector('.feedback-card:nth-child(' + ( nthChildIndex + 1) + ')');
-      previousNth.style.transform = 'scale(0.9)';
-      nth.style.transform = 'scale(1)';
-      previousNth.style.transition = 'transform 0.5s ease';
-    }
-});
-
-
       </script>
    </body>
 
