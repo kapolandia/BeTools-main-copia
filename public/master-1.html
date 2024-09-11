@@ -44,7 +44,7 @@
       }
 
       .display-none{
-        display: none;
+        display: none !important;
       }
 
 
@@ -360,7 +360,7 @@
     position: relative;
     border: 1px solid #852ffd75;
     background-color: #852ffd14;
-    width: 100px;
+    width: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -368,6 +368,7 @@
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0px 0px 5px #852ffd75;
+    font-size: 14px;
 }
 .time{
     display: grid;
@@ -380,7 +381,7 @@
 #hour,
 #minute,
 #seconds{
-    font-size: xxx-large;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -415,7 +416,9 @@
     align-items: center;
   }
   
-
+  .logo-small{
+    display: none;
+  }
 
 /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
 @media (max-width: 700px) {
@@ -434,9 +437,18 @@
     height: 400px;
   }
 
+  .logo-small{
+    display: block;
+  }
+
+  .logo-big{
+    display: none;
+  }
+
   .card-image{
     justify-content: space-evenly;
   }
+
 
 
 
@@ -479,20 +491,21 @@
    <body style="overflow-x: hidden;letter-spacing: normal;">
       <!--=============== HEADER ===============-->
       <header class="header" style="background-color: #862ffd;">
-         <nav class="nav container">
-            <div class="nav__data">
+         <nav class="nav container" style="align-items: center;justify-content: center;">
+            <div class="nav__data" style="justify-content: center;align-items: center;display: flex;">
                <a href="#" class="nav__logo">
-                  <img src="./assets/images/bmaster.png" style="height: 40px;">
+                  <img class="logo-big" src="./assets/images/bmaster.png" style="height: 40px;">
+                  <img class="logo-small"  src="./assets/images/bmaster-small.png" style="height: 40px;">
                </a>
                
-               <div class="nav__toggle" id="nav-toggle">
+               <div class="nav__toggle display-none id="nav-toggle">
                   <i class="ri-menu-line nav__burger"></i>
                   <i class="ri-close-line nav__close"></i>
                </div>
             </div>
 
             <!--=============== NAV MENU ===============-->
-            <div class="nav__menu" id="nav-menu" style="align-items: center;">
+            <div class="nav__menu display-none" id="nav-menu" style="align-items: center;">
                <ul class="nav__list" style="align-items: center;">
                   
 
@@ -509,7 +522,6 @@
          <div class="container landing-first-container" style="margin-bottom: 50px;">
          <div>
             <img src="./assets/images/price2.png" alt="" style="position: absolute;left: -200px;top: -190px;z-index: -2;">
-            <img src="./assets/images/price2.png" class="left3d" alt="" style="position: absolute;right: -300px;top: 400px;z-index: -1;">
          </div>
 
 
@@ -528,18 +540,18 @@
             </div>
             <!--  Fine Prima Parte -->
             <div class="container" style="text-align: center;margin-top: 100px;">
-              <a style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 30px;color: #202427;align-items: center;justify-content: center;display: flex;flex-direction: column;" id="targetCalcolatori"> 🚀 Scopri Betoolz Master: Il Futuro del Matched Betting è qui
+              <a style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 30px;color: #202427;align-items: center;justify-content: center;display: flex;flex-direction: column;"> 🚀 Scopri Betoolz Master: Il Futuro del Matched Betting è qui
 
            </div>
            <div class="container" style="margin-top: 50px;justify-content: center;border-bottom: 1px solid #d2d2d7;padding-bottom: 50px;display: flex;">
             <div class="rolumn" style="align-items: center;justify-content: center;">
                <img src="./assets/images/exploding.png" style="height: 200px;" class="item-guide">
-               <p style="font-weight: 300;font-size: 16px;" class="item-2"> <span style="font-size: 22px;font-weight: 800;">Ti presentiamo Betoolz <span style="color: #862ffd;">Master</span>, la Community Definitiva per i Matched Bettisti che vogliono alzare l’asticella ed entrare in una cerchia di Top <span style="color: #862ffd;">Professionisti</span> in Italia.
-              </span><br>
+               <p style="font-weight: 300;font-size: 16px;" class="item-2"> <span style="font-size: 22px;font-weight: 800;">Ti presentiamo Betoolz <span style="color: #862ffd;">Master</span>, la Community definitiva</span>
                 <br>
                 Immagina di avere a disposizione una suite completa di Strumenti, Supporto e Vantaggi Esclusivi, tutto in un unico servizio. 
 
-Con Betoolz Master, questo è finalmente possibile. Abbiamo creato un ecosistema che va oltre il semplice matched betting, offrendo un servizio a 360 gradi 🌐 per fare il “Game Changer” in questa Attività.
+Con Betoolz Master, questo è finalmente possibile. Abbiamo creato un ecosistema che va oltre il semplice matched betting, offrendo un servizio a 360 per fare entrare nella cerchia dei <strong>Top Professionisti</strong> in Italia.
+</span><br>
 
                </p>
             </div>
@@ -733,9 +745,9 @@ Con Betoolz Master, questo è finalmente possibile. Abbiamo creato un ecosistema
       </div> 
 
          <div class="segmented-controls" style="margin-top: 20px;">
-            <input id="three-1" name="three" type="radio" data-target="price-container-1">
+            <input id="three-1" name="three" type="radio" data-target="price-container-1" checked>
             <label for="three-1">Mensile</label>  
-            <input id="three-2" name="three" type="radio" data-target="price-container-2" checked>
+            <input id="three-2" name="three" type="radio" data-target="price-container-2">
             <label for="three-2">Trimestrale</label> 
             <input id="three-3" name="three" type="radio" data-target="price-container-3">
             <label for="three-3">Semestrale</label>
@@ -745,9 +757,11 @@ Con Betoolz Master, questo è finalmente possibile. Abbiamo creato un ecosistema
          <div class="container" style="margin-top: 50px;display: flex; flex-direction: column;align-items: center;">
             <div style="position: relative;background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);z-index: 1;text-align: center;">
                
-               <div class="price-container" id="price-container-1" style="display: none; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
-                  <div style="display: flex;flex-direction: row;align-items: center;margin-top: 30px;">
-                     <a class="body" style="font-weight: 600; font-size: 80px;margin-top: 20px;">167<span style="font-size: 50px;">,00 €</span></a>
+               <div class="price-container" id="price-container-1" style="display: flex; box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
+                <a class="body" style="font-weight: 600; font-size: 40px;text-decoration: line-through;">178,00 €</a>
+
+                  <div style="display: flex;flex-direction: row;align-items: center;">
+                     <a class="body" style="font-weight: 600; font-size: 80px;">167<span style="font-size: 50px;">,00 €</span></a>
                      <img src="./assets/images/check.png" alt="" style="width: 40px;height: 40px;">
                   </div>
                   <a class="body" style="font-size: 14px;text-align: center;">al mese (IVA inclusa)</a>
@@ -782,13 +796,15 @@ Con Betoolz Master, questo è finalmente possibile. Abbiamo creato un ecosistema
                       
                </div>
 
-               <div class="price-container" id="price-container-2" style="box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; display: flex; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
-                  <div style="display: flex;flex-direction: row;align-items: center;margin-top: 30px;">
-                     <a class="body" style="font-weight: 600; font-size: 80px;margin-top: 20px;">152<span style="font-size: 50px;">,00 €</span></a>
+               <div class="price-container" id="price-container-2" style="box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; display: none; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
+                <a class="body" style="font-weight: 600; font-size: 40px;text-decoration: line-through;">480,00 €</a>
+
+                  <div style="display: flex;flex-direction: row;align-items: center;">
+                     <a class="body" style="font-weight: 600; font-size: 80px;">456<span style="font-size: 50px;">,00 €</span></a>
                      <img src="./assets/images/check.png" alt="" style="width: 40px;height: 40px;">
                   </div>
                   <a class="body" style="font-size: 14px;text-align: center;">
-                    invece di 167,00€ al mese (IVA inclusa)
+                    ogni 3 mesi (IVA inclusa)
                  </a>
                   <div class="big-price display-none" >
                      <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 30px;">
@@ -841,12 +857,14 @@ Con Betoolz Master, questo è finalmente possibile. Abbiamo creato un ecosistema
                </div>
 
                <div class="price-container" id="price-container-3" style="box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238); border-radius: 20px; display: none; flex-direction: column; align-items: center; margin-top: 30px;background: rgba(255, 255, 255, 0.366); backdrop-filter: blur(10px);padding-bottom: 20px;">
-                <div style="display: flex;flex-direction: row;align-items: center;margin-top: 30px;">
-                   <a class="body" style="font-weight: 600; font-size: 80px;margin-top: 20px;">140<span style="font-size: 50px;">,00 €</span></a>
+                <a class="body" style="font-weight: 600; font-size: 40px;text-decoration: line-through;">894,00 €</a>
+
+                <div style="display: flex;flex-direction: row;align-items: center;">
+                   <a class="body" style="font-weight: 600; font-size: 80px;">840<span style="font-size: 50px;">,00 €</span></a>
                    <img src="./assets/images/check.png" alt="" style="width: 40px;height: 40px;">
                 </div>
                 <a class="body" style="font-size: 14px;text-align: center;">
-                  invece di 167,00€ al mese (IVA inclusa)
+                  ogni 6 mesi (IVA inclusa)
                </a>
                 <div class="big-price display-none" >
                    <a class="body" style="align-items: center; font-weight: 300; font-size: 18px; margin-top: 30px;">
@@ -904,17 +922,29 @@ Con Betoolz Master, questo è finalmente possibile. Abbiamo creato un ecosistema
                <img class="additional-image3" src="./assets/images/price2.png" alt="" >
                <img class="additional-image4" src="./assets/images/price2.png" alt="" >
 
-               <button id="register-navigate" href="register.html" class="nav__register2" style="margin: 30px auto;margin-bottom: 10px;font-weight: 600;font-size: 20px;width: 240px;border: none;cursor: pointer;" >Abbonati</button>
+               <button id="register-navigate" onclick="subscribe()" href="register.html" class="nav__register2" style="margin: 30px auto;margin-bottom: 10px;font-weight: 600;font-size: 20px;width: 240px;border: none;cursor: pointer;" >Abbonati</button>
                <div style="display: flex;flex-direction: row;margin-top: 10px;position: relative;z-index: 2;text-align: center;justify-content: center;">
                 <div class="checkbox-wrapper-1">
-                  <input id="privacy" class="substituted" type="checkbox" aria-hidden="true"  style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;accent-color: #862ffd;"/>
+                  <input id="contract" class="substituted" type="checkbox" aria-hidden="true"  style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;accent-color: #862ffd;"/>
                   <label for="privacy" style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;"></label>
                 </div>
-                <a style="font-size: 13px;margin-left: 10px;">Registrandoti accetti <span style="text-decoration: underline;cursor: pointer;"  onclick='window.open("informativa-contratto.html", "_blank")'>il contratto</span>.</a>
+                <a style="font-size: 13px;margin-left: 10px;"><span style="text-decoration: underline;cursor: pointer;"  onclick='window.open("./assets/images/CONTRATTO-DI-VENDITA-DI-SERVIZI-ONLINE-15.08.24.pdf", "_blank")'>Accetto le condizioni Generali di contratto</span>.</a>
+                
               </div>
+              <div style="display: flex;flex-direction: row;margin-top: 10px;position: relative;z-index: 2;text-align: center;justify-content: center;">
+                <div class="checkbox-wrapper-1">
+                  <input id="contract-2" class="substituted" type="checkbox" aria-hidden="true"  style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;accent-color: #862ffd;"/>
+                  <label for="privacy" style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;"></label>
+                </div>
+                <a style="font-size: 13px;margin-left: 10px;">Dichiaro di aver letto e approvato le clausole di cui ai punti n. 6, 9, 10, 11, 14, 15, 19, e <br> accettate ai sensi degli artt. 1341 e 1342 c.c.</a>
+                
+              </div>
+              
 
                <!-- Add more images with different positions as needed -->
             </div>
+            <a class="display-none" id="contract-alert" style="align-items: center;justify-content: center;display: flex;background-color: rgba(255, 126, 126, 0.213);color:  #ff5555;padding: 10px;border-radius: 5px;border-left: 5px solid #ff5555;margin-top: 20px;"> <img src="./assets/images/warning.png" style="height: 50px;margin-right: 10px;">Devi prima accettare le condizioni</a>
+
          </div>
          <div style="position: relative;margin-top: 100px;margin-bottom: 100px;padding-bottom: 100px;" class="display-none">
           <div style="background-color: #862ffd;width: 130vw;position: absolute;height: 100%;z-index: -3;left: -30vw;"></div>
@@ -1101,7 +1131,6 @@ Con Betoolz Master, questo è finalmente possibile. Abbiamo creato un ecosistema
         </div>
      </footer>
       <!--=============== MAIN JS ===============-->
-      <script src="assets/js/main.js"></script>
       <script>
 document.addEventListener("DOMContentLoaded", function () {
             const animatedDivs = document.querySelectorAll('.animated-div');
@@ -1175,7 +1204,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-let endDate = new Date("09/01/2024 00:00:00").getTime();
+let endDate = new Date("09/02/2024 23:59:59").getTime();
 let check = setInterval(function(){
     let now = new Date().getTime();
     let distance = endDate - now;
@@ -1191,7 +1220,30 @@ let check = setInterval(function(){
         clearInterval(check);
     }
 }, 1000);
+
+        function subscribe() {
+            let contractCheck = document.getElementById("contract");
+            let contractCheck2 = document.getElementById("contract-2");
+            let contractAlert = document.getElementById("contract-alert");
+            let selectedRadio = document.querySelector('input[name="three"]:checked');
+
+            if (contractCheck.checked && contractCheck2.checked) { // Controlla se c'è un radio button selezionato
+                let selectedLabel = document.querySelector(`label[for="${selectedRadio.id}"]`).innerText;
+                contractAlert.classList.add("display-none");
+                if(selectedLabel == "Mensile"){
+                  window.open("https://buy.stripe.com/cN22be4tJcPScta5kl");
+                } else if(selectedLabel == "Trimestrale"){
+                  window.open("https://buy.stripe.com/dR65nq2lB9DG78Q3cc");
+                } else if(selectedLabel == "Semestrale"){
+                  window.open("https://buy.stripe.com/bIYdS010mcwb5TabIJ");
+                }
+            } else {
+                console.log("Nessun abbonamento selezionato");
+                contractAlert.classList.remove("display-none");
+            }
+        }
       </script>
+      <script src="./assets/js/main.js"></script>
    </body>
 
 </html>
