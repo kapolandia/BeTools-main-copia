@@ -2,7 +2,7 @@
    <html lang="en">
    <head>
       <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1">
       <meta name="description" content="Betoolz è la piattaforma di Matched Betting per i professionisti italiani: scopri il nostro piano gratuito!">
       <meta name="robots" content="index, follow">
       <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
@@ -263,6 +263,7 @@
                                 <option value="" selected disabled style="text-align: center;">Seleziona un'opzione</option>
                                 <option value="NORMALE" style="text-align: center;" selected>NORMALE</option>
                                 <option value="CR" style="text-align: center;">RIMBORSO(CR%)</option>
+                                <option value="BONUS" style="text-align: center;">BONUS</option>
                             </select>
                         </div>
                         
@@ -302,10 +303,10 @@
 
                 <!-- Bonus iniziale e inizio tabella-->
                 <div>
-                    <div class="form-group" style="margin-top: 20px;">
+                    <div class="form-group" style="margin-top: 20px;padding: 0px 10px;">
                         <label for="custom-select" class="my-form-input-label-left">Puntata</label>
                         <div >
-                            <input onChange="getResults();" placeholder="Importo Puntata" type="number" id="bonus-input" name="bonus-input" class="input-bonus my-form-input">
+                            <input onChange="getResults();" placeholder="Importo Puntata" type="number" id="importo-puntata" name="bonus-input" class="input-bonus my-form-input">
                         </div>
                         <label for="custom-select" class="my-form-input-label-right">€</label>
 
@@ -313,13 +314,25 @@
                 </div>
                 <!-- Wagering-->
                 <div>
-                    <div  class="form-group display-none" id="rimborsoRow" style="margin: 0px;margin-top: 5px;">
+                    <div  class="form-group display-none" id="rimborsoRow" style="margin: 0px;margin-top: 5px;padding: 0px 10px;">
                         <label for="custom-select" class="my-form-input-label-left">Rimborso</label>
                         <div >
-                            <input onChange="getResults();" placeholder="Importo rimborso" type="number" id="wagering-input" name="bonus-input" class="input-bonus my-form-input">
+                            <input onChange="getResults();" placeholder="Importo rimborso" type="number" id="importo-rimborso" name="bonus-input" class="input-bonus my-form-input">
                         </div>
                         <label for="custom-select" class="my-form-input-label-right">€</label>
 
+                    </div>
+                </div>
+
+                <!-- limite puntata-->
+                <div>
+                    <div  class="form-group display-none" id="rimborsoLimite" style="margin: 0px;margin-top: 5px;padding: 0px 10px;">
+                        <label for="custom-select" class="my-form-input-label-left">Limite tavolo</label>
+                        <div >
+                            <input onChange="getResults();" value="1000" placeholder="Limite puntata" type="number" id="importo-limite" name="bonus-input" class="input-bonus my-form-input">
+                        </div>
+                        <label for="custom-select" class="my-form-input-label-right">€</label>
+            
                     </div>
                 </div>
 
@@ -328,18 +341,9 @@
                 </div>
 
         <!-- Fine Tabella -->
-        <div id="dutcher-indicazioni-container" class="container dutcher-indicazioni ">
-            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;padding: 12px;">
+        <div id="dutcher-indicazioni-container" class="container dutcher-indicazioni">
+            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;padding: 6px;">
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Indicazioni</p>
-                <!-- Decimali -->
-                <div class="my-indicazioni-decimal">
-                    <label for="custom-select" style="width: 80px;height: 40px;padding: 8px;margin: 0;display: flex;align-items: center;color: #495057;background-color: #e9ecef;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;font-size: 14px;border: 1px solid #d3d3d3;border-right: 0;">Decimali</label>
-                    <select onChange="getResults();" id="decimali" 
-                    style="border: 1px solid #d3d3d3;width: 70px;height: 40px;padding: 8px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;" class="input-bonus">
-                        <option value="NO" style="text-align: center;" selected>NO</option>
-                        <option value="SI" style="text-align: center;">SÌ</option>
-                    </select>
-                </div> 
             </div>
             <div class="segmented-controls" style="margin-top: 20px;width: 300px;">
                 <input id="three-3" name="three-2" type="radio" checked onchange="getResults()">
@@ -354,33 +358,37 @@
                             <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Puntare</p>
                         </div>
                         <div style="padding: 10px;">
-                            <div  class="form-group" id="bookB">
-                                <label for="book-b" class="my-form-input-label-left">Book &nbsp;<strong>B</strong></label>
-                                <input onChange="getResults();" type="number" id="book-b" name="bonus-input" class="my-form-input-quote input-disabled" disabled onkeydown="getResults()">
+                            <div  class="form-group">
+                                <label for="result-a" class="my-form-input-label-left"><span id="play-1">Player</span></label>
+                                <input onChange="getResults();" type="number" id="result-a" name="bonus-input" class="my-form-input-quote input-disabled" style="border-radius: 0;" disabled onkeydown="getResults()">
+                                <label for="custom-select" class="my-form-input-label-right">€</label>
                             </div>
                             <div  class="form-group" id="bookC">
-                                <label for="book-c" class="my-form-input-label-left">Book &nbsp;<strong>C</strong></label>
-                                <input onChange="getResults();" type="number" id="book-c" name="bonus-input" class="my-form-input-quote input-disabled" disabled onkeydown="getResults()">
+                                <label for="result-b" class="my-form-input-label-left"><span id="play-2">Banco</span></label>
+                                <input onChange="getResults();" type="number" id="result-b" name="bonus-input" class="my-form-input-quote input-disabled" style="border-radius: 0;" disabled onkeydown="getResults()">
+                                <label for="custom-select" class="my-form-input-label-right">€</label>
                             </div>
-                            <div  class="form-group" id="bookD">
-                                <label for="book-d" class="my-form-input-label-left">Book &nbsp;<strong>D</strong></label>
-                                <input onChange="getResults();" type="number" id="book-d" name="bonus-input" class="my-form-input-quote input-disabled" disabled onkeydown="getResults()">
+                            <div  class="form-group display-none" id="result-c-cont">
+                                <label for="result-c" class="my-form-input-label-left">24 - 36</label>
+                                <input onChange="getResults();" type="number" id="result-c" name="bonus-input" class="my-form-input-quote input-disabled" style="border-radius: 0;" disabled onkeydown="getResults()">
+                                <label for="custom-select" class="my-form-input-label-right">€</label>
                             </div>
-                            <div  class="form-group" id="bookE">
-                                <label for="book-e" class="my-form-input-label-left">Book &nbsp;<strong>E</strong></label>
-                                <input onChange="getResults();" type="number" id="book-e" name="bonus-input" class="my-form-input-quote input-disabled" disabled onkeydown="getResults()">
+                            <div  class="form-group display-none" id="result-zero-cont">
+                                <label for="result-d" class="my-form-input-label-left">Zero</label>
+                                <input onChange="getResults();" type="number" id="result-d" name="bonus-input" class="my-form-input-quote input-disabled" style="border-radius: 0;" disabled onkeydown="getResults()">
+                                <label for="custom-select" class="my-form-input-label-right">€</label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="my-row" style="padding: 10px;padding-bottom: 20px;width: 100%;">
+            <div class="my-row" style="padding: 10px;padding-bottom: 20px;padding-top: 0;width: 100%;">
                 <div class="calc-boxes-3">
                     <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="rating" >0</span>&nbsp;%</p>
                     <p style="text-align: center;font-weight: 200;"><span id="rating-cr">Rating</span></p>
                 </div>
                 <div class="calc-boxes-3" id="border-guadagno">
-                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;" id="guadagno-color"><span id="guadagno-minimo" >0</span><span id="eur"> €</span></p>
+                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;" id="guadagno-color"><span id="guadagno" >0</span><span id="eur"> €</span></p>
                     <p style="text-align: center;font-weight: 200;">Guadagno minimo</p>
                 </div>
             </div>
@@ -388,7 +396,7 @@
         
         
         
-        <div id="dutcher-riepilogo-container" class="dutcher-riepilogo-container display-none" style="overflow: hidden;">
+        <div id="dutcher-riepilogo-container" class="dutcher-riepilogo-container" style="overflow: hidden;">
             <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Riepilogo</p>
             </div>
