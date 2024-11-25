@@ -44,9 +44,10 @@ const funbonuscasRef = db.collection('funbonuscas');
 const vdgslotRef = db.collection('vdgslot');
 const vdgcasinoRef = db.collection('vdgcas');
 const rtpRef = db.collection('rtp');
+//anto
+const multitoolRef = db.collection('multitool');
 
 const modalSave = document.getElementById("modal-save");
-
 
 
 modalSave.addEventListener("click", function (event) {

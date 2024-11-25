@@ -41,18 +41,21 @@
   <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script> -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.js"></script>
   <!-- <script type="text/javascript" src="js/multi-mobile-head.js?v=1.0.15"></script> -->
+
+  
+  <script type ="module" src="../../assets/js/authMultiTool.js"></script>
   <script type="text/javascript" src="js/main-script-head.js"></script>
   <script type="text/javascript" src="js/profitmob_header.js"></script>
 </head>
 
-<body style="background-color: #f3f5f7">
+<body style="background-color: #ffffff"> <!-- f3f5f7-->
   <div id="hideAll"></div>
   <script type="text/javascript">
     document.getElementById("hideAll").style.display = "block";
   </script>
 
   <div class="spinner" style="display: none">
-    <img src="" />
+    <img src="/public/assets/images/spin1.gif" />
   </div>
 
   <div class="container" id="shrinkMe">
@@ -60,7 +63,7 @@
     <form name="mymultipla" method="get" id="mymultipla" class="ui form" action="">
       <!-- DATI BASE (PUNTATA, RIMBORSO, N. EVENTI) -->
       <div class="Xui Xgrid" id="riga_box_importi">
-        <div class="Xfour Xwide Xcolumn flexlong1 flexwrap">
+        <div class="flexlong1 flexwrap flexComm Xthree Xwide Xcolumn">
           <div class="ui fluid right labeled small input" id="">
             <label for="mult_lamiapuntata" class="ui label">Puntata</label>
 
@@ -71,14 +74,20 @@
           </div>
         </div>
 
-        <div class="ui fluid small input Xtwo Xwide Xcolumn flexlong1 flexwrap">
-          <input type="text" name="mult_ilmiobonus" value="" class="text-right customborder" id="mult_ilmiobonus"
-            maxlength="30" placeholder="di cui BONUS" />
+        <div class="flexlong1 flexwrap flexComm Xthree Xwide Xcolumn">
+          <div class="ui fluid right labeled small input" id="">
+            <label for="mult_ilmiobonus" class="ui label">Bonus</label>
+
+            <input type="text" name="mult_ilmiobonus" value="" class="text-right customborder" id="mult_ilmiobonus"
+              maxlength="30" />
+
+            <div class="ui basic label customborder">€</div>
+          </div>
         </div>
 
         <div class="breakline flexwrap"></div>
 
-        <div class="flexfull flexwrap Xfour Xwide Xcolumn">
+        <div class="flexlong1 flexwrap flexComm Xthree Xwide Xcolumn">
           <div class="ui fluid right labeled small input" id="">
             <!-- <label for="mult_ilmiorimborso" class="ui label">Rimborso</label> -->
             <div class="ui dropdown label" id="labelRimbo">
@@ -99,6 +108,28 @@
           </div>
         </div>
 
+        <!--<div class="flexlong1 flexwrap flexComm Xthree Xwide Xcolumn">
+          <div class="ui fluid right labeled small input" id="">
+            <label for="mult_ilmiobonus" class="ui label">Assicurazione</label>
+
+            <input type="text" name="mult_ilmiobonus" value="" class="text-right customborder" id="mult_ilmiobonus"
+              maxlength="30" />
+
+            <div class="ui basic label customborder">€</div>
+          </div>
+        </div> -->
+        <div class="flexlong1 flexwrap flexComm Xthree Xwide Xcolumn">
+            <div class="ui fluid right labeled small input" id="">
+                <label for="mult_assicurazione" class="ui label">Assicurazione</label>
+                <label class="switchInsurance">
+                    <input type="checkbox" name="mult_assicurazione" id="mult_assicurazione" />
+                    <span id="sliderToggle"></span>
+                </label>
+            </div>
+        </div>
+        
+          
+          
         <div class="breakline flexwrap"></div>
 
         <div class="flexlong1 flexwrap flexComm Xthree Xwide Xcolumn">
@@ -149,12 +180,27 @@
 
         <div class="whitecol"></div>
 
-        <div class="ui mini buttons" id="AgendeBtnBox">
+          <div class="flexlong1 flexwrap flexComm Xthree Xwide Xcolumn">
+              <div class="ui fluid labeled mini input" id="">
+                  <label for="mult_maggiorazione" class="ui label">Magg.%</label>
+
+                  <input
+                      type="text"
+                      name="mult_maggiorazione"
+                      value="0.00%"
+                      class="text-right customborder"
+                      id="mult_maggiorazione"
+                      maxlength="10"
+                      oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                      onblur="this.value = ret_com(norm_com(this.value))" />
+              </div>
+          </div>
+        <!--<div class="ui mini buttons" id="AgendeBtnBox">
           <button type="button" title="Invia la multipla all'Agenda dei Guadagni Online"
             class="ui green disabled button" id="sendToOnline">
             ag. online
           </button>
-        </div>
+        </div>-->
       </div>
 
       <!-- DATI DELLE PARTITE DELLA MULTIPLA -->
@@ -296,220 +342,221 @@
                         <!-- RIGA N.6 -->
                         <div class="unaRiga box_datiNew R_pari respo_Dati" id="respo_New0_M1"></div>
                       </div>
+                        <div style="display:none">
+                          <div class="grid_col swiper-slide newData" id="grid_Col_New1_M1">
+                            <div class="unaRiga box_datiNew R_pari rigazero A">
+                              Q. NUOVE 1
+                            </div>
 
-                      <div class="grid_col swiper-slide newData" id="grid_Col_New1_M1">
-                        <div class="unaRiga box_datiNew R_pari rigazero A">
-                          Q. NUOVE 1
+                            <div class="unaRiga box_datiNew R_dispari" id="">
+                              <input type="text" name="quotaB_New1_M1" value="" id="quotaB_New1_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_qb(this.value)" />
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_pari" id="">
+                              <input type="text" name="comm_New1_M1" value="" id="comm_New1_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_com(this.value)" />
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New1_M1"></div>
+
+                            <div class="
+                                                                unaRiga
+                                                                box_datiNew
+                                                                R_pari
+                                                                calcolati
+                                                                respo_OLD
+                                                            " id="respo_Cal1_M1"></div>
+
+                            <div class="unaRiga box_datiNew R_dispari" id="">
+                              <input type="text" name="abb_New1_M1" value="" id="abb_New1_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_doll(this.value)" />
+                            </div>
+
+                            <div class="
+                                                                unaRiga
+                                                                box_datiNew
+                                                                R_pari
+                                                                respo_Dati
+                                                                calcolati
+                                                            " id="respo_New1_M1"></div>
+                          </div>
+
+                          <div class="grid_col swiper-slide newData" id="grid_Col_New2_M1">
+                            <div class="unaRiga box_datiNew R_pari rigazero A">
+                              Q. NUOVE 2
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_dispari" id="">
+                              <input type="text" name="quotaB_New2_M1" value="" id="quotaB_New2_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_qb(this.value)" />
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_pari" id="">
+                              <input type="text" name="comm_New2_M1" value="" id="comm_New2_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_com(this.value)" />
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New2_M1"></div>
+
+                            <div class="
+                                                                unaRiga
+                                                                box_datiNew
+                                                                R_pari
+                                                                respo_OLD
+                                                                calcolati
+                                                            " id="respo_Cal2_M1"></div>
+
+                            <div class="unaRiga box_datiNew R_dispari" id="">
+                              <input type="text" name="abb_New2_M1" value="" id="abb_New2_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_doll(this.value)" />
+                            </div>
+
+                            <div class="
+                                                                unaRiga
+                                                                box_datiNew
+                                                                R_pari
+                                                                respo_Dati
+                                                                calcolati
+                                                            " id="respo_New2_M1"></div>
+                          </div>
+
+                          <div class="grid_col swiper-slide newData" id="grid_Col_New3_M1">
+                            <div class="unaRiga box_datiNew R_pari rigazero A">
+                              Q. NUOVE 3
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_dispari" id="">
+                              <input type="text" name="quotaB_New3_M1" value="" id="quotaB_New3_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_qb(this.value)" />
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_pari" id="">
+                              <input type="text" name="comm_New3_M1" value="" id="comm_New3_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_com(this.value)" />
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New3_M1"></div>
+
+                            <div class="
+                                                                unaRiga
+                                                                box_datiNew
+                                                                R_pari
+                                                                calcolati
+                                                                respo_OLD
+                                                            " id="respo_Cal3_M1"></div>
+
+                            <div class="unaRiga box_datiNew R_dispari" id="">
+                              <input type="text" name="abb_New3_M1" value="" id="abb_New3_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_doll(this.value)" />
+                            </div>
+
+                            <div class="
+                                                                unaRiga
+                                                                box_datiNew
+                                                                R_pari
+                                                                respo_Dati
+                                                                calcolati
+                                                            " id="respo_New3_M1"></div>
+                          </div>
+
+                          <div class="grid_col swiper-slide newData" id="grid_Col_New4_M1">
+                            <div class="unaRiga box_datiNew R_pari rigazero A">
+                              Q. NUOVE 4
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_dispari" id="">
+                              <input type="text" name="quotaB_New4_M1" value="" id="quotaB_New4_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_qb(this.value)" />
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_pari" id="">
+                              <input type="text" name="comm_New4_M1" value="" id="comm_New4_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_com(this.value)" />
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New4_M1"></div>
+
+                            <div class="
+                                                                unaRiga
+                                                                box_datiNew
+                                                                R_pari
+                                                                calcolati
+                                                                respo_OLD
+                                                            " id="respo_Cal4_M1"></div>
+
+                            <div class="unaRiga box_datiNew R_dispari" id="">
+                              <input type="text" name="abb_New4_M1" value="" id="abb_New4_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_doll (this.value)" />
+                            </div>
+
+                            <div class="
+                                                                unaRiga
+                                                                box_datiNew
+                                                                R_pari
+                                                                respo_Dati
+                                                                calcolati
+                                                            " id="respo_New4_M1"></div>
+                          </div>
+
+                          <div class="grid_col swiper-slide newData" id="grid_Col_New5_M1">
+                            <div class="unaRiga box_datiNew R_pari rigazero A">
+                              Q. NUOVE 5
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_dispari" id="">
+                              <input type="text" name="quotaB_New5_M1" value="" id="quotaB_New5_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_qb(this.value)" />
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_pari" id="">
+                              <input type="text" name="comm_New5_M1" value="" id="comm_New5_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_com(this.value)" />
+                            </div>
+
+                            <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New5_M1"></div>
+
+                            <div class="
+                                                                unaRiga
+                                                                box_datiNew
+                                                                R_pari
+                                                                calcolati
+                                                                respo_OLD
+                                                            " id="respo_Cal5_M1"></div>
+
+                            <div class="unaRiga box_datiNew R_dispari" id="">
+                              <input type="text" name="abb_New5_M1" value="" id="abb_New5_M1"
+                                oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
+                                onblur="this.value = ret_doll (this.value)" />
+                            </div>
+
+                            <div class="
+                                                                unaRiga
+                                                                box_datiNew
+                                                                R_pari
+                                                                respo_Dati
+                                                                calcolati
+                                                            " id="respo_New5_M1"></div>
+                          </div>
                         </div>
-
-                        <div class="unaRiga box_datiNew R_dispari" id="">
-                          <input type="text" name="quotaB_New1_M1" value="" id="quotaB_New1_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_qb(this.value)" />
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_pari" id="">
-                          <input type="text" name="comm_New1_M1" value="" id="comm_New1_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_com(this.value)" />
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New1_M1"></div>
-
-                        <div class="
-															unaRiga
-															box_datiNew
-															R_pari
-															calcolati
-															respo_OLD
-														" id="respo_Cal1_M1"></div>
-
-                        <div class="unaRiga box_datiNew R_dispari" id="">
-                          <input type="text" name="abb_New1_M1" value="" id="abb_New1_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_doll(this.value)" />
-                        </div>
-
-                        <div class="
-															unaRiga
-															box_datiNew
-															R_pari
-															respo_Dati
-															calcolati
-														" id="respo_New1_M1"></div>
-                      </div>
-
-                      <div class="grid_col swiper-slide newData" id="grid_Col_New2_M1">
-                        <div class="unaRiga box_datiNew R_pari rigazero A">
-                          Q. NUOVE 2
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_dispari" id="">
-                          <input type="text" name="quotaB_New2_M1" value="" id="quotaB_New2_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_qb(this.value)" />
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_pari" id="">
-                          <input type="text" name="comm_New2_M1" value="" id="comm_New2_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_com(this.value)" />
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New2_M1"></div>
-
-                        <div class="
-															unaRiga
-															box_datiNew
-															R_pari
-															respo_OLD
-															calcolati
-														" id="respo_Cal2_M1"></div>
-
-                        <div class="unaRiga box_datiNew R_dispari" id="">
-                          <input type="text" name="abb_New2_M1" value="" id="abb_New2_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_doll(this.value)" />
-                        </div>
-
-                        <div class="
-															unaRiga
-															box_datiNew
-															R_pari
-															respo_Dati
-															calcolati
-														" id="respo_New2_M1"></div>
-                      </div>
-
-                      <div class="grid_col swiper-slide newData" id="grid_Col_New3_M1">
-                        <div class="unaRiga box_datiNew R_pari rigazero A">
-                          Q. NUOVE 3
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_dispari" id="">
-                          <input type="text" name="quotaB_New3_M1" value="" id="quotaB_New3_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_qb(this.value)" />
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_pari" id="">
-                          <input type="text" name="comm_New3_M1" value="" id="comm_New3_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_com(this.value)" />
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New3_M1"></div>
-
-                        <div class="
-															unaRiga
-															box_datiNew
-															R_pari
-															calcolati
-															respo_OLD
-														" id="respo_Cal3_M1"></div>
-
-                        <div class="unaRiga box_datiNew R_dispari" id="">
-                          <input type="text" name="abb_New3_M1" value="" id="abb_New3_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_doll(this.value)" />
-                        </div>
-
-                        <div class="
-															unaRiga
-															box_datiNew
-															R_pari
-															respo_Dati
-															calcolati
-														" id="respo_New3_M1"></div>
-                      </div>
-
-                      <div class="grid_col swiper-slide newData" id="grid_Col_New4_M1">
-                        <div class="unaRiga box_datiNew R_pari rigazero A">
-                          Q. NUOVE 4
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_dispari" id="">
-                          <input type="text" name="quotaB_New4_M1" value="" id="quotaB_New4_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_qb(this.value)" />
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_pari" id="">
-                          <input type="text" name="comm_New4_M1" value="" id="comm_New4_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_com(this.value)" />
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New4_M1"></div>
-
-                        <div class="
-															unaRiga
-															box_datiNew
-															R_pari
-															calcolati
-															respo_OLD
-														" id="respo_Cal4_M1"></div>
-
-                        <div class="unaRiga box_datiNew R_dispari" id="">
-                          <input type="text" name="abb_New4_M1" value="" id="abb_New4_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_doll (this.value)" />
-                        </div>
-
-                        <div class="
-															unaRiga
-															box_datiNew
-															R_pari
-															respo_Dati
-															calcolati
-														" id="respo_New4_M1"></div>
-                      </div>
-
-                      <div class="grid_col swiper-slide newData" id="grid_Col_New5_M1">
-                        <div class="unaRiga box_datiNew R_pari rigazero A">
-                          Q. NUOVE 5
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_dispari" id="">
-                          <input type="text" name="quotaB_New5_M1" value="" id="quotaB_New5_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_qb(this.value)" />
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_pari" id="">
-                          <input type="text" name="comm_New5_M1" value="" id="comm_New5_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_com(this.value)" />
-                        </div>
-
-                        <div class="unaRiga box_datiNew R_dispari calcolati" id="banca_New5_M1"></div>
-
-                        <div class="
-															unaRiga
-															box_datiNew
-															R_pari
-															calcolati
-															respo_OLD
-														" id="respo_Cal5_M1"></div>
-
-                        <div class="unaRiga box_datiNew R_dispari" id="">
-                          <input type="text" name="abb_New5_M1" value="" id="abb_New5_M1"
-                            oninput="this.value = this.value.replace(/[^0-9\.,]/g, '').split(/\.|,/).splice(0,2).join('.')"
-                            onblur="this.value = ret_doll (this.value)" />
-                        </div>
-
-                        <div class="
-															unaRiga
-															box_datiNew
-															R_pari
-															respo_Dati
-															calcolati
-														" id="respo_New5_M1"></div>
-                      </div>
                     </div>
                   </div>
 
-                  <div class="swiper-pagination myswipepage1"></div>
+                  <div class="swiper-pagination myswipepage1" style="display: none"></div>
                 </div>
 
                 <div class="separator" id="">
@@ -795,7 +842,7 @@
                         <!-- RIGA N.6 -->
                         <div class="unaRiga box_datiNew R_pari respo_Dati" id="respo_New0_M2"></div>
                       </div>
-
+                    <div style="display:none">
                       <div class="grid_col swiper-slide newData" id="grid_Col_New1_M2">
                         <div class="unaRiga box_datiNew R_pari rigazero A">
                           Q. NUOVE 1
@@ -1004,10 +1051,11 @@
 															calcolati
 														" id="respo_New5_M2"></div>
                       </div>
+                   </div>
                     </div>
                   </div>
 
-                  <div class="swiper-pagination myswipepage2"></div>
+                  <div class="swiper-pagination myswipepage2" style="display: none"></div>
                 </div>
 
                 <div class="separator" id="">
@@ -1304,7 +1352,7 @@
                         <!-- RIGA N.6 -->
                         <div class="unaRiga box_datiNew R_pari respo_Dati" id="respo_New0_M3"></div>
                       </div>
-
+                    <div style="display:none">
                       <div class="grid_col swiper-slide newData" id="grid_Col_New1_M3">
                         <div class="unaRiga box_datiNew R_pari rigazero A">
                           Q. NUOVE 1
@@ -1514,9 +1562,10 @@
 														" id="respo_New5_M3"></div>
                       </div>
                     </div>
+                    </div>
                   </div>
 
-                  <div class="swiper-pagination myswipepage3"></div>
+                  <div class="swiper-pagination myswipepage3" style="display: none"></div>
                 </div>
 
                 <div class="separator" id="">
@@ -1813,7 +1862,7 @@
                         <!-- RIGA N.6 -->
                         <div class="unaRiga box_datiNew R_pari respo_Dati" id="respo_New0_M4"></div>
                       </div>
-
+                    <div style="display:none">
                       <div class="grid_col swiper-slide newData" id="grid_Col_New1_M4">
                         <div class="unaRiga box_datiNew R_pari rigazero A">
                           Q. NUOVE 1
@@ -2023,9 +2072,10 @@
 														" id="respo_New5_M4"></div>
                       </div>
                     </div>
+                    </div>
                   </div>
 
-                  <div class="swiper-pagination myswipepage4"></div>
+                  <div class="swiper-pagination myswipepage4" style="display: none"></div>
                 </div>
 
                 <div class="separator" id="">
@@ -2322,7 +2372,7 @@
                         <!-- RIGA N.6 -->
                         <div class="unaRiga box_datiNew R_pari respo_Dati" id="respo_New0_M5"></div>
                       </div>
-
+                    <div style="display:none">
                       <div class="grid_col swiper-slide newData" id="grid_Col_New1_M5">
                         <div class="unaRiga box_datiNew R_pari rigazero A">
                           Q. NUOVE 1
@@ -2532,9 +2582,10 @@
 														" id="respo_New5_M5"></div>
                       </div>
                     </div>
+                    </div>
                   </div>
 
-                  <div class="swiper-pagination myswipepage5"></div>
+                  <div class="swiper-pagination myswipepage5" style="display: none"></div>
                 </div>
 
                 <div class="separator" id="">
@@ -2736,7 +2787,68 @@
     </form>
 
     <!-- GRIGLIA DEI BOTTONI - INIZIO -->
-    <div class="" id="gridOfBtns">
+          <div class="" id="gridOfBtns">
+        <div class="splitButton">
+            <div class="gain" id="Grid_StartGain">
+                <p class="btnUnderP">GUADAGNO (iniziale)</p>
+                <span class="" id="Grid_StartGain_span">+0.00€</span>
+            </div>
+
+            <div class="gain" id="Grid_StartRating">
+                <p class="btnUnderP">RATING</p>
+                <span id="Grid_StartRating_span"></span>
+            </div>
+
+            <div class="gain" id="respo_Totale_Box">
+                <p class="btnUnderP">RESPONSABILITÀ</p>
+                <span id="respo_Totale">0.00 €</span>
+            </div>
+            <div class="gain" id="guadagno_Totale_Box">
+                <p class="btnUnderP">GUADAGNO (finale)</p>
+                <span id="guadagno_Totale">+0.00€</span>
+            </div>
+        </div>
+          
+        <div class = "splitButton">
+            <button
+              type="button"
+              title="Aggiorna una multipla salvata con i dati presenti sul modulo"
+              class="grid_Risult_Title medium ui yellow button"
+              id="btn_UPD_mobile">
+              <i class="edit icon big fa-edit" id="pencil_edit"></i>
+              <!--AGGIORNA outline   edit icon far big fa-edit -->
+            </button>
+
+            <button
+              type="button"
+              title="Salva una nuova multipla"
+              class="grid_Risult_Title medium ui olive button"
+              id="btn_SAV">
+              <i class="save big icon far fa-save" id="disk_save"></i> 
+                <!-- SALVA outline "save big icon far fa-save  -->
+            </button>
+
+            <button
+              type="button"
+              title="Carica/Cancella una multipla salvata"
+              class="grid_Risult_Title medium ui pink button"
+              id="btn_LOAD_mobile">
+              <i class="folder open big icon" id="cloud_load"></i>
+                <!--CARICA/CANC  --> 
+            </button>
+
+            <button
+              type="button"
+              title="Svuota tutti i campi"
+              class="grid_Risult_Title medium ui red button"
+              id="btn_RESET">
+              <i class="trash big icon" id="resetIcon"></i>
+              <!-- <i class="sync alternate large icon" id="resetIcon"></i> -->
+            </button>
+        </div>
+      </div>
+    <div style="display: none">
+      <div class="" id="gridOfBtns">
       <button type="button" title="Mostra i dati di partenza della multipla"
         class="grid_Risult_Title medium ui right labeled olive icon button" id="DivIntestazioneGrid">
         SET-UP <i class="ui icon caret down"></i>
@@ -2765,6 +2877,7 @@
       <button type="button" title="Svuota tutti i campi" class="grid_Risult_Title medium ui red button" id="btn_RESET">
         AZZERA
       </button>
+    </div>
     </div>
     <!-- GRIGLIA DEI BOTTONI - FINE -->
 
@@ -3481,7 +3594,7 @@
 
     <div class="actions">
       <div class="ui black deny button">Annulla</div>
-      <div class="ui positive right labeled icon button">
+      <div class="ui positive right labeled icon button salvaMultiplaDB">
         Salva
         <i class="fas fa-check checkmark icon"></i>
       </div>

@@ -9,7 +9,7 @@
  *
  */
  
- @import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin);
+ /*@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin);*/
  /*!
  * # Semantic UI 2.4.2 - Reset
  * http://github.com/semantic-org/semantic-ui/
@@ -358,7 +358,7 @@
  }
  
  p {
-     margin: 0 0 1em;
+     /*margin: 0 0 1em; messi*/
      line-height: 1.4285em
  }
  
@@ -11853,7 +11853,7 @@
      content: "\f167"
  }
  
- @font-face {
+ /*@font-face {
      font-family: outline-icons;
      src: url(themes/default/assets/fonts/outline-icons.eot);
      src: url(themes/default/assets/fonts/outline-icons.eot?#iefix) format('embedded-opentype'), url(themes/default/assets/fonts/outline-icons.woff2) format('woff2'), url(themes/default/assets/fonts/outline-icons.woff) format('woff'), url(themes/default/assets/fonts/outline-icons.ttf) format('truetype'), url(themes/default/assets/fonts/outline-icons.svg#icons) format('svg');
@@ -11862,11 +11862,11 @@
      font-variant: normal;
      text-decoration: inherit;
      text-transform: none
- }
+ }*/
  
- i.icon.outline {
+ /*i.icon.outline {
      font-family: outline-icons
- }
+ }*/
  
  i.icon.address.book.outline:before {
      content: "\f2b9"
@@ -12336,10 +12336,10 @@
      content: "\f0a0"
  }
  
- i.icon.heart.empty,
+ /*i.icon.heart.empty,
  i.icon.star.empty {
      font-family: outline-icons
- }
+ }*/
  
  i.icon.heart.empty:before {
      content: "\f004"
@@ -22932,9 +22932,11 @@
  
  .ui.teal.message {
      background-color: #e1f7f7;
-     color: #10a3a3;
-     -webkit-box-shadow: 0 0 0 1px #10a3a3 inset, 0 0 0 0 transparent;
-     box-shadow: 0 0 0 1px #10a3a3 inset, 0 0 0 0 transparent
+     /*messiB  #2F3C7E, #FBEAEB*/
+     color: #2F3C7E; /*10a3a3*/
+     /*messiB*/
+     -webkit-box-shadow: 0 0 0 1px #2F3C7E inset, 0 0 0 0 transparent; /*10a3a3*/
+     box-shadow: 0 0 0 1px #2F3C7E inset, 0 0 0 0 transparent /*10a3a3*/
  }
  
  .ui.teal.message .header {

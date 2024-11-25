@@ -1,5 +1,4 @@
 /** @format */
-
 const API_BASE_URL = '/api/multitool/';
 
 const blockedSetUp = { value: false };
@@ -98,6 +97,7 @@ var AggOpn = 0;
 var Win1, Loos1, Win2, Loos2, Win3, Loos3, Win4, Loos4, Win5, Loos5;
 var win, grossWin, netWin, WOW, DEFEAT, ENDGain;
 var gainOnGo_P, gainOnGoVP, gainOnGoVVP, gainOnGoVVVP, gainOnGoVVVVP, gainOnGoVVVVV;
+var guadagnoFinale, valoreIlluminato, counterIlluminato, svEarnElement, assicurazione, maggiorazione, assicurazioneCheckbox, statusMatch, assicurazioneCalcolata; //messi
 var ratingOnGo_P,
   ratingOnGo_VP,
   ratingOnGo_VVP,
@@ -308,6 +308,7 @@ if (localStorage.getItem('multiBuffer')) {
   var multiLocBuf = undefined;
 }
 
+//messi inizio ready
 $(document).ready(function () {
   if (parent.document.getElementById('iframeNewMulti')) {
     lastHeight = $('#lastElm')[0].offsetTop; //+ $("#lastElm")[0].offsetHeight;
@@ -328,16 +329,6 @@ $(document).ready(function () {
     });
   }
 
-  $(document)
-    .ajaxSend(function () {
-      $('.spinner img').prop('src', 'Spin200_' + randomSpin(1, 8) + '.gif');
-      $('.spinner').show();
-      // console.log("partiti");
-    })
-    .ajaxComplete(function () {
-      $('.spinner').hide();
-      // console.log("FINE");
-    });
 
   $('.ui.dropdown').dropdown();
   $('.ui.toggle.checkbox').checkbox();
@@ -405,8 +396,18 @@ $(document).ready(function () {
     ricalcola();
     formToJson();
     stopAccum();
+    ricalcoloCopertura();
   });
 
+    
+/*messi*/    
+$('#mult_assicurazione').change(function (){
+    ricalcola();
+    formToJson();
+    stopAccum();
+    ricalcoloCopertura();
+});
+    
   $('#mult_quantieventi').change(function () {
     $("[id*='grigliaSV_'] > div > div")
       .removeClass('lightMe0')
@@ -456,7 +457,7 @@ $(document).ready(function () {
       $('.grid_row_4 input[type="text"]').prop('disabled', true);
       $('.grid_row_5 input[type="text"]').prop('disabled', true);
       $('#blocMsgContent')
-        .html("<b><i class='key icon'></i><b>SET-UP</b> 'bloccato'")
+        .html("<b><i class='key icon'></i><b>set up</b> 'bloccato'")
         .addClass('redBloc')
         .removeClass('normalBloc');
     } else {
@@ -470,15 +471,19 @@ $(document).ready(function () {
       $('.grid_row_5 input[type="text"]').prop('disabled', false);
       $('#blocMsgContent')
         .html(
-          "<b><i class='caret left icon'></i>'Blocca' il SET-UP iniziale per evitare modifiche accidentali.</b>"
+          "<b><i class='caret left icon'></i>Blocca set up</b>"
         )
         .addClass('normalBloc')
         .removeClass('redBloc');
     }
   });
 
+    
+    
+    //messi provo a capire cosa fa totalizza
+    
   $('#rigaAgg_1 input').on('keyup', function () {
-    // console.log(this.id.substr(-2));
+    //console.log(this.id.substr(-2));
     totalizza(this.id, bancate);
     CP_teorica(this.id.substr(-2));
     setTimeout(showCop(this.id.substr(-2)), 200);
@@ -557,7 +562,7 @@ $(document).ready(function () {
       var radio_elm = '#boxRadioDch_' + chepartita;
       $(eval(hide_elm)).hide();
       $(show_elm).show();
-      $(eval(lab_elem)).removeClass('label_CP').addClass('label_DCH');
+      //$(eval(lab_elem)).removeClass('label_CP').addClass('label_DCH');
       // console.log("Dutching");
       $(radio_elm).show();
       $(key_elm).keyup();
@@ -570,7 +575,7 @@ $(document).ready(function () {
       var NO_elm = '#NO_Dch_' + chepartita;
       $(hide_elm).hide();
       $(eval(show_elm)).show();
-      $(eval(lab_elem)).removeClass('label_DCH').addClass('label_CP');
+      //$(eval(lab_elem)).removeClass('label_DCH').addClass('label_CP');
       // console.log("Contropunta")
       $(radio_elm).hide();
       $(eval(quota_elm))[0].value = '';
@@ -765,9 +770,10 @@ $(document).ready(function () {
     openSaveDlg();
   });
 
-  $('#btn_LOAD').on('click', function () {
+  //messi-carica
+  /*$('#btn_LOAD').on('click', function () {
     openLoadDlg();
-  });
+  });*/
 
   $('#btn_UPD').on('click', function () {
     openUpdDlg();
@@ -830,6 +836,22 @@ $(document).ready(function () {
       $("[class*='grid_row_" + rigaHover + "']").removeClass('hoverMe');
     });
 });
+
+
+/*messi*/
+//funzione che mi calcola sempre la copertura
+function ricalcoloCopertura(){
+    let baseString = "abb_New0_M";
+    let tmp = abb_New0_M1;
+    for(let i=1; i<6; i++){
+        tmp = baseString + i;
+        //console.log("tmp: "+tmp);
+        totalizza(tmp, bancate);
+        CP_teorica(tmp.substr(-2));
+        setTimeout(showCop(tmp.substr(-2)), 200);
+    }  
+  } 
+
 
 function norm_quotaT(quota) {
   quota == ''
@@ -2079,7 +2101,8 @@ function costanti(
   qCp4,
   q5,
   cp5,
-  qCp5
+  qCp5,
+  magg    
 ) {
   q1 = norm_quotaT(q1);
   q2 = norm_quotaT(q2);
@@ -2103,6 +2126,8 @@ function costanti(
 
   //qTot = norm_quotaT(q1)*norm_quotaT(q2)*norm_quotaT(q3)*norm_quotaT(q4)*norm_quotaT(q5);
   qTot = q1 * q2 * q3 * q4 * q5;
+  //messi
+  qTot = Maggiorazione(qTot,magg);    
   p = parseFloat(p);
   r = parseFloat(r);
   cp1 = parseFloat(cp1);
@@ -2327,6 +2352,38 @@ function costanti(
   return myConst;
 }
 
+/*messi*/
+// dato un numero float restituisce il numero in base all'assicurazione se attiva
+function Assicurazione(nEventi, statoMatch){
+    var tmp, nVittorie;
+    //console.log("nEventi ", nEventi);
+    tmp = nEventi - 1;
+    if (statoMatch == ''){
+        tmp = nEventi - 1;
+    }else{
+        //calcolo quante V ci sono
+        //console.log("statoMatch ", statoMatch);  
+        nVittorie = statoMatch.split('V').length - 1;
+        //console.log("nVittorie ", nVittorie);
+        tmp = tmp - nVittorie;
+    }
+    if (tmp < 0){
+        tmp = 0;
+    }      
+    return tmp;
+}
+//dato una percentuale in maggiorazione
+function Maggiorazione(totale, maggiorazione){
+   // maggiorazione = parseFloat(maggiorazione.value.replace(/%/g, '')) / 100;
+    //console.log("maggiorazione " , maggiorazione);
+    if (!isNaN(maggiorazione)){
+        totale = totale * (1 + maggiorazione / 100);
+    }
+    //console.log("totale " , totale);
+    return totale;
+}
+
+//messi qua si prenddono i dati del form si chiude a 4168
 function ricalcola() {
   num_ev = $('#mult_quantieventi')[0].value;
   puntata = $('#mult_lamiapuntata')[0].value;
@@ -2335,6 +2392,19 @@ function ricalcola() {
   com = $('#mult_lamiacommissione')[0].value;
   bonus = $('#mult_ilmiobonus')[0].value;
 
+  //messi 
+  //assicurazione e maggiorazione
+  assicurazioneCheckbox = $('#mult_assicurazione')[0].checked;
+  maggiorazione = parseFloat($('#mult_maggiorazione')[0].value.replace(/%/g, ''));
+  //console.log("assicurazione " , assicurazioneCheckbox); 
+  //console.log("maggiorazione " , maggiorazione);
+  statusMatch = $("#statusMatch")[0].innerHTML;  
+  //console.log("statusMatch " , statusMatch); 
+
+  assicurazioneCalcolata = Assicurazione(num_ev, statusMatch);  
+  //console.log("assicurazioneCalcolata " , assicurazioneCalcolata);    
+    
+    
   controP1 = $('#provaCP_M1')[0].value;
   qCP1 = $('#provaCP_Q_M1')[0].value;
   controP2 = $('#provaCP_M2')[0].value;
@@ -2383,9 +2453,10 @@ function ricalcola() {
     qCP4,
     quota5,
     controP5,
-    qCP5
+    qCP5,
+    maggiorazione  
   );
-
+  /*messi added maggiorazione*/
   vector_res = math.multiply(math.inv(MX1), COS1);
 
   gain = vector_res[0][0] + DolToMath(bonus);
@@ -2498,9 +2569,10 @@ function ricalcola() {
     0,
     quota5,
     0,
-    0
+    0,
+    maggiorazione  
   );
-
+ /*messi added maggiorazione*/
   bench_vector_res = math.multiply(math.inv(B_MX), B_COS);
 
   bench_gain = bench_vector_res[0][0] + DolToMath(bonus);
@@ -2663,7 +2735,16 @@ function ricalcola() {
     }
   }
   //$("#respo_Totale").html(DashForZero(zumTot));
-  $('#respo_Totale').html('+' + zumTot.toFixed(2) + '€');
+  //messiGR metto verde se positivo e rosso se negativo a zero metto verde
+    if(zumTot < 0 ){
+        $('#respo_Totale').css('color', 'red');
+    } else {
+        $('#respo_Totale').css('color', '#009c00');
+    }
+    
+    $('#respo_Totale').html('+' + zumTot.toFixed(2) + '€');
+  
+    
 
   //$("#respo_Totale").html((parseFloat($("#respo_tabRisult_M1").html()) + parseFloat($("#respo_tabRisult_M2").html()) + parseFloat($("#respo_tabRisult_M3").html()) + parseFloat($("#respo_tabRisult_M4").html()) + parseFloat($("#respo_tabRisult_M5").html())).toFixed(2) + "€");
 
@@ -2674,13 +2755,27 @@ function ricalcola() {
   $('#match_tabRisult_M5')[0].innerHTML = $('#matchName_M5')[0].value;
 
   $('#quotaB_New0_M1')[0].innerHTML = '@' + qbToMath(qbanca1).toFixed(2); //ret_qb(qbanca1);
+  
+   //messiAssicurazione1
+  if(assicurazioneCheckbox){
+      if(assicurazioneCalcolata != 0 && banca1 != 0){
+          banca1 = banca1 * (1 - assicurazioneCalcolata / 100);
+      }
+  } 
   $('#banca_New0_M1')[0].innerHTML = banca1.toFixed(2) + ' €';
   $('#respo_Cal0_M1')[0].innerHTML = (banca1 * (qbToMath(qbanca1) - 1)).toFixed(2) + '€';
   //$("#banca_New0_M1")[0].innerHTML = benchB1.toFixed(2) + " €";
   //$("#respo_Cal0_M1")[0].innerHTML = (benchB1 * (qbToMath(qbanca1) - 1)).toFixed(2) + "€";
   $('#comm_New0_M1')[0].innerHTML = com;
 
-  $('#quotaB_New0_M2')[0].innerHTML = '@' + qbToMath(qbanca2).toFixed(2); //ret_qb(qbanca2);
+
+ $('#quotaB_New0_M2')[0].innerHTML = '@' + qbToMath(qbanca2).toFixed(2); //ret_qb(qbanca2);
+//messiAssicurazione2
+  if(assicurazioneCheckbox){
+      if(assicurazioneCalcolata != 0 && banca2 != 0){
+          banca2 = banca2 * (1 - assicurazioneCalcolata / 100);
+      }
+  }     
   $('#banca_New0_M2')[0].innerHTML = banca2.toFixed(2) + ' €';
   $('#respo_Cal0_M2')[0].innerHTML = (banca2 * (qbToMath(qbanca2) - 1)).toFixed(2) + '€';
   //$("#banca_New0_M2")[0].innerHTML = benchB2.toFixed(2) + " €";
@@ -2703,7 +2798,14 @@ function ricalcola() {
     $("#comm_New0_M2")[0].innerHTML = "";
   } */
 
+          
   $('#quotaB_New0_M3')[0].innerHTML = '@' + qbToMath(qbanca3).toFixed(2); //ret_qb(qbanca3);
+//messiAssicurazione3
+  if(assicurazioneCheckbox){
+      if(assicurazioneCalcolata != 0 && banca3 != 0){
+          banca3 = banca3 * (1 - assicurazioneCalcolata / 100);
+      }
+  }     
   $('#banca_New0_M3')[0].innerHTML = banca3.toFixed(2) + ' €';
   $('#respo_Cal0_M3')[0].innerHTML = (banca3 * (qbToMath(qbanca3) - 1)).toFixed(2) + '€';
   //$("#banca_New0_M3")[0].innerHTML = benchB3.toFixed(2) + " €";
@@ -2727,6 +2829,13 @@ function ricalcola() {
   } */
 
   $('#quotaB_New0_M4')[0].innerHTML = '@' + qbToMath(qbanca4).toFixed(2); //ret_qb(qbanca4);
+
+  //messiAssicurazione4
+  if(assicurazioneCheckbox){
+      if(assicurazioneCalcolata != 0 && banca4 != 0){
+          banca4 = banca4 * (1 - assicurazioneCalcolata / 100);
+      }
+  }  
   $('#banca_New0_M4')[0].innerHTML = banca4.toFixed(2) + ' €';
   $('#respo_Cal0_M4')[0].innerHTML = (banca4 * (qbToMath(qbanca4) - 1)).toFixed(2) + '€';
   //$("#banca_New0_M4")[0].innerHTML = benchB4.toFixed(2) + " €";
@@ -2750,6 +2859,12 @@ function ricalcola() {
   } */
 
   $('#quotaB_New0_M5')[0].innerHTML = '@' + qbToMath(qbanca5).toFixed(2); //ret_qb(qbanca5);
+  //messiAssicurazione5
+  if(assicurazioneCheckbox){
+      if(assicurazioneCalcolata != 0 && banca5 != 0){
+          banca5 = banca5 * (1 - assicurazioneCalcolata / 100);
+      }
+  }     
   $('#banca_New0_M5')[0].innerHTML = banca5.toFixed(2) + ' €';
   $('#respo_Cal0_M5')[0].innerHTML = (banca5 * (qbToMath(qbanca5) - 1)).toFixed(2) + '€';
   //$("#banca_New0_M5")[0].innerHTML = benchB5.toFixed(2) + " €";
@@ -3122,6 +3237,8 @@ function ricalcola() {
   //gainOnGoVVVVV = (netWin + Win1 + Win2 + Win3 + Win4 + Win5);
   gainOnGoVVVVV = netWin + Win1 + Win2 + Win3 + Win4 + Win5;
   $('#statusResults_VVVVV')[0].innerHTML = DashForZero(gainOnGoVVVVV); //gainOnGoVVVVV.toFixed(2) + " €";
+
+    
   if (!puntata) {
     ratingOnGo_VVVVV = 100;
     CR_OnGo_VVVVV = 0;
@@ -4158,7 +4275,45 @@ function ricalcola() {
       .removeClass('green');
     $('#messaggioSV_txt').html('');
   }
+    
+    
+//messi gainOnGoVVVVV
+    counterIlluminato = 0;
+    valoreIlluminato = document.querySelectorAll('.illuminato');
+    
+    valoreIlluminato.forEach(function(element) {
+        if (window.getComputedStyle(element).display !== 'none') {
+            counterIlluminato += 1;
+            // Fai qualcosa con ciascun elemento
+            guadagnoFinale = element.textContent;
+            guadagnoFinale = guadagnoFinale.slice(0, -1);
+            guadagnoFinale = parseFloat(guadagnoFinale);
+            //console.log(element.textContent);
+            //console.log("counterIlluminato " + counterIlluminato);
+        }
+    });
+    
+    if (counterIlluminato != 1){
+        $('#guadagno_Totale')[0].innerHTML = "N/D";
+        $('#guadagno_Totale').css('color', '#009c00');
+    }else{
+        $('#guadagno_Totale')[0].innerHTML = DashGuadagnoFinale(guadagnoFinale);
+        if(guadagnoFinale <0 || isNaN(guadagnoFinale)){
+             $('#guadagno_Totale').css('color', 'red');
+        }else{
+            $('#guadagno_Totale').css('color', '#009c00');
+            $('#guadagno_Totale').prepend('+');
+        }
+    }     
 }
+
+
+
+
+//messi fine metodo ricalcola
+
+
+
 
 /* function totalizza(M_num, callback) {
   var start = 0;
@@ -4377,7 +4532,7 @@ function bancataOrig(sum, o, c) {
   // console.log(originalLay);
 }
 
-function showCop(m) {
+function showCop(m) {    
   var box_elem = '#copertura_' + m;
   var cop_elem = '#copLab_' + m;
   if (
@@ -4470,13 +4625,19 @@ function actualGain(evt) {
 
 function openSaveDlg() {
   formToJson();
+  $('.coupled.modal.mySave').modal({
+    allowMultiple: false,
+  });
+  //messi-salva
+  $('.first.coupled.modal.mySave').modal('show');
+}
+
+/*function openSaveDlg() {
+  formToJson();
 
   $('.coupled.modal.mySave').modal({
     allowMultiple: false,
   });
-
-  /* $('.second.mySave.modal')
-      .modal('attach events', '.first.mySave.modal .positive.button'); */
 
   $.ajax({
     type: 'POST',
@@ -4591,7 +4752,7 @@ function openSaveDlg() {
       }
     },
   });
-}
+}*/
 
 function openLoadDlg() {
   $.ajax({
@@ -4600,7 +4761,7 @@ function openLoadDlg() {
     // url: 'api/multi_s.php',
     url: '/api/multitool/multi_s.php',
     success: function (Lmesg, Lstatus, LResponse) {
-      // console.log(Lmesg);
+      //console.log(Lmesg);
       if (Lmesg['mess'] !== '') {
         if (Lmesg['mess'].search('Non hai multiple salvate') != -1) {
           $('.first.myLoad.modal#LOAD_dlg').addClass('tiny');
@@ -4675,8 +4836,10 @@ function openLoadDlg() {
 
 function openUpdDlg() {
   formToJson();
-
-  $.ajax({
+  updateMultipla();
+  //console.log("json :" + $("#formString")[0].value);
+  
+  /*$.ajax({
     type: 'POST',
     dataType: 'json',
     // url: 'api/multi_o.php',
@@ -4759,10 +4922,10 @@ function openUpdDlg() {
         }
       }
     },
-  });
+  });*/
 }
 
-function carica_mult(quale_multi) {
+/*function carica_mult(quale_multi) {
   $('[id*=FinGain_M]').html(0); //istruzione che ripulisce tutti i #FinGain_M delle 5 righe eventualmente presenti da multiple precedenti
 
   var qualecarico = quale_multi.split('_')[1];
@@ -4800,9 +4963,9 @@ function carica_mult(quale_multi) {
   });
 
   checkName();
-}
+}*/
 
-function elim_mult(quale_multi) {
+/*function elim_mult(quale_multi) {
   qualecarico = quale_multi.split('_')[1];
   // console.log(qualecarico);
   var punta_Del = $("[id*='content_Doll_" + qualecarico + "']")[0].innerHTML;
@@ -4846,7 +5009,7 @@ function elim_mult(quale_multi) {
     })
     .modal('show');
 
-  /* $.ajax ({
+   $.ajax ({
     type: "GET",
     url: "api/multi_m.php?act=del&multi=" + qualecarico,
     success: function(){
@@ -4854,8 +5017,8 @@ function elim_mult(quale_multi) {
         openLoadDlg();
       }, 500)
     }
-  }) */
-}
+  }) 
+}*/
 
 function overwrite_mult(nome, quale_multi, multName) {
   var qualecarico = quale_multi.split('_')[1];
@@ -5213,6 +5376,18 @@ function DashForZero(myNum) {
   return giveBack;
 }
 
+//messi
+function DashGuadagnoFinale(myNum) {
+  var giveBack;
+  if (myNum == 0 || isNaN(myNum) || myNum == '') {
+    giveBack = 'N/D';
+  } else {
+    giveBack = myNum.toFixed(2) + '€';
+  }
+
+  return giveBack;
+}
+
 function ctrlSVP() {
   var is_open;
   if ($('#boxGridSviluppo').css('display') == 'grid') {
@@ -5412,7 +5587,7 @@ function pasteDutcherData(matchNumber) {
 
 // funzione
 function _toNewAol() {
-  let mess = { fromRobinTools: true, type: 'accum', figures: {} };
+  let mess = { from: true, type: 'accum', figures: {} };
 
   let bigObj = {};
   let states = { A: '0', V: '1', P: '2' };
@@ -5595,11 +5770,4 @@ function _toNewAol() {
   }
 
   mess.figures = bigObj;
-
-  var destUrl = window.open('https://robinodds.it/agenda/giocate.html');
-
-  destUrl.onload = function () {
-    // console.log(destUrl, mess);
-    destUrl.postMessage(JSON.stringify(mess), 'https://robinodds.it');
-  };
 }

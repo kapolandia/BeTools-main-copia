@@ -15,6 +15,10 @@ var benchB1,
   bench_rating,
   bench_CR;
 
+/*messi*/
+var checkbox,sliderToggle,sliderWidth,maxMove,sliderCircle,translateValue;
+var guadagnoFinale, valoreIlluminato, counterIlluminato, svEarnElement, assicurazione, maggiorazione, assicurazioneCheckbox, statusMatch, assicurazioneCalcolata; //messi
+
 var benchB2v, benchB2p;
 var benchB3vv, benchB3vp, benchB3pv, benchB3pp;
 var benchB4vvv,
@@ -357,10 +361,11 @@ const romeOpt = {
 var mulArray, fromOdd;
 if (parent.document.getElementById("iframeMobMulti")) {
   var mulRef = parent.document.referrer; //parent.window.location.href; //document.referrer;
-  // console.log("comefrom: " + mulRef)
+  //messi 04/10/2024
+  //console.log("comefrom: " + mulRef);
 } else {
   var mulRef = document.referrer; //window.location.href; //document.referrer;
-  // console.log("comefrom: " + mulRef);
+  //console.log("comefrom: " + mulRef);
 }
 
 if (localStorage.getItem("multiBuffer")) {
@@ -431,17 +436,7 @@ $(document).ready(function () {
       // console.log("il frame è alto: "+ parent.document.getElementById("iframeMobMulti").height);
     });
   }
-
-  $(document)
-    .ajaxSend(function () {
-      $(".spinner img").prop("src", "img/Spin200_" + randomSpin(1, 8) + ".gif");
-      $(".spinner").show();
-      // console.log("partiti");
-    })
-    .ajaxComplete(function () {
-      $(".spinner").hide();
-      // console.log("FINE");
-    });
+  
 
   $(".ui.dropdown").dropdown();
   $(".ui.toggle.checkbox").checkbox();
@@ -500,6 +495,33 @@ $(document).ready(function () {
       }
     });
 
+    
+    
+    
+/*messi insurance toggler*/
+$('#mult_assicurazione').change(function (){
+    //console.log("Entrato assicurazione");
+    checkbox = document.getElementById('mult_assicurazione');
+    sliderToggle = document.getElementById('sliderToggle');
+    sliderWidth = sliderToggle.offsetWidth;
+    //console.log("sliderWidth: " + sliderWidth);
+    maxMove = sliderWidth  - 30;
+    if (checkbox.checked) {
+        //sliderToggle.style.setProperty('--custom-transform',maxMove+'px');
+        document.documentElement.style.setProperty('--slider-move', maxMove+"px");
+    } else {
+        document.documentElement.style.setProperty('--slider-move', 0+"px");
+    }
+    
+    ricalcola();
+    formToJson();
+    ricalcoloCopertura();
+});
+    
+    
+    
+    
+
   $("#mymultipla input").keyup(function () {
     ricalcola();
     formToJson();
@@ -508,6 +530,7 @@ $(document).ready(function () {
   $("#mymultipla input").change(function () {
     ricalcola();
     formToJson();
+    ricalcoloCopertura();
   });
 
   $("#mult_quantieventi").change(function () {
@@ -1047,17 +1070,19 @@ $(document).ready(function () {
     openSaveDlg();
   });
 
+  /*
   $("#btn_LOAD").on("click", function () {
     if (parent.document.getElementById("iframeMobMulti")) {
       window.parent.jQuery("body, html").animate({ scrollTop: 0 }, 200);
     }
     openLoadDlg();
   });
+  */
 
-  $("#btn_UPD").on("click", function () {
-    if (parent.document.getElementById("iframeMobMulti")) {
+  $("#btn_UPD_mobile").on("click", function () {
+    /*if (parent.document.getElementById("iframeMobMulti")) {
       window.parent.jQuery("body, html").animate({ scrollTop: 0 }, 200);
-    }
+    }*/
     openUpdDlg();
   });
 
@@ -1120,6 +1145,20 @@ $(document).ready(function () {
 
   document.getElementById("hideAll").style.display = "none";
 });
+
+
+/*messi*/
+function ricalcoloCopertura(){
+    let baseString = "abb_New0_M";
+    let tmp = abb_New0_M1;
+    for(let i=1; i<6; i++){
+        tmp = baseString + i;
+        //console.log("tmp: "+tmp);
+        totalizza(tmp, bancate);
+        CP_teorica(tmp.substr(-2));
+        setTimeout(showCop(tmp.substr(-2)), 200);
+    }  
+  } 
 
 function norm_quotaT(quota) {
   quota == ""
@@ -2556,7 +2595,8 @@ function costanti(
   qCp4,
   q5,
   cp5,
-  qCp5
+  qCp5,
+  magg
 ) {
   q1 = norm_quotaT(q1);
   q2 = norm_quotaT(q2);
@@ -2580,6 +2620,9 @@ function costanti(
 
   //qTot = norm_quotaT(q1)*norm_quotaT(q2)*norm_quotaT(q3)*norm_quotaT(q4)*norm_quotaT(q5);
   qTot = q1 * q2 * q3 * q4 * q5;
+  //messi
+  qTot = Maggiorazione(qTot,magg);   
+    
   p = parseFloat(p);
   r = parseFloat(r);
   cp1 = parseFloat(cp1);
@@ -3030,6 +3073,39 @@ function costanti(
   return myConst;
 }
 
+/*messi*/
+// dato un numero float restituisce il numero in base all'assicurazione se attiva
+function Assicurazione(nEventi, statoMatch){
+    var tmp, nVittorie;
+    //console.log("nEventi ", nEventi);
+    tmp = nEventi - 1;
+    if (statoMatch == ''){
+        tmp = nEventi - 1;
+    }else{
+        //calcolo quante V ci sono
+        //console.log("statoMatch ", statoMatch);  
+        nVittorie = statoMatch.split('V').length - 1;
+        //console.log("nVittorie ", nVittorie);
+        tmp = tmp - nVittorie;
+    }
+    if (tmp < 0){
+        tmp = 0;
+    }      
+    return tmp;
+}
+//dato una percentuale in maggiorazione
+function Maggiorazione(totale, maggiorazione){
+   // maggiorazione = parseFloat(maggiorazione.value.replace(/%/g, '')) / 100;
+    //console.log("maggiorazione " , maggiorazione);
+    if (!isNaN(maggiorazione)){
+        totale = totale * (1 + maggiorazione / 100);
+    }
+    //console.log("totale " , totale);
+    return totale;
+}
+
+
+
 function ricalcola() {
   num_ev = $("#mult_quantieventi")[0].value;
   puntata = $("#mult_lamiapuntata")[0].value;
@@ -3038,6 +3114,21 @@ function ricalcola() {
   com = $("#mult_lamiacommissione")[0].value;
   bonus = $("#mult_ilmiobonus")[0].value;
 
+    
+  //messi 
+  //assicurazione e maggiorazione
+  assicurazioneCheckbox = $('#mult_assicurazione')[0].checked;
+  maggiorazione = parseFloat($('#mult_maggiorazione')[0].value.replace(/%/g, ''));
+  //console.log("assicurazione " , assicurazioneCheckbox); 
+  //console.log("maggiorazione " , maggiorazione);
+  statusMatch = $("#statusMatch")[0].innerHTML;  
+  //console.log("statusMatch " , statusMatch); 
+
+  assicurazioneCalcolata = Assicurazione(num_ev, statusMatch);  
+  //console.log("assicurazioneCalcolata " , assicurazioneCalcolata);    
+     
+    
+    
   controP1 = $("#provaCP_M1")[0].value;
   qCP1 = $("#provaCP_Q_M1")[0].value;
   controP2 = $("#provaCP_M2")[0].value;
@@ -3086,9 +3177,11 @@ function ricalcola() {
     qCP4,
     quota5,
     controP5,
-    qCP5
+    qCP5,
+    maggiorazione  
   );
-
+  /*messi added maggiorazione*/
+    
   vector_res = math.multiply(math.inv(MX1), COS1);
 
   gain = vector_res[0][0] + DolToMath(bonus);
@@ -3201,8 +3294,10 @@ function ricalcola() {
     0,
     quota5,
     0,
-    0
+    0,
+    maggiorazione  
   );
+ /*messi added maggiorazione*/
 
   bench_vector_res = math.multiply(math.inv(B_MX), B_COS);
 
@@ -3404,7 +3499,14 @@ function ricalcola() {
     }
   }
   //$("#respo_Totale").html(DashForZero(zumTot));
-  $("#respo_Totale").html("+" + zumTot.toFixed(2) + "€");
+  //messiGR metto verde se positivo e rosso se negativo a zero metto verde
+    if(zumTot < 0 ){
+        $('#respo_Totale').css('color', 'red');
+    } else {
+        $('#respo_Totale').css('color', '#009c00');
+    }
+    
+    $('#respo_Totale').html('+' + zumTot.toFixed(2) + '€');
 
   //$("#respo_Totale").html((parseFloat($("#respo_tabRisult_M1").html()) + parseFloat($("#respo_tabRisult_M2").html()) + parseFloat($("#respo_tabRisult_M3").html()) + parseFloat($("#respo_tabRisult_M4").html()) + parseFloat($("#respo_tabRisult_M5").html())).toFixed(2) + "€");
 
@@ -3420,6 +3522,13 @@ function ricalcola() {
     $("#match_tabRisult_M5")[0].innerHTML = $("#matchName_M5")[0].value;
 
   $("#quotaB_New0_M1")[0].innerHTML = "@" + qbToMath(qbanca1).toFixed(2); //ret_qb(qbanca1);
+  //messiAssicurazione1
+  if(assicurazioneCheckbox){
+      if(assicurazioneCalcolata != 0 && banca1 != 0){
+          banca1 = banca1 * (1 - assicurazioneCalcolata / 100);
+      }
+  }  
+    
   $("#banca_New0_M1")[0].innerHTML = banca1.toFixed(2) + " €";
   $("#respo_Cal0_M1")[0].innerHTML =
     (banca1 * (qbToMath(qbanca1) - 1)).toFixed(2) + "€";
@@ -3428,6 +3537,13 @@ function ricalcola() {
   $("#comm_New0_M1")[0].innerHTML = com;
 
   $("#quotaB_New0_M2")[0].innerHTML = "@" + qbToMath(qbanca2).toFixed(2); //ret_qb(qbanca2);
+  //messiAssicurazione2
+  if(assicurazioneCheckbox){
+      if(assicurazioneCalcolata != 0 && banca2 != 0){
+          banca2 = banca2 * (1 - assicurazioneCalcolata / 100);
+      }
+  }   
+    
   $("#banca_New0_M2")[0].innerHTML = banca2.toFixed(2) + " €";
   $("#respo_Cal0_M2")[0].innerHTML =
     (banca2 * (qbToMath(qbanca2) - 1)).toFixed(2) + "€";
@@ -3452,6 +3568,13 @@ function ricalcola() {
   } */
 
   $("#quotaB_New0_M3")[0].innerHTML = "@" + qbToMath(qbanca3).toFixed(2); //ret_qb(qbanca3);
+  //messiAssicurazione3
+  if(assicurazioneCheckbox){
+      if(assicurazioneCalcolata != 0 && banca3 != 0){
+          banca3 = banca3 * (1 - assicurazioneCalcolata / 100);
+      }
+  }  
+    
   $("#banca_New0_M3")[0].innerHTML = banca3.toFixed(2) + " €";
   $("#respo_Cal0_M3")[0].innerHTML =
     (banca3 * (qbToMath(qbanca3) - 1)).toFixed(2) + "€";
@@ -3476,6 +3599,13 @@ function ricalcola() {
   } */
 
   $("#quotaB_New0_M4")[0].innerHTML = "@" + qbToMath(qbanca4).toFixed(2); //ret_qb(qbanca4);
+  //messiAssicurazione4
+  if(assicurazioneCheckbox){
+      if(assicurazioneCalcolata != 0 && banca4 != 0){
+          banca4 = banca4 * (1 - assicurazioneCalcolata / 100);
+      }
+  }     
+    
   $("#banca_New0_M4")[0].innerHTML = banca4.toFixed(2) + " €";
   $("#respo_Cal0_M4")[0].innerHTML =
     (banca4 * (qbToMath(qbanca4) - 1)).toFixed(2) + "€";
@@ -3500,6 +3630,14 @@ function ricalcola() {
   } */
 
   $("#quotaB_New0_M5")[0].innerHTML = "@" + qbToMath(qbanca5).toFixed(2); //ret_qb(qbanca5);
+  //messiAssicurazione5
+  if(assicurazioneCheckbox){
+      if(assicurazioneCalcolata != 0 && banca5 != 0){
+          banca5 = banca5 * (1 - assicurazioneCalcolata / 100);
+      }
+  }    
+    
+
   $("#banca_New0_M5")[0].innerHTML = banca5.toFixed(2) + " €";
   $("#respo_Cal0_M5")[0].innerHTML =
     (banca5 * (qbToMath(qbanca5) - 1)).toFixed(2) + "€";
@@ -5320,6 +5458,36 @@ function ricalcola() {
       .removeClass("green");
     $("#messaggioSV_txt").html("");
   }
+  //messi gainOnGoVVVVV
+    counterIlluminato = 0;
+    valoreIlluminato = document.querySelectorAll('.illuminato');
+    
+    valoreIlluminato.forEach(function(element) {
+        if (window.getComputedStyle(element).display !== 'none') {
+            counterIlluminato += 1;
+            // Fai qualcosa con ciascun elemento
+            guadagnoFinale = element.textContent;
+            guadagnoFinale = guadagnoFinale.slice(0, -1);
+            guadagnoFinale = parseFloat(guadagnoFinale);
+            //console.log(element.textContent);
+            //console.log("counterIlluminato " + counterIlluminato);
+        }
+    });
+    
+    if (counterIlluminato != 1){
+        $('#guadagno_Totale')[0].innerHTML = "N/D";
+        $('#guadagno_Totale').css('color', '#009c00');
+    }else{
+        $('#guadagno_Totale')[0].innerHTML = DashGuadagnoFinale(guadagnoFinale);
+        if(guadagnoFinale <0 || isNaN(guadagnoFinale)){
+             $('#guadagno_Totale').css('color', 'red');
+        }else{
+            $('#guadagno_Totale').css('color', '#009c00');
+            $('#guadagno_Totale').prepend('+');
+        }
+    }       
+    
+    
 }
 
 /* function totalizza(M_num, callback) {
@@ -5663,6 +5831,11 @@ function actualGain(evt) {
 
 function openSaveDlg() {
   formToJson();
+  $('.coupled.modal.mySave').modal({
+    allowMultiple: false,
+  });
+  //messi-salva
+  $('.first.coupled.modal.mySave').modal('show');
 
   /* $('.coupled.modal.mySave')
     .modal({
@@ -5671,8 +5844,8 @@ function openSaveDlg() {
 
   /* $('.second.mySave.modal')
       .modal('attach events', '.first.mySave.modal .positive.button'); */
-
-  $.ajax({
+//MESSI-SALVA
+  /*$.ajax({
     type: "POST",
     dataType: "json",
     url: "api/multi_c.php",
@@ -5727,6 +5900,7 @@ function openSaveDlg() {
                 //alert("campo vuoto");
                 return false;
               } else {
+                //messi-salva
                 var myForm = document.getElementById("sintesi_form");
                 var multidata = new FormData(myForm);
                 $.ajax({
@@ -5800,7 +5974,7 @@ function openSaveDlg() {
           .modal("show");
       }
     },
-  });
+  });*/
 }
 
 function openLoadDlg() {
@@ -5992,9 +6166,10 @@ function openLoadDlg() {
 }
 
 function openUpdDlg() {
-  formToJson();
-
-  $.ajax({
+formToJson();
+updateMultiplaMobile();
+//meessi-sql
+ /* $.ajax({
     type: "POST",
     dataType: "json",
     url: "api/multi_o.php",
@@ -6095,41 +6270,6 @@ function openUpdDlg() {
           });
         }
 
-        /* $('.first.myLoad.coupled.modal#LOAD_dlg')
-          .modal ({
-            onVisible: function() {
-              var hh = $('.first.myLoad.modal#LOAD_dlg')[0].offsetHeight;
-              // console.log("sono alta: " + hh);
-              var diffH = lastHeight - hh;
-              if (diffH < 50) {
-                $("#lastElm").css('min-height', (250 -diffH + 50)); */
-        //$("#lastElm").height(50 - diffH);
-        /* }
-              setTimeout(function() {
-                $("[id*=content_Name_].aiem input").blur();
-                $("#loadListBox_msg").click(); */
-        // console.log("funge?");
-        /* }, 250);
-              $("[id*=content_Name_]").popup({
-                inline: true,
-                position: 'left center'
-              })
-            },
-            onHidden: function() {
-              $("#lastElm").height("0"); */
-        //$("#lastElm").css('min-height', "250px");
-        /* $("#lastElm").css('min-height', "20px");
-            },
-            allowMultiple: false
-          })
-          .modal('show'); */
-
-        // if ($('.myLoad#LOAD_dlg .button[id*="overwrN_"]').length > 0) {
-        // 	$(".second.myUpdate").modal(
-        // 		"attach events",
-        // 		'.myLoad#LOAD_dlg .button[id*="overwrN_"]'
-        // 	);
-        // }
 
         $("#shrinkMe").hide();
 
@@ -6147,21 +6287,6 @@ function openUpdDlg() {
           $("#shrinkMe").show();
         });
 
-        /* $(".content_row").on('mouseover', function() {
-          var thisBtnLoad = "#"+this.id+ " div:nth-child(5)";
-          var thisBtnDel = "#"+this.id+ " div:nth-child(6)";
-          $(thisBtnLoad).toggleClass('topoOn');
-          $(thisBtnDel).toggleClass('topoOn');
-          $(this).css({"cursor": "context-menu", "background": "#e2e2e2"});
-        });
-      	
-        $(".content_row").on('mouseout', function() {
-          var thisBtnLoad = "#"+this.id+ " div:nth-child(5)";
-          var thisBtnDel = "#"+this.id+ " div:nth-child(6)";
-          $(thisBtnLoad).toggleClass('topoOn');
-          $(thisBtnDel).toggleClass('topoOn');
-          $(this).css({"cursor": "unset", "background": "unset"});
-        }); */
 
         var lL = 0;
         lL = $("[id*=content_Name_]").length;
@@ -6185,6 +6310,7 @@ function openUpdDlg() {
       }
     },
   });
+  console.log("entrato");*/
 }
 
 function carica_mult(quale_multi) {
@@ -6221,6 +6347,7 @@ function carica_mult(quale_multi) {
 
       // console.log(data);
       $("#idMulti")[0].value = qualecarico;
+      //MESSI-CARICA
       fill_form(data["dati_mul"].replace(/\\/g, ""));
 
       $(".myLoad#LOAD_dlg").hide();
@@ -7038,6 +7165,19 @@ function DashForZero(myNum) {
 
   return giveBack;
 }
+
+//messi
+function DashGuadagnoFinale(myNum) {
+  var giveBack;
+  if (myNum == 0 || isNaN(myNum) || myNum == '') {
+    giveBack = 'N/D';
+  } else {
+    giveBack = myNum.toFixed(2) + '€';
+  }
+
+  return giveBack;
+}
+
 
 function ctrlSVP() {
   var is_open;

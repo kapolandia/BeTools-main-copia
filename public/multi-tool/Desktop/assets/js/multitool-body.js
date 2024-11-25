@@ -416,7 +416,7 @@ function loopState() {
   // console.log(str);
   a = str.split(/A/)[0];
   multiStatus = a;
-  // console.log("status: " + a);
+  //console.log("status: " + a); 
   n_perse = countPBefA(a);
   k = a.indexOf("P");
   k == -1
@@ -428,9 +428,9 @@ function loopState() {
 function RGX_cfr() {
   for (i = 0; i < $("#statusSet_Box")[0].children.length; i++) {
     str = $("#statusSet_Box")[0].children[i].innerHTML;
-    // console.log("str: " + str);
+     //console.log("str: " + str);
     state = $("#statusMatch")[0].innerHTML;
-    // console.log("stato attuale: " + state);
+     //console.log("stato attuale: " + state);
     var pattern = "^" + state;
     // console.log("pattern: " + pattern);
     var rgXp = new RegExp(pattern);
@@ -439,14 +439,28 @@ function RGX_cfr() {
     var id_elm = ".statusSet[myindex='" + (i) + "']";
     var Res_id_elm = ".statusResults[myindex='" + (i) + "']";
     var RAT_id_elm = ".statusRating[myindex='" + (i) + "']";
+    //messi
+    //console.log("state: " + state);  
+    //console.log("res: " + res);
     if (res && res[0] != "") {
-      // console.log("indice " + (i) + " - " + res);
+      //console.log("indice " + (i) + " - " + res);
       $(id_elm).addClass("lightMe").removeClass("turnOffme");
       $(Res_id_elm).addClass("lightMe").removeClass("turnOffme");
+    
+      //messi
+      $(Res_id_elm).addClass("illuminato").removeClass("nonIlluminato");
+        
       $(RAT_id_elm).addClass("lightMe").removeClass("turnOffme");
+      //console.log("Res_id_elm: " + Res_id_elm);
+      //console.log("state: " + state);
+        
     } else {
       $(id_elm).addClass("turnOffme").removeClass("lightMe");
       $(Res_id_elm).addClass("turnOffme").removeClass("lightMe");
+        
+      //messi
+      $(Res_id_elm).addClass("nonIlluminato").removeClass("illuminato");
+        
       $(RAT_id_elm).addClass("turnOffme").removeClass("lightMe");
     }
   }
@@ -740,6 +754,7 @@ function keiap() {
   $("#matchName_M1").keyup();
 }
 
+//messi-carica
 function fill_form(jeison) {
   myDef.resolve(jeison);
 }
@@ -909,7 +924,6 @@ function copyForEx() {
   /* Copy the text inside the text field */
   //document.execCommand("copy");
   document.getElementById("loadListHeader").innerHTML = "<span style='color:#1EBC30'>SALVATAGGIO OK</span>";
-  document.getElementById("loadListContent").innerHTML = "Apri l'<b>Agenda Excel</b> (se non l'hai già fatto puoi scaricarla <a href='https://robinodds.it/agenda-guadagni/#download' target='_blank'>qui</a>), posizionati sulla prima cella della prima riga libera ed esegui il comando '<i><b>Incolla</b></i>'";
 
   $("#loadListBox_msg").addClass("green");
   $('.first.myLoad.modal#LOAD_dlg').addClass("tiny");

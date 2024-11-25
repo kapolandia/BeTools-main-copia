@@ -1,0 +1,393 @@
+{"titolo":"LISTA MULTIPLE SALVATE","mess":"
+<div class='tab_salva' id='int_row'>
+    <div class='tab_salva' style='padding-left:15px'>Nome</div>
+    <div class='tab_salva'>Data salvataggio</div>
+    <div class='tab_salva' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente'>N.eventi - Rimb.</div>
+    <div class='tab_salva' style='text-align: center'>Puntata di €</div>
+    <div class='tab_salva'></div>
+    <div class='tab_salva'></div>
+</div>
+<div class='tab_salva' id='list_Box'>
+    <div class='tab_salva content_row' id='content_row_201473'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_201473'>gabriele_sportium</div>
+        <div class='ui popup selPopup' match='201473' id='mulPopUp_201473'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Chicago Bulls vs Cleveland Cavaliers</p>
+            <p>#2: Danimarca vs Spagna</p>
+            <p>#3: Germania vs Bosnia-Erzegovina</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_201473'>2024-11-12 12:24:21</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_201473'>3 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_201473'>25€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_201473'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_201473'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_200389'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_200389'>99</div>
+        <div class='ui popup selPopup' match='200389' id='mulPopUp_200389'>
+            <p>Nessuna partita inserita</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_200389'>2024-11-07 18:08:42</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_200389'>2 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_200389'>€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_200389'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_200389'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_200363'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_200363'>5454</div>
+        <div class='ui popup selPopup' match='200363' id='mulPopUp_200363'>
+            <p>Nessuna partita inserita</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_200363'>2024-11-07 17:09:55</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_200363'>2 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_200363'>€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_200363'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_200363'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_184669'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_184669'>kapo_arnaldi</div>
+        <div class='ui popup selPopup' match='184669' id='mulPopUp_184669'>
+            <div class='header'>Selezioni</div>
+            <p>#1: a</p>
+            <p>#2: b</p>
+            <p>#3: c</p>
+            <p>#4: arnaldi</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_184669'>2024-08-29 13:35:47</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_184669'>4 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_184669'>20€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_184669'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_184669'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_177368'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_177368'>Euro2024 8avi sisal</div>
+        <div class='ui popup selPopup' match='177368' id='mulPopUp_177368'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Germania vs Danimarca</p>
+            <p>#2: Inghilterra vs Slovacchia</p>
+            <p>#3: Spagna vs Georgia</p>
+            <p>#4: Portogallo vs Slovenia</p>
+            <p>#5: Romania vs Olanda</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_177368'>2024-07-01 14:48:22</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_177368'>5 ev. - x 1</div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_177368'>120€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_177368'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_177368'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_176282'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_176282'>kapo_replay</div>
+        <div class='ui popup selPopup' match='176282' id='mulPopUp_176282'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Croazia vs Italia</p>
+            <p>#2: Colombia vs Paraguay</p>
+            <p>#3: Inghilterra vs Slovenia</p>
+            <p>#4: Georgia vs Portogallo</p>
+            <p>#5: Ecuador vs Giamaica</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_176282'>2024-06-24 20:21:15</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_176282'>5 ev. - std</div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_176282'>500€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_176282'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_176282'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_176088'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_176088'>Multipla 3°fase EURO2024</div>
+        <div class='ui popup selPopup' match='176088' id='mulPopUp_176088'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Albania vs Spagna</p>
+            <p>#2: Francia vs Polonia</p>
+            <p>#3: Inghilterra vs Slovenia</p>
+            <p>#4: Ucraina vs Belgio</p>
+            <p>#5: Georgia vs Portogallo</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_176088'>2024-06-24 13:47:03</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_176088'>5 ev. - std</div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_176088'>1000€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_176088'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_176088'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_174855'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_174855'>kapo_quigioco</div>
+        <div class='ui popup selPopup' match='174855' id='mulPopUp_174855'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Austria vs Francia</p>
+            <p>#2: Turchia vs Georgia</p>
+            <p>#3: Portogallo vs Repubblica Ceca</p>
+            <p>#4: Croazia vs Albania</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_174855'>2024-06-19 13:00:05</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_174855'>4 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_174855'>210€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_174855'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_174855'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_171741'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_171741'>kapo_gab_elabet</div>
+        <div class='ui popup selPopup' match='171741' id='mulPopUp_171741'>
+            <div class='header'>Selezioni</div>
+            <p>#1: NAC Breda vs Emmen</p>
+            <p>#2: Atalanta vs Bayer Leverkusen</p>
+            <p>#3: Utrecht vs Sparta Rotterdam</p>
+            <p>#4: Genoa vs Bologna</p>
+            <p>#5: Hellas Verona vs Inter</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_171741'>2024-05-21 19:29:07</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_171741'>5 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_171741'>260€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_171741'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_171741'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_171044'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_171044'>sandri_kapo_elabet</div>
+        <div class='ui popup selPopup' match='171044' id='mulPopUp_171044'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Udinese vs Empoli</p>
+            <p>#2: Inter vs Lazio</p>
+            <p>#3: Metz vs Paris Saint-Germain</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_171044'>2024-05-15 23:24:43</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_171044'>3 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_171044'>300€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_171044'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_171044'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_162635'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_162635'>eurobet mazzu</div>
+        <div class='ui popup selPopup' match='162635' id='mulPopUp_162635'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Brentford vs Sheffield United</p>
+            <p>#2: Maiorca vs Real Madrid</p>
+            <p>#3: Bologna vs Monza</p>
+            <p>#4: Sassuolo vs Milan</p>
+            <p>#5: Athletic Bilbao vs Villarreal</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_162635'>2024-04-13 20:29:32</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_162635'>5 ev. - std</div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_162635'>1200€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_162635'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_162635'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_163732'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_163732'>multiplone Eurobet A.F. 29/03</div>
+        <div class='ui popup selPopup' match='163732' id='mulPopUp_163732'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Napoli vs Atalanta</p>
+            <p>#2: Torino vs Monza</p>
+            <p>#3: Genoa vs Frosinone</p>
+            <p>#4: Fiorentina vs Milan</p>
+            <p>#5: Real Madrid vs Athletic Bilbao</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_163732'>2024-03-29 16:55:37</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_163732'>5 ev. - std</div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_163732'>1200€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_163732'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_163732'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_162582'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_162582'>Multiplone Eurobet 15/03 A.F.</div>
+        <div class='ui popup selPopup' match='162582' id='mulPopUp_162582'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Empoli vs Bologna</p>
+            <p>#2: Juventus vs Genoa</p>
+            <p>#3: Hellas Verona vs Milan</p>
+            <p>#4: Atalanta vs Fiorentina</p>
+            <p>#5: Inter vs Napoli</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_162582'>2024-03-16 01:55:35</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_162582'>5 ev. - std</div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_162582'>1200€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_162582'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_162582'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_161766'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_161766'>Multiplone Eurobet 9 - 3 A.F.</div>
+        <div class='ui popup selPopup' match='161766' id='mulPopUp_161766'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Cagliari vs Salernitana</p>
+            <p>#2: Bologna vs Inter</p>
+            <p>#3: Genoa vs Monza</p>
+            <p>#4: Milan vs Empoli</p>
+            <p>#5: Juventus vs Atalanta</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_161766'>2024-03-09 19:48:47</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_161766'>5 ev. - std</div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_161766'>1200€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_161766'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_161766'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_161024'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_161024'>Multiplone Eurobet 02/03 A.F.</div>
+        <div class='ui popup selPopup' match='161024' id='mulPopUp_161024'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Tottenham vs Crystal Palace</p>
+            <p>#2: Luton Town vs Aston Villa</p>
+            <p>#3: Clermont vs Marsiglia</p>
+            <p>#4: Villarreal vs Granada</p>
+            <p>#5: Atletico Madrid vs Real Betis</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_161024'>2024-03-03 15:45:35</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_161024'>5 ev. - std</div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_161024'>1200€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_161024'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_161024'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_158010'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_158010'>Eurobet 03/02 A.F.</div>
+        <div class='ui popup selPopup' match='158010' id='mulPopUp_158010'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Frosinone vs Milan</p>
+            <p>#2: Bologna vs Sassuolo</p>
+            <p>#3: Torino vs Salernitana</p>
+            <p>#4: Atalanta vs Lazio</p>
+            <p>#5: Inter vs Juventus</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_158010'>2024-02-03 23:30:40</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_158010'>5 ev. - std</div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_158010'>1200€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_158010'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_158010'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_156795'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_156795'>sportium_gabriele2</div>
+        <div class='ui popup selPopup' match='156795' id='mulPopUp_156795'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Atalanta vs Udinese</p>
+            <p>#2: Barcellona vs Villarreal</p>
+            <p>#3: Milan vs Bologna</p>
+            <p>#4: Fiorentina vs Inter</p>
+            <p>#5: Salernitana vs Roma</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_156795'>2024-01-27 13:10:59</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_156795'>5 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_156795'>10€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_156795'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_156795'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_156800'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_156800'>sportium gabriele 3</div>
+        <div class='ui popup selPopup' match='156800' id='mulPopUp_156800'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Atalanta vs Udinese</p>
+            <p>#2: Milan vs Bologna</p>
+            <p>#3: Borussia Dortmund vs Bochum</p>
+            <p>#4: Fiorentina vs Inter</p>
+            <p>#5: Salernitana vs Roma</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_156800'>2024-01-27 13:09:43</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_156800'>5 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_156800'>10€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_156800'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_156800'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_156834'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_156834'>multipla eurobet A.F.</div>
+        <div class='ui popup selPopup' match='156834' id='mulPopUp_156834'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Atalanta vs Udinese</p>
+            <p>#2: Barcellona vs Villarreal</p>
+            <p>#3: Milan vs Bologna</p>
+            <p>#4: Paris Saint-Germain vs Brest</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_156834'>2024-01-27 02:22:42</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_156834'>4 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_156834'>1000€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_156834'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_156834'>Elimina</button>
+        </div>
+    </div>
+    <div class='tab_salva content_row' id='content_row_156794'>
+        <div class='tab_salva tab_salva_dati tab_salva_Name' style='padding-left:15px' id='content_Name_156794'>sportium_gabriele</div>
+        <div class='ui popup selPopup' match='156794' id='mulPopUp_156794'>
+            <div class='header'>Selezioni</div>
+            <p>#1: Milan vs Bologna</p>
+            <p>#2: Fiorentina vs Inter</p>
+            <p>#3: Salernitana vs Roma</p>
+        </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Date' id='content_Date_156794'>2024-01-26 20:52:18</div>
+        <div class='tab_salva tab_salva_dati tab_salva_HowMany' style='text-align: center' title='\"std\"= rimborso normale - \"x 1\"= rimborso per 1 perdente' id='content_HowMany_156794'>3 ev. </div>
+        <div class='tab_salva tab_salva_dati tab_salva_Doll' style='text-align: center' id='content_Doll_156794'>100€</div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui blue mini button' title='Carica sul multiplicatore' onclick='carica_mult(this.id)' id='caricaN_156794'>Carica</button>
+        </div>
+        <div class='tab_salva tab_salva_btn'>
+            <button type='button' class='listBox_btn ui red mini button' title='Elimina dai tuoi salvataggi' onclick='elim_mult(this.id)' id='eliminaN_156794'>Elimina</button>
+        </div>
+    </div>
+</div>
+"}

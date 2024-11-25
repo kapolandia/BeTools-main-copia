@@ -279,7 +279,6 @@ function salvaRiga() {
 	$.ajax({
 		type: "POST",
 		url: "/abb_PREMIUM/agenda/profit_boh.php",
-		//url: "/robin_wp_test/agenda/profit_boh.php",
 		data: betdata,
 		dataType: "json",
 		//processData: false,

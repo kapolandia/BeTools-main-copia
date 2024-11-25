@@ -446,10 +446,18 @@ function RGX_cfr() {
       //console.log("indice " + (i) + " - " + res);
       $(id_elm).addClass("lightMe").removeClass("turnOffme");
       $(Res_id_elm).addClass("lightMe").removeClass("turnOffme");
+     
+      //messi
+      $(Res_id_elm).addClass("illuminato").removeClass("nonIlluminato");
+        
       $(RAT_id_elm).addClass("lightMe").removeClass("turnOffme");
     } else {
       $(id_elm).addClass("turnOffme").removeClass("lightMe");
       $(Res_id_elm).addClass("turnOffme").removeClass("lightMe");
+        
+      //messi
+      $(Res_id_elm).addClass("nonIlluminato").removeClass("illuminato");
+        
       $(RAT_id_elm).addClass("turnOffme").removeClass("lightMe");
     }
   }
@@ -747,7 +755,7 @@ function refill_hedge() {
 function keiap() {
   $("#matchName_M1").keyup();
 }
-
+//MESSI-CARICA
 function fill_form(jeison) {
   myDef.resolve(jeison);
 }
@@ -918,7 +926,6 @@ function copyForEx() {
   /* Copy the text inside the text field */
   //document.execCommand("copy");
   document.getElementById("loadListHeader").innerHTML = "<span style='color:#1EBC30'>SALVATAGGIO OK</span>";
-  document.getElementById("loadListContent").innerHTML = "Apri l'<b>Agenda Excel</b> (se non l'hai già fatto puoi scaricarla <a href='https://robinodds.it/agenda-guadagni/#download' target='_blank'>qui</a>), posizionati sulla prima cella della prima riga libera ed esegui il comando '<i><b>Incolla</b></i>'";
 
   $("#loadListBox_msg").addClass("green");
   $('.first.myLoad.modal#LOAD_dlg').addClass("tiny");
