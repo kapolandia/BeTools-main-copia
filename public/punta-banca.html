@@ -88,6 +88,10 @@
             width: 100%;
         }
 
+        .my-form-input-label-left{
+            margin: 0;
+        }
+
         td{
             text-align: center;
             border: none;
@@ -118,6 +122,23 @@
         table{
             width: 100%;
             border-spacing: 0;
+        }
+
+        .padding-2-div, .padding-1-div{
+            padding: 10px;
+        }
+
+        @media screen and (max-width: 800.99px){
+            .padding-2-div{
+                padding: 5px;
+                padding-bottom: 5px;
+                padding-top: 5px;
+            }
+
+            .padding-1-div{
+                padding: 5px;
+                padding-top: 5px;
+            }
         }
            
       
@@ -150,6 +171,11 @@
                 </div>
  
                 <ul class="dropdown__menu">
+                    <li>
+                        <a href="live-casino.html" class="dropdown__link">
+                           Live Casinò
+                        </a>                          
+                     </li>
  
                    <li>
                       <a href="funbonus_slot.html" class="dropdown__link">
@@ -200,6 +226,12 @@
                 <li>
                     <a href="dutch-tool.html" class="dropdown__link">
                        Dutch Tool
+                    </a>
+                 </li>
+
+                 <li>
+                    <a href="multi-tool.html" class="dropdown__link">
+                       Multi Tool
                     </a>
                  </li>
 
@@ -275,9 +307,9 @@
                     <div style="background-color: #5865f1; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;">
                         <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Informazioni Puntata</p>
                     </div>
-                    <div class="my-row-2" >
-                        <div style="padding: 5px;">
-                            <div class="form-group" style="margin-top: 10px;">
+                    <div class="rolumnrtp" >
+                        <div class="padding-1-div">
+                            <div class="form-group">
                                 <label for="importoPuntata" class="my-form-input-label-left" id="importo-bonus">Importo Puntata</label>
                                 <div >
                                     <input placeholder="Inserisci la puntata" type="number" id="importoPuntata" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
@@ -285,7 +317,7 @@
                                 <label for="custom-select" class="my-form-input-label-right">€</label>
                             </div>
     
-                            <div class="form-group display-none" id="rimborso-importo">
+                            <div class="form-group display-none" id="rimborso-importo" style="margin-top: 10px;">
                                 <label for="importoRimborso" class="my-form-input-label-left">Rimborso </label>
                                 <div >
                                     <input placeholder="Inserisci il rimborso" type="number" id="importoRimborso" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
@@ -293,7 +325,7 @@
                                 <label for="custom-select" class="my-form-input-label-right">€</label>
                             </div>
 
-                            <div class="form-group display-none" id="rollover-form">
+                            <div class="form-group display-none" id="rollover-form" style="margin-top: 10px;">
                                 <label for="importoRollover" class="my-form-input-label-left">Rollover </label>
                                 <div >
                                     <input placeholder="Inserisci il rimborso" type="number" id="importoRollover" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()" value="1">
@@ -302,8 +334,8 @@
                             </div>
                         </div>
 
-                        <div style="padding: 5px;">
-                            <div class="form-group" style="margin-top: 10px;">
+                        <div class="padding-2-div">
+                            <div class="form-group">
                                 <label for="quotaPuntata" class="my-form-input-label-left">Quota Puntata</label>
                                 <div >
                                     <input placeholder="Inserisci la quota" type="number" id="quotaPuntata" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
@@ -311,7 +343,7 @@
                                 <label for="custom-select" class="my-form-input-label-right">@</label>
                             </div>
     
-                            <div class="form-group display-none" id="maggiorazione-container">
+                            <div class="form-group display-none" id="maggiorazione-container" style="margin-top: 10px;">
                                 <label for="maggiorazionePuntata" class="my-form-input-label-left">Maggiorazione</label>
                                 <div >
                                     <input placeholder="" value="0" type="number" id="maggiorazionePuntata" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
@@ -326,9 +358,9 @@
                     <div style="background-color: rgb(255, 126, 126); border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;">
                         <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Informazioni Bancata</p>
                     </div>
-                    <div class="my-row-2">
-                        <div style="padding: 5px;">
-                            <div class="form-group" style="margin-top: 10px;">
+                    <div class="rolumnrtp">
+                        <div class="padding-1-div">
+                            <div class="form-group">
                                 <label for="commissione" class="my-form-input-label-left">Commissione</label>
                                 <div >
                                     <input placeholder="Inserisci la commissione" type="number" value="4.5" id="commissione" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
@@ -337,8 +369,8 @@
                             </div>
                         </div>
 
-                        <div style="padding: 5px;">
-                            <div class="form-group" style="margin-top: 10px;">
+                        <div class="padding-2-div">
+                            <div class="form-group">
                                 <label for="quotaBancata" class="my-form-input-label-left">Quota Bancata</label>
                                 <div >
                                     <input placeholder="Inserisci la quota" type="number" id="quotaBancata" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
@@ -346,7 +378,7 @@
                                 <label for="custom-select" class="my-form-input-label-right">@</label>
                             </div>
     
-                            <div class="form-group display-none" id="puntata-avanzata">
+                            <div class="form-group display-none" id="puntata-avanzata" style="margin-top: 10px;">
                                 <label for="puntataBookA" class="my-form-input-label-left">Quota Puntata</label>
                                 <div >
                                     <input type="number" disabled id="punta-eq" name="bonus-input" class="input-bonus my-form-input input-disabled" onkeydown="getResults()" onchange="getResults()" style="font-weight: 400;">
@@ -362,7 +394,7 @@
                             </div>
                             <div style="margin-top: 20px;display: flex;width: 100%;justify-content: center;flex-direction: column;align-items: center;">
                                 <input type="range" id="sbilanciamento-input" style="width: 50%;opacity: 1;" min="60" max="140" onchange="getResults()">
-                                <div class="form-group" style="margin-top: 10px;">
+                                <div class="form-group" style="margin-top: 10px;margin-bottom: 10px;">
                                     <label for="sbilanciamento-value" class="my-form-input-label-left">Sbilanciamento</label>
                                     <div >
                                         <input placeholder="Inserisci la commissione" type="number" value="100" id="sbilanciamento-value" name="bonus-input" class="input-bonus my-form-input input-disabled" onkeydown="getResults()" disabled>
@@ -404,7 +436,7 @@
                                 <label for="book-b" class="my-form-input-label-left">Punta</label>
                                 <input onChange="getResults();" type="text" id="puntata-input" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled>
                             </div>
-                            <div  class="form-group" id="bookC">
+                            <div  class="form-group" id="bookC" style="margin-top: 10px;">
                                 <label for="book-c" class="my-form-input-label-left">A quota</label>
                                 <input onChange="getResults();" type="text" id="quota-puntata-2" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled>
                             </div>
@@ -423,7 +455,7 @@
                                 <label for="book-b" class="my-form-input-label-left">Banca</label>
                                 <input onChange="getResults();" type="text" id="bancata-input" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled>
                             </div>
-                            <div  class="form-group" id="bookC">
+                            <div  class="form-group" id="bookC" style="margin-top: 10px;">
                                 <label for="book-c" class="my-form-input-label-left">A quota</label>
                                 <input onChange="getResults();" type="number" id="quota-bancata-2" name="bonus-input" class="my-form-input-quote input-disabled" onkeydown="getResults()" disabled>
                             </div>

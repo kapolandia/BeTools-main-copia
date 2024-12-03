@@ -1,12 +1,3 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js";
-import {
-  getFirestore,
-  updateDoc,
-  doc,
-  getDoc,
-} from "https://www.gstatic.com/firebasejs/9.6.3/firebase-firestore.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyAvitDeakWR3NfFELI43u99axe3FeYBkmQ",
   authDomain: "betools-bbbcc.firebaseapp.com",
@@ -32,7 +23,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     const userDocRef = firestore.collection("users").doc(user.uid);
     const subscribeBtn = document.querySelectorAll(".subscribe-btn");
     const unsubscribebtn = document.querySelectorAll(".unsubscribe-btn");
-    const days = document.querySelectorAll(".rem-days");
+    // const days = document.querySelectorAll(".rem-days");
     subscribeBtn.forEach((elements) => {
       elements.style.display = "block";
     });

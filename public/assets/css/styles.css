@@ -378,6 +378,20 @@ a {
   font-size: 16px;
 }
 
+.start-2{
+  cursor: pointer;
+  padding: 10px 16px;
+  border:none;
+  width: 120px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 12px;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 16px;
+}
+
 .start:hover{
   box-shadow: 0px 0px 5px #5865f1;
 }
@@ -386,6 +400,11 @@ a {
 /* Add press animation */
 transform: scale(.9);
 }
+
+.start-2:active {
+  /* Add press animation */
+  transform: scale(.9);
+  }
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 300px) {
@@ -490,6 +509,11 @@ transform: scale(.9);
 @media screen and (max-width: 850px) {
   .relo-text{
     display: none;
+  }
+
+  .login-box{
+    padding: 20px 
+    !important;
   }
 
   .relo-cont{

@@ -240,7 +240,7 @@ function calcCondizionato(){
 
         //inserimento dati copertura
         document.getElementById("copertura-evento").value = formatToTwoDecimals(bancata);
-        document.getElementById("quoteBookB").value = quotaPuntaBookA;
+        document.getElementById("quoteBookB").value = quotaCoperturaBookA;
 
         document.getElementById("book-c").value = formatToTwoDecimals(Imp_Cop);
         document.getElementById("quoteBookC").value = quotaCoperturaCondizione;

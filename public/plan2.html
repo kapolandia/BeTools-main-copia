@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+      <title>Betoolz - Matched Betting per professionisti</title>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+      <link rel="icon" type="image/png" href="./assets/images/ws.png"/>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script type="module" src="./assets/js/authPlan.js"></script>
+
+      <!--=============== REMIXICONS ===============-->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/styles.css">
+      <style>
+             .guides-list {
+      width: 300px;
+      border-right: 1px solid rgb(242, 242, 247);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: fixed;
+
+    }
+
+    .guides-item.clicked {
+      background-color: #5865f214;
+      border-radius: 4px;
+      border-left: 4px solid #5865F2;
+      margin-left: 4px;
+      padding-left: 8px;
+      color: #5865F2;
+      font-weight: 500;
+  }
+
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .guides-item{
+      display: flex;
+      padding: 4px;
+      color: rgba(92,105,117,1.00);
+      font-weight: 300;
+    }
+
+    .guides-item:hover{
+      background-color: rgb(242, 242, 247);
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 4px;
+      padding-left: 8px;
+    }
+
+    .guide-div{
+      padding-left: 80px;
+    }
+
+    @media screen and (max-width:850px) {
+      .guides-list{
+         display: none;
+      }
+
+      .guide-div{
+         padding: 40px;
+      }
+    }
+
+    @media screen and (min-width:850.1px) {
+
+
+      .guide-div{
+         margin-left: 300px;
+         padding-right: 200px;
+      }
+    }
+
+    .header-hidden {
+   display: none;
+}
+
+.input-group {
+        width: 100%;
+      }
+      .input-field {
+        margin: 12px 0;
+        position: relative;
+      }
+      .input-box {
+        width: 100%;
+        height: 50px;
+        font-size: 15px;
+        color: #202427;
+        border: 0.5px solid #2024273a;
+        border-radius: 10px;
+        padding: 7px 45px 0 20px;
+        background: rgba(247, 247, 247, 0.6);
+        backdrop-filter: blur(2px);
+        outline: none;
+      }
+      .input-field label {
+        position: absolute;
+        left: 20px;
+        top: 15px;
+        font-size: 15px;
+        transition: 0.2s ease-in-out;
+      }
+      .input-box:focus ~ label,
+      .input-box:valid ~ label {
+        top: 2px;
+        font-size: 10px;
+        color: #202427;
+        font-weight: 500;
+      }
+      </style>
+   </head>
+   <body style="height: 100%;">
+<!--=============== HEADER ===============-->
+      <header class="header" style="box-shadow:0px 0px 10px 0px #5865F2;">
+         <nav class="nav container">
+            <div class="nav__data">
+               <a href="landing.html" class="nav__logo">
+                  <img src="./assets/images/logo.png" style="height: 70px;width: 210px;">
+               </a>
+               
+               <div class="nav__toggle" id="nav-toggle">
+                  <i class="ri-menu-line nav__burger"></i>
+                  <i class="ri-close-line nav__close" id="close-nav"></i>
+               </div>
+            </div>
+      
+            <!--=============== NAV MENU ===============-->
+            <div class="nav__menu" id="nav-menu">
+               <ul class="nav__list">
+                  
+      
+                  <!--=============== DROPDOWN 1 ===============-->
+
+                  <li class="dropdown__item">
+                     <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+                        Dati personali <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                     </div>
+      
+                     <ul class="dropdown__menu">
+                        <li>
+                           <a class="dropdown__link" data-target="content-funbonus-slot" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px; " onclick="document.getElementById('close-nav').click()">
+                              Fatturazione
+                           </a>                          
+                        </li>
+                     </ul>
+                  </li>
+      
+                  <li class="dropdown__item">
+                     <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+                     Abbonamento <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                     </div>
+                     <ul class="dropdown__menu">
+                        <li>
+                        <a data-target="content-vdg-sport" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"  onclick="document.getElementById('close-nav').click()">
+                           Gestione piano
+                        </a>
+                     </li>
+                     </ul>
+                  </li>
+
+                  <li><a href="landing.html" class="nav__login">Home</a></li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+
+    <!-- Your second header content here -->
+    <div style=" top: 100%; left: 0; width: 100%; display: flex; justify-content: center; background: #404040; padding: 20px;">
+        <a style="color: #fff;font-family: Poppins;font-weight: 700;font-size: 24px;" class="head2">Dashboard</a>
+    </div>
+    
+      <div style="display: flex;flex-direction: row;">
+      <div class="guides-list" >
+         <div style="padding: 20px;">
+            <p class="body" style="color: rgba(92,105,117,1.00);font-weight: 200;font-family:Poppins, sans serif;font-size: 14px;">
+               Dati personali
+            </p>
+            <div style="padding-left: 10px;border-left: 1px solid rgb(242, 242, 247);padding-top: 10px;display: flex;flex-direction: column;">
+              <a class="guides-item" style="font-family: Poppins, sans serif;" data-target="content-funbonus-slot" >
+                  Fatturazione
+              </a>
+            </div>
+
+            <p class="body" style="color: rgba(92,105,117,1.00);font-weight: 200;font-family:Poppins, sans serif;font-size: 14px;margin-top: 25px;">
+               Abbonamento
+            </p>
+            <div style="padding-left: 10px;border-left: 1px solid rgb(242, 242, 247);padding-top: 10px;display: flex;flex-direction: column;">
+               <a class="guides-item" style="font-family: Poppins, sans serif;" data-target="content-vdg-sport">
+                  Gestione Piano
+               </a>
+            </div>
+         </div>
+   
+      </div>
+      <div class="guide-div" style="display: flex;flex-direction: column;padding-top: 40px;text-align: center;">
+         <div id="content-funbonus-slot" class="content" style="display: none;text-align: justify;flex-direction: column;">
+            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;" >Fatturazione</a>
+            <div class="input-field">
+               <input
+                 type="text"
+                 class="input-box"
+                 id="provincia-utente"
+                 required
+               />
+               <label for="provincia-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                 Provincia<span style="color: #5865f2;">*</span>
+               </label>
+             </div>
+
+         </div>
+
+         <div id="content-vdg-sport" class="content" style="display: none;text-align: justify;flex-direction: column;">
+            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;"> Gestione piano</a>
+            <a style="font-size: 1.5em;font-family: Poppins, sans serif;font-weight: 600;color:#404040;margin-top: 20px;"> I Funbonus</a>
+            <a style="align-items: center;justify-content: center;display: flex;background-color: #5865f214;color:  #5865F2;padding: 10px;border-radius: 5px;border-left: 5px solid #5865F2;margin-top: 20px;"> <img src="./assets/images/megaphone.png" style="height: 50px;margin-right: 10px;">Analizzando la vasta proposta dei Casinò online in termini di promozioni, capiterà di imbattersi nella dicitura “Fun Bonus”: scopriamo cosa significa e come si sfruttano.
+            </a>
+            <a style="font-size: 1em;font-family: Poppins, sans serif;font-weight: 300;color:#404040;margin-top: 20px;margin-bottom: 50px;"> 
+               Esistono molte tipologie di bonus proposte dai bookmaker, di varia natura e differente utilizzo. Una di queste prende il nome di “Fun Bonus“, che (in estrema sintesi) prevede l’assegnazione di <strong>credito virtuale</strong>, non prelevabile direttamente ma convertibile in <strong>"Real Bonus”</strong> o in soldi veri tramite il soddisfacimento di alcuni parametri di gioco.<br><br>
+               Per trasformare un “Fun Bonus” in un “Real Bonus” si dovrà passare tramite un determinato <strong>requisito di scommessa</strong>, in inglese <strong>“wagering requirement”</strong>, ovvero la necessità che quello stesso bonus debba venir rigiocato un determinato numero di volte.<br><br>
+               In linea generale, comunque, su ogni sito si potranno consultare più in generale <strong>Termini e Condizioni (T&C)</strong> del bonus, per avere una migliore panoramica delle norme che regolano lo sblocco.
+            </a>
+         </div>
+
+         <div id="content-admiral" class="content" style="display: none;text-align: justify;flex-direction: column;">
+            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;"> Bonus AdmiralBet</a>
+            <a style="align-items: center;justify-content: center;display: flex;background-color: rgba(255, 126, 126, 0.213);color:  #ff5555;padding: 10px;border-radius: 5px;border-left: 5px solid #ff5555;margin-top: 20px;"> <img src="./assets/images/warning.png" style="height: 50px;margin-right: 10px;"> Controlla sempre i Termini e Condizioni prima di iniziare a sfruttare una promozione.</a>
+
+            <a style="font-size: 1em;font-family: Poppins, sans serif;font-weight: 300;color:#404040;margin-top: 20px;margin-bottom: 50px;"> 
+               AdmiralBet propone un Bonus di Benvenuto Sport <strong>sfruttabile con il nostro calcolatore</strong> Fun Bonus Sport. <br>
+               Al momento della scrittura di questa guida i valori riportati dai T&C sono sono i seuguenti: <br>
+               - Importo Funbonus: 100 <br>
+               - Wagering Richiesto: 8 <br>
+               - Eventi Funbonus: 3 <br>
+               - Quota min. Eventi: 1.3 <br>
+               - Cap Real Bonus: 500 <br>
+               - Rollover Real Bonus: 1 <br>
+               - Eventi Real Bonus: 1 <br><br>
+               Il <strong>profitto stimato</strong> sarà dunque di <strong>~28€</strong> e dipenderà anche dal rating degli eventi che useremo per le nostre scommesse.
+            </a>
+         </div>
+
+         <div id="content-betaland" class="content" style="display: none;text-align: justify;flex-direction: column;">
+            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;"> Bonus Betaland</a>
+            <a style="align-items: center;justify-content: center;display: flex;background-color: rgba(255, 126, 126, 0.213);color:  #ff5555;padding: 10px;border-radius: 5px;border-left: 5px solid #ff5555;margin-top: 20px;"> <img src="./assets/images/warning.png" style="height: 50px;margin-right: 10px;"> Controlla sempre i Termini e Condizioni prima di iniziare a sfruttare una promozione.</a>
+
+            <a style="font-size: 1em;font-family: Poppins, sans serif;font-weight: 300;color:#404040;margin-top: 20px;margin-bottom: 50px;"> 
+               Betaland propone un Bonus di Benvenuto Sport <strong>sfruttabile con il nostro calcolatore</strong> Fun Bonus Sport. <br>
+               Al momento della scrittura di questa guida i valori riportati dai T&C sono sono i seuguenti: <br>
+               - Importo Funbonus: 50 <br>
+               - Wagering Richiesto: 10 <br>
+               - Eventi Funbonus: 3 <br>
+               - Quota min. Eventi: 2 <br>
+               - Cap Real Bonus: 500 <br>
+               - Rollover Real Bonus: 1 <br>
+               - Eventi Real Bonus: 3 <br><br>
+               Nonostante l'offerta parli di bonus fino a 100€ sarà possibile giocare <strong>massimo 50€</strong>. <br>
+               Il <strong>profitto stimato</strong> sarà dunque di <strong>~15€</strong> e dipenderà anche dal rating degli eventi che useremo per le nostre scommesse.
+            </a>
+         </div>
+
+         <div id="content-netbet" class="content" style="display: none;text-align: justify;flex-direction: column;">
+            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;"> Bonus Netbet</a>
+            <a style="align-items: center;justify-content: center;display: flex;background-color: rgba(255, 126, 126, 0.213);color:  #ff5555;padding: 10px;border-radius: 5px;border-left: 5px solid #ff5555;margin-top: 20px;"> <img src="./assets/images/warning.png" style="height: 50px;margin-right: 10px;"> Controlla sempre i Termini e Condizioni prima di iniziare a sfruttare una promozione.</a>
+            <a style="font-size: 1em;font-family: Poppins, sans serif;font-weight: 300;color:#404040;margin-top: 20px;margin-bottom: 50px;"> 
+               Netbet propone un Bonus di Benvenuto Sport <strong>sfruttabile con il nostro calcolatore</strong> Fun Bonus Sport. <br>
+               Al momento della scrittura di questa guida i valori riportati dai T&C sono sono i seuguenti: <br>
+               - Importo Funbonus: 50 <br>
+               - Wagering Richiesto: 3 <br>
+               - Eventi Funbonus: 3 <br>
+               - Quota min. Eventi: 2 <br>
+               - Cap Real Bonus: 150 <br>
+               - Rollover Real Bonus: 1 <br>
+               - Eventi Real Bonus: 1 <br><br>
+               Il <strong>profitto stimato</strong> sarà dunque di <strong>~20€</strong> e dipenderà anche dal rating degli eventi che useremo per le nostre scommesse.
+            </a>
+         </div>
+
+         <div id="content-vdg-bj" class="content" style="display: none;text-align: justify;flex-direction: column;">
+            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;"> Calcolatore Blackjack Live</a>
+            <a style="font-size: 1.5em;font-family: Poppins, sans serif;font-weight: 600;color:#404040;margin-top: 20px;"> Presto disponibile.</a>
+         </div>
+      </div>   
+
+      </div>
+  
+   </body>
+
+   <script src="assets/js/main.js"></script>
+
+ <script>
+    $(document).ready(function() {
+        // Function to handle the click on a guide link
+        $('a.guides-item, a.dropdown__link').click(function() {
+            // Remove the 'clicked' class from all guide links
+            $('a.guides-item, a.dropdown__link').removeClass('clicked');
+
+            // Add the 'clicked' class to the clicked guide link
+            $(this).addClass('clicked');
+
+            // Retrieve the target data attribute
+            var targetDiv = $(this).data('target');
+
+            // Hide all content divs
+            $('.content').css('display', 'none');
+
+            // Show the corresponding content div based on the target data attribute
+            $('#' + targetDiv).css('display', 'flex');
+        });
+
+        // Handle clicks on the header links except for the "Home" link
+        $('.nav__list a:not(.nav__login)').click(function(e) {
+            // Prevent the default link behavior for all links except "Home"
+            e.preventDefault();
+
+            // Retrieve the target data attribute from the header link
+            var targetDiv = $(this).data('target');
+
+            // Find the corresponding content link based on the data attribute
+            var contentLink = $('a.guides-item[data-target="' + targetDiv + '"]');
+
+            // Remove the 'clicked' class from all content links
+            $('a.guides-item').removeClass('clicked');
+
+            // Add the 'clicked' class to the corresponding content link
+            contentLink.addClass('clicked');
+
+            // Hide all content divs
+            $('.content').css('display', 'none');
+
+            // Show the corresponding content div
+            $('#' + targetDiv).css('display', 'flex');
+        });
+
+        var initialLink = $('a.guides-item[data-target="content-funbonus-slot"]');
+        initialLink.addClass('clicked');
+        initialLink.trigger('click');
+    });
+
+
+
+      
+    </script>
+    
+    
+</html>

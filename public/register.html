@@ -43,6 +43,10 @@
         border: 2px solid red; /* You can customize this style */
       }
 
+      .login-box{
+        padding: 40px;
+      }
+
       /* Closed eye icon */
       .toggle-password {
         position: absolute;
@@ -129,7 +133,7 @@
         margin: 0;
         width: 0;
         height: 0;
-        display: inline;
+        display: flex;
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -272,10 +276,9 @@
             </div>
 
             <!------------------ Login Box --------------------->
-
-            <div
+            <form action="">
+              <div class="login-box"
               style="
-                width: 350px;
                 height: 100%;
                 box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.238);
                 border-radius: 8px;
@@ -283,7 +286,6 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: 40px;
               "
             >
               <a
@@ -291,7 +293,7 @@
                   font-family: 'Poppins', sans-serif;
                   font-weight: 600;
                   color: #202427;
-                  margin-bottom: 40px;
+                  margin-bottom: 20px;
                 "
                 >Crea un account</a
               >
@@ -306,7 +308,7 @@
                       background-color: transparent;
                       color: #202427;
                     "
-                    >Email</label
+                    >Email<span style="color: #5865f2;">*</span></label
                   >
                 </div>
                 <div class="input-field">
@@ -324,7 +326,7 @@
                       background-color: transparent;
                       color: #202427;
                     "
-                    >Password</label
+                    >Password <span style="color: #5865f2;">*</span></label
                   >
                   <span class="toggle-password" id="togglePassword"></span>
                 </div>
@@ -344,14 +346,93 @@
                       background-color: transparent;
                       color: #202427;
                     "
-                    >Conferma Password</label
+                    >Conferma Password<span style="color: #5865f2;">*</span></label
                   >
                   <span class="toggle-password2" id="togglePassword2"></span>
                 </div>
 
-                <div style="display: flex;flex-direction: row;margin-top: 10px;">
+                <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="nome-utente"
+                    required
+                  />
+                  <label
+                    for="nome-utente"
+                    style="
+                      padding: 0;
+                      margin: 0;
+                      background-color: transparent;
+                      color: #202427;
+                    "
+                    >Nome<span style="color: #5865f2;">*</span></label
+                  >
+                </div>
+
+                <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="cognome-utente"
+                    required
+                  />
+                  <label for="cognome-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    Cognome<span style="color: #5865f2;">*</span>
+                  </label>
+                </div>
+
+                <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="indirizzo-utente"
+                    required
+                  />
+                  <label for="indirizzo-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    Indirizzo<span style="color: #5865f2;">*</span>
+                  </label>
+                </div>
+
+                <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="citta-utente"
+                    required
+                  />
+                  <label for="citta-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    Città<span style="color: #5865f2;">*</span>
+                  </label>
+                </div>
+
+                <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="provincia-utente"
+                    required
+                  />
+                  <label for="provincia-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    Provincia<span style="color: #5865f2;">*</span>
+                  </label>
+                </div>
+
+                <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="cap-utente"
+                    required
+                  />
+                  <label for="cap-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    CAP<span style="color: #5865f2;">*</span>
+                  </label>
+                </div>
+
+                <div style="display: flex;flex-direction: row;margin-top: 30px;">
                 <div class="checkbox-wrapper-1">
-                  <input id="privacy" class="substituted" type="checkbox" aria-hidden="true"  style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;"/>
+                  <input id="privacy" class="substituted" type="checkbox"  style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;"/>
                   <label for="privacy" style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;"></label>
                 </div>
                 <a style="font-size: 13px;">Registrandoti accetti <span style="text-decoration: underline;cursor: pointer;"  onclick='window.location.href="informativaprivacy.html"'>l'informativa sulla privacy</span>.</a>
@@ -359,7 +440,7 @@
 
               <div style="display: flex;flex-direction: row;margin-top: 10px;">
                 <div class="checkbox-wrapper-1">
-                  <input id="termini" class="substituted" type="checkbox" aria-hidden="true"  style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;"/>
+                  <input id="termini" class="substituted" type="checkbox"  style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;"/>
                   <label for="termini" style="background-color: #fff;border-radius: 0;margin: 0;padding: 0;"></label>
                 </div>
                 <a style="font-size: 13px;">Registrandoti accetti i nostri <span style="text-decoration: underline;cursor: pointer;"  onclick='window.location.href="termini.html"'>Termini e Condizioni</span>.</a>
@@ -407,6 +488,16 @@
 
                 <div class="input-field">
                   <div
+                    id="address-error"
+                    class="error-message"
+                    style="color: #ff0033; display: none; font-size: 12px"
+                  >
+                    Inserisci un indirizzo valido
+                  </div>
+                </div>
+
+                <div class="input-field">
+                  <div
                     id="termini-error"
                     class="error-message"
                     style="color: #ff0033; display: none; font-size: 12px"
@@ -423,7 +514,6 @@
 
                 <div class="input-field">
                   <a
-                    href="#"
                     class="nav__register2"
                     style="margin-top: 30px; width: 100%; font-weight: 500"
                     >Registrati</a
@@ -431,10 +521,32 @@
                 </div>
               </div>
             </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
+    <footer id="footer" class="footer" style="background-color: #f5f5f7;margin-top: 100px;">
+      <div class="container">
+            <div class="footer__info"  style="display: flex;flex-direction: column;padding: 10px;color: #404040;justify-content: start;text-align: start;padding-bottom: 20px;font-weight: 300;font-size: 13px;">
+               <div class="small-footer">
+                  <p style="padding-bottom: 10px;">Copyright © 2024 Betoolz. Tutti i diritti riservati.</p>
+                  <ul class="footer-list">
+                      <li class="footer-item">info@betoolz.it</li>
+                      <li class="footer-item">BUSINESSBET A.F. | P.IVA: 02632200222</li>
+                      <li class="footer-item footer-clickable"><a href="informativacookies.html" target="_blank" style="color: #404040;text-decoration: none;">Informativa cookies</a></li>
+                      <li class="footer-item footer-clickable"><a href="informativaprivacy.html" target="_blank" style="color: #404040;text-decoration: none;">Informativa privacy</a></li>
+                      <li class="footer-item footer-clickable"><a href="disclaimer.html" target="_blank" style="color: #404040;text-decoration: none;">Disclaimer</a></li>
+                      <li class="footer-item footer-clickable"><a href="termini.html" target="_blank" style="color: #404040;text-decoration: none;">Termini e condizioni</a></li>
+                    </ul>
+                  <ul class="footer-list">
+                      <li class="footer-item">Web Design di Davide Caporali</p>
+                      <li class="footer-item" >caporalidavide78@gmail.com</p>
+                  </div>
+               </div>
+            </div>
+      </div>
+   </footer>
 
     <script src="assets/js/main.js"></script>
     <script>
@@ -462,16 +574,6 @@
           passwordInput2.type = "password";
           togglePassword2.classList.remove("open"); // Remove the open class
         }
-      });
-    </script>
-
-    <script type="module">
-      import {
-        getAuth,
-        signOut,
-      } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js";
-      signOut(firebase.auth()).catch((error) => {
-        console.log(error);
       });
     </script>
 

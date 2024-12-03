@@ -44,92 +44,95 @@ const funbonuscasRef = db.collection('funbonuscas');
 const vdgslotRef = db.collection('vdgslot');
 const vdgcasinoRef = db.collection('vdgcas');
 const rtpRef = db.collection('rtp');
+const multitoolRef = db.collection('multitool');
 
 const modalSave = document.getElementById("modal-save");
 
 
 
-modalSave.addEventListener("click", function (event) {
-  event.preventDefault(); 
+if(modalSave){
+  modalSave.addEventListener("click", function (event) {
+    event.preventDefault(); 
+    
+    const esitoAgenda = document.getElementById("esito-agenda").value;
+    const sitoAgenda = document.getElementById("sito-agenda").value;
+    const ritornoAgenda = parseFloat(document.getElementById("ritorno-agenda").value);
+    const timeNow = new Date();
   
-  const esitoAgenda = document.getElementById("esito-agenda").value;
-  const sitoAgenda = document.getElementById("sito-agenda").value;
-  const ritornoAgenda = parseFloat(document.getElementById("ritorno-agenda").value);
-  const timeNow = new Date();
-
-  if(sitoAgenda === "" ||  isNaN(ritornoAgenda)){
-    document.getElementById("miss-error").style.display= "block";
-    return;
-  } else {
-    document.getElementById("miss-error").style.display= "none";
-  }
-
-  const strumento = modalSave.dataset.strumento;
-  // Inizio logica aggiunta documenti
-  if(strumento == 'funbonus'){
-    funbonuscasRef.add({
-      data: timeNow,
-      esito: esitoAgenda,
-      id: userEmail,
-      ritorno: ritornoAgenda,
-      sito: sitoAgenda
-    })
-    .then(function(docRef) {
-      displayAgenda();
+    if(sitoAgenda === "" ||  isNaN(ritornoAgenda)){
+      document.getElementById("miss-error").style.display= "block";
       return;
-    })
-    .catch(function(error) {
-      console.log("Error adding document")
-    })
-  } else if(strumento == 'vdgslot'){
-    vdgslotRef.add({
-      data: timeNow,
-      esito: esitoAgenda,
-      id: userEmail,
-      ritorno: ritornoAgenda,
-      sito: sitoAgenda
-    })
-    .then(function(docRef) {
-      displayAgenda();
-      return;
-    })
-    .catch(function(error) {
-      console.log("Error adding document")
-    })
-  } else if(strumento == 'vdgcas'){
-    vdgcasinoRef.add({
-      data: timeNow,
-      esito: esitoAgenda,
-      id: userEmail,
-      ritorno: ritornoAgenda,
-      sito: sitoAgenda
-    })
-    .then(function(docRef) {
-      displayAgenda();
-      return;
-    })
-    .catch(function(error) {
-      console.log("Error adding document")
-    })
-  }  else if(strumento == 'rtp'){
-    rtpRef.add({
-      data: timeNow,
-      esito: esitoAgenda,
-      id: userEmail,
-      ritorno: ritornoAgenda,
-      sito: sitoAgenda
-    })
-    .then(function(docRef) {
-      displayAgenda();
-      return;
-    })
-    .catch(function(error) {
-      console.log("Error adding document")
-    })
-  }
-
-  console.log(timeNow, ritornoAgenda, sitoAgenda, esitoAgenda, strumento, userEmail);
-});
+    } else {
+      document.getElementById("miss-error").style.display= "none";
+    }
+  
+    const strumento = modalSave.dataset.strumento;
+    // Inizio logica aggiunta documenti
+    if(strumento == 'funbonus'){
+      funbonuscasRef.add({
+        data: timeNow,
+        esito: esitoAgenda,
+        id: userEmail,
+        ritorno: ritornoAgenda,
+        sito: sitoAgenda
+      })
+      .then(function(docRef) {
+        displayAgenda();
+        return;
+      })
+      .catch(function(error) {
+        console.log("Error adding document")
+      })
+    } else if(strumento == 'vdgslot'){
+      vdgslotRef.add({
+        data: timeNow,
+        esito: esitoAgenda,
+        id: userEmail,
+        ritorno: ritornoAgenda,
+        sito: sitoAgenda
+      })
+      .then(function(docRef) {
+        displayAgenda();
+        return;
+      })
+      .catch(function(error) {
+        console.log("Error adding document")
+      })
+    } else if(strumento == 'vdgcas'){
+      vdgcasinoRef.add({
+        data: timeNow,
+        esito: esitoAgenda,
+        id: userEmail,
+        ritorno: ritornoAgenda,
+        sito: sitoAgenda
+      })
+      .then(function(docRef) {
+        displayAgenda();
+        return;
+      })
+      .catch(function(error) {
+        console.log("Error adding document")
+      })
+    }  else if(strumento == 'rtp'){
+      rtpRef.add({
+        data: timeNow,
+        esito: esitoAgenda,
+        id: userEmail,
+        ritorno: ritornoAgenda,
+        sito: sitoAgenda
+      })
+      .then(function(docRef) {
+        displayAgenda();
+        return;
+      })
+      .catch(function(error) {
+        console.log("Error adding document")
+      })
+    }
+  
+    console.log(timeNow, ritornoAgenda, sitoAgenda, esitoAgenda, strumento, userEmail);
+  });
+}
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -139,7 +142,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var modal = document.getElementById('addModal');
     var modalCancel = document.getElementById('modal-cancel');
     
-    modalBtn.addEventListener('click', function () {
+    if(modalBtn){
+          modalBtn.addEventListener('click', function () {
         displayNoneAgenda();
         modalOverlay.style.display = 'block';
         setTimeout(function() {
@@ -165,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
             modalOverlay.style.display = 'none';
             modal.classList.remove('active');
         }
+    }
     }
 });
 

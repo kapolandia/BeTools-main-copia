@@ -18,3 +18,11 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
+
+import {
+    getAuth,
+    signOut,
+  } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js";
+  signOut(firebase.auth()).catch((error) => {
+    console.log(error);
+  });

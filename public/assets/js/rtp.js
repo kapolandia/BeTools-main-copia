@@ -225,35 +225,81 @@ function chooseSpin(result) {
 
     var trueSpin = (saldoIniziale - saldoAttuale + takeprofit) / omega;
 
+    let giocato = saldoIniziale - saldoAttuale;
+    let saldoDaGiocare = -stoploss-giocato;
+
+    let spinFinaleValue;
     if (trueSpin < spin2) {
         spin1Element.style.backgroundColor = "#5865f12b";
         spin1Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
-        return (spin1)
+        spinFinaleValue = spin1;
     } else if (trueSpin >= spin2 && trueSpin < spin3) {
         spin2Element.style.backgroundColor = "#5865f12b";
         spin2Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
-        return (spin2)
+        spinFinaleValue = spin2;
     } else if (trueSpin >= spin3 && trueSpin < spin4) {
         spin3Element.style.backgroundColor = "#5865f12b";
         spin3Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
-        return (spin3)
+        spinFinaleValue = spin3;
     } else if (trueSpin >= spin4 && trueSpin < spin5) {
         spin4Element.style.backgroundColor = "#5865f12b";
         spin4Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
-        return (spin4)
+        spinFinaleValue = spin4;
     } else if (trueSpin >= spin5 && trueSpin < spin6) {
         spin5Element.style.backgroundColor = "#5865f12b";
         spin5Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
-        return (spin5)
+        spinFinaleValue = spin5;
     } else if (trueSpin >= spin6 && trueSpin < spin7) {
         spin6Element.style.backgroundColor = "#5865f12b";
         spin6Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
-        return (spin6)
+        spinFinaleValue = spin6;
     } else if (trueSpin >= spin7) {
         spin7Element.style.backgroundColor = "#5865f12b";
         spin7Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
-        return (spin7)
+        spinFinaleValue = spin7;
     }
+    console.log(saldoDaGiocare);
+    
+    if(spinFinaleValue > saldoDaGiocare){
+        for (var i = 1; i <= 7; i++) {
+            var spinElement = document.getElementById("spin" + i);
+            spinElement.style.backgroundColor = "#fff";
+            spinElement.style.boxShadow = "none";
+        }
+        
+        if(saldoDaGiocare >= spin7){
+            spin7Element.style.backgroundColor = "#5865f12b";
+            spin7Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
+            spinFinaleValue = spin7;
+        } else if(saldoDaGiocare > spin6){
+            spin7Element.style.backgroundColor = "#5865f12b";
+            spin7Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
+            spinFinaleValue = spin7;
+        } else if(saldoDaGiocare > spin5){
+            spin6Element.style.backgroundColor = "#5865f12b";
+            spin6Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
+            spinFinaleValue = spin6;
+        } else if(saldoDaGiocare > spin4){
+            spin5Element.style.backgroundColor = "#5865f12b";
+            spin5Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
+            spinFinaleValue = spin5;
+        } else if(saldoDaGiocare > spin3){
+            spin4Element.style.backgroundColor = "#5865f12b";
+            spin4Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
+            spinFinaleValue = spin4;
+        } else if(saldoDaGiocare > spin2){
+            spin3Element.style.backgroundColor = "#5865f12b";
+            spin3Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
+            spinFinaleValue = spin3;
+        } else{
+            spin2Element.style.backgroundColor = "#5865f12b";
+            spin2Element.style.boxShadow = "0px 0px 15px 0px #5865f1";
+            spinFinaleValue = spin2;
+        }
+    }
+    console.log(spinFinaleValue);
+    
+    return spinFinaleValue;
 
 }
 
@@ -327,7 +373,6 @@ function rtpModalInfo(){
         }
         var inputElement = document.getElementById('ritorno-agenda');
         inputElement.value =  saldoAttuale - saldoIniziale;
-        console.log(inputElement, esitoAgenda, ritornoAgenda);
     }
 }
 

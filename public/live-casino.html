@@ -48,6 +48,7 @@
         /* Hide spinner controls for Firefox */
         input[type="number"] {
             -moz-appearance: textfield;
+            appearance: textfield;
         }
 
         .my-margin{
@@ -220,7 +221,13 @@
                     <a href="dutch-tool.html" class="dropdown__link">
                        Dutch Tool
                     </a>
-                 </li>
+                </li>
+
+                <li>
+                    <a href="multi-tool.html" class="dropdown__link">
+                       Multi Tool
+                    </a>
+                </li>
 
                 <li>
                    <a href="funbonus_sport.html" class="dropdown__link">
@@ -341,7 +348,7 @@
                 </div>
 
         <!-- Fine Tabella -->
-        <div id="dutcher-indicazioni-container" class="container dutcher-indicazioni">
+        <div id="dutcher-indicazioni-container" class="container dutcher-indicazioni display-none">
             <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;padding: 6px;">
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Indicazioni</p>
             </div>
@@ -396,7 +403,7 @@
         
         
         
-        <div id="dutcher-riepilogo-container" class="dutcher-riepilogo-container" style="overflow: hidden;">
+        <div id="dutcher-riepilogo-container" class="dutcher-riepilogo-container display-none" style="overflow: hidden;">
             <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
                 <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Riepilogo</p>
             </div>
@@ -404,29 +411,53 @@
                 <tbody>
                     <tr>
                         <td></td>
-                        <td>Vince <strong>Book</strong></td>
-                        <td>Vince <strong>Exchange</strong></td>
+                        <td id="column-1" style="color: #404040;font-weight: bold;line-height: 24px;padding:5px">1 - 12</td>
+                        <td id="column-2" style="color: #404040;font-weight: bold;line-height: 24px;padding:5px">13 - 24</td>
+                        <td id="column-3" style="color: #404040;font-weight: bold;line-height: 24px;padding:5px">25 - 36</td>
+                        <td id="column-4" style="color: #404040;font-weight: bold;line-height: 24px;padding:5px">Vince<br>Zero</td>
                     </tr>
                     <tr>
-                        <td>Book</td>
+                        <td id="row-a-title">1 - 12</td>
                         <td id="row-a-1"></td>
                         <td id="row-a-2"></td>
+                        <td id="row-a-3"></td>
+                        <td id="row-a-4"></td>
                     </tr>
                     <tr>
-                        <td>Exchange</td>
+                        <td id="row-b-title">13 - 24</td>
                         <td id="row-b-1"></td>
                         <td id="row-b-2"></td>
+                        <td id="row-b-3"></td>
+                        <td id="row-b-4"></td>
+                    </tr>
+                    <tr id="row-c-id">
+                        <td id="row-c-title">25 - 36</td>
+                        <td id="row-c-1"></td>
+                        <td id="row-c-2"></td>
+                        <td id="row-c-3"></td>
+                        <td id="row-c-4"></td>
+                    </tr>
+                    <tr id="row-zero-id">
+                        <td id="row-zero-title">Zero</td>
+                        <td id="row-d-1"></td>
+                        <td id="row-d-2"></td>
+                        <td id="row-d-3"></td>
+                        <td id="row-d-4"></td>
                     </tr>
                     <tr id="cr-row">
-                        <td>Rimborsi</td>
-                        <td id="row-cr-1"></td>
+                        <td>Rimborso</td>
+                        <td id="row-cr-1">/</td>
                         <td id="row-cr-2"></td>
+                        <td id="row-cr-3"></td>
+                        <td id="row-cr-4"></td>
 
                     </tr>
                     <tr>
                         <td><strong>TOTALE</strong></td>
                         <td id="totale-1" style="font-weight: 600;"></td>
                         <td id="totale-2" style="font-weight: 600;"></td>
+                        <td id="totale-3" style="font-weight: 600;"></td>
+                        <td id="totale-4" style="font-weight: 600;"></td>
                     </tr>
                 </tbody>
             </table>

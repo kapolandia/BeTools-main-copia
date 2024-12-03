@@ -112,6 +112,34 @@
             }
         }
 
+        .padding-2-div, .padding-1-div{
+            padding: 10px;
+        }
+
+        @media screen and (max-width: 800.99px){
+            .calc-boxes-3{
+                width: 100%;
+            }
+
+            .rolumnrtp{
+                align-items: center;
+            }
+            .padding-2-div{
+                padding: 5px;
+                padding-bottom: 5px;
+                padding-top: 5px;
+            }
+
+            .padding-1-div{
+                padding: 5px;
+                padding-top: 5px;
+            }
+        }
+
+        .my-form-input-label-left{
+            margin: 0;
+        }
+
 
       
       </style>
@@ -143,6 +171,11 @@
                 </div>
  
                 <ul class="dropdown__menu">
+                    <li>
+                        <a href="live-casino.html" class="dropdown__link">
+                           Live Casinò
+                        </a>                          
+                     </li>
  
                    <li>
                       <a href="funbonus_slot.html" class="dropdown__link">
@@ -193,6 +226,12 @@
                 <li>
                     <a href="dutch-tool.html" class="dropdown__link">
                        Dutch Tool
+                    </a>
+                 </li>
+
+                 <li>
+                    <a href="multi-tool.html" class="dropdown__link">
+                       Multi Tool
                     </a>
                  </li>
 
@@ -289,9 +328,9 @@
                         <div style="border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;background-color: #404040;">
                             <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Informazioni Evento</p>
                         </div>
-                        <div class="my-row-2">
-                            <div style="padding: 5px;">
-                                <div class="form-group" style="margin-top: 10px;">
+                        <div class="rolumnrtp">
+                            <div class="padding-1-div">
+                                <div class="form-group" >
                                     <label for="commissione" class="my-form-input-label-left">Quota&nbsp;Punta</label>
                                     <div >
                                         <input placeholder="Inserisci la puntata" type="number" id="quotaBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
@@ -300,8 +339,8 @@
                                 </div>
                             </div>
     
-                            <div style="padding: 5px;">
-                                <div class="form-group" style="margin-top: 10px;">
+                            <div class="padding-2-div">
+                                <div class="form-group" >
                                     <label for="quotaBancata" class="my-form-input-label-left" style="background-color: rgba(255, 126, 126, 0.366);" id="quotaCoperturaPuntata">Quota&nbsp;Banca</label>
                                     <div >
                                         <input placeholder="Inserisci la quota" type="number" id="coperturaBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
@@ -309,7 +348,7 @@
                                     <label for="custom-select" class="my-form-input-label-right"  style="background-color: rgba(255, 126, 126, 0.366);" id="quotaCoperturaPuntata2">@</label>
                                 </div>
         
-                                <div class="form-group" id="puntataCommissione">
+                                <div class="form-group" id="puntataCommissione" style="margin-top: 10px;">
                                     <label for="commissioneBookA" class="my-form-input-label-left" style="background-color: rgba(255, 126, 126, 0.366);">Commissione</label>
                                     <div >
                                         <input type="number" id="commissioneBookA" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()" value="4.5">
@@ -325,9 +364,9 @@
                         <div style="border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;background-color: rgb(255, 126, 126)" id="coperturaCondizioneTitle">
                             <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;display: flex;justify-content: center;">Copertura condizione</p>
                         </div>
-                        <div class="my-row-2">
-                            <div style="padding: 5px;">
-                                <div class="form-group" style="margin-top: 10px;">
+                        <div class="rolumnrtp">
+                            <div class="padding-1-div">
+                                <div class="form-group" >
                                     <label for="coperturaCondizioneQuota" class="my-form-input-label-left" id="condizione-label">Quota&nbsp;Banca</label>
                                     <div >
                                         <input placeholder="Inserisci la quota" type="number" id="coperturaCondizioneQuota" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()">
@@ -336,8 +375,8 @@
                                 </div>
                             </div>
     
-                            <div style="padding: 5px;" id="coperturaCommissione"> 
-                                <div class="form-group" style="margin-top: 10px;">
+                            <div class="padding-2-div" id="coperturaCommissione"> 
+                                <div class="form-group">
                                     <label for="quotaBancata" class="my-form-input-label-left">Commissione</label>
                                     <div >
                                         <input placeholder="Inserisci la commissione" type="number" id="commissioneBookB" name="bonus-input" class="input-bonus my-form-input" onkeydown="getResults()" onchange="getResults()" value="4.5">
@@ -389,7 +428,7 @@
                         <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
                             <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">A quota</p>
                         </div>
-                        <div style="padding: 10px;">
+                        <div style="padding: 0px 10px;">
                             <div  class="form-group" id="quote-book-b">
                                 <label for="quoteBookB" class="my-form-input-label-left-potenziamento">@</label>
                                 <input onChange="getResults();" type="number" id="quoteBookB" name="bonus-input" class="my-form-input-quote input-disabled" disabled>
@@ -419,7 +458,7 @@
                         <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;display: flex;justify-content: center;align-items: center;">
                             <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">A quota</p>
                         </div>
-                        <div style="padding: 10px;">
+                        <div style="padding: 0px 10px;">
                             <div  class="form-group" id="quote-book-b">
                                 <label for="quoteBookB" class="my-form-input-label-left-potenziamento">@</label>
                                 <input onChange="getResults();" type="number" id="quoteBookC" name="bonus-input" class="my-form-input-quote input-disabled" disabled>
@@ -428,7 +467,7 @@
                     </div>
                 </div>
             </div>
-            <div class="my-row" style="padding: 10px;padding-bottom: 20px;width: 100%;margin-top: 0;">
+            <div class="rolumnrtp" style="padding: 10px;padding-bottom: 20px;width: 100%;margin-top: 0;">
                 <div class="calc-boxes-3" id="calc-responsabilita">
                     <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="responsabilita">0</span>&nbsp;€</p>
                     <p style="text-align: center;font-weight: 200;"><span id="rating-cr">Responsabilità totale</span></p>
