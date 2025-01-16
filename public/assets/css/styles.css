@@ -152,6 +152,10 @@ a {
   box-shadow: 0px 0px 30px #5865f1;
 }
 
+.nav__register2:focus{
+  transform: scale(0.96);
+}
+
 .col-dashboard{
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
@@ -1282,6 +1286,10 @@ a:hover .arrow {
   color: #fff;
 }
 
+.guidebutton:focus{
+  transform: scale(0.96);
+}
+
 .footer-clickable:hover{
   text-decoration: underline;
   cursor: pointer;
@@ -1343,5 +1351,123 @@ a:hover .arrow {
 }
 .negative {
   color: rgb(255, 126, 126);
+}
+
+.subscription-table-wrapper{
+  overflow-x: auto;
+  padding: 1px;
+}
+
+.subscription-table{
+  border-style: hidden; /* hide standard table (collapsed) border */
+  box-shadow: 0 0 0 1px #ccc;
+  border-radius: 8px;
+  margin-top: 20px;
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.subscription-table th{
+  background-color: #f4f4f4;
+}
+
+/* General pill styles */
+.status-pill {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+}
+
+/* Active status pill */
+.status-pill.active {
+  background-color: rgb(96, 166, 96);
+}
+
+/* Inactive status pill */
+.status-pill.inactive {
+  background-color: rgb(200, 108, 108);
+}
+
+.my-help{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #5865f1;
+  padding: 8px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+  transition: 0.2s;
+  cursor: pointer;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.my-help-text{
+  display: none;
+  font-size: 15px;
+}
+
+.my-help:hover{
+  width: 120px;
+  border-radius: 12px;
+  box-shadow: 0px 0px 30px #5865f1; 
+}
+
+.my-help:hover .my-help-text{
+  display: block;
+}
+
+.loading-banner{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fefefe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+.loading-banner img{
+  max-width: 300px;
+}
+
+.modify-fatturazione{
+  background-color: #404040;
+  color: #fefefe;
+  width: 160px;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color .3s;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.modify-fatturazione:hover{
+  
+  box-shadow: 0px 0px 10px #404040;
+}
+
+.modify-fatturazione:focus{
+  transform: scale(0.96);
 }
 

@@ -18,6 +18,7 @@
     <script type="module" src="assets/js/indexAuth.js"></script>
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Betoolz - Matched Betting per professionisti</title>
 
@@ -50,13 +51,17 @@
       }
     </style>
   </head>
-
+  <div class="loading-banner" id="loading-banner">
+    <img src="./assets/images/logo.webp" alt="" srcset="" class="loading-logo">
+    <img src="./assets/images/91.svg" alt="" srcset="" style="margin-top: 20px;">
+  </div>
   <body style="background-color: white">
+    <a href="https://t.me/BetoolzHelp" target="_blank" class="my-help"><span class="my-help-text">Supporto&nbsp;</span> <i class="fa-solid fa-headset"></i></a>
     <!--=============== HEADER ===============-->
     <header class="header" style="box-shadow: 0px 0px 10px 0px #5865f2">
       <nav class="nav container">
         <div class="nav__data">
-          <a href="freelanding.html" class="nav__logo">
+          <a class="nav__logo">
             <img src="./assets/images/logo.png" style="height: 70px; width: 210px" />
           </a>
 
@@ -85,15 +90,32 @@
 
               <ul class="dropdown__menu">
                 <li>
-                  <a
-                    href="freesport.html"
-                    class="dropdown__link"
-                    style="
-                      border-bottom-left-radius: 10px;
-                      border-bottom-right-radius: 10px;
-                    "
-                  >
+                  <a href="free-punta-banca.html" class="dropdown__link">
+                    Punta-Banca
+                  </a>
+                </li>
+
+                <li>
+                  <a href="free-punta-banca.html" class="dropdown__link">
+                    Punta-Punta
+                  </a>
+                </li>
+
+                <li>
+                  <a href="free-dutch-tool.html" class="dropdown__link" >
+                    Dutch Tool
+                  </a>
+                </li>
+
+                <li>
+                  <a href="freesport.html" class="dropdown__link">
                     Funbonus Sport
+                  </a>
+                </li>
+
+                <li>
+                  <a href="free-condizionato.html" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+                    Condizionato
                   </a>
                 </li>
               </ul>
@@ -107,11 +129,29 @@
                 >Abbonati</a
               >
             </li>
-            <li>
-              <a id="logout-btn" href="login.html" class="nav__link" >
-                Logout
-              </a>
-            </li>
+            <li class="dropdown__item">
+              <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+                 Impostazioni<i class="ri-arrow-down-s-line dropdown__arrow"></i>
+              </div>
+
+              <ul class="dropdown__menu">
+                 <li>
+                    <a href="plan.html" class="dropdown__link">
+                       Abbonamento
+                    </a>
+                 </li>
+
+                 <li>
+                  <a href="plan2.html" class="dropdown__link">
+                     Dashboard
+                  </a>
+               </li>
+
+               <li >
+                <a class="dropdown__link" id="logout-btn">Logout</a>
+              </li>
+              </ul>
+           </li>
           </ul>
         </div>
       </nav>

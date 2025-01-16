@@ -2,6 +2,7 @@ document
   .querySelector(".nav__register2")
   .addEventListener("click", function () {
     const email = document.getElementById("logEmail").value;
+    const telegramId = document.getElementById("logTelegram").value;
     const password = document.getElementById("logPassword").value;
     const password2 = document.getElementById("logPassword2").value;
     const nomeUtente = document.getElementById("nome-utente").value;
@@ -18,11 +19,18 @@ document
     var isMissError = false;
     var isCondizioni = false;
     var isAddressError = false;
+    var isTelegramError = false;
 
     const emailError = document.getElementById("email-error");
     if (!validate_email(email)) {
       emailError.style.display = "block";
       isEmailError = true;
+    }
+
+    if(!validateTelegram(telegramId)){
+      const telegramError = document.getElementById("telegram-error");
+      telegramError.style.display = "block";
+      isTelegramError = true;
     }
 
     if (password.length <= 6) {
@@ -81,7 +89,8 @@ document
       isPwdError ||
       isMissError ||
       isCondizioni ||
-      isAddressError
+      isAddressError ||
+      isTelegramError
     ) {
       console.log("Validation failed.");
       return;
@@ -102,6 +111,7 @@ document
           member: "free",
           customerId: "",
           email: email,
+          telegramId: telegramId,
           nome: nomeUtente,
           cognome: cognomeUtente,
           indirizzo: indirizzoUtente,
@@ -142,4 +152,9 @@ function validate_field(field) {
 function validate_cap(cap) {
   const expression = /^\d{5}$/; // Italian ZIP code format
   return expression.test(cap);
+}
+
+function validateTelegram(telegramId){
+  const expression = /^[a-zA-Z0-9_]{5,32}$/;
+  return expression.test(telegramId);
 }

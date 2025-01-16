@@ -1,754 +1,833 @@
 <!DOCTYPE html>
-   <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-      <script type="module" src="./assets/js/auth.js"></script>
-      <script type="module" src="./assets/js/checkUser.js"></script>
-      <script type="module"  src="assets/js/authCheck.js" defer></script>
+<html lang="en">
 
-      <title>Betoolz - Matched Betting per professionisti</title>
-    <link rel="icon" type="image/png" href="./assets/images/ws.png"/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script type="module" src="./assets/js/auth.js"></script>
+    <script type="module" src="./assets/js/checkUser.js"></script>
+    <script type="module" src="assets/js/authCheck.js" defer></script>
 
-      <!--=============== REMIXICONS ===============-->
-      <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Betoolz - Matched Betting per professionisti</title>
+    <link rel="icon" type="image/png" href="./assets/images/ws.png" />
+
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-      <!--=============== CSS ===============-->
-      <link rel="stylesheet" href="assets/css/styles.css">
-      <style>
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
         .modal-overlay {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.5);
-z-index: 1000;
-overflow: hidden;
-}
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            overflow: hidden;
+        }
 
-.modal {
-display: flex;
-justify-content: center;
-align-items: center;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%) scale(0);
-background-color: #fff;
-padding: 20px;
-border-radius: 5px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
 
-.custom-hr {
-border-top: 1px solid #ececec;
-margin-top: 10px;
-}
+        .custom-hr {
+            border-top: 1px solid #ececec;
+            margin-top: 10px;
+        }
 
-.modal.active {
-transform: translate(-50%, -50%) scale(1);
-}
+        .modal.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
 
-.modal-content {
-text-align: center;
-}
+        .modal-content {
+            text-align: center;
+        }
 
-.close {
-position: absolute;
-top: 10px;
-right: 10px;
-cursor: pointer;
-font-size: 25px;
-width: 40px;
-height: 40px;
-}
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 25px;
+            width: 40px;
+            height: 40px;
+        }
 
-.close:hover{
-opacity: 0.7;
-}
+        .close:hover {
+            opacity: 0.7;
+        }
 
-.close:active{
-border: 2px solid #5865f2ad;
-border-radius: 8px;
-}
+        .close:active {
+            border: 2px solid #5865f2ad;
+            border-radius: 8px;
+        }
 
-.modal-buttons {
-margin-top: 26px;
-display: flex;
-flex-direction: row;
-justify-content: flex-end;
+        .modal-buttons {
+            margin-top: 26px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
 
-}
+        }
 
-.btn-secondary {
-background-color: #e9e9e9;
-color: rgb(21, 21, 21);
-padding: 8px 16px;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-font-size: 16px;
-}
+        .btn-secondary {
+            background-color: #e9e9e9;
+            color: rgb(21, 21, 21);
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-.btn-primary {
-background-color: #7dc67d;
-color: #fff;
-padding: 8px 16px;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-font-size: 16px;
-margin-left: 20px;
-}
+        .btn-primary {
+            background-color: #7dc67d;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 20px;
+        }
 
 
-.success-checkmark {
-width: 80px;
-height: 115px;
-margin: 0 auto;
+        .success-checkmark {
+            width: 80px;
+            height: 115px;
+            margin: 0 auto;
 
-.check-icon {
-width: 80px;
-height: 80px;
-position: relative;
-border-radius: 50%;
-box-sizing: content-box;
-border: 4px solid #4CAF50;
+            .check-icon {
+                width: 80px;
+                height: 80px;
+                position: relative;
+                border-radius: 50%;
+                box-sizing: content-box;
+                border: 4px solid #4CAF50;
 
-&::before {
-    top: 3px;
-    left: -2px;
-    width: 30px;
-    transform-origin: 100% 50%;
-    border-radius: 100px 0 0 100px;
-}
+                &::before {
+                    top: 3px;
+                    left: -2px;
+                    width: 30px;
+                    transform-origin: 100% 50%;
+                    border-radius: 100px 0 0 100px;
+                }
 
-&::after {
-    top: 0;
-    left: 30px;
-    width: 60px;
-    transform-origin: 0 50%;
-    border-radius: 0 100px 100px 0;
-    animation: rotate-circle 4.25s ease-in;
-}
+                &::after {
+                    top: 0;
+                    left: 30px;
+                    width: 60px;
+                    transform-origin: 0 50%;
+                    border-radius: 0 100px 100px 0;
+                    animation: rotate-circle 4.25s ease-in;
+                }
 
-&::before, &::after {
-    content: '';
-    height: 100px;
-    position: absolute;
-    background: #FFFFFF;
-    transform: rotate(-45deg);
-}
+                &::before,
+                &::after {
+                    content: '';
+                    height: 100px;
+                    position: absolute;
+                    background: #FFFFFF;
+                    transform: rotate(-45deg);
+                }
 
-.icon-line {
-    height: 5px;
-    background-color: #4CAF50;
-    display: block;
-    border-radius: 2px;
-    position: absolute;
-    z-index: 10;
-    
-    &.line-tip {
-        top: 46px;
-        left: 14px;
-        width: 25px;
-        transform: rotate(45deg);
-        animation: icon-line-tip 0.75s;
-    }
-    
-    &.line-long {
-        top: 38px;
-        right: 8px;
-        width: 47px;
-        transform: rotate(-45deg);
-        animation: icon-line-long 0.75s;
-    }
-}
+                .icon-line {
+                    height: 5px;
+                    background-color: #4CAF50;
+                    display: block;
+                    border-radius: 2px;
+                    position: absolute;
+                    z-index: 10;
 
-.icon-circle {
-    top: -4px;
-    left: -4px;
-    z-index: 10;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    position: absolute;
-    box-sizing: content-box;
-    border: 4px solid rgba(76, 175, 80, .5);
-}
+                    &.line-tip {
+                        top: 46px;
+                        left: 14px;
+                        width: 25px;
+                        transform: rotate(45deg);
+                        animation: icon-line-tip 0.75s;
+                    }
 
-.icon-fix {
-    top: 8px;
-    width: 5px;
-    left: 26px;
-    z-index: 1;
-    height: 85px;
-    position: absolute;
-    transform: rotate(-45deg);
-    background-color: #FFFFFF;
-}
-}
-}
+                    &.line-long {
+                        top: 38px;
+                        right: 8px;
+                        width: 47px;
+                        transform: rotate(-45deg);
+                        animation: icon-line-long 0.75s;
+                    }
+                }
 
-@keyframes rotate-circle {
-0% {
-transform: rotate(-45deg);
-}
-5% {
-transform: rotate(-45deg);
-}
-12% {
-transform: rotate(-405deg);
-}
-100% {
-transform: rotate(-405deg);
-}
-}
+                .icon-circle {
+                    top: -4px;
+                    left: -4px;
+                    z-index: 10;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    position: absolute;
+                    box-sizing: content-box;
+                    border: 4px solid rgba(76, 175, 80, .5);
+                }
 
-@keyframes icon-line-tip {
-0% {
-width: 0;
-left: 1px;
-top: 19px;
-}
-54% {
-width: 0;
-left: 1px;
-top: 19px;
-}
-70% {
-width: 50px;
-left: -8px;
-top: 37px;
-}
-84% {
-width: 17px;
-left: 21px;
-top: 48px;
-}
-100% {
-width: 25px;
-left: 14px;
-top: 45px;
-}
-}
+                .icon-fix {
+                    top: 8px;
+                    width: 5px;
+                    left: 26px;
+                    z-index: 1;
+                    height: 85px;
+                    position: absolute;
+                    transform: rotate(-45deg);
+                    background-color: #FFFFFF;
+                }
+            }
+        }
 
-@keyframes icon-line-long {
-0% {
-width: 0;
-right: 46px;
-top: 54px;
-}
-65% {
-width: 0;
-right: 46px;
-top: 54px;
-}
-84% {
-width: 55px;
-right: 0px;
-top: 35px;
-}
-100% {
-width: 47px;
-right: 8px;
-top: 38px;
-}
-}
+        @keyframes rotate-circle {
+            0% {
+                transform: rotate(-45deg);
+            }
 
-@media screen and (min-width:850px) {
-.my-select-div{
-width: 280px;
-}
+            5% {
+                transform: rotate(-45deg);
+            }
 
-.my-select{
-width: 250px;
-}
-}
+            12% {
+                transform: rotate(-405deg);
+            }
 
-@media screen and (max-width:850px) {
+            100% {
+                transform: rotate(-405deg);
+            }
+        }
 
-.my-select-div{
-width: 218px;
-}
+        @keyframes icon-line-tip {
+            0% {
+                width: 0;
+                left: 1px;
+                top: 19px;
+            }
 
-select{
-width: 170px;
-}
-}
+            54% {
+                width: 0;
+                left: 1px;
+                top: 19px;
+            }
 
-.rotate {
-animation: rotateAnimation 0.5s forwards;
-}
+            70% {
+                width: 50px;
+                left: -8px;
+                top: 37px;
+            }
 
-@keyframes rotateAnimation {
-0% {
-transform:  rotate(0deg);
-}
-100% {
-transform: rotate(360deg);
-}
-}
+            84% {
+                width: 17px;
+                left: 21px;
+                top: 48px;
+            }
 
-.button:active {
-/* Add press animation */
-transform: translateY(2px);
-}
+            100% {
+                width: 25px;
+                left: 14px;
+                top: 45px;
+            }
+        }
 
-/* Popup container */
-.popup {
-position: relative;
-display: inline-block;
-cursor: pointer;
-}
+        @keyframes icon-line-long {
+            0% {
+                width: 0;
+                right: 46px;
+                top: 54px;
+            }
 
-/* The actual popup (appears on top) */
-.popup .popuptext {
-visibility: hidden;
-width: 160px;
-background-color: #555;
-color: #fff;
-text-align: center;
-border-radius: 6px;
-padding: 8px 0;
-position: absolute;
-z-index: 1;
-bottom: 125%;
-left: 50%;
-margin-left: -80px;
-}
+            65% {
+                width: 0;
+                right: 46px;
+                top: 54px;
+            }
 
-/* Popup arrow */
-.popup .popuptext::after {
-content: "";
-position: absolute;
-top: 100%;
-left: 50%;
-margin-left: -5px;
-border-width: 5px;
-border-style: solid;
-border-color: #555 transparent transparent transparent;
-}
+            84% {
+                width: 55px;
+                right: 0px;
+                top: 35px;
+            }
 
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
-.popup .show {
-visibility: visible;
--webkit-animation: fadeIn 1s;
-animation: fadeIn 1s
-}
+            100% {
+                width: 47px;
+                right: 8px;
+                top: 38px;
+            }
+        }
 
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-from {opacity: 0;}
-to {opacity: 1;}
-}
+        @media screen and (min-width:850px) {
+            .my-select-div {
+                width: 280px;
+            }
 
-@keyframes fadeIn {
-from {opacity: 0;}
-to {opacity:1 ;}
-}
+            .my-select {
+                width: 250px;
+            }
+        }
 
-.agenda-label{
-        width: 150px;
-    }
-@media screen and (max-width:450px) {
+        @media screen and (max-width:850px) {
 
-    .agenda-label{
-        width: 80px;
-    }
-}
-</style>
-   </head>
-   <body>
-      <!--=============== HEADER ===============-->
-      <header class="header" style="box-shadow:0px 0px 10px 0px #5865F2;">
+            .my-select-div {
+                width: 218px;
+            }
+
+            select {
+                width: 170px;
+            }
+        }
+
+        .rotate {
+            animation: rotateAnimation 0.5s forwards;
+        }
+
+        @keyframes rotateAnimation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .button:active {
+            /* Add press animation */
+            transform: translateY(2px);
+        }
+
+        /* Popup container */
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        /* The actual popup (appears on top) */
+        .popup .popuptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+        }
+
+        /* Popup arrow */
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        /* Toggle this class when clicking on the popup container (hide and show the popup) */
+        .popup .show {
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s
+        }
+
+        /* Add animation (fade in the popup) */
+        @-webkit-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .agenda-label {
+            width: 150px;
+        }
+
+        @media screen and (max-width:450px) {
+
+            .agenda-label {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--=============== HEADER ===============-->
+    <header class="header" style="box-shadow:0px 0px 10px 0px #5865F2;">
         <nav class="nav container">
-           <div class="nav__data">
-              <a href="landing.html" class="nav__logo">
-                 <img src="./assets/images/logo.png" style="height: 70px;width: 210px;">
-              </a>
-              
-              <div class="nav__toggle" id="nav-toggle">
-                 <i class="ri-menu-line nav__burger"></i>
-                 <i class="ri-close-line nav__close"></i>
-              </div>
-           </div>
-     
-           <!--=============== NAV MENU ===============-->
-           <div class="nav__menu" id="nav-menu">
-              <ul class="nav__list">
-                 
-     
-                 <!--=============== DROPDOWN 1 ===============-->
-                 <li class="dropdown__item">
+            <div class="nav__data">
+                <a href="landing.html" class="nav__logo">
+                    <img src="./assets/images/logo.png" style="height: 70px;width: 210px;">
+                </a>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line nav__burger"></i>
+                    <i class="ri-close-line nav__close"></i>
+                </div>
+            </div>
+
+            <!--=============== NAV MENU ===============-->
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+
+
+                    <!--=============== DROPDOWN 1 ===============-->
+                    <li class="dropdown__item">
+                        <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+                            Calcolatori Casinò <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </div>
+
+                        <ul class="dropdown__menu">
+                            <li>
+                                <a href="live-casino.html" class="dropdown__link">
+                                    Live Casinò
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="funbonus_slot.html" class="dropdown__link">
+                                    Funbonus Casinò
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="vdg_casino.html" class="dropdown__link">
+                                    Bonus VDG Casinò
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="vdg_slot.html" class="dropdown__link">
+                                    Bonus VDG Slot
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="rtp.html" class="dropdown__link"
+                                    style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+                                    Bonus RTP+
+                                </a>
+                            </li>
+
+                    </li>
+                </ul>
+                </li>
+
+                <li class="dropdown__item">
                     <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
-                       Calcolatori Casinò <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        Calcolatori Sport <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                     </div>
-     
+
                     <ul class="dropdown__menu">
                         <li>
-                            <a href="live-casino.html" class="dropdown__link">
-                               Live Casinò
-                            </a>                          
-                         </li>
-     
-                       <li>
-                          <a href="funbonus_slot.html" class="dropdown__link">
-                             Funbonus Casinò
-                          </a>                          
-                       </li>
-     
-                       <li>
-                          <a href="vdg_casino.html" class="dropdown__link">
-                             Bonus VDG Casinò
-                          </a>
-                       </li>
-     
-                       <li>
-                          <a href="vdg_slot.html" class="dropdown__link">
-                             Bonus VDG Slot
-                          </a>
-                       </li>
-     
-                       <li>
-                          <a href="rtp.html" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
-                             Bonus RTP+
-                          </a>
-                       </li>
-     
-                       </li>
-                    </ul>
-                 </li>
-     
-                 <li class="dropdown__item">
-                   <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
-                      Calcolatori Sport <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-                   </div>
-     
-                <ul class="dropdown__menu">
-                    <li>
-                        <a href="punta-banca.html" class="dropdown__link">
-                           Punta-Banca
-                        </a>
-                    </li>
-    
-                    <li>
-                        <a href="punta-punta.html" class="dropdown__link">
-                           Punta-Punta
-                        </a>
-                    </li>
-    
-                    <li>
-                        <a href="dutch-tool.html" class="dropdown__link">
-                           Dutch Tool
-                        </a>
-                     </li>
+                            <a href="punta-banca.html" class="dropdown__link">
+                                Punta-Banca
+                            </a>
+                        </li>
 
-                     <li>
+                        <li>
+                            <a href="punta-punta.html" class="dropdown__link">
+                                Punta-Punta
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="dutch-tool.html" class="dropdown__link">
+                                Dutch Tool
+                            </a>
+                        </li>
+
+                        <!-- <li>
                         <a href="multi-tool.html" class="dropdown__link">
                            Multi Tool
                         </a>
-                     </li>
-    
-                    <li>
-                       <a href="funbonus_sport.html" class="dropdown__link">
-                          Funbonus Sport
-                       </a>
-                    </li>
-    
-                     <li>
-                        <a href="condizionato.html" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px; ">
-                           Condizionato
-                        </a>
-                     </li>
-                   </ul>
+                     </li> -->
+
+                        <li>
+                            <a href="funbonus_sport.html" class="dropdown__link">
+                                Funbonus Sport
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="condizionato.html" class="dropdown__link"
+                                style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px; ">
+                                Condizionato
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-     
-                 <li><a href="Blackjack.html" class="nav__link">Calcolatore Blackjack</a></li>
-     
-     
-                 
-     
-              </ul>
-           </div>
+
+                <li><a href="Blackjack.html" class="nav__link">Calcolatore Blackjack</a></li>
+
+
+
+
+                </ul>
+            </div>
         </nav>
     </header>
 
-        <!-- Your second header content here -->
-        <div style="position: relative; top: 100%; left: 0; width: 100%; display: flex; justify-content: center; background: #404040; padding: 20px;">
-            <a style="color: #fff;font-family: Poppins;font-weight: 700;font-size: 24px;" class="head2">Bonus VDG Casinò</a>
-        </div>
-<div style="display: flex; justify-content: center;">       
-    <div id="block_funbonus" style="width: 840px; background-color: white;box-shadow: inset 0 0 7px #b2b2b2; border-radius: 8px;padding-bottom: 5px;margin: 50px;margin-top: 50px;">
-        <div  class="form-group1" style="background-color: #404040;border-top-left-radius: 8px;border-top-right-radius: 8px;justify-items: center;">
+    <!-- Your second header content here -->
+    <div
+        style="position: relative; top: 100%; left: 0; width: 100%; display: flex; justify-content: center; background: #404040; padding: 20px;">
+        <a style="color: #fff;font-family: Poppins;font-weight: 700;font-size: 24px;" class="head2">Bonus VDG Casinò</a>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <div id="block_funbonus"
+            style="width: 840px; background-color: white;box-shadow: inset 0 0 7px #b2b2b2; border-radius: 8px;padding-bottom: 5px;margin: 50px;margin-top: 50px;">
+            <div class="form-group1"
+                style="background-color: #404040;border-top-left-radius: 8px;border-top-right-radius: 8px;justify-items: center;">
+                <div>
+                    <div class="form-group" style="margin-top: 5px;">
+                        <label for="custom-select" class="my-form-input-label-left"
+                            style="margin-left: 10px;">Tavolo</label>
+                        <div>
+                            <select onChange="getResults();" placeholder="Inserisci le commissioni" type="number"
+                                id="tavolo" name="bonus-input" class="bonus-input my-form-input"
+                                style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;">
+                                <option value="" selected disabled style="text-align: center;">Seleziona un'opzione
+                                </option>
+                                <option value="Roulette" style="text-align: center;">Roulette</option>
+                                <option value="French" style="text-align: center;">French Roulette</option>
+                                <option value="Baccarat" style="text-align: center;">Baccarat</option>
+                                <option value="Blackjack" style="text-align: center;">Blackjack</option>
+                            </select>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 5px;justify-content: baseline;display: flex;">
+                <p style="font-family: Poppins;" class="eventoleft">
+                    Wagering sul deposito
+                </p>
+
+                <div class="button r" id="button-1" style="margin-top: 5px;">
+
+                    <input type="checkbox" class="checkbox" onclick="quotaMinima()" />
+                    <div class="knobs"></div>
+                    <div class="layer"></div>
+
+                </div>
+                <p style="font-family: Poppins;" class="eventoright">
+                    Wagering sul bonus
+                </p>
+
+            </div>
+            <!-- Bonus iniziale e inizio tabella-->
+
             <div>
+                <div class="form-group" style="margin-top: 5px;">
+                    <label for="custom-select" class="my-form-input-label-left">Importo Deposito</label>
+                    <div>
+                        <input onChange="getResults();" placeholder="Importo deposito" type="number" id="deposito"
+                            name="bonus-input" class="input-bonus my-form-input">
+                    </div>
+                    <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
+
+                </div>
+            </div>
+            <!-- Bonus iniziale e inizio tabella-->
+
+            <div>
+                <div class="form-group" style="margin-top: 5px;">
+                    <label for="custom-select" class="my-form-input-label-left">Bonus Pendente</label>
+                    <div>
+                        <input onChange="getResults();" placeholder="Importo bonus pendente" type="number"
+                            id="bonus-pendente" name="bonus-input" class="input-bonus my-form-input">
+                    </div>
+                    <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
+
+                </div>
+            </div>
+            <!-- Wagering-->
+            <div>
+                <div class="form-group" style="margin: 0px;margin-top: 5px;">
+                    <label id="quotaMinima" for="custom-select" class="my-form-input-label-left">Wag. sul
+                        deposito</label>
+                    <div>
+                        <input onChange="getResults();" placeholder="Wagering richiesto" type="number" id="wagering"
+                            name="bonus-input" class="input-bonus my-form-input">
+                    </div>
+                    <label for="custom-select" class="my-form-input-label-right">&nbsp;X</label>
+
+                </div>
+            </div>
+            <!-- Contribuzione Slot -->
+            <div>
+                <div class="form-group" style="margin-top: 5px;">
+                    <label for="custom-select" class="my-form-input-label-left">Contribuzione</label>
+                    <div>
+                        <input onChange="getResults();" placeholder="Contribuzione delle giocate" type="number"
+                            id="contribuzione-slot" name="bonus-input" class="input-bonus my-form-input">
+                    </div>
+                    <label for="custom-select" class="my-form-input-label-right">&nbsp;%</label>
+
+                </div>
+            </div>
+
+            <!-- Contribuzione Slot -->
+            <div>
+                <div class="form-group" style="margin-top: 5px;">
+                    <label for="custom-select" class="my-form-input-label-left">RTP Tavolo</label>
+                    <div>
+                        <input onChange="getResults();" placeholder="Seleziona il tavolo" type="number" id="rtp-slot"
+                            name="bonus-input" readonly class="input-bonus my-form-input">
+                    </div>
+                    <label for="custom-select" class="my-form-input-label-right">&nbsp;%</label>
+
+                </div>
+            </div>
+            <!-- Cap bonus -->
+            <div>
+                <div class="form-group" style="margin-top: 5px;">
+
+                    <label for="custom-select" class="my-form-input-label-left">Importo Giocata</label>
+                    <div>
+                        <input onChange="getResults();" onclick="myFunction()" placeholder="Importo utilizzato"
+                            type="number" id="importo-spin" name="bonus-input" class="input-bonus my-form-input">
+                    </div>
+                    <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
+
+                </div>
+            </div>
+
+
+
+
+            <!-- Fine Tabella -->
             <div class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" class="my-form-input-label-left" style="margin-left: 10px;">Tavolo</label>
-                <div >
-                <select onChange="getResults();" placeholder="Inserisci le commissioni" type="number" id="tavolo" name="bonus-input" class="bonus-input my-form-input"
-                style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;">
-                    <option value="" selected disabled style="text-align: center;">Seleziona un'opzione</option>
-                    <option value="Roulette" style="text-align: center;">Roulette</option>
-                    <option value="French" style="text-align: center;">French Roulette</option>
-                    <option value="Baccarat" style="text-align: center;">Baccarat</option>
-                    <option value="Blackjack" style="text-align: center;">Blackjack</option>
-                </select>
-                </div>
+                <button class="start" id="add-modal-btn">
+                    Agenda<i class="fa-solid fa-bolt" style="margin-left: 10px;" id="plus-icon"></i>
+                </button>
+            </div>
 
-                
-                
-                
-        </div>
-    </div>
-        </div>
-                            
-        <div class="form-group" style="margin-top: 5px;justify-content: baseline;display: flex;">
-            <p style="font-family: Poppins;" class="eventoleft">
-                Wagering sul deposito
-            </p>
-           
-                    <div class="button r" id="button-1" style="margin-top: 5px;">
-                        
-                        <input type="checkbox" class="checkbox"  onclick="quotaMinima()"/>
-                        <div class="knobs"></div>
-                        <div class="layer"></div>
-                        
-                      </div>
-                      <p style="font-family: Poppins;" class="eventoright">
-                        Wagering sul bonus
-                    </p>
-    
+            <div class="modal-overlay" id="modal-overlay">
+                <div class="modal" id="addModal">
+                    <div class="modal-content">
+                        <span class="close" id="modal-close">&times;</span>
+                        <h2 style="font-family: Poppins;font-weight: 700;font-size: 24px;text-align: left;"
+                            id="agendaTitle">Aggiungi bonus</h2>
+                        <hr class="custom-hr" id="agendaHr">
+                        <!-- Success -->
+                        <div class="success-checkmark" style="display: none;margin-top: 26px;" id="success-checkmark">
+                            <div class="check-icon">
+                                <span class="icon-line line-tip"></span>
+                                <span class="icon-line line-long"></span>
+                                <div class="icon-circle"></div>
+                                <div class="icon-fix"></div>
+                            </div>
+                        </div>
+                        <h2 style="font-family: Poppins;font-weight: 700;font-size: 24px;text-align: left;margin-top: 20px;"
+                            id="agendaCheckMessage">Bonus aggiunto!</h2>
+                        <a class="start" id="goToDash" href="dashboard-vdgcasino.html"
+                            style="width: 180px;margin: 20px auto;display:none;">Vai all'agenda <i
+                                class="fa-solid fa-chart-simple" style="margin-left: 10px;"></i></a>
+                        <!-- Esito -->
+                        <div class="form-group" style="margin-top: 20px;display: flex;flex-grow: 1;" id="esitoDiv">
+                            <label for="custom-select" class="agenda-label"
+                                style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;font-size: 16px;">&nbsp;Esito</label>
+
+                            <div class="input-bonus my-select-div"
+                                style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;border: 0;box-shadow: inset 0 0 7px #b2b2b2;border: 0;box-shadow: inset 0 0 7px #b2b2b2;margin-right: 10px;height: 40px;display: flex;align-items: start;">
+                                <select id="esito-agenda" class="my-select" name="custom-select"
+                                    style="background: none;border: none;font-size: 16px;height: 40px;text-align: left;padding-left: 10px;">
+                                    <option value="vinto" selected>Vinto</option>
+                                    <option value="perso">Perso</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Ritorno Bonus -->
+                        <div class="form-group" style="margin-top: 26px;" id="sitoDiv">
+                            <label for="custom-select" class="agenda-label"
+                                style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;font-size: 16px;">Sito</label>
+                            <div>
+                                <input placeholder="Inserisci il sito" type="text" id="sito-agenda" name="bonus-input"
+                                    style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;font-size: 16px;"
+                                    class="input-bonus">
+                            </div>
+                            <label for="custom-select"
+                                style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">/</label>
+
+                        </div>
+                        <!-- Ritorno Bonus -->
+                        <div class="form-group" style="margin-top: 25px;" id="ritornoDiv">
+                            <label for="custom-select" class="agenda-label"
+                                style="font-size: 16px;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;margin: 0;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;">Ritorno</label>
+                            <div>
+                                <input placeholder="Inserisci il tuo ritorno" type="number" id="ritorno-agenda"
+                                    name="bonus-input"
+                                    style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;margin: 0;margin-top: 1px;font-size: 16px;"
+                                    class="input-bonus">
+                            </div>
+                            <label for="custom-select"
+                                style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">€</label>
+
+                        </div>
+                        <div class="form-group" style="align-items: flex-start;justify-content: flex-start;">
+                            <p id="miss-error" class="error-message"
+                                style="margin-top: 25px;color: #ff0033; font-size: 14px;display: none;">
+                                Compila tutti i campi.
+                            </p>
+                        </div>
+                        <hr class="custom-hr" style="margin-top: 25px;" id="agendaHr2">
+                        <!--  -->
+                        <div class="modal-buttons" id="agendaBtns">
+                            <button class="btn-secondary" id="modal-cancel">Annulla</button>
+                            <button class="btn-primary" id="modal-save" data-strumento="vdgcas">Salva</button>
+                        </div>
                     </div>
-<!-- Bonus iniziale e inizio tabella-->
-
-<div>
-    <div class="form-group" style="margin-top: 5px;">
-        <label for="custom-select" class="my-form-input-label-left">Importo Deposito</label>
-        <div >
-            <input onChange="getResults();" placeholder="Importo deposito" type="number" id="deposito" name="bonus-input" class="input-bonus my-form-input">
-        </div>
-        <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
-
-    </div>
-</div>
-<!-- Bonus iniziale e inizio tabella-->
-
-        <div>
-            <div class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" class="my-form-input-label-left">Bonus Pendente</label>
-                <div >
-                    <input onChange="getResults();" placeholder="Importo bonus pendente" type="number" id="bonus-pendente" name="bonus-input" class="input-bonus my-form-input">
-                </div>
-                <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
-
-            </div>
-        </div>
-<!-- Wagering-->
-        <div>
-            <div  class="form-group" style="margin: 0px;margin-top: 5px;">
-                <label id="quotaMinima" for="custom-select" class="my-form-input-label-left">Wag. sul deposito</label>
-                <div >
-                    <input onChange="getResults();" placeholder="Wagering richiesto" type="number" id="wagering" name="bonus-input" class="input-bonus my-form-input">
-                </div>
-                <label for="custom-select" class="my-form-input-label-right">&nbsp;X</label>
-
-            </div>
-        </div>
-<!-- Contribuzione Slot -->
-        <div>
-            <div  class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" class="my-form-input-label-left">Contribuzione</label>
-                <div >
-                    <input onChange="getResults();" placeholder="Contribuzione delle giocate" type="number" id="contribuzione-slot" name="bonus-input" class="input-bonus my-form-input">
-                </div>
-                <label for="custom-select" class="my-form-input-label-right">&nbsp;%</label>
-
-            </div>
-        </div>
-
-        <!-- Contribuzione Slot -->
-        <div>
-            <div  class="form-group" style="margin-top: 5px;">
-                <label for="custom-select" class="my-form-input-label-left">RTP Tavolo</label>
-                <div >
-                    <input onChange="getResults();" placeholder="Seleziona il tavolo" type="number" id="rtp-slot" name="bonus-input" readonly class="input-bonus my-form-input">
-                </div>
-                <label for="custom-select" class="my-form-input-label-right">&nbsp;%</label>
-
-            </div>
-        </div>
-<!-- Cap bonus -->
-        <div>
-            <div  class="form-group" style="margin-top: 5px;">
-                
-                <label for="custom-select" class="my-form-input-label-left">Importo Giocata</label>
-                <div >
-                    <input onChange="getResults();" onclick="myFunction()" placeholder="Importo utilizzato" type="number" id="importo-spin" name="bonus-input" class="input-bonus my-form-input">
-                </div>
-                <label for="custom-select" class="my-form-input-label-right">&nbsp;€</label>
-
-            </div>
-        </div>
-
-        
-
-        
-<!-- Fine Tabella -->
-<div class="form-group" style="margin-top: 5px;">
-    <button class="start" id="add-modal-btn">
-        Agenda<i class="fa-solid fa-bolt" style="margin-left: 10px;" id="plus-icon"></i>
-    </button>
-</div>
-
-<div class="modal-overlay" id="modal-overlay">
-    <div class="modal" id="addModal">
-        <div class="modal-content">
-            <span class="close" id="modal-close">&times;</span>
-            <h2 style="font-family: Poppins;font-weight: 700;font-size: 24px;text-align: left;" id="agendaTitle">Aggiungi bonus</h2>
-            <hr class="custom-hr" id="agendaHr">
-            <!-- Success -->
-            <div class="success-checkmark" style="display: none;margin-top: 26px;" id="success-checkmark">
-                <div class="check-icon">
-                  <span class="icon-line line-tip"></span>
-                  <span class="icon-line line-long"></span>
-                  <div class="icon-circle"></div>
-                  <div class="icon-fix"></div>
                 </div>
             </div>
-            <h2 style="font-family: Poppins;font-weight: 700;font-size: 24px;text-align: left;margin-top: 20px;" id="agendaCheckMessage">Bonus aggiunto!</h2>
-            <a class="start" id="goToDash" href="dashboard-vdgcasino.html" style="width: 180px;margin: 20px auto;display:none;">Vai all'agenda <i class="fa-solid fa-chart-simple" style="margin-left: 10px;"></i></a>
-            <!-- Esito -->
-            <div class="form-group" style="margin-top: 20px;display: flex;flex-grow: 1;" id="esitoDiv">
-                <label for="custom-select" class="agenda-label" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;font-size: 16px;">&nbsp;Esito</label>
-            
-                    <div class="input-bonus my-select-div" style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;border: 0;box-shadow: inset 0 0 7px #b2b2b2;border: 0;box-shadow: inset 0 0 7px #b2b2b2;margin-right: 10px;height: 40px;display: flex;align-items: start;">
-                        <select id="esito-agenda" class="my-select" name="custom-select" style="background: none;border: none;font-size: 16px;height: 40px;text-align: left;padding-left: 10px;">
-                            <option value="vinto" selected>Vinto</option>
-                            <option value="perso">Perso</option>
-                        </select>
+
+
+
+
+
+            <div id="block_funbonus" class="container"
+                style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;width: 90%;margin-bottom: 20px;margin-top: 20px;padding-bottom: 20px;">
+                <div
+                    style="background-color: rgb(97, 163, 113); border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
+                    <p
+                        style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">
+                        Stime</p>
+                </div>
+                <div class="rolumn1" style="padding: 10px;padding-bottom: 0;">
+                    <div class="calc-boxes">
+                        <p
+                            style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: rgb(97, 163, 113);">
+                            <span id="ev">0</span>&nbsp;€</p>
+                        <p style="text-align: center;font-weight: 200;">EV</p>
                     </div>
-            </div>
-            
-            
-            
-            <!-- Ritorno Bonus -->
-            <div  class="form-group" style="margin-top: 26px;" id="sitoDiv">
-                <label for="custom-select" class="agenda-label" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;margin: 0;font-size: smaller;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;font-size: 16px;">Sito</label>
-                <div >
-                    <input placeholder="Inserisci il sito" type="text" id="sito-agenda" name="bonus-input" style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;font-size: 16px;" class="input-bonus">
-                </div>
-                <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">/</label>
-                
-            </div>
-            <!-- Ritorno Bonus -->
-                <div  class="form-group" style="margin-top: 25px;" id="ritornoDiv">
-                    <label for="custom-select" class="agenda-label" style="font-size: 16px;box-shadow: inset 0 0 7px #b2b2b2;height: 40px;padding: 8px;margin: 0;box-shadow: inset 0 0 7px #b2b2b2;display: flex;align-items: center;color: #495057;background-color: #e9ecef;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;font-family: Poppins;margin: 0;">Ritorno</label>
-                    <div >
-                        <input placeholder="Inserisci il tuo ritorno" type="number" id="ritorno-agenda" name="bonus-input" style="box-shadow: inset 0 0 7px #b2b2b2;padding: 8px;height: 40px;padding: 8px;margin: 0;margin-top: 1px;font-size: 16px;" class="input-bonus">
+                    <div class="calc-boxes">
+                        <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;">
+                            <span id="roi">0</span><span id="eur"> %</span></p>
+                        <p style="text-align: center;font-weight: 200;">ROI</p>
                     </div>
-                    <label for="custom-select" style="font-size: small;box-shadow: inset 0 0 7px #b2b2b2;width: 20px;border-top-left-radius: 0;border-bottom-left-radius: 0;border-top-right-radius: 8px;border-bottom-right-radius: 8px;height: 40px;padding: 8px;margin: 0;width: 30px;margin-right: 10px;">€</label>
-                    
                 </div>
-                <div class="form-group" style="align-items: flex-start;justify-content: flex-start;">
-                    <p id="miss-error" class="error-message" style="margin-top: 25px;color: #ff0033; font-size: 14px;display: none;">
-                        Compila tutti i campi.
-                    </p>
-                </div>
-                <hr class="custom-hr" style="margin-top: 25px;" id="agendaHr2">
-            <!--  -->
-            <div class="modal-buttons" id="agendaBtns">
-                <button class="btn-secondary" id="modal-cancel">Annulla</button>
-                <button class="btn-primary" id="modal-save" data-strumento="vdgcas">Salva</button>
+
+
+
+
+
+
+
+
+
             </div>
-         </div>
-    </div>
-</div>
+
+            <div id="block_funbonus" class="container"
+                style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;width: 90%;margin-bottom: 20px;margin-top: 20px;padding-bottom: 20px;">
+                <div
+                    style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
+                    <p
+                        style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">
+                        Indicazioni</p>
+                </div>
+                <div class="rolumn1" style="padding: 10px;padding-bottom: 0;">
+                    <div style="width: 170px;" class="calc-boxes">
+                        <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;">
+                            <span id="rischio">Basso</span>&nbsp;</p>
+                        <p style="text-align: center;font-weight: 200;">Rischio</p>
+                    </div>
+                    <div style="width: 170px;" class="calc-boxes">
+                        <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;">
+                            <span id="volume-richiesto">0</span><span id="eur"> €</span></p>
+                        <p style="text-align: center;font-weight: 200;">Volume richiesto</p>
+                    </div>
+                    <div style="width: 170px;" class="calc-boxes">
+                        <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;">
+                            <span id="costo-statistico">0</span><span id="eur"> €</span></p>
+                        <p style="text-align: center;font-weight: 200;">Costo statistico</p>
+                    </div>
+                </div>
 
 
-
-
-
-<div id="block_funbonus" class="container" style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;width: 90%;margin-bottom: 20px;margin-top: 20px;padding-bottom: 20px;">
-    <div style="background-color: rgb(97, 163, 113); border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
-        <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Stime</p>
-    </div>
-    <div class="rolumn1" style="padding: 10px;padding-bottom: 0;">
-        <div class="calc-boxes">
-            <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: rgb(97, 163, 113);"><span id="ev" >0</span>&nbsp;€</p> 
-            <p style="text-align: center;font-weight: 200;">EV</p>
-        </div>
-        <div class="calc-boxes">
-            <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="roi" >0</span><span id="eur"> %</span></p>
-            <p style="text-align: center;font-weight: 200;">ROI</p>
-        </div>
-    </div> 
-
-
- 
-
-    
-    
-    
-    
-               
-        </div>
-
-        <div id="block_funbonus" class="container" style="display: flex;box-shadow: 0px 2px 10px #00000030;border-radius: 12px;justify-content: center;align-items: center;flex-direction: column;width: 90%;margin-bottom: 20px;margin-top: 20px;padding-bottom: 20px;">
-            <div style="background-color: #404040; border-top-left-radius: 8px; border-top-right-radius: 8px;margin-bottom: 0;width: 100%;">
-                <p style="font-family: Poppins; color: white; font-size: 14px;padding: 2px;margin-left: 5px;margin-bottom: 0;;display: flex;justify-content: center;">Indicazioni</p>
             </div>
-            <div class="rolumn1" style="padding: 10px;padding-bottom: 0;">
-                <div style="width: 170px;" class="calc-boxes">
-                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"><span id="rischio" >Basso</span>&nbsp;</p>
-                    <p style="text-align: center;font-weight: 200;">Rischio</p>
-                </div>
-                <div style="width: 170px;" class="calc-boxes">
-                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="volume-richiesto" >0</span><span id="eur"> €</span></p>
-                    <p style="text-align: center;font-weight: 200;">Volume richiesto</p>
-                </div>
-                <div style="width: 170px;" class="calc-boxes">
-                    <p style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 700;color: #202427;"> <span id="costo-statistico" >0</span><span id="eur"> €</span></p>
-                    <p style="text-align: center;font-weight: 200;">Costo statistico</p>
+
+        </div>
+    </div>
+    <footer class="footer" style="background-color: #f5f5f7;margin-top: 50px;">
+        <div class="container">
+            <div class="footer__info"
+                style="display: flex;flex-direction: column;padding: 10px;color: #404040;justify-content: start;text-align: start;padding-bottom: 20px;font-weight: 300;font-size: 13px;">
+                <div class="small-footer">
+                    <p style="padding-bottom: 10px;">Copyright © 2024 Betoolz. Tutti i diritti riservati.</p>
+                    <ul class="footer-list">
+                        <li class="footer-item">info@betoolz.it</li>
+                        <li class="footer-item">BUSINESSBET A.F. | P.IVA: 02632200222</li>
+                        <li class="footer-item footer-clickable"><a href="informativacookies.html" target="_blank"
+                                style="color: #404040;text-decoration: none;">Informativa cookies</a></li>
+                        <li class="footer-item footer-clickable"><a href="informativaprivacy.html" target="_blank"
+                                style="color: #404040;text-decoration: none;">Informativa privacy</a></li>
+                        <li class="footer-item footer-clickable"><a href="disclaimer.html" target="_blank"
+                                style="color: #404040;text-decoration: none;">Disclaimer</a></li>
+                        <li class="footer-item footer-clickable"><a href="termini.html" target="_blank"
+                                style="color: #404040;text-decoration: none;">Termini e condizioni</a></li>
+                    </ul>
+                    <ul class="footer-list">
+                        <li class="footer-item">Web Design di Davide Caporali</p>
+                        <li class="footer-item">caporalidavide78@gmail.com</p>
                 </div>
             </div>
-    
-         
         </div>
-    
-</div>
-</div>
-<footer class="footer" style="background-color: #f5f5f7;margin-top: 50px;">
-    <div class="container">
-          <div class="footer__info"  style="display: flex;flex-direction: column;padding: 10px;color: #404040;justify-content: start;text-align: start;padding-bottom: 20px;font-weight: 300;font-size: 13px;">
-             <div class="small-footer">
-                <p style="padding-bottom: 10px;">Copyright © 2024 Betoolz. Tutti i diritti riservati.</p>
-                <ul class="footer-list">
-                    <li class="footer-item">info@betoolz.it</li>
-                    <li class="footer-item">BUSINESSBET A.F. | P.IVA: 02632200222</li>
-                    <li class="footer-item footer-clickable"><a href="informativacookies.html" target="_blank" style="color: #404040;text-decoration: none;">Informativa cookies</a></li>
-                    <li class="footer-item footer-clickable"><a href="informativaprivacy.html" target="_blank" style="color: #404040;text-decoration: none;">Informativa privacy</a></li>
-                    <li class="footer-item footer-clickable"><a href="disclaimer.html" target="_blank" style="color: #404040;text-decoration: none;">Disclaimer</a></li>
-                    <li class="footer-item footer-clickable"><a href="termini.html" target="_blank" style="color: #404040;text-decoration: none;">Termini e condizioni</a></li>
-                  </ul>
-                <ul class="footer-list">
-                    <li class="footer-item">Web Design di Davide Caporali</p>
-                    <li class="footer-item" >caporalidavide78@gmail.com</p>
-                </div>
-             </div>
-          </div>
-    </div>
- </footer>
+        </div>
+    </footer>
 
-      <!--=============== MAIN JS ===============-->
- 
+    <!--=============== MAIN JS ===============-->
+
     <script src="assets/js/vdg_casino.js"></script>
 
     <script src="assets/js/main.js"></script>
 
-   </body>
+</body>
+
 </html>

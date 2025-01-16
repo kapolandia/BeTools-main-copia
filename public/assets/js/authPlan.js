@@ -55,8 +55,20 @@ checkUserLoggedIn().then(async (userData) => {
 });
 
 function compileFatturazione(userData){
+  if(userData.nome != undefined)
+    document.getElementById("nome-utente").value = userData.nome;
+  if(userData.cognome != undefined)
+    document.getElementById("cognome-utente").value = userData.cognome;
+  if(userData.indirizzo != undefined)
+    document.getElementById("indirizzo-utente").value = userData.indirizzo;
+  if(userData.citta != undefined)
+    document.getElementById("cap-utente").value = userData.cap;
+  if(userData.cap != undefined)
+    document.getElementById("citta-utente").value = userData.citta;
   if(userData.provincia != undefined)
     document.getElementById("provincia-utente").value = userData.provincia;
+  if(userData.telegramId != undefined)
+    document.getElementById("telegram-utente").value = userData.telegramId;
 }
 
 

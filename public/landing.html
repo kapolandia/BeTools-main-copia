@@ -1,172 +1,182 @@
 <!DOCTYPE html>
-   <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
 
-      <!--=============== REMIXICONS ===============-->
-      <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
-      <script type="module" src="./assets/js/auth.js"></script>
-      <script type="module" src="./assets/js/checkUser.js"></script>
-      <!--=============== CSS ===============-->
-      <link rel="stylesheet" href="assets/css/styles.css">
-      <link rel="icon" href="./assets/images/ws.png" type="image/x-icon">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
-      <!-- Add other Firebase services you need -->
-      
-      <title>Betoolz - Matched Betting per professionisti</title>
-      <script type="module" src="assets/js/indexAuth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
-
-      <script type="module"  src="assets/js/authCheck.js" defer>
-   
-      </script>
-      <style>
-         .underbar:after {
-  content: "";
-  width: 0%;
-  height: 1px;
-  display: block;
-  transition: all 0.3s ease;
-  bottom: 25%;
-}
-.underbar:hover::after {
-  width: 100%;
-  height: 1px;
-  background-color: #000000;
-}
-
-.container-sport,
-.container-bj,
-.container-casino {
-   transition: 0.3s;
-}
+   <!--=============== REMIXICONS ===============-->
+   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+   <script type="module" src="./assets/js/auth.js"></script>
+   <script type="module" src="./assets/js/checkUser.js"></script>
+   <!--=============== CSS ===============-->
+   <link rel="stylesheet" href="assets/css/styles.css">
+   <link rel="icon" href="./assets/images/ws.png" type="image/x-icon">
 
 
-.container-sport:hover,
-.container-bj:hover,
-.container-casino:hover{
-   transform: translateY(-3px) translateX(-3px);
-}
-      </style>
-   </head>
-   <body style="background-color: white;
+
+   <!-- Add other Firebase services you need -->
+
+   <title>Betoolz - Matched Betting per professionisti</title>
+   <script type="module" src="assets/js/indexAuth.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <script type="module" src="assets/js/authCheck.js" defer>
+
+   </script>
+   <style>
+      .underbar:after {
+         content: "";
+         width: 0%;
+         height: 1px;
+         display: block;
+         transition: all 0.3s ease;
+         bottom: 25%;
+      }
+
+      .underbar:hover::after {
+         width: 100%;
+         height: 1px;
+         background-color: #000000;
+      }
+
+      .container-sport,
+      .container-bj,
+      .container-casino {
+         transition: 0.3s;
+      }
+
+
+      .container-sport:hover,
+      .container-bj:hover,
+      .container-casino:hover {
+         transform: translateY(-3px) translateX(-3px);
+      }
+   </style>
+</head>
+<div class="loading-banner" id="loading-banner">
+   <img src="./assets/images/logo.webp" alt="" srcset="" class="loading-logo">
+   <img src="./assets/images/91.svg" alt="" srcset="" style="margin-top: 20px;">
+</div>
+<a href="https://t.me/BetoolzHelp" target="_blank" class="my-help"><span class="my-help-text">Supporto&nbsp;</span> <i
+      class="fa-solid fa-headset"></i></a>
+
+<body style="background-color: white;
    align-items: center;
    justify-content: center;">
-<!--=============== HEADER ===============-->
-<header class="header" style="box-shadow:0px 0px 10px 0px #5865F2;">
-   <nav class="nav container">
-      <div class="nav__data">
-         <a href="landing.html" class="nav__logo">
-            <img src="./assets/images/logo.png" style="height: 70px;width: 210px;">
-         </a>
-         
-         <div class="nav__toggle" id="nav-toggle">
-            <i class="ri-menu-line nav__burger"></i>
-            <i class="ri-close-line nav__close"></i>
+   <!--=============== HEADER ===============-->
+   <header class="header" style="box-shadow:0px 0px 10px 0px #5865F2;">
+      <nav class="nav container">
+         <div class="nav__data">
+            <a class="nav__logo">
+               <img src="./assets/images/logo.png" style="height: 70px;width: 210px;">
+            </a>
+
+            <div class="nav__toggle" id="nav-toggle">
+               <i class="ri-menu-line nav__burger"></i>
+               <i class="ri-close-line nav__close"></i>
+            </div>
          </div>
-      </div>
 
-      <!--=============== NAV MENU ===============-->
-      <div class="nav__menu" id="nav-menu">
-         <ul class="nav__list">
-            
+         <!--=============== NAV MENU ===============-->
+         <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
 
-            <!--=============== DROPDOWN 1 ===============-->
+
+               <!--=============== DROPDOWN 1 ===============-->
+               <li class="dropdown__item">
+                  <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+                     Calcolatori Casinò <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                  </div>
+
+                  <ul class="dropdown__menu">
+                     <li>
+                        <a href="live-casino.html" class="dropdown__link">
+                           Live Casinò
+                        </a>
+                     </li>
+
+                     <li>
+                        <a href="funbonus_slot.html" class="dropdown__link">
+                           Funbonus Casinò
+                        </a>
+                     </li>
+
+                     <li>
+                        <a href="vdg_casino.html" class="dropdown__link">
+                           Bonus VDG Casinò
+                        </a>
+                     </li>
+
+                     <li>
+                        <a href="vdg_slot.html" class="dropdown__link">
+                           Bonus VDG Slot
+                        </a>
+                     </li>
+
+                     <li>
+                        <a href="rtp.html" class="dropdown__link"
+                           style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+                           Bonus RTP+
+                        </a>
+                     </li>
+
+               </li>
+            </ul>
+            </li>
+
             <li class="dropdown__item">
                <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
-                  Calcolatori Casinò <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                  Calcolatori Sport <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                </div>
 
                <ul class="dropdown__menu">
                   <li>
-                     <a href="live-casino.html" class="dropdown__link">
-                        Live Casinò
-                     </a>                          
-                  </li>
-
-                  <li>
-                     <a href="funbonus_slot.html" class="dropdown__link">
-                        Funbonus Casinò
-                     </a>                          
-                  </li>
-
-                  <li>
-                     <a href="vdg_casino.html" class="dropdown__link">
-                        Bonus VDG Casinò
+                     <a href="punta-banca.html" class="dropdown__link">
+                        Punta-Banca
                      </a>
                   </li>
 
                   <li>
-                     <a href="vdg_slot.html" class="dropdown__link">
-                        Bonus VDG Slot
+                     <a href="punta-punta.html" class="dropdown__link">
+                        Punta-Punta
                      </a>
                   </li>
 
                   <li>
-                     <a href="rtp.html" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
-                        Bonus RTP+
+                     <a href="dutch-tool.html" class="dropdown__link">
+                        Dutch Tool
                      </a>
                   </li>
 
+                  <!-- <li>
+                     <a href="multi-tool.html" class="dropdown__link">
+                        Multi Tool
+                     </a>
+                  </li> -->
+
+                  <li>
+                     <a href="funbonus_sport.html" class="dropdown__link">
+                        Funbonus Sport
+                     </a>
+                  </li>
+
+                  <li>
+                     <a href="condizionato.html" class="dropdown__link"
+                        style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px; ">
+                        Condizionato
+                     </a>
                   </li>
                </ul>
             </li>
-
-            <li class="dropdown__item">
-              <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
-                 Calcolatori Sport <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-              </div>
-
-           <ul class="dropdown__menu">
-               <li>
-                   <a href="punta-banca.html" class="dropdown__link">
-                      Punta-Banca
-                   </a>
-               </li>
-
-               <li>
-                   <a href="punta-punta.html" class="dropdown__link">
-                      Punta-Punta
-                   </a>
-               </li>
-
-               <li>
-                   <a href="dutch-tool.html" class="dropdown__link">
-                      Dutch Tool
-                   </a>
-                </li>
-
-                <li>
-                  <a href="multi-tool.html" class="dropdown__link">
-                     Multi Tool
-                  </a>
-               </li>
-
-               <li>
-                  <a href="funbonus_sport.html" class="dropdown__link">
-                     Funbonus Sport
-                  </a>
-               </li>
-
-                <li>
-                   <a href="condizionato.html" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px; ">
-                      Condizionato
-                   </a>
-                </li>
-              </ul>
-           </li>
 
             <li><a href="Blackjack.html" class="nav__link">Calcolatore Blackjack</a></li>
             <li class="dropdown__item">
                <div class="nav__link" style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
                   Impostazioni<i class="ri-arrow-down-s-line dropdown__arrow"></i>
                </div>
- 
+
                <ul class="dropdown__menu">
 
                   <li>
@@ -174,158 +184,212 @@
                         Agenda
                      </a>
                   </li>
- 
-                  <li>
-                   <a href="plan.html" class="dropdown__link">
-                      Dashboard
-                   </a>
-                </li>
 
-                <li >
-                 <a class="dropdown__link" id="logout-btn">Logout</a>
-               </li>
+                  <li>
+                     <a href="plan.html" class="dropdown__link">
+                        Abbonamento
+                     </a>
+                  </li>
+
+                  <li>
+                     <a href="plan2.html" class="dropdown__link">
+                        Dashboard
+                     </a>
+                  </li>
+
+                  <li>
+                     <a class="dropdown__link" id="logout-btn">Logout</a>
+                  </li>
                </ul>
             </li>
 
-            
 
-         </ul>
-      </div>
-   </nav>
-</header>
-<div style=" top: 100%; left: 0; width: 100%; display: flex; justify-content: center;margin-top: 80px;align-items: center;">
-   <a href="guide.html" class="guidebutton" style="margin-top: 30px;width: 280px;">
-      <img src="./assets/images/books-pile.png" alt="" style="height: 50px;margin-right: 5px;">   
-      <span style="font-weight: 600;font-size: 18px;">Vai alle guide</span>
-      <img src="./assets/images/right-arrow.svg" alt="" class="arrow" style="height: 30px;margin-right: 5px;" >  
-   </a>
-</div>
-<div class="container" >
-   
-   <div style="margin-top: 0px;justify-content: space-between;align-items: flex-start;" class="rolumn">
-      <!-- Calcolatore Casino -->
-      <div class="container-sport" style="width: 300px;height: 100%;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;border-radius: 8px;display: flex;display: flex;flex-direction: column;align-items: center;padding-bottom: 30px;margin: 0 auto;;margin-top: 30px;background-color: #fff;">
-         <img src="./assets/images/sport.png" style="height: 190px; width: 190px;">
-         <a  class="body" style="font-weight: 700;font-size: 16px;margin-top: 20px;"> Calcolatori Sport</a>
 
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
-            <a  href="punta-banca.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Punta-Banca&nbsp;</a>
-            <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="punta-banca.html"'>
+            </ul>
          </div>
+      </nav>
+   </header>
+   <div
+      style=" top: 100%; left: 0; width: 100%; display: flex; justify-content: center;margin-top: 80px;align-items: center;">
+      <a href="guide.html" class="guidebutton" style="margin-top: 30px;width: 280px;">
+         <img src="./assets/images/books-pile.png" alt="" style="height: 50px;margin-right: 5px;">
+         <span style="font-weight: 600;font-size: 18px;">Vai alle guide</span>
+         <img src="./assets/images/right-arrow.svg" alt="" class="arrow" style="height: 30px;margin-right: 5px;">
+      </a>
+   </div>
+   <div class="container">
 
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
-            <a  href="punta-punta.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Punta-Punta&nbsp;</a>
-            <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="punta-punta.html"'>
-         </div>
+      <div style="margin-top: 0px;justify-content: space-between;align-items: flex-start;" class="rolumn">
+         <!-- Calcolatore Casino -->
+         <div class="container-sport"
+            style="width: 300px;height: 100%;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;border-radius: 8px;display: flex;display: flex;flex-direction: column;align-items: center;padding-bottom: 30px;margin: 0 auto;;margin-top: 30px;background-color: #fff;">
+            <img src="./assets/images/sport.png" style="height: 190px; width: 190px;">
+            <a class="body" style="font-weight: 700;font-size: 16px;margin-top: 20px;"> Calcolatori Sport</a>
 
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
-            <a  href="dutch-tool.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Dutch Tool&nbsp;</a>
-            <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="dutch-tool.html"'>
-         </div>
+            <div
+               style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+               <a href="punta-banca.html" class="body underbar"
+                  style="font-weight: 300;font-size: 16px;color: #202427;"> Punta-Banca&nbsp;</a>
+               <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;"
+                  onclick='window.location.href="punta-banca.html"'>
+            </div>
 
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+            <div
+               style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+               <a href="punta-punta.html" class="body underbar"
+                  style="font-weight: 300;font-size: 16px;color: #202427;"> Punta-Punta&nbsp;</a>
+               <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;"
+                  onclick='window.location.href="punta-punta.html"'>
+            </div>
+
+            <div
+               style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+               <a href="dutch-tool.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;">
+                  Dutch Tool&nbsp;</a>
+               <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;"
+                  onclick='window.location.href="dutch-tool.html"'>
+            </div>
+
+            <!-- <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
             <a  href="multi-tool.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Multi Tool&nbsp;</a>
             <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="dutch-tool.html"'>
+         </div> -->
+
+            <div
+               style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+               <a href="funbonus_sport.html" class="body underbar"
+                  style="font-weight: 300;font-size: 16px;color: #202427;"> Funbonus Sport&nbsp;</a>
+               <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;"
+                  onclick='window.location.href="funbonus_sport.html"'>
+            </div>
+
+            <div
+               style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+               <a href="condizionato.html" class="body underbar"
+                  style="font-weight: 300;font-size: 16px;color: #202427;"> Condizionato&nbsp;</a>
+               <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;"
+                  onclick='window.location.href="condizionato.html"'>
+            </div>
+
          </div>
 
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
-            <a  href="funbonus_sport.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Funbonus Sport&nbsp;</a>
-            <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="funbonus_sport.html"'>
+
+         <div class="container-casino"
+            style="width: 300px;height: 100%;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;border-radius: 8px;display: flex;display: flex;flex-direction: column;align-items: center;padding-bottom: 30px;margin: 0 auto;;margin-top: 30px;">
+            <img src="./assets/images/slot.png" style="height: 200px; width: 200px;margin-left: 20px;">
+            <a class="body" style="font-weight: 700;font-size: 16px;margin-top: 10px;"> Calcolatori Casinò</a>
+
+            <div
+               style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+               <a href="live-casino.html" class="body underbar"
+                  style="font-weight: 300;font-size: 16px;color: #202427;"> Live Casinò&nbsp;</a>
+               <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;"
+                  onclick='window.location.href="live-casino.html"'>
+            </div>
+
+            <div
+               style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+               <a href="funbonus_slot.html" class="body underbar"
+                  style="font-weight: 300;font-size: 16px;color: #202427;"> Funbonus Casinò&nbsp;</a>
+               <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;"
+                  onclick='window.location.href="funbonus_slot.html"'>
+            </div>
+
+            <div
+               style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+               <a href="vdg_slot.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;">
+                  Bonus VDG Slot&nbsp;</a>
+               <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;"
+                  onclick='window.location.href="vdg_slot.html"'>
+            </div>
+
+            <div
+               style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+               <a href="vdg_casino.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;">
+                  Bonus VDG Casinò&nbsp;</a>
+               <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;"
+                  onclick='window.location.href="vdg_casino.html"'>
+            </div>
+
+            <div
+               style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
+               <a href="rtp.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Bonus
+                  RTP+&nbsp;</a>
+               <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;"
+                  onclick='window.location.href="rtp.html"'>
+            </div>
+
          </div>
 
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
-            <a  href="condizionato.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Condizionato&nbsp;</a>
-            <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="condizionato.html"'>
+
+         <div class="container-bj"
+            style="width: 300px; height: 100%;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; padding-bottom: 30px; cursor: pointer; margin: 0 auto; margin-top: 30px; margin-bottom: 30px;"
+            onclick="window.location.href='Blackjack.html';">
+            <img src="./assets/images/bjicon.webp" style="height: 200px; width: 200px;">
+            <div style="display: flex; flex-direction: row; align-items: center;">
+               <a href="Blackjack.html" class="body underbar"
+                  style="font-weight: 700; font-size: 16px; margin-top: 10px; color: #202427;"> Calcolatore Blackjack
+                  Live&nbsp;</a>
+               <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;">
+            </div>
+            <a class="body" style="font-weight: 300; font-size: 16px; margin: 20px;"> Riuscirai a ridurre notevolmente
+               le perdite dovute al rigioco del saldo.</a>
          </div>
+
 
       </div>
-   
+   </div>
+   <div class="container"
+      style="text-align: center; margin-top: 100px;display: flex;flex-direction: column;align-items: center;background-color: #202427;padding: 0;margin: 0;padding-top: 40px;padding-bottom: 40px;position: relative;margin-top: 100px;width: 100%;max-width: 100%;overflow: hidden;">
+      <a style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 30px; color: #fff;">
+         Entra a far parte del canale <br>
+         Telegram
+         <span style="display: inline-block; position: relative; vertical-align: middle;">
+            <img src="./assets/images/telegram.svg" style="height: 40px; position: relative; z-index: 1;">
+            <span
+               style="content: ''; position: absolute; top: 40%; left: 50%; width: 30px; height: 30px; background: #fff;; border-radius: 100%; transform: translate(-50%, -50%); z-index: 0;"></span>
+         </span> , rimani aggiornato.
+      </a>
+      <a href="https://t.me/betoolzz" class="telegram" style="margin-top: 30px;">
+         <img src="./assets/images/link.svg" alt="" style="height: 30px;margin-right: 5px;">
+         <span style="color: #fff;">Unisciti</span>
+      </a>
+      <img src="./assets/images/telegram-pattern.png" alt="" srcset=""
+         style="max-width: 200px;position: absolute;left: -100px;top: 20px;" class="telegram-pattern">
+      <img src="./assets/images/telegram-pattern.png" alt="" srcset=""
+         style="max-width: 200px;position: absolute;right: -100px;top: 20px;transform: scaleX(-1);"
+         class="telegram-pattern">
+   </div>
 
-   <div class="container-casino" style="width: 300px;height: 100%;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;border-radius: 8px;display: flex;display: flex;flex-direction: column;align-items: center;padding-bottom: 30px;margin: 0 auto;;margin-top: 30px;">
-         <img src="./assets/images/slot.png" style="height: 200px; width: 200px;margin-left: 20px;">
-         <a  class="body" style="font-weight: 700;font-size: 16px;margin-top: 10px;"> Calcolatori Casinò</a>
-
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
-            <a  href="live-casino.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Live Casinò&nbsp;</a>
-            <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="live-casino.html"'>
-         </div>
-
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
-            <a  href="funbonus_slot.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Funbonus Casinò&nbsp;</a>
-            <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="funbonus_slot.html"'>
-         </div>
-
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
-            <a  href="vdg_slot.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Bonus VDG Slot&nbsp;</a>
-            <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="vdg_slot.html"'>
-         </div>
-
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
-            <a  href="vdg_casino.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Bonus VDG Casinò&nbsp;</a>
-            <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="vdg_casino.html"'>
-         </div>
-
-         <div style="display: flex;flex-direction: row;align-items: center;padding: 8px;border-radius: 6px;margin-top: 10px;border-left: 4px solid #5865F2;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;width: 200px;justify-content: space-between;">
-            <a  href="rtp.html" class="body underbar" style="font-weight: 300;font-size: 16px;color: #202427;"> Bonus RTP+&nbsp;</a>
-            <img src="./assets/images/right-arrow.svg" alt="" style="width: 20px;height: 20px;cursor: pointer;" onclick='window.location.href="rtp.html"'>
-         </div>
-
-      </div>
-   
-   
-      <div class="container-bj" style="width: 300px; height: 100%;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; padding-bottom: 30px; cursor: pointer; margin: 0 auto; margin-top: 30px; margin-bottom: 30px;" onclick="window.location.href='Blackjack.html';">
-         <img src="./assets/images/bjicon.webp" style="height: 200px; width: 200px;">
-         <div style="display: flex; flex-direction: row; align-items: center;">
-            <a href="Blackjack.html" class="body underbar" style="font-weight: 700; font-size: 16px; margin-top: 10px; color: #202427;"> Calcolatore Blackjack Live&nbsp;</a>
-            <img src="./assets/images/check.png" alt="" style="width: 20px; height: 20px;">
-         </div>
-         <a class="body" style="font-weight: 300; font-size: 16px; margin: 20px;"> Riuscirai a ridurre notevolmente le perdite dovute al rigioco del saldo.</a>
-      </div>
-      
-      
-</div>
-</div>
-<div class="container" style="text-align: center; margin-top: 100px;display: flex;flex-direction: column;align-items: center;background-color: #202427;padding: 0;margin: 0;padding-top: 40px;padding-bottom: 40px;position: relative;margin-top: 100px;width: 100%;max-width: 100%;overflow: hidden;">
-   <a style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 30px; color: #fff;">
-      Entra a far parte del canale <br> 
-      Telegram
-      <span style="display: inline-block; position: relative; vertical-align: middle;">
-         <img src="./assets/images/telegram.svg" style="height: 40px; position: relative; z-index: 1;">
-         <span style="content: ''; position: absolute; top: 40%; left: 50%; width: 30px; height: 30px; background: #fff;; border-radius: 100%; transform: translate(-50%, -50%); z-index: 0;"></span>
-     </span> , rimani aggiornato.
-   </a>
-   <a href="https://t.me/betoolzz" class="telegram" style="margin-top: 30px;">
-      <img src="./assets/images/link.svg" alt="" style="height: 30px;margin-right: 5px;">   
-      <span style="color: #fff;">Unisciti</span>
-   </a>
-   <img src="./assets/images/telegram-pattern.png" alt="" srcset="" style="max-width: 200px;position: absolute;left: -100px;top: 20px;" class="telegram-pattern">
-   <img src="./assets/images/telegram-pattern.png" alt="" srcset="" style="max-width: 200px;position: absolute;right: -100px;top: 20px;transform: scaleX(-1);" class="telegram-pattern">
-</div>
-
-<footer class="footer" style="background-color: #f5f5f7;padding-top: 20px;">
-   <div class="container">
-         <div class="footer__info"  style="display: flex;flex-direction: column;padding: 10px;color: #404040;justify-content: start;text-align: start;padding-bottom: 20px;font-weight: 300;font-size: 13px;">
+   <footer class="footer" style="background-color: #f5f5f7;padding-top: 20px;">
+      <div class="container">
+         <div class="footer__info"
+            style="display: flex;flex-direction: column;padding: 10px;color: #404040;justify-content: start;text-align: start;padding-bottom: 20px;font-weight: 300;font-size: 13px;">
             <div class="small-footer">
                <p style="padding-bottom: 10px;">Copyright © 2024 Betoolz. Tutti i diritti riservati.</p>
                <ul class="footer-list">
-                   <li class="footer-item">info@betoolz.it</li>
-                   <li class="footer-item">BUSINESSBET A.F. | P.IVA: 02632200222</li>
-                   <li class="footer-item footer-clickable"><a href="informativacookies.html" target="_blank" style="color: #404040;text-decoration: none;">Informativa cookies</a></li>
-                   <li class="footer-item footer-clickable"><a href="informativaprivacy.html" target="_blank" style="color: #404040;text-decoration: none;">Informativa privacy</a></li>
-                   <li class="footer-item footer-clickable"><a href="disclaimer.html" target="_blank" style="color: #404040;text-decoration: none;">Disclaimer</a></li>
-                   <li class="footer-item footer-clickable"><a href="termini.html" target="_blank" style="color: #404040;text-decoration: none;">Termini e condizioni</a></li>
-                 </ul>
+                  <li class="footer-item">info@betoolz.it</li>
+                  <li class="footer-item">BUSINESSBET A.F. | P.IVA: 02632200222</li>
+                  <li class="footer-item footer-clickable"><a href="informativacookies.html" target="_blank"
+                        style="color: #404040;text-decoration: none;">Informativa cookies</a></li>
+                  <li class="footer-item footer-clickable"><a href="informativaprivacy.html" target="_blank"
+                        style="color: #404040;text-decoration: none;">Informativa privacy</a></li>
+                  <li class="footer-item footer-clickable"><a href="disclaimer.html" target="_blank"
+                        style="color: #404040;text-decoration: none;">Disclaimer</a></li>
+                  <li class="footer-item footer-clickable"><a href="termini.html" target="_blank"
+                        style="color: #404040;text-decoration: none;">Termini e condizioni</a></li>
+               </ul>
                <ul class="footer-list">
-                   <li class="footer-item">Web Design di Davide Caporali</p>
-                   <li class="footer-item" >caporalidavide78@gmail.com</p>
-               </div>
+                  <li class="footer-item">Web Design di Davide Caporali</p>
+                  <li class="footer-item">caporalidavide78@gmail.com</p>
             </div>
          </div>
-   </div>
-</footer>
-      <!--=============== MAIN JS ===============-->
-      <script src="assets/js/main.js"></script>
-   </body>
+      </div>
+      </div>
+   </footer>
+   <!--=============== MAIN JS ===============-->
+   <script src="assets/js/main.js"></script>
+</body>
 
 
 
@@ -334,41 +398,41 @@
 <script type="module">
    const firestore = firebase.firestore();
    const sessionData = JSON.parse(localStorage.getItem("sessionData"));
- 
+
    firebase.auth().onAuthStateChanged(function (user) {
-     if (user) {
-       const userDocRef = firestore.collection("users").doc(user.uid);
-       console.log(sessionData);
-       userDocRef.get().then((doc) => {
-         if (doc.exists) {
-           if (sessionData) {
-             const getSession = fetch(
-               `https://betoolz-server.vercel.app/api/get-session/${user?.customerId}`,
-               {
-                 method: "GET",
+      if (user) {
+         const userDocRef = firestore.collection("users").doc(user.uid);
+         console.log(sessionData);
+         userDocRef.get().then((doc) => {
+            if (doc.exists) {
+               if (sessionData) {
+                  const getSession = fetch(
+                     `https://betoolz-server.vercel.app/api/get-session/${user?.customerId}`,
+                     {
+                        method: "GET",
+                     }
+                  )
+                     .then((response) => response.json())
+                     .then(async (data) => {
+                        console.log(user.uid, "user");
+                        if (data.length !== 0) {
+                           const users = firestore
+                              .collection("users")
+                              .doc(user?.uid)
+                              .update({ member: "premium" });
+                        } else {
+                           const users = firestore
+                              .collection("users")
+                              .doc(user?.uid)
+                              .update({ member: "free" });
+                        }
+                     })
+                     .catch((error) => {
+                        console.error("Error:", error);
+                     });
                }
-             )
-               .then((response) => response.json())
-               .then(async (data) => {
-                 console.log(user.uid, "user");
-                 if (data.length !== 0) {
-                   const users = firestore
-                     .collection("users")
-                     .doc(user?.uid)
-                     .update({ member: "premium" });
-                 } else {
-                   const users = firestore
-                     .collection("users")
-                     .doc(user?.uid)
-                     .update({ member: "free" });
-                 }
-               })
-               .catch((error) => {
-                 console.error("Error:", error);
-               });
-           }
-         }
-       });
-     }
+            }
+         });
+      }
    });
- </script>
+</script>

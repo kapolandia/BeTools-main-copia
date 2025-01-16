@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     const userDocRef = firestore.collection("users").doc(user.uid);
     const subscribeBtn = document.querySelectorAll(".subscribe-btn");
     const unsubscribebtn = document.querySelectorAll(".unsubscribe-btn");
-    // const days = document.querySelectorAll(".rem-days");
+    const days = document.querySelectorAll(".rem-days");
     subscribeBtn.forEach((elements) => {
       elements.style.display = "block";
     });

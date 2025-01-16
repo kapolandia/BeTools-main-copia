@@ -327,7 +327,7 @@ function calculateNormal(){
         guadagnoTotale = Math.min(guadagnoPlayer1, guadagnoPlayer2);
 
         //Compilazione indicazioni
-        if(!boolModifica){
+        if(!puntateModificate){
             document.getElementById("result-a").value = formatToTwoDecimals(importoPuntata);
             document.getElementById("result-b").value = formatToTwoDecimals(Math.round(importoBancata));
         }
@@ -573,7 +573,7 @@ function calculateBonus(){
         guadagnoTotale = Math.min(guadagnoPlayer1, guadagnoPlayer2);
 
         //Compilazione indicazioni
-        if(!boolModifica){
+        if(!puntateModificate){
             document.getElementById("result-a").value = formatToTwoDecimals(importoPuntata);
             document.getElementById("result-b").value = formatToTwoDecimals(Math.round(importoBancata));
         }
@@ -823,7 +823,7 @@ function calculateCR(){
         guadagnoTotale = Math.min(guadagnoPlayer1, guadagnoPlayer2);
 
         //Compilazione indicazioni
-        if(!boolModifica){
+        if(!puntateModificate){
             document.getElementById("result-a").value = formatToTwoDecimals(importoPuntata);
             document.getElementById("result-b").value = formatToTwoDecimals(Math.round(importoBancata));
         }
@@ -1091,7 +1091,7 @@ function calculateOptiCR(){
         guadagnoTotale = Math.min(guadagnoPlayer1, guadagnoPlayer2);
 
         //Compilazione indicazioni
-        if(!boolModifica){
+        if(!puntateModificate){
             document.getElementById("result-a").value = formatToTwoDecimals(importoPuntata);
             document.getElementById("result-b").value = formatToTwoDecimals(Math.round(importoBancata));
         }

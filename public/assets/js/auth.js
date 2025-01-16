@@ -32,7 +32,7 @@ checkUserLoggedIn().then((userData) => {
   if (userData) {
     userEmail = userData.email;
     console.log('User email:', userEmail);
-    // You can use userEmail as needed, for example, display it on the page
+    document.getElementById("loading-banner").style.display = "none";
   } else {
     console.log('User not logged in');
     // Handle case where user is not logged in

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oddsmatcher</title>
+    <link rel="icon" type="image/png" href="./assets/images/ws.png" />
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Babel for JSX transformation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Root container for the React app -->
+    <div id="react-root"></div>
+
+    <!-- React JSX Code -->
+    <script type="text/babel">
+        // React Component
+        const { useState } = React;
+
+        function App() {
+            return (
+                <div className="overfow-scroll">
+                    <header
+                        className="header"
+                        style={{ boxShadow: "0px 0px 10px 0px #5865F2" }}
+                    >
+                        <nav className="nav container">
+                            <div className="nav__data">
+                                <a href="landing.html" className="nav__logo">
+                                    <img
+                                        src="./assets/images/logo.png"
+                                        alt="Logo"
+                                        style={{ height: "70px", width: "210px" }}
+                                    />
+                                </a>
+
+                                <div className="nav__toggle" id="nav-toggle">
+                                    <i className="ri-menu-line nav__burger"></i>
+                                    <i className="ri-close-line nav__close"></i>
+                                </div>
+                            </div>
+
+                            {/*=============== NAV MENU ===============*/}
+                            <div className="nav__menu" id="nav-menu">
+                                <ul className="nav__list">
+                                    {/*=============== DROPDOWN 1 ===============*/}
+                                    <li className="dropdown__item">
+                                        <div
+                                            className="nav__link"
+                                            style={{
+                                                borderBottomLeftRadius: "0px",
+                                                borderBottomRightRadius: "0px",
+                                            }}
+                                        >
+                                            Calcolatori Casinò <i className="fa-solid fa-chevron-down dropdown__arrow"></i>
+                                        </div>
+
+                                        <ul className="dropdown__menu">
+                                            <li>
+                                                <a href="live-casino.html" className="dropdown__link">
+                                                    Live Casinò
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="funbonus_slot.html" className="dropdown__link">
+                                                    Funbonus Casinò
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="vdg_casino.html" className="dropdown__link">
+                                                    Bonus VDG Casinò
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="vdg_slot.html" className="dropdown__link">
+                                                    Bonus VDG Slot
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a
+                                                    href="rtp.html"
+                                                    className="dropdown__link"
+                                                    style={{
+                                                        borderBottomLeftRadius: "10px",
+                                                        borderBottomRightRadius: "10px",
+                                                    }}
+                                                >
+                                                    Bonus RTP+
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li className="dropdown__item">
+                                        <div
+                                            className="nav__link"
+                                            style={{
+                                                borderBottomLeftRadius: "0px",
+                                                borderBottomRightRadius: "0px",
+                                            }}
+                                        >
+                                            Calcolatori Sport <i className="fa-solid fa-chevron-down dropdown__arrow"></i>
+                                        </div>
+
+                                        <ul className="dropdown__menu">
+                                            <li>
+                                                <a href="punta-banca.html" className="dropdown__link">
+                                                    Punta-Banca
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="punta-punta.html" className="dropdown__link">
+                                                    Punta-Punta
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="dutch-tool.html" className="dropdown__link">
+                                                    Dutch Tool
+                                                </a>
+                                            </li>
+
+
+
+                                            <li>
+                                                <a href="funbonus_sport.html" className="dropdown__link">
+                                                    Funbonus Sport
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a
+                                                    href="condizionato.html"
+                                                    className="dropdown__link"
+                                                    style={{
+                                                        borderBottomLeftRadius: "10px",
+                                                        borderBottomRightRadius: "10px",
+                                                    }}
+                                                >
+                                                    Condizionato
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="Blackjack.html" className="nav__link">
+                                            Calcolatore Blackjack
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </header>
+                    <div
+                        style={{
+                            position: 'relative',
+                            top: '100%',
+                            left: '0',
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            background: '#404040',
+                            padding: '20px',
+                        }}
+                    >
+                        <a
+                            style={{
+                                color: '#fff',
+                                fontFamily: 'Poppins',
+                                fontWeight: '700',
+                                fontSize: '24px',
+                            }}
+                            className="head2"
+                        >
+                            Oddsmatcher
+                        </a>
+                    </div>
+                    <div className="container">
+                        <div className="relative flex flex-col overflow-hidden w-full h-full mt-5 bg-white shadow-md rounded-lg bg-clip-border">
+                            <table className="w-full text-left table-auto min-w-max">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50 hover:bg-slate-100">
+                                            <p
+                                                className="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Data
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2"
+                                                    stroke="currentColor" aria-hidden="true" className="w-4 h-4">
+                                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                                        d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"></path>
+                                                </svg>
+                                            </p>
+                                        </th>
+
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50 hover:bg-slate-100">
+                                            <p
+                                                className="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Evento
+                                            </p>
+                                        </th>
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50 hover:bg-slate-100">
+                                            <p
+                                                className="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Torneo
+                                            </p>
+                                        </th>
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50 hover:bg-slate-100">
+                                            <p
+                                                className="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Esito
+                                            </p>
+                                        </th>
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50 hover:bg-slate-100">
+                                            <p
+                                                className="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Bookmaker
+                                            </p>
+                                        </th>
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50 hover:bg-slate-100">
+                                            <p
+                                                className="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Quota punta
+                                            </p>
+                                        </th>
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50 hover:bg-slate-100">
+                                            <p
+                                                className="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Quota banca
+                                            </p>
+                                        </th>
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50 hover:bg-slate-100">
+                                            <p
+                                                className="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Exchange
+                                            </p>
+                                        </th>
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50 hover:bg-slate-100">
+                                            <p
+                                                className="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Rating
+                                            </p>
+                                        </th>
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50 hover:bg-slate-100">
+                                            <p
+                                                className="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Liquidità
+                                            </p>
+                                        </th>
+                                        <th
+                                            className="p-4 transition-colors cursor-pointer border-b border-slate-300 bg-slate-50">
+                                            <p
+                                                className="flex items-center justify-center gap-2 text-sm font-normal leading-none text-slate-800">
+                                                Calcola
+                                            </p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="p-4 border-b border-slate-200">
+                                            <p className="block text-sm text-slate-800">
+                                                25/09/2021 <br></br> <strong>15:00</strong>
+                                            </p>
+                                        </td>
+                                        <td className="p-4 border-b border-slate-200">
+                                            <p className="block text-sm text-slate-800">
+                                                Atalanta <br></br> Como
+                                            </p>
+                                        </td>
+                                        <td className="p-4 border-b border-slate-200">
+                                            <p className="block text-sm text-slate-800">
+                                                Serie A
+                                            </p>
+                                        </td>
+                                        <td className="p-4 border-b border-slate-200">
+                                            <p className="block text-sm text-slate-800">
+                                                1
+                                            </p>
+                                        </td>
+                                        <td className="p-4 border-b border-slate-200">
+                                            <p className="block text-sm text-slate-800">
+                                                1
+                                            </p>
+                                        </td>
+                                        <td className="p-4 border-b border-slate-200">
+                                            <p className="block text-sm text-slate-800">
+                                                1
+                                            </p>
+                                        </td>
+                                        <td className="p-4 border-b border-slate-200">
+                                            <p className="block text-sm text-slate-800">
+                                                1
+                                            </p>
+                                        </td>
+                                        <td className="p-4 border-b border-slate-200">
+                                            <p className="block text-sm text-slate-800">
+                                                1
+                                            </p>
+                                        </td>
+                                        <td className="p-4 border-b border-slate-200">
+                                            <p className="block text-sm text-slate-800">
+                                                1
+                                            </p>
+                                        </td>
+                                        <td className="p-4 border-b border-slate-200">
+                                            <p className="block text-sm text-slate-800">
+                                                1
+                                            </p>
+                                        </td>
+                                        <td className="p-4 border-b border-slate-200 bg-slate-100 hover:bg-slate-300 cursor-pointer">
+                                            <p className="block text-sm text-slate-800 text-center">
+                                                <i className="fa-solid fa-calculator text-2xl text-slate-800"></i>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <footer className="footer" style={{ backgroundColor: "#f5f5f7", marginTop: "50px" }}>
+                        <div className="container">
+                            <div
+                                className="footer__info"
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    padding: "10px",
+                                    color: "#404040",
+                                    justifyContent: "start",
+                                    textAlign: "start",
+                                    paddingBottom: "20px",
+                                    fontWeight: "300",
+                                    fontSize: "13px",
+                                }}
+                            >
+                                <div className="small-footer">
+                                    <p style={{ paddingBottom: "10px" }}>
+                                        Copyright © 2025 Betoolz. Tutti i diritti riservati.
+                                    </p>
+                                    <ul className="footer-list">
+                                        <li className="footer-item">info@betoolz.it</li>
+                                        <li className="footer-item">BUSINESSBET A.F. | P.IVA: 02632200222</li>
+                                        <li className="footer-item footer-clickable">
+                                            <a
+                                                href="informativacookies.html"
+                                                target="_blank"
+                                                style={{ color: "#404040", textDecoration: "none" }}
+                                            >
+                                                Informativa cookies
+                                            </a>
+                                        </li>
+                                        <li className="footer-item footer-clickable">
+                                            <a
+                                                href="informativaprivacy.html"
+                                                target="_blank"
+                                                style={{ color: "#404040", textDecoration: "none" }}
+                                            >
+                                                Informativa privacy
+                                            </a>
+                                        </li>
+                                        <li className="footer-item footer-clickable">
+                                            <a
+                                                href="disclaimer.html"
+                                                target="_blank"
+                                                style={{ color: "#404040", textDecoration: "none" }}
+                                            >
+                                                Disclaimer
+                                            </a>
+                                        </li>
+                                        <li className="footer-item footer-clickable">
+                                            <a
+                                                href="termini.html"
+                                                target="_blank"
+                                                style={{ color: "#404040", textDecoration: "none" }}
+                                            >
+                                                Termini e condizioni
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul className="footer-list">
+                                        <li className="footer-item">Web Design di Davide Caporali</li>
+                                        <li className="footer-item">caporalidavide78@gmail.com</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        // Render the App Component
+        ReactDOM.createRoot(document.getElementById('react-root')).render(<App />);
+    </script>
+</body>
+
+</html>

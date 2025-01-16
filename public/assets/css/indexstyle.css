@@ -1017,4 +1017,38 @@ transition: 0.3s ease all;
   font-weight: 300;
 }
 
+.my-help{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #5865f1;
+  padding: 8px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+  transition: 0.2s;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.my-help-text{
+  display: none;
+  font-size: 15px;
+}
+
+.my-help:hover{
+  width: 120px;
+  border-radius: 12px;
+  box-shadow: 0px 0px 30px #5865f1; 
+}
+
+.my-help:hover .my-help-text{
+  display: block;
+}
+
 

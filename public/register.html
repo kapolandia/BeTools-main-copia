@@ -232,7 +232,7 @@
               <a
                 href="register.html"
                 class="nav__register"
-                style="font-weight: 500"
+                style="font-weight: 500;cursor: pointer !important;"
                 >Registrati</a
               >
             </li>
@@ -311,6 +311,20 @@
                     >Email<span style="color: #5865f2;">*</span></label
                   >
                 </div>
+                <div class="input-field">
+                  <input type="text" class="input-box" id="logTelegram" required />
+                  <label
+                    for="logTelegram"
+                    style="
+                      padding: 0;
+                      margin: 0;
+                      background-color: transparent;
+                      color: #202427;
+                    "
+                    >Telegram ID<span style="color: #5865f2;">*</span></label
+                  >
+                </div>
+                <p  style="font-size: 12px;">Necessario per fornire l'accesso ai servizi telegram e per ricevere assistenza sui nostri prodotti.</p>
                 <div class="input-field">
                   <input
                     type="password"
@@ -448,21 +462,31 @@
 
                 <div class="input-field">
                   <div
-                    id="password-error"
-                    class="error-message"
-                    style="color: #ff0033; display: none; font-size: 12px"
-                  >
-                    La password deve contenere più di 6 caratteri.
-                  </div>
-                </div>
-
-                <div class="input-field">
-                  <div
                     id="email-error"
                     class="error-message"
                     style="color: #ff0033; display: none; font-size: 12px"
                   >
                     L'email inserita non è valida.
+                  </div>
+                </div>
+
+                <div class="input-field">
+                  <div
+                    id="telegram-error"
+                    class="error-message"
+                    style="color: #ff0033; display: none; font-size: 12px"
+                  >
+                    Inserisci un ID Telegram valido.
+                  </div>
+                </div>
+
+                <div class="input-field">
+                  <div
+                    id="password-error"
+                    class="error-message"
+                    style="color: #ff0033; display: none; font-size: 12px"
+                  >
+                    La password deve contenere più di 6 caratteri.
                   </div>
                 </div>
 
@@ -492,7 +516,7 @@
                     class="error-message"
                     style="color: #ff0033; display: none; font-size: 12px"
                   >
-                    Inserisci un indirizzo valido
+                    Inserisci un indirizzo valido.
                   </div>
                 </div>
 
@@ -515,7 +539,7 @@
                 <div class="input-field">
                   <a
                     class="nav__register2"
-                    style="margin-top: 30px; width: 100%; font-weight: 500"
+                    style="margin-top: 30px; width: 100%; font-weight: 500;cursor: pointer;"
                     >Registrati</a
                   >
                 </div>

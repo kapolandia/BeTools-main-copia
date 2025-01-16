@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abbonamento cancellato</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .banner img {
+            width: 100%;
+            display: block;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff7878;
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 20px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff !important;
+            background-color: #ff7878;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+        }
+
+        .button,
+        .button:link,
+        .button:visited,
+        .button:hover,
+        .button:focus,
+        .button:active {
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+        .button:visited {
+            color: #fff !important;
+            background-color: #5865f1;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #777;
+            text-align: center;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="email-container">
+        <!-- Banner -->
+        <div class="banner">
+            <img src="https://i.postimg.cc/t4F9LGJ2/sub-cancel.png" alt="Banner">
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h1>Abbonamento cancellato</h1>
+            <p>Ciao ${customerName},</p>
+            <p>
+                Il tuo abbonamento è stato cancellato con successo. Controlla sulla nostra <strong>dashboard</strong>
+                per vedere i
+                giorni rimanenti del tuo abbonamento.
+            </p>
+            <!-- Button -->
+            <table role="presentation" style="width: 100%; margin: 20px 0;">
+                <tr>
+                    <td align="center">
+                        <a href="https://betoolz.it/plan2" class="button"
+                            style="display: inline-block; padding: 12px 20px; font-size: 20px; font-weight: 600; color: #fff !important; background-color: #ff7878; text-decoration: none; border-radius: 8px;">
+                            Vai alla dashboard
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+            <p>
+                Se hai domande o hai bisogno di assistenza, non esitare a contattarci tramite la nostra email:
+                <strong>info@betoolz.it</strong>. Siamo qui per aiutarti!
+            </p>
+            <p><strong>Il Team di Betoolz.</strong></p>
+        </div>
+        <div class="banner">
+            <img src="https://i.postimg.cc/TwWzLzFB/logo-5.png" alt="Banner">
+        </div>
+        <!-- Footer -->
+        <div class="footer">
+            <p>Questa è un'email generata automaticamente. Per favore, non rispondere a questo messaggio.</p>
+        </div>
+    </div>
+</body>
+
+</html>

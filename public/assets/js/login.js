@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+import "https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -59,8 +60,36 @@ document.getElementById("loginMainButton").addEventListener("click", function ()
         const user = userCredential.user;
         console.log("Sign-in successful:", user);
 
-        // Redirect the user to another page after successful sign-in
-        window.location.href = "landing.html"; // Replace with your desired URL
+        if (!firebase.apps.length) {
+          firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+        const userDocRef = db.collection("users").doc(user.uid);
+
+        // Fetch the document data
+        userDocRef
+          .get()
+          .then((doc) => {
+            console.log("doc", doc.exists);
+            if (doc.exists) {
+              // Document data exists, so you can access the "member" field
+              const userData = doc.data();
+              console.log(userData, "userData");
+              
+              if(userData.member === "free") {
+                window.location.href = "freelanding.html";
+              }
+              if(userData.member === "premium") {
+                window.location.href = "landing.html";
+              }
+            } else {
+              console.log("User document does not exist.");
+              //   window.location.href = "index.html";
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching user document:", error);
+          });
       })
       .catch((error) => {
         // Handle sign-in errors
@@ -84,7 +113,11 @@ function validate_email(email) {
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
-    window.location.href = "index.html";
+    if(user.member === "free") {
+      window.location.href = "freelanding.html";
+    } else if(user.member === "premium") {
+      window.location.href = "landing.html";
+    }
   } else {
     document.body.style.display = "block";
   }

@@ -6,7 +6,9 @@ import {
   getDoc,
 } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-firestore.js";
 
-document.body.style.display = "none";
+
+  // document.body.style.display = "none";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -65,6 +67,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                   db.collection("users")
                     .doc(user?.uid)
                     .update({ member: "premium" });
+                  document.getElementById("loading-banner").style.display = "none";
                   document.body.style.display = "block";
                 }
               })

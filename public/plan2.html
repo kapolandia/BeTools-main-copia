@@ -13,6 +13,10 @@
       <link rel="icon" type="image/png" href="./assets/images/ws.png"/>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script type="module" src="./assets/js/authPlan.js"></script>
+      <script type="module" src="./assets/js/plan2.js"></script>
+      <script type="module" src="./assets/js/checkUser.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      
 
       <!--=============== REMIXICONS ===============-->
       <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
@@ -20,7 +24,20 @@
       <!--=============== CSS ===============-->
       <link rel="stylesheet" href="assets/css/styles.css">
       <style>
-             .guides-list {
+
+         .wrap-fatturazione{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+
+         }
+
+         .nav__register2:focus{
+  transform: scale(0.96);
+}
+
+
+    .guides-list {
       width: 300px;
       border-right: 1px solid rgb(242, 242, 247);
       display: flex;
@@ -44,6 +61,8 @@
       height: 100%;
       margin: 0;
       padding: 0;
+      width: 100vw;
+      overflow-x: hidden;
     }
 
     .guides-item{
@@ -63,6 +82,7 @@
 
     .guide-div{
       padding-left: 80px;
+      width: 100%;
     }
 
     @media screen and (max-width:850px) {
@@ -72,6 +92,16 @@
 
       .guide-div{
          padding: 40px;
+      }
+
+      .wrap-fatturazione{
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+      }
+
+      .wrap-container{
+         justify-content: center;
       }
     }
 
@@ -165,10 +195,15 @@
                      </div>
                      <ul class="dropdown__menu">
                         <li>
-                        <a data-target="content-vdg-sport" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"  onclick="document.getElementById('close-nav').click()">
-                           Gestione piano
-                        </a>
-                     </li>
+                           <a data-target="content-piano" class="dropdown__link"  onclick="document.getElementById('close-nav').click()">
+                              Abbonamento
+                           </a>
+                        </li>
+                        <li>
+                           <a data-target="content-acquisti" class="dropdown__link" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"  onclick="document.getElementById('close-nav').click()">
+                              Acquisti
+                           </a>
+                        </li>
                      </ul>
                   </li>
 
@@ -183,7 +218,7 @@
         <a style="color: #fff;font-family: Poppins;font-weight: 700;font-size: 24px;" class="head2">Dashboard</a>
     </div>
     
-      <div style="display: flex;flex-direction: row;">
+      <div style="display: flex;flex-direction: row;" class="wrap-container">
       <div class="guides-list" >
          <div style="padding: 20px;">
             <p class="body" style="color: rgba(92,105,117,1.00);font-weight: 200;font-family:Poppins, sans serif;font-size: 14px;">
@@ -199,8 +234,13 @@
                Abbonamento
             </p>
             <div style="padding-left: 10px;border-left: 1px solid rgb(242, 242, 247);padding-top: 10px;display: flex;flex-direction: column;">
-               <a class="guides-item" style="font-family: Poppins, sans serif;" data-target="content-vdg-sport">
-                  Gestione Piano
+               <a class="guides-item" style="font-family: Poppins, sans serif;" data-target="content-piano">
+                  Abbonamento
+               </a>
+            </div>
+            <div style="padding-left: 10px;border-left: 1px solid rgb(242, 242, 247);padding-top: 10px;display: flex;flex-direction: column;">
+               <a class="guides-item" style="font-family: Poppins, sans serif;" data-target="content-acquisti">
+                  Acquisti
                </a>
             </div>
          </div>
@@ -209,90 +249,133 @@
       <div class="guide-div" style="display: flex;flex-direction: column;padding-top: 40px;text-align: center;">
          <div id="content-funbonus-slot" class="content" style="display: none;text-align: justify;flex-direction: column;">
             <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;" >Fatturazione</a>
-            <div class="input-field">
-               <input
-                 type="text"
-                 class="input-box"
-                 id="provincia-utente"
-                 required
-               />
-               <label for="provincia-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
-                 Provincia<span style="color: #5865f2;">*</span>
-               </label>
-             </div>
-
+            <div class="wrap-fatturazione">
+               <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="nome-utente"
+                    required
+                  />
+                  <label for="nome-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    Nome<span style="color: #5865f2;">*</span>
+                  </label>
+               </div>
+               <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="cognome-utente"
+                    required
+                  />
+                  <label for="cognome-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    Cognome<span style="color: #5865f2;">*</span>
+                  </label>
+               </div>
+               <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="indirizzo-utente"
+                    required
+                  />
+                  <label for="indirizzo-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    Indirizzo<span style="color: #5865f2;">*</span>
+                  </label>
+               </div>
+               <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="cap-utente"
+                    required
+                  />
+                  <label for="cap-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    CAP<span style="color: #5865f2;">*</span>
+                  </label>
+               </div>
+               <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="citta-utente"
+                    required
+                  />
+                  <label for="citta-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    Città<span style="color: #5865f2;">*</span>
+                  </label>
+               </div>
+               <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="provincia-utente"
+                    required
+                  />
+                  <label for="provincia-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    Provincia<span style="color: #5865f2;">*</span>
+                  </label>
+               </div>
+               <!-- telegram -->
+               <div class="input-field">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="telegram-utente"
+                    required
+                  />
+                  <label for="telegram-utente" style="padding: 0;margin: 0;background-color: transparent;color: #202427;">
+                    Telegram<span style="color: #5865f2;">*</span>
+                  </label>
+               </div>
+            </div>
+            <div class="input-field" id="address-error" style="display: none;">
+               <div
+                 
+                 class="error-message"
+                 style="color: #ff0033; font-size: 12px"
+               >
+                 Inserisci un indirizzo valido.
+               </div>
+            </div>
+            <div class="input-field" id="telegram-error" style="display: none;">
+               <div
+                 class="error-message"
+                 style="color: #ff0033;font-size: 12px"
+               >
+                 Inserisci un ID Telegram valido.
+               </div>
+            </div>
+            <div class="input-field" id="update-success" style="display: none;">
+               <div
+                 
+                 class="error-message"
+                 style="font-size: 12px;color: #58cf58;"
+               >
+                 Dati modificati con successo.
+               </div>
+            </div>
+            <button class="modify-fatturazione" id="modify-fatturazione" >
+                  Modifica &nbsp;<i class="fa-solid fa-pen"></i>
+            </button>
          </div>
-
-         <div id="content-vdg-sport" class="content" style="display: none;text-align: justify;flex-direction: column;">
-            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;"> Gestione piano</a>
-            <a style="font-size: 1.5em;font-family: Poppins, sans serif;font-weight: 600;color:#404040;margin-top: 20px;"> I Funbonus</a>
-            <a style="align-items: center;justify-content: center;display: flex;background-color: #5865f214;color:  #5865F2;padding: 10px;border-radius: 5px;border-left: 5px solid #5865F2;margin-top: 20px;"> <img src="./assets/images/megaphone.png" style="height: 50px;margin-right: 10px;">Analizzando la vasta proposta dei Casinò online in termini di promozioni, capiterà di imbattersi nella dicitura “Fun Bonus”: scopriamo cosa significa e come si sfruttano.
+         <div class="content" id="content-piano" style="display: none;text-align: justify;flex-direction: column;">
+            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;" >Abbonamento</a>
+            Vai alla pagina di abbonamento per attivare o rimuovere il tuo piano
+            <a href="plan.html"
+               class=" nav__register2" style="border: none;cursor: pointer;font-weight: 600;font-size: 16px;margin-top: 10px;width: 300px;"
+               style="display: none"
+            >
+               Prosegui &nbsp;<i class="fa-solid fa-chevron-right"></i>
             </a>
-            <a style="font-size: 1em;font-family: Poppins, sans serif;font-weight: 300;color:#404040;margin-top: 20px;margin-bottom: 50px;"> 
-               Esistono molte tipologie di bonus proposte dai bookmaker, di varia natura e differente utilizzo. Una di queste prende il nome di “Fun Bonus“, che (in estrema sintesi) prevede l’assegnazione di <strong>credito virtuale</strong>, non prelevabile direttamente ma convertibile in <strong>"Real Bonus”</strong> o in soldi veri tramite il soddisfacimento di alcuni parametri di gioco.<br><br>
-               Per trasformare un “Fun Bonus” in un “Real Bonus” si dovrà passare tramite un determinato <strong>requisito di scommessa</strong>, in inglese <strong>“wagering requirement”</strong>, ovvero la necessità che quello stesso bonus debba venir rigiocato un determinato numero di volte.<br><br>
-               In linea generale, comunque, su ogni sito si potranno consultare più in generale <strong>Termini e Condizioni (T&C)</strong> del bonus, per avere una migliore panoramica delle norme che regolano lo sblocco.
-            </a>
+         <div class="subscription-table-wrapper" id="acquisti-record"></div>
+         </div>
+         <div class="content" id="content-acquisti" style="display: none;text-align: justify;flex-direction: column;">
+            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;" >Acquisti</a>
+            <div class="subscription-table-wrapper" id="acquisti-invoices"></div>
          </div>
 
-         <div id="content-admiral" class="content" style="display: none;text-align: justify;flex-direction: column;">
-            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;"> Bonus AdmiralBet</a>
-            <a style="align-items: center;justify-content: center;display: flex;background-color: rgba(255, 126, 126, 0.213);color:  #ff5555;padding: 10px;border-radius: 5px;border-left: 5px solid #ff5555;margin-top: 20px;"> <img src="./assets/images/warning.png" style="height: 50px;margin-right: 10px;"> Controlla sempre i Termini e Condizioni prima di iniziare a sfruttare una promozione.</a>
 
-            <a style="font-size: 1em;font-family: Poppins, sans serif;font-weight: 300;color:#404040;margin-top: 20px;margin-bottom: 50px;"> 
-               AdmiralBet propone un Bonus di Benvenuto Sport <strong>sfruttabile con il nostro calcolatore</strong> Fun Bonus Sport. <br>
-               Al momento della scrittura di questa guida i valori riportati dai T&C sono sono i seuguenti: <br>
-               - Importo Funbonus: 100 <br>
-               - Wagering Richiesto: 8 <br>
-               - Eventi Funbonus: 3 <br>
-               - Quota min. Eventi: 1.3 <br>
-               - Cap Real Bonus: 500 <br>
-               - Rollover Real Bonus: 1 <br>
-               - Eventi Real Bonus: 1 <br><br>
-               Il <strong>profitto stimato</strong> sarà dunque di <strong>~28€</strong> e dipenderà anche dal rating degli eventi che useremo per le nostre scommesse.
-            </a>
-         </div>
-
-         <div id="content-betaland" class="content" style="display: none;text-align: justify;flex-direction: column;">
-            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;"> Bonus Betaland</a>
-            <a style="align-items: center;justify-content: center;display: flex;background-color: rgba(255, 126, 126, 0.213);color:  #ff5555;padding: 10px;border-radius: 5px;border-left: 5px solid #ff5555;margin-top: 20px;"> <img src="./assets/images/warning.png" style="height: 50px;margin-right: 10px;"> Controlla sempre i Termini e Condizioni prima di iniziare a sfruttare una promozione.</a>
-
-            <a style="font-size: 1em;font-family: Poppins, sans serif;font-weight: 300;color:#404040;margin-top: 20px;margin-bottom: 50px;"> 
-               Betaland propone un Bonus di Benvenuto Sport <strong>sfruttabile con il nostro calcolatore</strong> Fun Bonus Sport. <br>
-               Al momento della scrittura di questa guida i valori riportati dai T&C sono sono i seuguenti: <br>
-               - Importo Funbonus: 50 <br>
-               - Wagering Richiesto: 10 <br>
-               - Eventi Funbonus: 3 <br>
-               - Quota min. Eventi: 2 <br>
-               - Cap Real Bonus: 500 <br>
-               - Rollover Real Bonus: 1 <br>
-               - Eventi Real Bonus: 3 <br><br>
-               Nonostante l'offerta parli di bonus fino a 100€ sarà possibile giocare <strong>massimo 50€</strong>. <br>
-               Il <strong>profitto stimato</strong> sarà dunque di <strong>~15€</strong> e dipenderà anche dal rating degli eventi che useremo per le nostre scommesse.
-            </a>
-         </div>
-
-         <div id="content-netbet" class="content" style="display: none;text-align: justify;flex-direction: column;">
-            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;"> Bonus Netbet</a>
-            <a style="align-items: center;justify-content: center;display: flex;background-color: rgba(255, 126, 126, 0.213);color:  #ff5555;padding: 10px;border-radius: 5px;border-left: 5px solid #ff5555;margin-top: 20px;"> <img src="./assets/images/warning.png" style="height: 50px;margin-right: 10px;"> Controlla sempre i Termini e Condizioni prima di iniziare a sfruttare una promozione.</a>
-            <a style="font-size: 1em;font-family: Poppins, sans serif;font-weight: 300;color:#404040;margin-top: 20px;margin-bottom: 50px;"> 
-               Netbet propone un Bonus di Benvenuto Sport <strong>sfruttabile con il nostro calcolatore</strong> Fun Bonus Sport. <br>
-               Al momento della scrittura di questa guida i valori riportati dai T&C sono sono i seuguenti: <br>
-               - Importo Funbonus: 50 <br>
-               - Wagering Richiesto: 3 <br>
-               - Eventi Funbonus: 3 <br>
-               - Quota min. Eventi: 2 <br>
-               - Cap Real Bonus: 150 <br>
-               - Rollover Real Bonus: 1 <br>
-               - Eventi Real Bonus: 1 <br><br>
-               Il <strong>profitto stimato</strong> sarà dunque di <strong>~20€</strong> e dipenderà anche dal rating degli eventi che useremo per le nostre scommesse.
-            </a>
-         </div>
-
-         <div id="content-vdg-bj" class="content" style="display: none;text-align: justify;flex-direction: column;">
-            <a style="font-size: 2em;font-family: Poppins, sans serif;font-weight: 700;color:#404040;"> Calcolatore Blackjack Live</a>
-            <a style="font-size: 1.5em;font-family: Poppins, sans serif;font-weight: 600;color:#404040;margin-top: 20px;"> Presto disponibile.</a>
-         </div>
       </div>   
 
       </div>
@@ -354,6 +437,10 @@
 
       
     </script>
+      <script src="https://js.stripe.com/v3/"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
     
     
 </html>

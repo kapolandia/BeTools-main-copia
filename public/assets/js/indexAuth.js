@@ -40,7 +40,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     `;
 
     if (window.location.pathname.includes("freelanding.html")) {
-      logoutBtn.style.borderRadius = "10px 10px 10px 10px";
+      logoutBtn.style.borderRadius = "0px 0px 10px 10px";
     } else {
       logoutBtn.style.borderRadius = "0 0 10px 10px";
     }
